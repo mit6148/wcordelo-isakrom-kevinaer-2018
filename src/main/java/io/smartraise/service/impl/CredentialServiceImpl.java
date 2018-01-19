@@ -42,16 +42,17 @@ public class CredentialServiceImpl implements CredentialService{
     }
 
     @Override
-    public Credential create(LogIn logIn) throws Exception {
+    public void create(LogIn logIn) throws Exception {
         if (logIn.getEmail() == "" || logIn.getUsername() == "") {
             throw new Exception("Need email and id!");
         }
 
         if (credentialDAO.exists(logIn.getEmail())) {
-            Credential credential = authenticate(logIn);
-            credential.addType(logIn.getType());
-            credentialDAO.save(credential);
-            return  credential;
+//            Credential credential = authenticate(logIn);
+//            credential.addType(logIn.getType());
+//            credentialDAO.save(credential);
+//            return  credential;
+            throw new Exception("User already exists");
         } else {
             byte[] salt = PasswordHashing.generateSalt();
             byte[] hash = PasswordHashing.hash(logIn.getPassword(), salt);
@@ -60,7 +61,6 @@ public class CredentialServiceImpl implements CredentialService{
 
             credentialDAO.save(newCredential);
             processNewCred(newCredential);
-            return newCredential;
         }
 
     }

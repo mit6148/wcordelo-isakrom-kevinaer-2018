@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/user")
 public class CredentialController {
@@ -16,14 +18,9 @@ public class CredentialController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity createUser(@RequestBody LogIn logIn) {
         try {
-            return ResponseEntity.ok(credentialService.create(logIn));
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-//    @RequestMapping(method = RequestMethod.POST)
-//    public ResponseEntity updateUser(@RequestBody Credential credential, Principal principal) {
-//        return null;
-//    }
 }

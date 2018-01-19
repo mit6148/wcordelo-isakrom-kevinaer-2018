@@ -20,6 +20,16 @@ public class MemberController {
     @Autowired
     private CredentialService credentialService;
 
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity createUser(@RequestBody Member member) {
+        try {
+            memberService.create(member);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getUser(@PathVariable("id") String id, Principal principal){
         Administrator administrator = new Administrator();
@@ -36,13 +46,8 @@ public class MemberController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity createUser(@RequestBody Member member) {
-        try {
-            memberService.create(member);
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity updateUser(@PathVariable("id") String id, Principal principal){
+        return null;
     }
 }

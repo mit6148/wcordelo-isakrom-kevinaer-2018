@@ -38,4 +38,14 @@ public class MemberServiceImpl implements MemberService {
     public Member getPublic(Member member) throws Exception {
         return new Member(member.getFirstName(), member.getLastName(), member.getUsername());
     }
+
+    @Override
+    public void update(Member member) throws Exception {
+
+    }
+
+    @Override
+    public void delete(Member member) throws Exception {
+
+    }
 }

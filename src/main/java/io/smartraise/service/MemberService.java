@@ -3,11 +3,7 @@ package io.smartraise.service;
 import io.smartraise.model.accounts.Member;
 import io.smartraise.model.login.Credential;
 
-public interface MemberService {
-
-    Member get(String id) throws Exception;
-
-    void create(Member member) throws Exception;
+public interface MemberService extends Service<Member> {
 
     void createFromCredential(Credential credential) throws Exception;
 
