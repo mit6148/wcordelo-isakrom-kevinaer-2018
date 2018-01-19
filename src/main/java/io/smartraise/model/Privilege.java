@@ -1,0 +1,14 @@
+package io.smartraise.model;
+
+public enum Privilege {
+    ADMIN_NOT_VERIFIED,
+    ADMIN_VERIFIED,
+    ADMIN_FULL,
+    DONOR_NOT_VERIFIED,
+    DONOR_VERIFIED,
+    MEMBER_NOT_VERIFIED,
+    MEMBER_VERIFIED,
+    CHARITY_NOT_VERIFIED,
+    CHARITY_VERIFIED,
+    NOT_VISIBLE,
+}
