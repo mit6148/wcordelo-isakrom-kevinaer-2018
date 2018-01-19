@@ -1,6 +1,6 @@
 package io.smartraise.security;
 
-import io.smartraise.model.accounts.login.LogIn;
+import io.smartraise.model.login.LogIn;
 import io.smartraise.service.CredentialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;

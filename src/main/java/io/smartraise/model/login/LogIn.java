@@ -1,27 +1,27 @@
-package io.smartraise.model.accounts.login;
+package io.smartraise.model.login;
 
 public class LogIn {
 
-    private final Credential.Type type;
+    private final Credential.UserType type;
     private final String username;
     private final String email;
     private final String password;
 
     public LogIn(){
-        type = Credential.Type.MEMBER;
+        type = Credential.UserType.MEMBER;
         email = "";
         password = "";
         username = "";
     }
 
     public LogIn(String email, String password) {
-        type = Credential.Type.MEMBER;
+        type = Credential.UserType.MEMBER;
         this.email = email;
         this.password = password;
         this.username = "";
     }
 
-    public Credential.Type getType() {
+    public Credential.UserType getType() {
         return type;
     }
 

@@ -1,20 +1,22 @@
 package io.smartraise.model.accounts;
 
-import io.smartraise.model.Organization;
+import io.smartraise.model.fundraise.Organization;
 import io.smartraise.model.Privilege;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Member {
 
-    private String firstName;
-    private String lastName;
     @Id
     private final String username;
-    private final String email;
-    private final Privilege privilege;
+    @Indexed(unique = true)
+    private String email;
+    private String firstName;
+    private String lastName;
+    private Privilege privilege;
     private final Set<Organization> organizations;
 
     public Member(String email, String username) {
@@ -66,6 +68,14 @@ public class Member {
 
     public Privilege getPrivilege() {
         return privilege;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPrivilege(Privilege privilege) {
+        this.privilege = privilege;
     }
 
     public Set<Organization> getOrganizations() {

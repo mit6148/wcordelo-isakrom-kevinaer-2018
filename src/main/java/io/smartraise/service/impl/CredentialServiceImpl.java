@@ -1,9 +1,9 @@
 package io.smartraise.service.impl;
 
-import io.smartraise.model.accounts.login.LogIn;
+import io.smartraise.model.login.LogIn;
 import io.smartraise.security.PasswordHashing;
 import io.smartraise.dao.CredentialDAO;
-import io.smartraise.model.accounts.login.Credential;
+import io.smartraise.model.login.Credential;
 import io.smartraise.service.CredentialService;
 import io.smartraise.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class CredentialServiceImpl implements CredentialService{
     private MemberService memberService;
 
     private void processNewCred(Credential credential) throws Exception {
-        if (credential.getTypes().contains(Credential.Type.MEMBER)) {
+        if (credential.getTypes().contains(Credential.UserType.MEMBER)) {
             memberService.createFromCredential(credential);
         }
     }

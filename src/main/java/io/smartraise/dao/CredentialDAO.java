@@ -1,6 +1,6 @@
 package io.smartraise.dao;
 
-import io.smartraise.model.accounts.login.Credential;
+import io.smartraise.model.login.Credential;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface CredentialDAO extends MongoRepository<Credential, String> {

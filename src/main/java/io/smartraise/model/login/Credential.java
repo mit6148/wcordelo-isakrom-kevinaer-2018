@@ -1,22 +1,25 @@
-package io.smartraise.model.accounts.login;
+package io.smartraise.model.login;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class Credential {
 
-    public enum Type {ADMINISTRATOR, CHARITY, DONOR, MEMBER}
+    public enum UserType {ADMINISTRATOR, CHARITY, DONOR, MEMBER}
 
-    private final Set<Type> types;
     @Id
     private final String username;
-    private final String email;
-    private final byte[] hash;
-    private final byte[] salt;
+    @Indexed(unique = true)
+    private String email;
+    private final Set<UserType> types;
+    private byte[] hash;
+    private byte[] salt;
 
-    public Credential(Type type, String email, byte[] hash, byte[] salt, String username) {
+    public Credential(UserType type, String email, byte[] hash, byte[] salt, String username) {
         this.types = new HashSet<>();
         this.types.add(type);
         this.email = email;
@@ -33,7 +36,7 @@ public class Credential {
         this.username = "";
     }
 
-    public Set<Type> getTypes() {
+    public Set<UserType> getTypes() {
         return new HashSet<>(types);
     }
 
@@ -53,7 +56,16 @@ public class Credential {
         return username;
     }
 
-    public void addType(Type type) {
+    public void addType(UserType type) {
         this.types.add(type);
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(byte[] salt, byte[] hash) {
+        this.salt = salt;
+        this.hash = hash;
     }
 }

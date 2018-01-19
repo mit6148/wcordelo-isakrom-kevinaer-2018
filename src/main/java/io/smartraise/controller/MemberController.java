@@ -1,5 +1,6 @@
 package io.smartraise.controller;
 
+import io.smartraise.model.accounts.Administrator;
 import io.smartraise.model.accounts.Member;
 import io.smartraise.service.CredentialService;
 import io.smartraise.service.MemberService;
@@ -21,6 +22,7 @@ public class MemberController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getUser(@PathVariable("id") String id, Principal principal){
+        Administrator administrator = new Administrator();
         try {
             Member member = memberService.get(id);
             if (principal != null && credentialService.verify(principal.getName(), id)) {

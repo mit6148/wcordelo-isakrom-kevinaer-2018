@@ -1,13 +1,10 @@
 package io.smartraise.controller;
 
-import io.smartraise.model.accounts.login.Credential;
-import io.smartraise.model.accounts.login.LogIn;
+import io.smartraise.model.login.LogIn;
 import io.smartraise.service.CredentialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
 
 @RestController
 @RequestMapping("/user")
@@ -25,8 +22,8 @@ public class CredentialController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity updateUser(@RequestBody Credential credential, Principal principal) {
-        return null;
-    }
+//    @RequestMapping(method = RequestMethod.POST)
+//    public ResponseEntity updateUser(@RequestBody Credential credential, Principal principal) {
+//        return null;
+//    }
 }

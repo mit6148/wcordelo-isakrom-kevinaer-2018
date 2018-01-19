@@ -1,7 +1,7 @@
 package io.smartraise.service;
 
 import io.smartraise.model.accounts.Member;
-import io.smartraise.model.accounts.login.Credential;
+import io.smartraise.model.login.Credential;
 
 public interface MemberService {
 
