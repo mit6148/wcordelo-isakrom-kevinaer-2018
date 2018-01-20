@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class Credential {
 
-    public enum UserType {ADMINISTRATOR, CHARITY, DONOR, MEMBER}
+    public enum UserType {ADMINISTRATOR, CHARITY, DONOR, MEMBER, NONE}
 
     @Id
     private final String username;
@@ -19,7 +19,12 @@ public class Credential {
     private byte[] hash;
     private byte[] salt;
 
-    public Credential(UserType type, String email, byte[] hash, byte[] salt, String username) {
+    public Credential(
+            UserType type,
+            String email,
+            byte[] hash,
+            byte[] salt,
+            String username) {
         this.types = new HashSet<>();
         this.types.add(type);
         this.email = email;
@@ -68,4 +73,5 @@ public class Credential {
         this.salt = salt;
         this.hash = hash;
     }
+
 }

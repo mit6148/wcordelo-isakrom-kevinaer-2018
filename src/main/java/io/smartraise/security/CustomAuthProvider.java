@@ -1,6 +1,7 @@
 package io.smartraise.security;
 
-import io.smartraise.model.login.LogIn;
+import io.smartraise.helper.Parser;
+import io.smartraise.model.login.SignUp;
 import io.smartraise.service.CredentialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,20 +13,24 @@ import org.springframework.security.core.AuthenticationException;
 import java.util.ArrayList;
 
 @ComponentScan("io.smartraise.smartraise")
-public class CustAuthProvider implements AuthenticationProvider {
+public class CustomAuthProvider implements AuthenticationProvider {
 
     @Autowired
     private CredentialService credentialService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String email = authentication.getName();
+        String user = authentication.getName();
         String password = authentication.getCredentials().toString();
 
         try {
-            credentialService.authenticate(new LogIn(email, password));
+            if (Parser.isEmail(user)){
+                credentialService.authenticate(new SignUp(user, "",password));
+            } else {
+                credentialService.authenticate(new SignUp("", user, password));
+            }
             return new UsernamePasswordAuthenticationToken(
-                    email, password, new ArrayList<>());
+                    user, password, new ArrayList<>());
         } catch (Exception e) {
             return null;
         }

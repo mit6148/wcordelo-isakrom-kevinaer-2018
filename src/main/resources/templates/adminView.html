@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin</title>
+</head>
+<body>
+<h2>Admin</h2>
+<table>
+    <!--<tr>-->
+    <!--<td>First Name :</td>-->
+    <!--<p th:text= "${user.firstName}"</p>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td>Last Name :</td>-->
+    <!--<p th:text= "${user.firstName}"</p>-->
+    <!--</tr>-->
+    <tr>
+        <td>Username :</td>
+        <td th:text= "${user.username}"/>
+    </tr>
+    <tr>
+        <td>Email :</td>
+        <td th:text= "${user.email}"/>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package io.smartraise.config;
 
+import io.smartraise.service.AdminService;
 import io.smartraise.service.MemberService;
+import io.smartraise.service.impl.AdminServiceImpl;
 import io.smartraise.service.impl.CredentialServiceImpl;
 import io.smartraise.service.CredentialService;
 import io.smartraise.service.impl.MemberServiceImpl;
@@ -17,4 +19,7 @@ public class ServiceConfig {
 
     @Bean
     public MemberService memberService() { return new MemberServiceImpl(); }
+
+    @Bean
+    public AdminService adminService() { return new AdminServiceImpl(); }
 }

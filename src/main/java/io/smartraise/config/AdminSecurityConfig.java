@@ -1,5 +1,6 @@
 package io.smartraise.config;
 
+import io.smartraise.security.AdminCustomAuthenticationSuccessHandler;
 import io.smartraise.security.CustomAuthProvider;
 import io.smartraise.security.CustomAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +13,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@Order(2)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@Order(1)
+public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomAuthProvider authProvider;
 
     @Autowired
-    private CustomAuthenticationSuccessHandler successHandler;
+    private AdminCustomAuthenticationSuccessHandler successHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -30,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
                 .and()
             .formLogin()
-                .loginPage("/login")
+                .loginPage("/adminLogin")
                 .successHandler(successHandler)
                 .permitAll()
                 .and()

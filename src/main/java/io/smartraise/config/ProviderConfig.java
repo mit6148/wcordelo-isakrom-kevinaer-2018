@@ -1,6 +1,6 @@
 package io.smartraise.config;
 
-import io.smartraise.security.CustAuthProvider;
+import io.smartraise.security.CustomAuthProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,5 +8,5 @@ import org.springframework.context.annotation.Configuration;
 public class ProviderConfig {
 
     @Bean
-    public CustAuthProvider custAuthProvider() {return new CustAuthProvider(); }
+    public CustomAuthProvider custAuthProvider() {return new CustomAuthProvider(); }
 }

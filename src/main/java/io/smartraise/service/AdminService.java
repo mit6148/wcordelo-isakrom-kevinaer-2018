@@ -1,4 +1,6 @@
 package io.smartraise.service;
 
-public interface AdminService extends Service<AdminService> {
+import io.smartraise.model.accounts.Administrator;
+
+public interface AdminService extends Service<Administrator> {
 }

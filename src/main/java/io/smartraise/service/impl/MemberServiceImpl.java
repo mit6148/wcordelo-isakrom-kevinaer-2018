@@ -1,6 +1,7 @@
 package io.smartraise.service.impl;
 
 import io.smartraise.dao.MemberDAO;
+import io.smartraise.helper.Parser;
 import io.smartraise.model.accounts.Member;
 import io.smartraise.model.login.Credential;
 import io.smartraise.service.MemberService;
@@ -13,7 +14,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member get(String id) throws Exception{
-        return memberDAO.findOne(id);
+        if (Parser.isEmail(id)) {
+            return memberDAO.findByEmail(id);
+        } else {
+            return memberDAO.findOne(id);
+        }
     }
 
     @Override

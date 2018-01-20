@@ -8,5 +8,7 @@ import java.util.List;
 
 public interface MemberDAO extends MongoRepository<Member, String> {
 
-    public List<Member> findByOrganizationsIn(Organization organization);
+    List<Member> findByOrganizationsIn(Organization organization);
+
+    Member findByEmail(String email);
 }
