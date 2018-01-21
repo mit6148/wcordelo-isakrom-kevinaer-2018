@@ -7,11 +7,12 @@ import org.springframework.data.annotation.Id;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class Donation {
 
     @Id
-    private final long donationId;
+    private final UUID donationId;
     private final Donor donor;
     private Payment payment;
     private final Charity charity;
@@ -19,7 +20,7 @@ public class Donation {
     private final Date date;
 
     public Donation() {
-        this.donationId = 0;
+        this.donationId = UUID.randomUUID();
         this.donor = new Donor();
         this.payment = new Payment();
         this.charity = new Charity();
@@ -27,7 +28,7 @@ public class Donation {
         this.date = Calendar.getInstance().getTime();
     }
 
-    public long getDonationId() {
+    public UUID getDonationId() {
         return donationId;
     }
 

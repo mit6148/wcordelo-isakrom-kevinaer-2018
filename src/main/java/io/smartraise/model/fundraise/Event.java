@@ -4,15 +4,12 @@ import io.smartraise.model.accounts.Charity;
 import io.smartraise.model.donations.Donation;
 import org.springframework.data.annotation.Id;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Event {
 
     @Id
-    private final long eventId;
+    private final UUID eventId;
     private String name;
     private String description;
     private Date startDate;
@@ -23,7 +20,7 @@ public class Event {
     private String image;
 
     public Event() {
-        this.eventId = 0;
+        this.eventId = UUID.randomUUID();
         this.name = "";
         this.description = "";
         this.startDate = Calendar.getInstance().getTime();
@@ -34,7 +31,7 @@ public class Event {
         this.image = "";
     }
 
-    public long getEventId() {
+    public UUID getEventId() {
         return eventId;
     }
 

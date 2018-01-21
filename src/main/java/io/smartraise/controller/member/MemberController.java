@@ -1,4 +1,4 @@
-package io.smartraise.controller;
+package io.smartraise.controller.member;
 
 import io.smartraise.model.accounts.Administrator;
 import io.smartraise.model.accounts.Member;
@@ -47,7 +47,26 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity updateUser(@PathVariable("id") String id, Principal principal){
-        return null;
+    public ResponseEntity updateUser(@PathVariable("id") String id, @RequestBody Member member, Principal principal){
+        try {
+            if (member.getUsername().equals(id)) {
+                memberService.update(member);
+                return ResponseEntity.ok(member);
+            } else {
+                return ResponseEntity.badRequest().body("Forbidden");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteUser(@PathVariable("id") String id, Principal principal){
+        try {
+            memberService.delete(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

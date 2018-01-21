@@ -5,27 +5,28 @@ import org.springframework.data.annotation.Id;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 public class Organization {
 
     @Id
-    private final long organizationId;
+    private final UUID organizationId;
     private String name;
-    private String descrption;
+    private String description;
     private String website;
     private final Set<Member> members;
     private final Set<Member> admin;
 
     public Organization(){
-        this.organizationId = 0;
+        this.organizationId = UUID.randomUUID();
         this.name = "";
-        this.descrption = "";
+        this.description = "";
         this.website = "";
         this.members = new HashSet<>();
         this.admin = new HashSet<>();
     }
 
-    public long getOrganizationId() {
+    public UUID getOrganizationId() {
         return organizationId;
     }
 
@@ -37,12 +38,12 @@ public class Organization {
         this.name = name;
     }
 
-    public String getDescrption() {
-        return descrption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescrption(String descrption) {
-        this.descrption = descrption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getWebsite() {
@@ -61,8 +62,19 @@ public class Organization {
         this.members.add(member);
     }
 
+    public void removeMember(Member member) {
+        if (this.admin.contains(member)){
+            this.admin.remove(member);
+        }
+        this.members.remove(member);
+    }
+
+    public void removeAdmin(Member member) {
+        this.admin.remove(member);
+    }
+
     public Set<Member> getAdmin() {
-        return admin;
+        return new HashSet<>(admin);
     }
 
     public void addAdmin(Member member) {

@@ -22,10 +22,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void create(Administrator admin) throws Exception {
-        if (admin.getEmail() == "") {
+        if (!this.isValid(admin)) {
             throw new Exception("Fields empty");
         }
-        if (adminDAO.exists(admin.getEmail())) {
+        if (adminDAO.exists(admin.getUsername())) {
             throw new Exception("Member already exists");
         } else {
             adminDAO.save(admin);
@@ -38,7 +38,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void delete(Administrator admin) throws Exception {
+    public void delete(String id) throws Exception {
 
+    }
+
+    @Override
+    public boolean isValid(Administrator administrator) {
+        return administrator.getEmail() != "" && administrator.getUsername() != "";
     }
 }

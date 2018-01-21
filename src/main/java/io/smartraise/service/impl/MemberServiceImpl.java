@@ -23,13 +23,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void create(Member member) throws Exception {
-        if (member.getEmail() == "") {
-            throw new Exception("Fields empty");
-        }
-        if (memberDAO.exists(member.getEmail())) {
-            throw new Exception("Member already exists");
-        } else {
+        if (isValid(member) && !memberDAO.exists(member.getUsername())) {
             memberDAO.save(member);
+        } else {
+            throw new Exception("Member already exists");
         }
     }
 
@@ -46,11 +43,24 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void update(Member member) throws Exception {
-
+        if (memberDAO.exists(member.getUsername())) {
+            memberDAO.save(member);
+        } else {
+            throw new Exception("No member found");
+        }
     }
 
     @Override
-    public void delete(Member member) throws Exception {
+    public void delete(String id) throws Exception {
+        if (memberDAO.exists(id)) {
+            memberDAO.delete(id);
+        } else {
+            throw new Exception("No member found");
+        }
+    }
 
+    @Override
+    public boolean isValid(Member member) {
+        return !(member.getUsername().isEmpty() && member.getEmail().isEmpty());
     }
 }

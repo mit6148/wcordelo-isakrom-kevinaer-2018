@@ -1,4 +1,4 @@
-package io.smartraise.controller;
+package io.smartraise.controller.adminastrator;
 
 import io.smartraise.model.accounts.Administrator;
 import io.smartraise.model.login.Credential;
@@ -78,7 +78,7 @@ public class AdminController {
             @PathVariable("id") String id,@RequestBody Administrator administrator, Principal principal) {
         try {
             if (principal != null && credentialService.verify(principal.getName(), id)){
-                adminService.delete(administrator);
+                adminService.delete(administrator.getUsername());
                 return ResponseEntity.ok().build();
             } else {
                 throw new Exception("Not Allowed");

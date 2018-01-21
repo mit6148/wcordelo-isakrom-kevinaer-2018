@@ -2,15 +2,17 @@ package io.smartraise.service;
 
 import io.smartraise.model.donations.Donation;
 import io.smartraise.model.fundraise.Event;
-import io.smartraise.model.fundraise.Organization;
+import io.smartraise.service.skeleton.ItemService;
 
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
-public interface EventService extends Service<Event> {
+public interface EventService extends ItemService<Event> {
 
-    List<Donation> getDonations(Event event);
+    List<Event> getEventsFromOrganization(UUID organizationId) throws Exception;
 
-    List<Event> getEvents(Organization organization);
+    List<Event> getCurrentEventsFromOrganization(UUID organizationId) throws Exception;
 
-    List<Donation> getAllDonations(Organization organization);
+    Set<Event> getEventsByQueries(List<String> queries);
 }

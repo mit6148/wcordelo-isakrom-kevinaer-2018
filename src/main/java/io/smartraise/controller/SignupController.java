@@ -50,25 +50,25 @@ public class SignupController {
         }
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ModelAndView success(Principal principal, Model model){
-        try {
-            return new ModelAndView("user", "user", memberService.get(principal.getName()));
-        } catch (Exception e) {
-            return new ModelAndView("error");
-        }
-    }
-
-    @RequestMapping(value = "/userAdmin", method = RequestMethod.GET)
-    public ModelAndView successAdmin(Principal principal, Model model){
-        try {
-            if (principal != null && credentialService.isAdmin(principal.getName())){
-                return new ModelAndView("adminView", "user", adminService.get(principal.getName()));
-            } else {
-                throw new Exception("Not allowed");
-            }
-        } catch (Exception e) {
-            return new ModelAndView("error");
-        }
-    }
+//    @RequestMapping(value = "/user", method = RequestMethod.GET)
+//    public ModelAndView success(Principal principal, Model model){
+//        try {
+//            return new ModelAndView("user", "user", memberService.read(principal.getName()));
+//        } catch (Exception e) {
+//            return new ModelAndView("error");
+//        }
+//    }
+//
+//    @RequestMapping(value = "/userAdmin", method = RequestMethod.GET)
+//    public ModelAndView successAdmin(Principal principal, Model model){
+//        try {
+//            if (principal != null && credentialService.isAdmin(principal.getName())){
+//                return new ModelAndView("adminView", "user", adminService.read(principal.getName()));
+//            } else {
+//                throw new Exception("Not allowed");
+//            }
+//        } catch (Exception e) {
+//            return new ModelAndView("error");
+//        }
+//    }
 }
