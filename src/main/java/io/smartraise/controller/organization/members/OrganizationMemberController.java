@@ -12,7 +12,7 @@ import java.security.Principal;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/organization/{id}")
+@RequestMapping("/api/organization/{id}")
 public class OrganizationMemberController {
 
     @Autowired

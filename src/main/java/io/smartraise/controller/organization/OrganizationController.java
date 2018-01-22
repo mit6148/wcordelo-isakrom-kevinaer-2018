@@ -11,7 +11,7 @@ import java.security.Principal;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/organization")
+@RequestMapping("/api/organization")
 public class OrganizationController implements CrudController<Organization> {
 
     @Autowired

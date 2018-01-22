@@ -12,7 +12,7 @@ import java.security.Principal;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/organization/{id}/events")
+@RequestMapping("/api/organization/{id}/events")
 public class OrganizationEventController {
 
     @Autowired

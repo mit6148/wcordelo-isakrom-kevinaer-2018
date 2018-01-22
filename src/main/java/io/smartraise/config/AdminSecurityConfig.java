@@ -25,18 +25,18 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .anyRequest().permitAll()
-                .and()
-            .formLogin()
-                .loginPage("/adminLogin")
-                .successHandler(successHandler)
-                .permitAll()
-                .and()
-            .logout()
-                .permitAll();
+            .csrf().disable();
+//            .authorizeRequests()
+//                .antMatchers("/", "/home").permitAll()
+//                .anyRequest().permitAll()
+//                .and()
+//            .formLogin()
+//                .loginPage("/adminLogin")
+//                .successHandler(successHandler)
+//                .permitAll()
+//                .and()
+//            .logout()
+//                .permitAll();
     }
 
     @Autowired

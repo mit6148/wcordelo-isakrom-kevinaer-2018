@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/admin/{id}")
+@RequestMapping("/api/admin/{id}")
 public class RequestController {
 
     @RequestMapping(value = "/requests", method = RequestMethod.GET)

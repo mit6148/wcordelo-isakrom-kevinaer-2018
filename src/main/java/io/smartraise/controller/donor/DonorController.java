@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/donor")
+@RequestMapping("/api/donor")
 public class DonorController implements CrudController<Donor> {
 
     @Autowired

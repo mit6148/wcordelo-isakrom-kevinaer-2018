@@ -12,7 +12,7 @@ import java.security.Principal;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/event")
+@RequestMapping("/api/event")
 public class EventController implements CrudController<Event> {
 
     @Autowired

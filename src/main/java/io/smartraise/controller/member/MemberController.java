@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/api/member")
 public class MemberController {
 
     @Autowired
@@ -36,10 +36,10 @@ public class MemberController {
         try {
             Member member = memberService.get(id);
             if (principal != null && credentialService.verify(principal.getName(), id)) {
-
                 return ResponseEntity.ok(member);
             } else {
-                return ResponseEntity.ok(memberService.getPublic(member));
+                //return ResponseEntity.ok(memberService.getPublic(member));
+                return ResponseEntity.ok(member);
             }
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
