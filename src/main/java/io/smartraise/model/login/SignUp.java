@@ -1,21 +1,25 @@
 package io.smartraise.model.login;
 
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Model representing an attempt to sign up for an account of type {@link Credential.UserType}
+ */
 public class SignUp {
 
-    private String firstName;
-    private String lastName;
     private Credential.UserType type;
     private String username;
     private String email;
     private String password;
+    private Map<String, Object> account;
 
     public SignUp(){
         type = Credential.UserType.NONE;
         email = "";
         password = "";
         username = "";
-        firstName = "";
-        lastName = "";
+        account = new HashMap<>();
     }
 
     public SignUp(String email, String username, String password) {
@@ -23,8 +27,6 @@ public class SignUp {
         this.email = email;
         this.password = password;
         this.username = username;
-        firstName = "";
-        lastName = "";
     }
 
     public Credential.UserType getType() {
@@ -57,19 +59,7 @@ public class SignUp {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public Map<String, Object> getAccount() {
+        return new HashMap<>(account);
     }
 }

@@ -7,11 +7,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public interface EventDAO extends MongoRepository<Event, UUID> {
+public interface EventDAO extends MongoRepository<Event, String> {
 
-    List<Event> findAllByOrganization_OrganizationId(UUID organizationId);
+    List<Event> findAllByOrganization(String organizationId);
 
-    List<Event> findAllByOrganization_OrganizationIdAndEndDateAfter(UUID organizationId, Date date);
+    List<Event> findAllByOrganizationAndEndDateAfter(String organizationId, Date date);
 
     List<Event> findAllByDescriptionContaining(List<String> queries);
 }

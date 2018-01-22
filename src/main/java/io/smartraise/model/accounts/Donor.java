@@ -8,7 +8,11 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
+/**
+ * Model representing a user that wants to just donate
+ */
 public class Donor {
 
     @Id
@@ -19,8 +23,10 @@ public class Donor {
     private String lastName;
     private Privilege privilege;
     private Payment payment;
-    private final Set<Donation> donations;
 
+    /**
+     * Creates a new Donor
+     */
     public Donor(){
         this.username = "";
         this.email = "";
@@ -28,7 +34,6 @@ public class Donor {
         this.lastName = "";
         this.privilege = Privilege.DONOR_NOT_VERIFIED;
         this.payment = new Payment();
-        this.donations = new HashSet<>();
     }
 
     public String getUsername() {
@@ -75,11 +80,23 @@ public class Donor {
         this.payment = payment;
     }
 
-    public Set<Donation> getDonations() {
-        return donations;
+    @Override
+    public int hashCode() {
+        return this.username.hashCode();
     }
 
-    public void addDonation(Donation donation) {
-        this.donations.add(donation);
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Donor) {
+            Donor that = (Donor) obj;
+            return this.username.equals(that.username);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Donor {Username: %s, Email: %s}", this.username, this.email);
     }
 }

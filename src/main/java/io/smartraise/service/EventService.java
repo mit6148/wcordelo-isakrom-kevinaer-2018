@@ -10,9 +10,9 @@ import java.util.UUID;
 
 public interface EventService extends ItemService<Event> {
 
-    List<Event> getEventsFromOrganization(UUID organizationId) throws Exception;
+    List<Event> getEventsFromOrganization(String organizationId) throws Exception;
 
-    List<Event> getCurrentEventsFromOrganization(UUID organizationId) throws Exception;
+    List<Event> getCurrentEventsFromOrganization(String organizationId) throws Exception;
 
     Set<Event> getEventsByQueries(List<String> queries);
 }

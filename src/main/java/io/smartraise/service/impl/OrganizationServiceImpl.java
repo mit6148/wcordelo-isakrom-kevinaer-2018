@@ -6,6 +6,7 @@ import io.smartraise.model.accounts.Member;
 import io.smartraise.model.donations.Donation;
 import io.smartraise.model.fundraise.Event;
 import io.smartraise.model.fundraise.Organization;
+import io.smartraise.service.MemberService;
 import io.smartraise.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,48 +18,42 @@ public class OrganizationServiceImpl implements OrganizationService {
     private OrganizationDAO organizationDAO;
 
     @Override
-    public Set<Member> getMembers(UUID id) throws Exception {
-        Organization organization = this.get(id);
-        return organization.getMembers();
+    public Set<Organization> getFromMember(Member member) throws Exception {
+        return new HashSet<>(organizationDAO.findAllByOrganizationIdIn(member.getOrganizations()));
     }
 
     @Override
-    public Set<Member> getAdmins(UUID id) throws Exception {
-        Organization organization = this.get(id);
-        return organization.getAdmin();
-    }
-
-    @Override
-    public void addAdmin(Member member, UUID id) throws Exception {
+    public void addAdmin(Member member, String id) throws Exception {
         Organization organization = this.get(id);
         organization.addAdmin(member);
         this.update(organization);
     }
 
     @Override
-    public void deleteAdmin(Member member, UUID id) throws Exception {
+    public void deleteAdmin(Member member, String id) throws Exception {
         Organization organization = this.get(id);
         organization.removeAdmin(member);
         this.update(organization);
     }
 
     @Override
-    public void addMember(Member member, UUID id) throws Exception {
+    public void addMember(Member member, String id) throws Exception {
         Organization organization = this.get(id);
         organization.addMember(member);
         this.update(organization);
     }
 
     @Override
-    public void deleteMember(Member member, UUID id) throws Exception {
+    public void deleteMember(Member member, String id) throws Exception {
         Organization organization = this.get(id);
         organization.removeMember(member);
         this.update(organization);
     }
 
     @Override
-    public Organization get(UUID id) throws Exception {
-        return organizationDAO.findOne(id);
+    public Organization get(String id) throws Exception {
+        Organization organization = organizationDAO.findOne(id.toString());
+        return organizationDAO.findOne(id.toString());
     }
 
     @Override
@@ -81,7 +76,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(String id) throws Exception {
         if (organizationDAO.exists(id)) {
             organizationDAO.delete(id);
         } else {
@@ -95,5 +90,10 @@ public class OrganizationServiceImpl implements OrganizationService {
                 && organization.getMembers().size() > 0
                 && organization.getAdmin().size() > 0
                 && organization.getMembers().containsAll(organization.getAdmin());
+    }
+
+    @Override
+    public boolean exists(String id) {
+        return organizationDAO.exists(id);
     }
 }

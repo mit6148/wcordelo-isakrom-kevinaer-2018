@@ -16,12 +16,13 @@ public class CharityController implements CrudController<Charity> {
 
     @Autowired
     private CharityService charityService;
+
     @Override
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity create(@RequestBody Charity charity) {
         try {
-            charityService.create(charity);
-            return ResponseEntity.ok().build();
+            charity = charityService.create(charity);
+            return ResponseEntity.ok(charity);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -31,7 +32,7 @@ public class CharityController implements CrudController<Charity> {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity read(@PathVariable("id") String id, Principal principal) {
         try {
-            return ResponseEntity.ok(charityService.get(UUID.fromString(id)));
+            return ResponseEntity.ok(charityService.get(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -53,7 +54,7 @@ public class CharityController implements CrudController<Charity> {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable("id") String id, Principal principal) {
         try {
-            charityService.delete(UUID.fromString(id));
+            charityService.delete(id);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

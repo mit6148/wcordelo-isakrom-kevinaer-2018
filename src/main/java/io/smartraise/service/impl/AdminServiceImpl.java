@@ -46,4 +46,9 @@ public class AdminServiceImpl implements AdminService {
     public boolean isValid(Administrator administrator) {
         return administrator.getEmail() != "" && administrator.getUsername() != "";
     }
+
+    @Override
+    public boolean exists(String id) {
+        return adminDAO.exists(id);
+    }
 }

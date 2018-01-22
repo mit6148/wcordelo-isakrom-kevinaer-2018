@@ -18,8 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.security.Principal;
 
-@Controller
-public class SignupController {
+public class SignupViewController {
 
     @Autowired
     private CredentialService credentialService;

@@ -3,9 +3,14 @@ package io.smartraise.service.impl;
 import io.smartraise.dao.MemberDAO;
 import io.smartraise.helper.Parser;
 import io.smartraise.model.accounts.Member;
+import io.smartraise.model.fundraise.Organization;
 import io.smartraise.model.login.Credential;
 import io.smartraise.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class MemberServiceImpl implements MemberService {
 
@@ -28,12 +33,6 @@ public class MemberServiceImpl implements MemberService {
         } else {
             throw new Exception("Member already exists");
         }
-    }
-
-    @Override
-    public void createFromCredential(Credential credential) throws Exception {
-        Member member = new Member(credential.getEmail(), credential.getUsername());
-        this.create(member);
     }
 
     @Override
@@ -62,5 +61,34 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public boolean isValid(Member member) {
         return !(member.getUsername().isEmpty() && member.getEmail().isEmpty());
+    }
+
+    @Override
+    public Set<Member> getMembersFromOrganization(Organization organization) throws Exception {
+        return new HashSet<>(memberDAO.findAllByUsernameIn(organization.getMembers()));
+    }
+
+    @Override
+    public Set<Member> getAdminsFromOrganization(Organization organization) throws Exception {
+        return new HashSet<>(memberDAO.findAllByUsernameIn(organization.getAdmin()));
+    }
+
+    @Override
+    public void addOrganization(String username, String organizationId) throws Exception{
+        Member member = this.get(username);
+        member.addOrganization(organizationId);
+        this.update(member);
+    }
+
+    @Override
+    public void removeOrganization(String username, String organizationId) throws Exception{
+        Member member = this.get(username);
+        member.removeOrganization(organizationId);
+        this.update(member);
+    }
+
+    @Override
+    public boolean exists(String id) {
+        return memberDAO.exists(id);
     }
 }

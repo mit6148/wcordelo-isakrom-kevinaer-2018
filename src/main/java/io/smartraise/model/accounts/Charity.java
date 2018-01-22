@@ -9,7 +9,7 @@ import java.util.UUID;
 public class Charity {
 
     @Id
-    private final UUID charityId;
+    private final String charityId;
     private String name;
     private String description;
     private Privilege privilege;
@@ -17,7 +17,7 @@ public class Charity {
     private String website;
 
     public Charity() {
-        this.charityId = UUID.randomUUID();
+        this.charityId = UUID.randomUUID().toString();
         this.name = "";
         this.description = "";
         this.privilege = Privilege.CHARITY_NOT_VERIFIED;
@@ -25,7 +25,7 @@ public class Charity {
         this.website = "";
     }
 
-    public UUID getCharityId() {
+    public String getCharityId() {
         return charityId;
     }
 

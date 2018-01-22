@@ -24,7 +24,7 @@ public class OrganizationEventController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity readAll(@PathVariable("id") String id, Principal principal) {
         try {
-            return ResponseEntity.ok(eventService.getEventsFromOrganization(UUID.fromString(id)));
+            return ResponseEntity.ok(eventService.getEventsFromOrganization(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e);
         }
@@ -33,7 +33,7 @@ public class OrganizationEventController {
     @RequestMapping(value = "/active", method = RequestMethod.GET)
     public ResponseEntity readAllActive(@PathVariable("id") String id, Principal principal) {
         try {
-            return ResponseEntity.ok(eventService.getCurrentEventsFromOrganization(UUID.fromString(id)));
+            return ResponseEntity.ok(eventService.getCurrentEventsFromOrganization(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e);
         }
@@ -42,7 +42,7 @@ public class OrganizationEventController {
     @RequestMapping(value = "/donations", method = RequestMethod.GET)
     public ResponseEntity getAllDonations(@PathVariable("id") String id, Principal principal) {
         try {
-            return ResponseEntity.ok(donationService.getDonationsByOrganization(UUID.fromString(id)));
+            return ResponseEntity.ok(donationService.getDonationsByOrganization(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e);
         }

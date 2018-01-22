@@ -21,7 +21,7 @@ public class CharityServiceImpl implements CharityService {
     }
 
     @Override
-    public Charity get(UUID id) throws Exception {
+    public Charity get(String id) throws Exception {
         return charityDAO.findOne(id);
     }
 
@@ -45,7 +45,7 @@ public class CharityServiceImpl implements CharityService {
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(String id) throws Exception {
         if (charityDAO.exists(id)) {
             charityDAO.delete(id);
         }
@@ -54,5 +54,10 @@ public class CharityServiceImpl implements CharityService {
     @Override
     public boolean isValid(Charity charity) {
         return !charity.getName().isEmpty();
+    }
+
+    @Override
+    public boolean exists(String id) {
+        return charityDAO.exists(id);
     }
 }

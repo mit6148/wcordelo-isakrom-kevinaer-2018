@@ -6,35 +6,34 @@ import io.smartraise.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.UUID;
 
 public class DonationServiceImpl implements DonationService {
     @Autowired
     private DonationDAO donationDAO;
 
     @Override
-    public List<Donation> getDonationsByOrganization(UUID organizationId) throws Exception {
-        return donationDAO.findAllByEvent_Organization_OrganizationId(organizationId);
+    public List<Donation> getDonationsByOrganization(String organizationId) throws Exception {
+        return donationDAO.findAllByOrganization(organizationId);
     }
 
     @Override
-    public List<Donation> getDonationsByEvent(UUID eventId) throws Exception {
-        return donationDAO.findAllByEvent_EventId(eventId);
+    public List<Donation> getDonationsByEvent(String eventId) throws Exception {
+        return donationDAO.findAllByEvent(eventId);
     }
 
     @Override
     public List<Donation> getDonationsByDonor(String donorId) throws Exception {
-        return donationDAO.findAllByDonor_Username(donorId);
+        return donationDAO.findAllByDonor(donorId);
     }
 
     @Override
-    public Donation get(UUID id) throws Exception {
+    public Donation get(String id) throws Exception {
         return donationDAO.findOne(id);
     }
 
     @Override
     public Donation create(Donation donation) throws Exception {
-        if (isValid(donation) && donationDAO.exists(donation.getDonationId())) {
+        if (isValid(donation) && !donationDAO.exists(donation.getDonationId())) {
             donationDAO.save(donation);
             return donation;
         } else {
@@ -50,7 +49,7 @@ public class DonationServiceImpl implements DonationService {
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(String id) throws Exception {
         if (donationDAO.exists(id)) {
             donationDAO.delete(id);
         }
@@ -59,5 +58,10 @@ public class DonationServiceImpl implements DonationService {
     @Override
     public boolean isValid(Donation donation) {
         return true;
+    }
+
+    @Override
+    public boolean exists(String id) {
+        return donationDAO.exists(id);
     }
 }

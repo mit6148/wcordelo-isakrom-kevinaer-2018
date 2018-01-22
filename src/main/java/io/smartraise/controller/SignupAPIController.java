@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/signup")
+@RequestMapping("/api/user")
 public class SignupAPIController {
 
     @Autowired
@@ -34,6 +34,17 @@ public class SignupAPIController {
         try {
             Credential credential = credentialService.create(signUp);
             return ResponseEntity.ok(credential);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity createUser(@PathVariable("id") String id) {
+        try {
+            memberService.delete(id);
+            credentialService.delete(id);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }

@@ -20,7 +20,7 @@ public class EventServiceImpl implements EventService {
     private EventDAO eventDAO;
 
     @Override
-    public Event get(UUID id) throws Exception {
+    public Event get(String id) throws Exception {
         return eventDAO.findOne(id);
     }
 
@@ -44,25 +44,25 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(String id) throws Exception {
         if (eventDAO.exists(id)) {
             eventDAO.delete(id);
         }
     }
 
     @Override
-    public List<Event> getEventsFromOrganization(UUID organizationId)throws Exception{
-        if (organizationDAO.exists(organizationId)) {
-            return eventDAO.findAllByOrganization_OrganizationId(organizationId);
+    public List<Event> getEventsFromOrganization(String organizationId)throws Exception{
+        if (organizationDAO.exists(organizationId.toString())) {
+            return eventDAO.findAllByOrganization(organizationId);
         } else {
             throw new Exception("Organization doesn't exist");
         }
     }
 
     @Override
-    public List<Event> getCurrentEventsFromOrganization(UUID organizationId) throws Exception {
-        if (organizationDAO.exists(organizationId)) {
-            return eventDAO.findAllByOrganization_OrganizationIdAndEndDateAfter(
+    public List<Event> getCurrentEventsFromOrganization(String organizationId) throws Exception {
+        if (organizationDAO.exists(organizationId.toString())) {
+            return eventDAO.findAllByOrganizationAndEndDateAfter(
                     organizationId, Calendar.getInstance().getTime());
         } else {
             throw new Exception("Organization doesn't exist");
@@ -76,7 +76,11 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public boolean isValid(Event event) {
-        return !(event.getName().isEmpty() && event.getOrganization().getName().isEmpty() && event.getCharity().getName().isEmpty())
-                && event.getCharity().getPrivilege().equals(Privilege.CHARITY_VERIFIED);
+        return !(event.getName().isEmpty());
+    }
+
+    @Override
+    public boolean exists(String id) {
+        return eventDAO.exists(id);
     }
 }

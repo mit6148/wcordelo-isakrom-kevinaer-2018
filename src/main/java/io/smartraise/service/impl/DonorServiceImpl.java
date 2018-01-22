@@ -17,7 +17,7 @@ public class DonorServiceImpl implements DonorService {
 
     @Override
     public void create(Donor donor) throws Exception {
-        if (isValid(donor) && donorDAO.exists(donor.getUsername())) {
+        if (isValid(donor) && !donorDAO.exists(donor.getUsername())) {
             donorDAO.save(donor);
         } else {
             throw new Exception("Donor already exists");
@@ -45,5 +45,10 @@ public class DonorServiceImpl implements DonorService {
     @Override
     public boolean isValid(Donor donor) {
         return !(donor.getUsername().isEmpty() && donor.getEmail().isEmpty());
+    }
+
+    @Override
+    public boolean exists(String id) {
+        return donorDAO.exists(id);
     }
 }

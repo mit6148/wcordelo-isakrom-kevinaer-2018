@@ -7,7 +7,13 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+/**
+ * Model representing a fundraising member
+ */
 public class Member {
 
     @Id
@@ -17,7 +23,7 @@ public class Member {
     private String firstName;
     private String lastName;
     private Privilege privilege;
-    private final Set<Organization> organizations;
+    private final Set<String> organizations;
 
     public Member(String email, String username) {
         this.firstName = "";
@@ -78,11 +84,35 @@ public class Member {
         this.privilege = privilege;
     }
 
-    public Set<Organization> getOrganizations() {
-        return new HashSet<>(organizations);
+    public Set<String> getOrganizations() {
+        return this.organizations;
     }
+
+    public void addOrganization(String uuid){ this.organizations.add(uuid); }
+
+    public void removeOrganization(String uuid){ this.organizations.remove(uuid); }
 
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getUsername().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Member) {
+            Member that = (Member) obj;
+            return this.getUsername().equals(that.getUsername());
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Member {Username: %s, Email: %s}", this.username, this.email);
     }
 }

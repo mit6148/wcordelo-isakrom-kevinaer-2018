@@ -24,7 +24,11 @@ public class OrganizationMemberController {
     @RequestMapping(value = "/members", method = RequestMethod.GET)
     public ResponseEntity getMembers(@PathVariable("id") String id, Principal principal) {
         try {
-            return ResponseEntity.ok(organizationService.getMembers(UUID.fromString(id)));
+            Organization organization = organizationService.get(id);
+            if (organization == null) {
+                throw new Exception("No organization found");
+            }
+            return ResponseEntity.ok(memberService.getMembersFromOrganization(organization));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -33,27 +37,33 @@ public class OrganizationMemberController {
     @RequestMapping(value = "/admins", method = RequestMethod.GET)
     public ResponseEntity getAdmins(@PathVariable("id") String id, Principal principal) {
         try {
-            return ResponseEntity.ok(organizationService.getAdmins(UUID.fromString(id)));
+            Organization organization = organizationService.get(id);
+            if (organization == null) {
+                throw new Exception("No organization found");
+            }
+            return ResponseEntity.ok(memberService.getAdminsFromOrganization(organization));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @RequestMapping(value = "/member/{id2}", method = RequestMethod.POST)
+    @RequestMapping(value = "/member", method = RequestMethod.POST)
     public ResponseEntity addMember(@PathVariable("id") String id, @RequestBody Member member, Principal principal) {
         try {
-            organizationService.addMember(member, UUID.fromString(id));
-            return ResponseEntity.ok(organizationService.get(UUID.fromString(id)));
+            organizationService.addMember(member, id);
+            memberService.addOrganization(member.getUsername(), id);
+            return ResponseEntity.ok(organizationService.get(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @RequestMapping(value = "/admin/{id2}", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin", method = RequestMethod.POST)
     public ResponseEntity addAdmin(@PathVariable("id") String id, @RequestBody Member member, Principal principal) {
         try {
-            organizationService.addAdmin(member, UUID.fromString(id));
-            return ResponseEntity.ok(organizationService.get(UUID.fromString(id)));
+            organizationService.addAdmin(member, id);
+            memberService.addOrganization(member.getUsername(), id);
+            return ResponseEntity.ok(organizationService.get(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -63,8 +73,9 @@ public class OrganizationMemberController {
     public ResponseEntity deleteMember(
             @PathVariable("id") String id, @PathVariable("id2") String id2, Principal principal) {
         try {
-            organizationService.deleteMember(memberService.get(id2), UUID.fromString(id));
-            return ResponseEntity.ok(organizationService.get(UUID.fromString(id)));
+            organizationService.deleteMember(memberService.get(id2), id);
+            memberService.removeOrganization(id2, id);
+            return ResponseEntity.ok(organizationService.get(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -74,8 +85,8 @@ public class OrganizationMemberController {
     public ResponseEntity deleteAdmin(
             @PathVariable("id") String id, @PathVariable("id2") String id2, Principal principal) {
         try {
-            organizationService.deleteAdmin(memberService.get(id2), UUID.fromString(id));
-            return ResponseEntity.ok(organizationService.get(UUID.fromString(id)));
+            organizationService.deleteAdmin(memberService.get(id2), id);
+            return ResponseEntity.ok(organizationService.get(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

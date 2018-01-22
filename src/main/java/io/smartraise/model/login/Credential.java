@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class Credential {
 
+    // Currently don't support charity!
     public enum UserType {ADMINISTRATOR, CHARITY, DONOR, MEMBER, NONE}
 
     @Id
