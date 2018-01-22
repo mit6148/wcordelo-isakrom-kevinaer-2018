@@ -24,6 +24,9 @@ public class SearchController {
     public ResponseEntity getCharities(
             @RequestParam(value = "term", required = false) List<String> searchTerms) {
         try {
+            if (searchTerms == null){
+                return ResponseEntity.ok(charityService.getAll());
+            }
             return ResponseEntity.ok(charityService.getCharities(searchTerms));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -34,6 +37,9 @@ public class SearchController {
     public ResponseEntity getEvents(
             @RequestParam(value = "term", required = false) List<String> searchTerms) {
         try {
+            if (searchTerms == null){
+                return ResponseEntity.ok(eventService.getAll());
+            }
             return ResponseEntity.ok(eventService.getEventsByQueries(searchTerms));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

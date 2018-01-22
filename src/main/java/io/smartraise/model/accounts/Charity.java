@@ -20,7 +20,7 @@ public class Charity {
         this.charityId = UUID.randomUUID().toString();
         this.name = "";
         this.description = "";
-        this.privilege = Privilege.CHARITY_NOT_VERIFIED;
+        this.privilege = Privilege.CHARITY_VERIFIED;
         this.payment = new Payment();
         this.website = "";
     }

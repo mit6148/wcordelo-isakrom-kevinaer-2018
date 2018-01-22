@@ -37,7 +37,7 @@ public class MemberController implements CrudController<Member> {
             }
             memberService.create(member);
             credentialService.addType(UserType.MEMBER, member.getUsername());
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(201).build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

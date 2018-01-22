@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 public class CharityServiceImpl implements CharityService {
 
@@ -17,7 +16,7 @@ public class CharityServiceImpl implements CharityService {
 
     @Override
     public Set<Charity> getCharities(List<String> terms) {
-        return new HashSet<>(charityDAO.findAllByDescriptionContaining(terms));
+        return new HashSet<>(charityDAO.findAllByNameContaining(terms));
     }
 
     @Override
@@ -59,5 +58,10 @@ public class CharityServiceImpl implements CharityService {
     @Override
     public boolean exists(String id) {
         return charityDAO.exists(id);
+    }
+
+    @Override
+    public Set<Charity> getAll() {
+        return new HashSet<>(charityDAO.findAll());
     }
 }

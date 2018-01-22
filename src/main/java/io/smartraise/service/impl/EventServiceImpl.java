@@ -83,4 +83,9 @@ public class EventServiceImpl implements EventService {
     public boolean exists(String id) {
         return eventDAO.exists(id);
     }
+
+    @Override
+    public Set<Event> getAll() {
+        return new HashSet<>(eventDAO.findAll());
+    }
 }

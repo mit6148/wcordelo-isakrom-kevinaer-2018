@@ -15,4 +15,6 @@ public interface EventService extends ItemService<Event> {
     List<Event> getCurrentEventsFromOrganization(String organizationId) throws Exception;
 
     Set<Event> getEventsByQueries(List<String> queries);
+
+    Set<Event> getAll();
 }

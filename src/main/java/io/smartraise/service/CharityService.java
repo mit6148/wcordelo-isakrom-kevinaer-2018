@@ -10,4 +10,6 @@ import java.util.Set;
 public interface CharityService extends ItemService<Charity> {
 
     Set<Charity> getCharities(List<String> terms);
+
+    Set<Charity> getAll();
 }
