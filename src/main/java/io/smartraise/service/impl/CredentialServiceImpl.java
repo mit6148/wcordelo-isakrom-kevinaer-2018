@@ -1,10 +1,16 @@
 package io.smartraise.service.impl;
 
-import io.smartraise.model.login.LogIn;
+import io.smartraise.helper.MapToModel;
+import io.smartraise.helper.Parser;
+import io.smartraise.model.accounts.Administrator;
+import io.smartraise.model.accounts.Member;
+import io.smartraise.model.login.SignUp;
 import io.smartraise.security.PasswordHashing;
 import io.smartraise.dao.CredentialDAO;
 import io.smartraise.model.login.Credential;
+import io.smartraise.service.AdminService;
 import io.smartraise.service.CredentialService;
+import io.smartraise.service.DonorService;
 import io.smartraise.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,58 +22,83 @@ public class CredentialServiceImpl implements CredentialService{
     @Autowired
     private MemberService memberService;
 
-    private void processNewCred(Credential credential) throws Exception {
-        if (credential.getTypes().contains(Credential.UserType.MEMBER)) {
-            memberService.createFromCredential(credential);
+    @Autowired
+    private DonorService donorService;
+
+    @Autowired
+    private AdminService adminService;
+
+    @Override
+    public boolean exists(String username) {
+        return credentialDAO.exists(username);
+    }
+
+    private void newForm(SignUp signUp) throws Exception {
+        switch (signUp.getType()) {
+            case DONOR:
+                donorService.create(MapToModel.mapToDonor(signUp.getAccount()));
+                break;
+            case MEMBER:
+                memberService.create(MapToModel.mapToMember(signUp.getAccount()));
+                break;
+            case ADMINISTRATOR:
+                adminService.create(MapToModel.mapToAdmin(signUp.getAccount()));
+                break;
+            default:
+                throw new Exception("Invalid class");
         }
     }
 
     @Override
-    public Credential authenticate(LogIn logIn) throws Exception {
+    public Credential authenticate(SignUp signUp) throws Exception {
         Credential creds;
-        if (logIn.getEmail() == "") {
-            creds = credentialDAO.findOne(logIn.getUsername());
-        } else if (logIn.getUsername() == "") {
-            creds = credentialDAO.findByEmail(logIn.getEmail());
+        if (signUp.getEmail().isEmpty()) {
+            creds = credentialDAO.findOne(signUp.getUsername());
+        } else if (signUp.getUsername().isEmpty()) {
+            creds = credentialDAO.findByEmail(signUp.getEmail());
         } else {
             throw new Exception("no username or email provided");
         }
         if (creds == null) {
             throw new Exception("No user found");
         }
-        if (!PasswordHashing.authenticate(logIn.getPassword(), creds.getSalt(), creds.getHash())){
+        if (!PasswordHashing.authenticate(signUp.getPassword(), creds.getSalt(), creds.getHash())){
             throw new Exception("Invalid credentials!");
         }
         return creds;
     }
 
     @Override
-    public Credential create(LogIn logIn) throws Exception {
-        if (logIn.getEmail() == "" || logIn.getUsername() == "") {
-            throw new Exception("Need email and id!");
+    public Credential create(SignUp signUp) throws Exception {
+        if (signUp.getUsername().isEmpty()
+                && signUp.getEmail().isEmpty()
+                && (signUp.getType() == Credential.UserType.ADMINISTRATOR
+                    || signUp.getType() == Credential.UserType.MEMBER
+                    || signUp.getType() == Credential.UserType.DONOR)){
+            throw new Exception("Needs a valid user name and email");
         }
-
-        if (credentialDAO.exists(logIn.getEmail())) {
-            Credential credential = authenticate(logIn);
-            credential.addType(logIn.getType());
-            credentialDAO.save(credential);
-            return  credential;
+        if (credentialDAO.exists(signUp.getUsername())
+                && credentialDAO.findOne(signUp.getUsername()).getTypes().contains(signUp.getType())) {
+            throw new Exception("User already exists");
         } else {
             byte[] salt = PasswordHashing.generateSalt();
-            byte[] hash = PasswordHashing.hash(logIn.getPassword(), salt);
+            byte[] hash = PasswordHashing.hash(signUp.getPassword(), salt);
             Credential newCredential =
-                    new Credential(logIn.getType(), logIn.getEmail(), hash, salt, logIn.getUsername());
-
+                    new Credential(
+                            signUp.getType(),
+                            signUp.getEmail(),
+                            hash,
+                            salt,
+                            signUp.getUsername());
+            newForm(signUp);
             credentialDAO.save(newCredential);
-            processNewCred(newCredential);
             return newCredential;
         }
-
     }
 
     @Override
-    public boolean verify(String user, String id) throws Exception {
-        if (user.contains("@")) {
+    public boolean verify(String user, String id) {
+        if (Parser.isEmail(user)) {
             Credential credential = credentialDAO.findByEmail(user);
             if (credential == null){
                 return false;
@@ -84,4 +115,40 @@ public class CredentialServiceImpl implements CredentialService{
         }
     }
 
+    @Override
+    public boolean isAdmin(String user) throws Exception {
+        if (Parser.isEmail(user)) {
+            Credential credential = credentialDAO.findByEmail(user);
+            if (credential == null){
+                return false;
+            } else {
+                return credential.getTypes().contains(Credential.UserType.ADMINISTRATOR);
+            }
+        } else {
+            Credential credential = credentialDAO.findOne(user);
+            if (!credentialDAO.exists(user)) {
+                return false;
+            } else {
+                return credential.getTypes().contains(Credential.UserType.ADMINISTRATOR);
+            }
+        }
+    }
+
+    @Override
+    public void addType(Credential.UserType type, String id) {
+        Credential credential = credentialDAO.findOne(id);
+        credential.addType(type);
+        credentialDAO.save(credential);
+    }
+
+    @Override
+    public boolean containsType(Credential.UserType type, String id) {
+        Credential credential = credentialDAO.findOne(id);
+        return credential.getTypes().contains(type);
+    }
+
+    @Override
+    public void delete(String id) {
+        credentialDAO.delete(id);
+    }
 }

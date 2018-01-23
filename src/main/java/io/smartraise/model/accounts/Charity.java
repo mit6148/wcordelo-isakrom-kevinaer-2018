@@ -4,10 +4,12 @@ import io.smartraise.model.Privilege;
 import io.smartraise.model.donations.Payment;
 import org.springframework.data.annotation.Id;
 
+import java.util.UUID;
+
 public class Charity {
 
     @Id
-    private final long charityId;
+    private final String charityId;
     private String name;
     private String description;
     private Privilege privilege;
@@ -15,15 +17,15 @@ public class Charity {
     private String website;
 
     public Charity() {
-        this.charityId = 0;
+        this.charityId = UUID.randomUUID().toString();
         this.name = "";
         this.description = "";
-        this.privilege = Privilege.CHARITY_NOT_VERIFIED;
+        this.privilege = Privilege.CHARITY_VERIFIED;
         this.payment = new Payment();
         this.website = "";
     }
 
-    public long getCharityId() {
+    public String getCharityId() {
         return charityId;
     }
 

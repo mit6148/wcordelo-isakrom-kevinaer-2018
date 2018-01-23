@@ -5,28 +5,32 @@ import org.springframework.data.annotation.Id;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
+/**
+ * Model representing a fundraising organization
+ */
 public class Organization {
 
     @Id
-    private final long organizationId;
+    private final String organizationId;
     private String name;
-    private String descrption;
+    private String description;
     private String website;
-    private final Set<Member> members;
-    private final Set<Member> admin;
+    private final Set<String> members;
+    private final Set<String> admin;
 
     public Organization(){
-        this.organizationId = 0;
+        this.organizationId = UUID.randomUUID().toString();
         this.name = "";
-        this.descrption = "";
+        this.description = "";
         this.website = "";
         this.members = new HashSet<>();
         this.admin = new HashSet<>();
     }
 
-    public long getOrganizationId() {
-        return organizationId;
+    public String getOrganizationId() {
+        return this.organizationId;
     }
 
     public String getName() {
@@ -37,12 +41,12 @@ public class Organization {
         this.name = name;
     }
 
-    public String getDescrption() {
-        return descrption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescrption(String descrption) {
-        this.descrption = descrption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getWebsite() {
@@ -53,22 +57,52 @@ public class Organization {
         this.website = website;
     }
 
-    public Set<Member> getMembers() {
+    public Set<String> getMembers() {
         return members;
     }
 
     public void addMember(Member member) {
-        this.members.add(member);
+        this.members.add(member.getUsername());
     }
 
-    public Set<Member> getAdmin() {
-        return admin;
+    public void removeMember(Member member) {
+        if (this.admin.contains(member.getUsername())){
+            this.admin.remove(member.getUsername());
+        }
+        this.members.remove(member.getUsername());
+    }
+
+    public void removeAdmin(Member member) {
+        this.admin.remove(member.getUsername());
+    }
+
+    public Set<String> getAdmin() {
+        return new HashSet<>(admin);
     }
 
     public void addAdmin(Member member) {
-        if (!members.contains(member)){
-            this.addMember(member);
+        if (!members.contains(member.getUsername())){
+            this.members.add(member.getUsername());
         }
-        this.admin.add(member);
+        this.admin.add(member.getUsername());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.organizationId.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Organization){
+            Organization that = (Organization) obj;
+            return this.organizationId.equals(that.organizationId);
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Organization {Name: %s, Description: %s}",this.name, this.description);
     }
 }

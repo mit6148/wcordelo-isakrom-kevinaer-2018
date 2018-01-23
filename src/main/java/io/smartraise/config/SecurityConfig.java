@@ -1,8 +1,10 @@
 package io.smartraise.config;
 
-import io.smartraise.security.CustAuthProvider;
+import io.smartraise.security.CustomAuthProvider;
+import io.smartraise.security.CustomAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,40 +12,36 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
+@Order(2)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private CustAuthProvider authProvider;
+    private CustomAuthProvider authProvider;
+
+    @Autowired
+    private CustomAuthenticationSuccessHandler successHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .anyRequest().permitAll()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-            .logout()
-                .permitAll();
+            .csrf().disable();
+//                .and()
+//            .authorizeRequests()
+//                .antMatchers("/", "/home").permitAll()
+//                .anyRequest().permitAll()
+//                .and()
+//            .formLogin()
+//                .loginPage("/login")
+//                .successHandler(successHandler)
+//                .permitAll()
+//                .and()
+//            .logout()
+//                .permitAll();
     }
 
     @Autowired
     protected void configureGlobal (AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider);
     }
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//            .inMemoryAuthentication()
-//                .withUser("steve").password("password").roles("USER");
-//    }
-//
-//    @Autowired
-//    public void configAuthBuilder(AuthenticationManagerBuilder builder) throws Exception {
-//
-//    }
+
 }
