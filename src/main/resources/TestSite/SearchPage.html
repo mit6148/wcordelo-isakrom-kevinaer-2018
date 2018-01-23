@@ -317,7 +317,7 @@ form.example::after {
             </div>
           </div>
           <div id="EventList">
-              <div ng-repeat="event in myWelcome | filter:searchText">
+              <div ng-repeat="ovent in myWelcome | filter:searchText">
                 <div class="container">
                         <div class="col-md-4">
                             <div class="cardy">
@@ -326,20 +326,18 @@ form.example::after {
                             </div>
                             <div class="content pull-left" style="padding-left:20pt">
                                 <div style="display:flex;flex-direction:row;">
-                                    <h4 id="EventTitle" href="eventPage.html#"+>{{event.name}</h4> 
+                                    <h4 id="EventTitle" href="eventPage.html#"+>{{ovent.name}</h4> 
                                     <script>
-                                        var value1="value1";
-                                        var value2="value2";
-                                        var queryString = "?para1=" + value1 + "&para2=" + value2;
+                                        var queryString = "?para1=" + {{ovent.id}};
                                         var link = "page2.html" + queryString;
                                         var yourElement = document.getElementById('EventTitle');
                                         yourElement.setAttribute('href', link);
                                     </script> 
-                                    <h4 id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.startDate}}</h4> 
-                                    <h4 id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.endDate}}</h4> 
+                                    <h4 id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}}</h4> 
+                                    <h4 id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h4> 
                                 </div >
                                 <p id="EventText" style="padding-top:2%">
-                                    {{event.description}}
+                                    {{ovent.description}}
                                 </p>
                                 <hr>
                                 <small id="EventTags" item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
