@@ -2,9 +2,31 @@
 <html>
 <head>
 <title>Acknowledgement</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="file:///Users/isakromero/Documents/wcordelo-isakrom-kevinaer-2018/fitty.js"></script>
+    <style>
+        .card{
+            width:50px;
+            height: 40px;
+        }
+        .js .fit {
+  display: inline-block;
+  white-space: nowrap;
+}
+    </style>
 </head>
 <body>
-    <a href="" id="yourHref">A</a>
+<div id="my-element" class="card fit">Hello World</div>
+<script>
+var fittee = fitty('#my-element');
+fittee.fit();
+fitty.fitAll();
+</script>
 <script>
 var value1="Hulk";
 var queryString = "?para1=" + value1;

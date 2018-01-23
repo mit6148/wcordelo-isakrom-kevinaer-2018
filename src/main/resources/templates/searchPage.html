@@ -315,19 +315,40 @@ form.example::after {
                       </div>
                     </div>
                   </div>
-            <!-- Event CSS Test end -->
-          <div id="EventList">
-              <div ng-repeat="ovent in myWelcome | filter:searchText">
+            <p>TEST 2</p>
+            <div>
                 <div class="container fit">
-
-                    <div class="col-md-4">
               
                       <div class="cardy">
                                 <div class="image pull-left">
                                     <img src="" style="z-index: 10">
                                     <p id="eventId" class="invis">{{ovent.eventId}}</p>
                                 </div>
-                            </div>
+                        <div class="content pull-left" style="padding-left:20pt">
+                          <div style="display:flex;flex-direction:row;">
+                              <h4>Avengers Bake Sale</h4> 
+                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">10384892753397548979184198</h4> 
+                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">50924552233975545689841343</h4> 
+                          </div >
+                          <p style="padding-top:2%">
+                        Sell Cookies for charity
+                          </p>
+                          <hr>
+                          <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            <!-- Event CSS Test end -->
+          <div id="EventList">
+              <div ng-repeat="ovent in myWelcome | filter:searchText">
+                <div class="container fit">
+              
+                      <div class="cardy">
+                                <div class="image pull-left">
+                                    <img src="" style="z-index: 10">
+                                    <p id="eventId" class="invis">{{ovent.eventId}}</p>
+                                </div>
                         <div class="content pull-left" style="padding-left:20pt">
                           <div style="display:flex;flex-direction:row;">
                               <h4>{{ovent.eventName}}</h4> 
@@ -341,12 +362,9 @@ form.example::after {
                           <hr>
                           <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
                         </div>
-                        <div class="clearfix">
-              
-                        </div>
                       </div>
                     </div>
-                  
+                </div> 
                 <div class="container">
                         <div class="col-md-4">
                             
