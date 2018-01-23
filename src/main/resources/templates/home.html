@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Testing Shit</title>
-        <meta charset="utf-8" content="width=device-width, initial-scale=1"/>
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    </head>
-    <body>
-        <div ng-app="myApp" ng-controller="myCtrl">
-
-        <p>Today's welcome message is:</p>
-        <h1>{{myWelcome}}</h1>
-
+<head>
+    <title>Testing Shit</title>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <input ng-model="searchText">Search:</input>
+    <p>Today's events are:</p>
+        <div ng-repeat="event in myWelcome | filter:searchText">
+            <div class="container">
+                <div class="col-md-4">
+                    <div class="cardy">
+                        <div class="image pull-left">
+                        </div>
+                        <div class="content pull-left" style="padding-left:20pt">
+                            <div style="display:flex;flex-direction:row;">
+                                <h4 id="EventTitle">{{event.name}}</h4>
+                                <h4 id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.startDate}}</h4>
+                                <h4 id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.endDate}}</h4>
+                            </div >
+                            <p id="EventText" style="padding-top:2%">
+                                {{event.description}}
+                            </p>
+                            <hr/>
+                            <small id="EventTags" item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                        </div>
+                        <div class="clearfix">
+                            <!-- TAGS GO HERE -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <script>
-        var app = angular.module('myApp', []);
-        app.controller('myCtrl', function($scope, $http) {
-            $http.get("api/events")
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $http.get("api/events")
             .then(function(response) {
-                $scope.myWelcome = response.data[0]["name"]
-                ;
+                $scope.myWelcome = response.data;
             });
-        });
-        </script>
-    </body>
+    });
+</script>
+</body>
 </html>
