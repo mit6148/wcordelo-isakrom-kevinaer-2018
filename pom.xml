@@ -161,7 +161,9 @@
         <zone.version>0.8.16</zone.version>
         <!-- end::versions[] -->
         <jasmine.version>2.0.0</jasmine.version>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
     </properties>
+
 
 	<build>
 		<plugins>
