@@ -317,20 +317,18 @@ form.example::after {
                   </div>
             <!-- Event CSS Test end -->
           <div id="EventList">
-              <div ng-repeat="ovent in myWelcome | filter:searchText">
-                <div class="container fit">
+              <div class="container">
 
                     <div class="col-md-4">
               
                       <div class="cardy">
                         <div class="image pull-left">
-              
                         </div>
                         <div class="content pull-left" style="padding-left:20pt">
                           <div style="display:flex;flex-direction:row;">
-                              <h4>{{ovent.eventName}}</h4> 
-                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}}</h4> 
-                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h4> 
+                              <h4>Title Goes Here</h4> 
+                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">Date</h4> 
+                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">Location</h4> 
                           </div >
                           <p style="padding-top:2%">
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -348,12 +346,7 @@ form.example::after {
                   
                 <div class="container">
                         <div class="col-md-4">
-                            <div class="cardy">
-                                <div class="image pull-left">
-                                    <img src="" style="z-index: 10">
-                                    <p id="eventId" class="invis">{{ovent.eventId}}</p>
-                                </div>
-                            </div>
+                            
                             <div class="content pull-left" style="padding-left:20pt">
                                 <div style="display:flex;flex-direction:row;">
                                     <h4> <a id="EventTitle"  href=''>{{ovent.name}}</a></h4>
