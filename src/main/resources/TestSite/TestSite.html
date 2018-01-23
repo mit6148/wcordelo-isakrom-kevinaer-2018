@@ -4,13 +4,11 @@
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
 
 /****** LOGIN MODAL ******/
+/***modified from https://bootsnipp.com/snippets/featured/clean-modal-login-form***/
 .loginmodal-container {
   padding: 30px;
   max-width: 350px;
@@ -155,12 +153,13 @@
                   <a href="TestSite.html" class="navbar-brand">SmartRaise</a>
                   <form class="form-inline my-2 my-lg-0" >
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="SearchPage.html">Search</a>
+                    <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="SearchPage.html">Search Events</a>
+                    <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="SearchPage.html" style="margin-left:10pt">Search Charities</a>
                   </form>
                   <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
                   <a class="nav-link al-right" href="SearchPage.html">Sign up</a>
           </nav>
-          <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; z-index: 10000">
               <div class="modal-dialog">
               <div class="loginmodal-container">
                 <h1>Login to Your Account</h1><br>
@@ -176,6 +175,7 @@
               </div>
             </div>
             </div>
+<!--carousel based off of https://www.w3schools.com/bootstrap4/bootstrap_carousel.asp -->
       <div id="demo" class="carousel slide" data-ride="carousel" item-width="50%">
           <ul class="carousel-indicators">
             <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -235,6 +235,8 @@
           </p>
         </div>
         </div>
-        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
   </body>
 </html>

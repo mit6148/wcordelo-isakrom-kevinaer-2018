@@ -4,11 +4,63 @@
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
+.person {
+    border: 10px solid transparent;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 1;
+}
+.person:hover {
+    border-color: #f1f1f1;
+    opacity: .7;
+}
+/****** Search Bar *******/
+* {
+  box-sizing: border-box;
+}
+
+/* Style the search field */
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  -webkit-text-fill-color: gray;
+  background: white;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background:	#ef6c00;
+  color: white;
+  font-size: 17px;
+  border: 1px solid rgb(255, 255, 255);
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #28a745;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
@@ -122,7 +174,7 @@
           -webkit-text-fill-color: white;
         }
         .body {
-          background-color: #ffe0b2;
+            background: #ffe0b2;
           -webkit-text-fill-color: white;
         }
         a.navbar-brand {
@@ -147,9 +199,17 @@
         }
         .card {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          max-width: 300px;
-          margin: auto;
-          text-align: center;
+          width: 700pt;
+          margin-left: 140pt;
+          position: absolute;
+          margin-top: 50pt;
+      }
+      .cardy {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          width: 700pt;
+          margin-left: 140pt;
+          position:relative;
+          margin-top: 50pt;
       }
       
       .title {
@@ -197,22 +257,175 @@
                 margin: 1em 0;
                 padding: 0;
                }
+               .bottom-right {
+                    position: absolute;
+                    bottom: 8px;
+                    right: 16px;
+                }
+                .hr {
+                display: block;
+                height: 1px;
+                border: 0;
+                border-top: 1px solid #ccc;
+                margin: 1em 0;
+                padding: 0;
+               }
         </style>
   </head>
   <body style="background:#ffe0b2">
     <nav class="navbar navbar-default" >
         <a href="TestSite.html" class="navbar-brand">SmartRaise</a>
-        <form class="form-inline my-2 my-lg-0" >
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0 al-right" type="submit">Search</button>
-        </form>
         <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
         <a class="nav-link al-right" href="#">Sign up</a>
-     </nav>
-    <div id="Main Body">
-      <div id="Cover Photo and Donation">
+     </nav>  
+     <div class="card" ng-app="Search">
+        <!--Card content-->
+        <div class="card-body container">
+          <form class="example" action="action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit" script="Clone()"><i class="fa fa-search">Search</i></button>
+          </form>
+          <div class="row" style="margin-top:10pt"> 
+            <div class="column">
+              <label class="container">One
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Two
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Three
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+              <label>Search: <input ng-model="searchText"></label>
+            </div>
+            <div class="column">
+              <div class="input-group date" data-provide="datepicker">
+                <input type="text" class="form-control">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+                </div>
+                <input type="text" id="location" name="location" placeholder="Location" style="margin-left: 10pt">
+                <button onclick="showContent()">Show</button>
+                <div ng-app="TestEventAdd()">
+                  <input ng-model="EventName" type="text">
+                  <input ng-model="EventDate" type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="EventList">
+            <ul id="Results"></ul>
+            <li ng-repeat="event in events | filter:searchText">
+                <div class="container">
+  
+                    <div class="col-md-4">
+              
+                      <div class="cardy">
+                        <div class="image pull-left">
+              
+                        </div>
+                        <div class="content pull-left" style="padding-left:20pt">
+                          <div style="display:flex;flex-direction:row;">
+                              <h4 id="EventTitle">{{event.name}}</h4> 
+                              <h4 id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.startDate}}</h4> 
+                              <h4 id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.endDate}}</h4> 
+                          </div >
+                          <p id="EventText" style="padding-top:2%">
+                          {{event.description}}
+                          </p>
+                          <hr>
+                          <small id="EventTags" item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                        </div>
+                        <div class="clearfix">
+              
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </li>
+            </ul>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div class="card container">
+          <template>
+            <div class="container">
+  
+              <div class="col-md-4">
         
-      </div>
-    </div>  
+                <div class="cardy">
+                  <div class="image pull-left">
+        
+                  </div>
+                  <div class="content pull-left" style="padding-left:20pt">
+                    <div style="display:flex;flex-direction:row;">
+                        <h4 id="EventTitle"></h4> 
+                        <h4 id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">Date</h4> 
+                        <h4 id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">Location</h4> 
+                    </div >
+                    <p id="EventText" style="padding-top:2%">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    <hr>
+                    <small id="EventTags" item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                  </div>
+                  <div class="clearfix">
+        
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+<!--Flow of SearchBar with MVP and Angular
+1. API call to get data on events and make an array of events
+2. Add every event to the search list via the showContent and ng-repeat 
+3. Use the angular realtime filetring to filter all events while the amount of events is reasonable-->
+<!-- In the showContent() function the template is extracted and the 
+correct text for each part is filled in -->
+<script>
+  var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $http.get("http://18.111.122.242:8080/api/events")
+    .then(function(response) {
+        var EventsArray = response.data;
+        app.controller('myCtrl', ['$scope', '$window', function($scope, $window) {
+        $scope.EventsArray = $window.EventsArray.data;
+        }]);
+        var eventsNum = EventsArray.length;
+for (var i = 0; i < eventsNum; i++) {
+  var temp = document.getElementsByTagName("template")[0];
+  h4 = temp.content.querySelectorAll("h4");
+  p = temp.content.querySelectorAll("p");
+  small = temp.content.querySelectorAll("small");
+  h4[0].textContent = EventsArray[i][name];
+  h4[1].textContent = EventsArray[i][startDate];
+  h4[2].textContent = EventsArray[i][endDate];
+  p[0].textContent = EventsArray[i][description];
+  small[0].textContent = EventsArray[i][organization];
+  var clon = temp.content.cloneNode(true);
+  var EventTitle = clon.getElementById("EventTitle");
+  document.getElementById("Results").appendChild(clon);
+    //Do something
+    };
+  })
+});
+</script>
+<script>
+function showContent(Title, Date) {
+  var temp = document.getElementsByTagName("template")[0];
+  h4 = temp.content.querySelectorAll("h4");
+  h4[0].textContent = Title;
+  h4[1].textContent = Date;
+  var clon = temp.content.cloneNode(true);
+  var EventTitle = clon.getElementById("EventTitle");
+  document.getElementById("Results").appendChild(clon);
+}
+</script>
   </body>
 </html>
