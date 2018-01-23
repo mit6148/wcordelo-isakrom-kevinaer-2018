@@ -279,71 +279,20 @@ form.example::after {
      <div class="card" ng-app="myApp" ng-controller="myCtrl">
         <!--Card content-->
         <div class="card-body container">
-          <form class="example" ng-model="searchText" action="action_page.php">
+            <!-- Form Stuff
+          <form class="example"  action="action_page.php">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit" script="Clone()"><i class="fa fa-search">Search</i></button>
-            <label>Search: <input  class="fa fa-search"></label>
           </form>
+          -->
           <div class="row" style="margin-top:10pt">
+              <label>Search: <input ng-model="searchText"></label>
             <!-- put options here -->
           </div>
-            <!-- Event CSS Test start -->
-            <div class="container">
-
-                    <div class="col-md-4">
-              
-                      <div class="cardy">
-                        <div class="image pull-left">
-              
-                        </div>
-                        <div class="content pull-left" style="padding-left:20pt">
-                          <div style="display:flex;flex-direction:row;">
-                              <h4>Title Goes Here</h4> 
-                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">Date</h4> 
-                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">Location</h4> 
-                          </div >
-                          <p style="padding-top:2%">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          </p>
-                          <hr>
-                          <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                        </div>
-                        <div class="clearfix">
-              
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            <p>TEST 2</p>
-            <div>
-                <div class="container fit">
-              
-                      <div class="cardy">
-                                <div class="image pull-left">
-                                    <img src="" style="z-index: 10">
-                                    <p id="eventId" class="invis">{{ovent.eventId}}</p>
-                                </div>
-                        <div class="content pull-left" style="padding-left:20pt">
-                          <div style="display:flex;flex-direction:row;">
-                              <h4>Avengers Bake Sale</h4> 
-                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">10384892753397548979184198</h4> 
-                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">50924552233975545689841343</h4> 
-                          </div >
-                          <p style="padding-top:2%">
-                        Sell Cookies for charity
-                          </p>
-                          <hr>
-                          <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-            <!-- Event CSS Test end -->
           <div id="EventList">
               <div ng-repeat="ovent in myWelcome | filter:searchText">
-                <div class="container fit">
-              
+                <div class="container">
+
                       <div class="cardy">
                                 <div class="image pull-left">
                                     <img src="" style="z-index: 10">
@@ -351,51 +300,29 @@ form.example::after {
                                 </div>
                         <div class="content pull-left" style="padding-left:20pt">
                           <div style="display:flex;flex-direction:row;">
-                              <h4>{{ovent.eventName}}</h4> 
-                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}}</h4> 
-                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h4> 
+                              <a href="" id="eventTitle"><h5 >{{ovent.name}}</h5></a>
+                              <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}} </h6>
+                              <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>
                           </div >
                           <p style="padding-top:2%">
-                         Fittty fit fit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                         {{ovent.description}}
                           </p>
                           <hr>
                           <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
                         </div>
+                          <script>
+                              var queryString = "?" + document.getElementById("eventId").innerText;
+                              var link = "eventPage" + queryString;
+                              console.log(queryString);
+                              var yourElement = document.getElementById('eventTitle');
+                              yourElement.setAttribute('href', link);
+                          </script>
                       </div>
                     </div>
-                </div> 
-                <div class="container">
-                        <div class="col-md-4">
-                            
-                            <div class="content pull-left" style="padding-left:20pt">
-                                <div style="display:flex;flex-direction:row;">
-                                    <h4> <a id="EventTitle"  href=''>{{ovent.name}}</a></h4>
-                                    <script>
-                                        var queryString = "?" + document.getElementById("eventId").innerText;
-                                        var link = "eventPage" + queryString;
-                                        var yourElement = document.getElementById('EventTitle');
-                                        yourElement.setAttribute('href', link);
-                                    </script>
-                                    <h4><a id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}}</a></h4>
-                                    <h4><a id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</a></h4>
-                                </div >
-                                <p id="EventText" style="padding-top:2%">
-                                    {{ovent.description}}
-                                </p>
-                                <hr>
-                                <small id="EventTags" item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                            </div>
-                            <div class="clearfix">
-                                <!-- TAGS GO HERE -->
-                            </div>
-                          </div>
-                        </div>
                 </div>
         </div>
-        </div>
         <script src="fitty.min.js"></script>
-        <script> 
+        <script>
             fitty('#EventList');
          </script>
         <script>
