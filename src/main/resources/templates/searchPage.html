@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
     <title>SmartRaise</title>
-    <meta charset="utf-8" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <meta charset="utf-8" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"></link>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
@@ -128,7 +127,7 @@ form.example::after {
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  text-shadow: 0 1px rgba(0,0,0,0.1);
   background-color: #4d90fe;
   padding: 17px 0px;
   font-family: roboto;
@@ -152,7 +151,7 @@ form.example::after {
   display: inline-block;
   opacity: 0.6;
   transition: opacity ease 0.5s;
-} 
+}
 
 .login-help{
   font-size: 12px;
@@ -211,12 +210,18 @@ form.example::after {
           position:relative;
           margin-top: 50pt;
       }
-      
+
       .title {
           color: grey;
           font-size: 18px;
       }
-      
+      .invis{
+          -webkit-text-fill-color: black;
+          -webkit-text-stroke-width: 0px;
+          font-size: 0px;
+          z-index: -1;
+      }
+
       button {
           border: none;
           outline: 0;
@@ -274,10 +279,10 @@ form.example::after {
   </head>
   <body style="background:#ffe0b2">
     <nav class="navbar navbar-default" >
-        <a href="TestSite.html" class="navbar-brand">SmartRaise</a>
+        <a href="home" class="navbar-brand">SmartRaise</a>
         <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
         <a class="nav-link al-right" href="#">Sign up</a>
-     </nav>  
+     </nav>
      <div class="card" ng-app="myApp" ng-controller="myCtrl">
         <!--Card content-->
         <div class="card-body container">
@@ -285,30 +290,13 @@ form.example::after {
             <input type="text" placeholder="Search.." name="search">
             <button type="submit" script="Clone()"><i class="fa fa-search">Search</i></button>
           </form>
-          <div class="row" style="margin-top:10pt"> 
+          <div class="row" style="margin-top:10pt">
             <div class="column">
-              <label class="container">One
-                <input type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-              </label>
-              <label class="container">Two
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-              <label class="container">Three
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
               <label>Search: <input ng-model="searchText"></label>
             </div>
             <div class="column">
               <div class="input-group date" data-provide="datepicker">
                 <input type="text" class="form-control">
-                <div class="input-group-addon">
-                  <span class="glyphicon glyphicon-th"></span>
-                </div>
-                <input type="text" id="location" name="location" placeholder="Location" style="margin-left: 10pt">
-                <button onclick="showContent()">Show</button>
                 <div ng-app="TestEventAdd()">
                   <input ng-model="EventName" type="text">
                   <input ng-model="EventDate" type="text">
@@ -322,19 +310,21 @@ form.example::after {
                         <div class="col-md-4">
                             <div class="cardy">
                                 <div class="image pull-left">
+                                    <img src="" style="z-index: 10">
+                                    <p id="eventId" class="invis">{{ovent.eventId}}</p>
                                 </div>
                             </div>
                             <div class="content pull-left" style="padding-left:20pt">
                                 <div style="display:flex;flex-direction:row;">
-                                    <h4> <a id="EventTitle" href="eventPage.html#">{{ovent.name}}</a></h4> 
+                                    <h4> <a id="EventTitle"  href=''>{{ovent.name}}</a></h4>
                                     <script>
-                                        var queryString = "?para1=" + {{ovent.id}};
-                                        var link = "page2.html" + queryString;
+                                        var queryString = "?" + document.getElementById("eventId").innerText;
+                                        var link = "eventPage" + queryString;
                                         var yourElement = document.getElementById('EventTitle');
                                         yourElement.setAttribute('href', link);
-                                    </script> 
-                                    <h4><a id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}}</a></h4> 
-                                    <h4><a id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</a></h4> 
+                                    </script>
+                                    <h4><a id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}}</a></h4>
+                                    <h4><a id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</a></h4>
                                 </div >
                                 <p id="EventText" style="padding-top:2%">
                                     {{ovent.description}}
@@ -355,11 +345,11 @@ form.example::after {
         app.controller('myCtrl', function($scope, $http) {
             $http.get("/api/events")
             .then(function(response) {
+                console.log(response.data)
                 $scope.myWelcome = response.data;
             });
         });
         </script>
       </div>
-    </body>
+  </body>
 </html>
-         

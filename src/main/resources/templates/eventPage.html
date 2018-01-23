@@ -4,6 +4,7 @@
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
@@ -88,7 +89,7 @@
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  text-shadow: 0 1px rgba(0,0,0,0.1);
   background-color: #4d90fe;
   padding: 17px 0px;
   font-family: roboto;
@@ -112,7 +113,7 @@
   display: inline-block;
   opacity: 0.6;
   transition: opacity ease 0.5s;
-} 
+}
 
 .login-help{
   font-size: 12px;
@@ -163,12 +164,12 @@
           margin: auto;
           border-top: 1000pt;
       }
-      
+
       .title {
           color: grey;
           font-size: 18px;
       }
-      
+
       button {
           border: none;
           outline: 0;
@@ -226,14 +227,14 @@
   </head>
   <body style="background:#ffe0b2">
     <nav class="navbar navbar-default" >
-        <a href="TestSite.html" class="navbar-brand">SmartRaise</a>
+        <a href="home" class="navbar-brand">SmartRaise</a>
         <form class="form" >
 
           <button class="btn btn-outline-success my-2 my-sm-0 al-right" type="submit">Search</button>
         </form>
         <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
         <a class="nav-link al-right" href="#">Sign up</a>
-     </nav>  
+     </nav>
      <div class="card">
 
         <!--Card image-->
@@ -244,16 +245,16 @@
             </a>
             <div class="bottom-right" style="-webkit-text-fill-color: white; z-index: 0">Bottom Right</div>
         </div>
-    
+
         <!--Card content-->
-        <div class="card-body container">
+        <div class="card-body container"  ng-app="myApp" ng-controller="myCtrl">
                 <div class="row">
                         <div class="col-sm-4" style="text-align:center">
                             <!--Title-->
                             <h4 class="card-title">Host</h4>
                             <!--Text-->
                             <img src="http://static2.businessinsider.com/image/5899ffcf6e09a897008b5c04-1200/.jpg" class="person" style="width: 150pt; height: 150pt">
-                            <p class="card-text">This is John. John is a terrible human being but an amazing businessman. 
+                            <p class="card-text">This is John. John is a terrible human being but an amazing businessman.
                                 John wants to feel like he's a good person so he started this fundraiser. Fuck John.</p>
                             <hr>
                             <small item-width="max-content">Contact Info</small>
@@ -265,51 +266,27 @@
                         <div class="col-sm-8">
                             <!--Title-->
                             <div class="row">
-                                    <h4 class="card-title" style="vertical-align:middle">{{event.name}}</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted" style="vertical-align:middle">Date      Location</h6>
+                                    <h4 class="card-title" style="vertical-align:middle">{{ovent.name}}</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted" style="vertical-align:middle">{{ovent.startDate}}</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted" style="vertical-align:middle">{{ovent.endDate}}</h6>
                             </div>
                             <!--Text-->
-                            <p>Boston Partners in Education is seeking STEM-minded, volunteer academic mentors to support Boston’s public schools students. While we have opportunities available in all subject areas and grade levels (pre K-12), we do have a particularly high need for adults who are interested in working on science, technology, engineering, and math (STEM) concepts with students grades 9-12.
-
-                                    Who are Academic Mentors?
-                                    Our mentors are people like you and me, devoting time from their busy lives to help our young people succeed. They come from all walks of life, ethnic origins, and levels of education and experience.
-                                    
-                                    What do Academic Mentors do?
-                                    Academic mentors work one-on-one or with a small group of 2-4 students for an hour a week during the school day. As an academic mentor, you will support a student’s academic and personal growth, and in many cases become an adult role model. Opportunities are available in all grades (pre K-12) and subject areas.</p>
-                            
-                                    
-                                    <h6>Student/Volunteer matches are made based on your preferences:</h6>
-                                <ul>
-                                    <li>Location</li>
-                                    <li>Availability</li>
-                                    <li>Subject matter– STEM in particular!</li>
-                                    <li>Grade level– grades 9-12 in particular!</li>
-                                    <li>One-on-one vs. small group work</li>
-                                </ul>  
-                                <p>
-                                    Ready to make a difference in the lives of Boston Public Schools students? Apply now at: http://bostonpartners.org/get-involved/volunteer-application/
-                                    
-                                    What else do I need to know?
-                                    No experience is necessary– just a willingness to help students thrive. Boston Partners provides training and match support to help facilitate a successful match. We are required by the Boston Public Schools to run a CORI/SORI background check on each potential volunteer; this background check is run at no cost to you.
-                                    
-                                    For additional questions regarding mentoring opportunities, please contact Boston Partners in Education at mentor@bostonpartners.org or 617-451-6145. For all other information, please visit http://bostonpartners.org/.</p>
-                        </div>
+                            {{ovent.description}}
+                            </div>
                       </div>
-        </div> 
+        </div>
         <script>
         var queryString = decodeURIComponent(window.location.search);
         queryString = queryString.substring(1);
         var queries = queryString.split("&");
+        console.log(queries)
         var eventID = queries[0]
+        console.log(eventID)
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope, $http) {
-            $http.get("/api/event/"+{{eventID}})
+            $http.get("api/event/"+eventID)
             .then(function(response) {
-                $scope.event = response.data;
-            });
-            $http.get("/api/member/"+{{event.host}})
-            .then(function(response) {
-                $scope.host = response.data;
+                $scope.ovent = response.data;
             });
         });
         </script>

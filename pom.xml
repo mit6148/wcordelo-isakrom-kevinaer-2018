@@ -153,12 +153,14 @@
         <java.version>1.8</java.version>
         <!-- tag::versions[] -->
         <angular.version>4.4.4</angular.version>
-        <bootstrap.version>3.3.7-1</bootstrap.version>
+        <bootstrap.version>4.0.0</bootstrap.version>
         <corejs.version>2.5.1</corejs.version>
         <jquery.version>2.2.4</jquery.version>
         <reflect.version>0.1.10</reflect.version>
         <rxjs.version>5.4.3</rxjs.version>
         <zone.version>0.8.16</zone.version>
+        <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+        <thymeleaf-layout-dialect.version>2.1.1</thymeleaf-layout-dialect.version>
         <!-- end::versions[] -->
         <jasmine.version>2.0.0</jasmine.version>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
