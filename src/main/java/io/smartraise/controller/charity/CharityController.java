@@ -1,8 +1,10 @@
 package io.smartraise.controller.charity;
 
 import io.smartraise.controller.CrudController;
+import io.smartraise.model.Request;
 import io.smartraise.model.accounts.Charity;
 import io.smartraise.service.CharityService;
+import io.smartraise.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +19,15 @@ public class CharityController implements CrudController<Charity> {
     @Autowired
     private CharityService charityService;
 
+    @Autowired
+    private RequestService requestService;
+
     @Override
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity create(@RequestBody Charity charity) {
         try {
             charity = charityService.create(charity);
+            Request request = requestService.makeRequest(Request.RequestType.VERIFY_CHARITY, charity);
             return ResponseEntity.ok(charity);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

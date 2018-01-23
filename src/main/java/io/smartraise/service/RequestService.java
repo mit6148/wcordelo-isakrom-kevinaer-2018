@@ -2,14 +2,19 @@ package io.smartraise.service;
 
 import io.smartraise.model.Request;
 import io.smartraise.model.accounts.Administrator;
+import io.smartraise.model.accounts.Charity;
 
 import java.util.List;
 
 public interface RequestService {
 
-    List<Request> getRequests(Administrator administrator);
+    Request makeRequest(Request.RequestType type, Charity charity);
+
+    Request makeRequest(Request.RequestType type, Administrator administrator);
+
+    List<Request> getRequests(String admin);
 
     Request getRequest(String id);
 
-    void respond(Administrator administrator, Request request);
+    void respond(String admin, String request, boolean response);
 }

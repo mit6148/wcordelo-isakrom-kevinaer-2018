@@ -42,6 +42,7 @@ public class CredentialServiceImpl implements CredentialService{
                 memberService.create(MapToModel.mapToMember(signUp.getAccount()));
                 break;
             case ADMINISTRATOR:
+                Administrator administrator = MapToModel.mapToAdmin(signUp.getAccount());
                 adminService.create(MapToModel.mapToAdmin(signUp.getAccount()));
                 break;
             default:

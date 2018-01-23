@@ -33,4 +33,7 @@ public class ServiceConfig {
 
     @Bean
     public OrganizationService organizationService() { return new OrganizationServiceImpl(); }
+
+    @Bean
+    public RequestService requestService() { return new RequestServiceImpl(); }
 }
