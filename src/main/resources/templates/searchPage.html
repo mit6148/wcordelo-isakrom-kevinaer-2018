@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1"></meta>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"></link>
@@ -182,7 +183,8 @@ form.example::after {
         top: 0px;
         display: block;
         width: 173px;
-        background-size: 100% 100%; }
+        background-size: 100% 100%;
+        }
         .al-right{
          float: right;
          -webkit-text-fill-color: white;
@@ -201,13 +203,6 @@ form.example::after {
           width: 700pt;
           margin-left: 140pt;
           position: absolute;
-          margin-top: 50pt;
-      }
-      .cardy {
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          width: 700pt;
-          margin-left: 140pt;
-          position:relative;
           margin-top: 50pt;
       }
 
@@ -235,6 +230,14 @@ form.example::after {
           font-size: 18px;
       }
 
+                .cardy {
+                background: #fff;
+                display: inline-block;
+                border: 1px solid #ddd;
+                width: 751px;
+                height: 220px;
+                }
+
                 .image {
                 float: left;
                 background: #000;
@@ -261,20 +264,7 @@ form.example::after {
                 border-top: 1px solid #ccc;
                 margin: 1em 0;
                 padding: 0;
-               }
-               .bottom-right {
-                    position: absolute;
-                    bottom: 8px;
-                    right: 16px;
-                }
-                .hr {
-                display: block;
-                height: 1px;
-                border: 0;
-                border-top: 1px solid #ccc;
-                margin: 1em 0;
-                padding: 0;
-               }
+        }
         </style>
   </head>
   <body style="background:#ffe0b2">
@@ -286,24 +276,43 @@ form.example::after {
      <div class="card" ng-app="myApp" ng-controller="myCtrl">
         <!--Card content-->
         <div class="card-body container">
-          <form class="example" action="action_page.php">
+          <form class="example" ng-model="searchText" action="action_page.php">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit" script="Clone()"><i class="fa fa-search">Search</i></button>
+            <label>Search: <input  class="fa fa-search"></label>
           </form>
           <div class="row" style="margin-top:10pt">
-            <div class="column">
-              <label>Search: <input ng-model="searchText"></label>
-            </div>
-            <div class="column">
-              <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control">
-                <div ng-app="TestEventAdd()">
-                  <input ng-model="EventName" type="text">
-                  <input ng-model="EventDate" type="text">
-                </div>
-              </div>
-            </div>
+            <!-- put options here -->
           </div>
+            <!-- Event CSS Test start -->
+            <div class="container">
+
+                    <div class="col-md-4">
+              
+                      <div class="cardy">
+                        <div class="image pull-left">
+              
+                        </div>
+                        <div class="content pull-left" style="padding-left:20pt">
+                          <div style="display:flex;flex-direction:row;">
+                              <h4>Title Goes Here</h4> 
+                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">Date</h4> 
+                              <h4 style="padding-left:20%;-webkit-text-fill-color: grey;">Location</h4> 
+                          </div >
+                          <p style="padding-top:2%">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                          </p>
+                          <hr>
+                          <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                        </div>
+                        <div class="clearfix">
+              
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            <!-- Event CSS Test end -->
           <div id="EventList">
               <div ng-repeat="ovent in myWelcome | filter:searchText">
                 <div class="container">

@@ -298,13 +298,18 @@
         <div class="card-body container">
                <!-- Tab links -->
               <div class="tab">
-                <div class="row"> 
-                <button class="tablinks" onclick="openCity(event, 'Information and Members')">Information and Members</button>
-                <button class="tablinks" onclick="openCity(event, 'Donations')">Donations</button>
-                <button class="tablinks" onclick="openCity(event, 'Future Events')">Future Events</button>
+                <div class="row" style="background: #64dd17">
+                    <div class="column" >
+                        <button class="tablinks" id="defaultTab" onclick="openTab(event, 'Information and Members')">Information and Members</button>
+                    </div>
+                    <div class="column">
+                        <button class="tablinks" onclick="openTab(event, 'Donations')">Donations</button>
+                    </div>
+                    <div class="column">
+                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Future Events</button>
+                    </div>
                 </div>
               </div>
-            
 
               <!-- Tab content -->
               <div id="Information and Members" class="tabcontent w3-animate-opacity" style="display:none">
@@ -438,7 +443,7 @@
               </div>
         </div>
         <script>
-          function openCity(evt, cityName) {
+          function openTab(evt, cityName) {
               var i, tabcontent, tablinks;
               tabcontent = document.getElementsByClassName("tabcontent");
               for (i = 0; i < tabcontent.length; i++) {
@@ -452,6 +457,9 @@
               evt.currentTarget.className += " active";
           }
           </script>
+          <script>
+                document.getElementById("defaultTab").click();
+            </script>
     </div>  
   </body>
 </html>

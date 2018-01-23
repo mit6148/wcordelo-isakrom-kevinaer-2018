@@ -53,7 +53,6 @@
               
                       <div class="card">
                         <div class="image pull-left">
-              
                         </div>
                         <div class="content pull-left" style="padding-left:20pt">
                           <div style="display:flex;flex-direction:row;">
@@ -74,6 +73,39 @@
                       </div>
                     </div>
                   </div>
+        <div ng-repeat="ovent in myWelcome | filter:searchText">
+                <div class="container">
+                        <div class="col-md-4">
+                            <div class="cardy">
+                                <div class="image pull-left">
+                                    <img src="" style="z-index: 10">
+                                    <p id="eventId" class="invis">{{ovent.eventId}}</p>
+                                </div>
+                            </div>
+                            <div class="content pull-left" style="padding-left:20pt">
+                                <div style="display:flex;flex-direction:row;">
+                                    <h4> <a id="EventTitle"  href=''>{{ovent.name}}</a></h4>
+                                    <script>
+                                        var queryString = "?" + document.getElementById("eventId").innerText;
+                                        var link = "eventPage" + queryString;
+                                        var yourElement = document.getElementById('EventTitle');
+                                        yourElement.setAttribute('href', link);
+                                    </script>
+                                    <h4><a id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}}</a></h4>
+                                    <h4><a id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</a></h4>
+                                </div >
+                                <p id="EventText" style="padding-top:2%">
+                                    {{ovent.description}}
+                                </p>
+                                <hr>
+                                <small id="EventTags" item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                            </div>
+                            <div class="clearfix">
+                                <!-- TAGS GO HERE -->
+                            </div>
+                          </div>
+                        </div>
+                </div>
     </body>
 </html>
 
