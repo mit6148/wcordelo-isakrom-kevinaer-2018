@@ -265,7 +265,7 @@
                         <div class="col-sm-8">
                             <!--Title-->
                             <div class="row">
-                                    <h4 class="card-title" style="vertical-align:middle">Event Name</h4>
+                                    <h4 class="card-title" style="vertical-align:middle">{{event.name}}</h4>
                                     <h6 class="card-subtitle mb-2 text-muted" style="vertical-align:middle">Date      Location</h6>
                             </div>
                             <!--Text-->
@@ -295,6 +295,23 @@
                                     For additional questions regarding mentoring opportunities, please contact Boston Partners in Education at mentor@bostonpartners.org or 617-451-6145. For all other information, please visit http://bostonpartners.org/.</p>
                         </div>
                       </div>
-        </div>  
+        </div> 
+        <script>
+        var queryString = decodeURIComponent(window.location.search);
+        queryString = queryString.substring(1);
+        var queries = queryString.split("&");
+        var eventID = queries[0]
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $http.get("/api/event/"+{{eventID}})
+            .then(function(response) {
+                $scope.event = response.data;
+            });
+            $http.get("/api/member/"+{{event.host}})
+            .then(function(response) {
+                $scope.host = response.data;
+            });
+        });
+        </script>
   </body>
 </html>

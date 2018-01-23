@@ -11,14 +11,14 @@
     </head>
     <body>
         <div ng-app="myApp" ng-controller="myCtrl">
-        <input ng-model="searchText">Search:<input />
+        <input ng-model="searchText">Search:</input>
         <p>Today's events are:</p>
-        <ul>
-            <li ng-repeat="event in myWelcome | filter:searchText">
+            <div ng-repeat="event in myWelcome | filter:searchText">
                 <div class="container">
                         <div class="col-md-4">
                             <div class="cardy">
                                 <div class="image pull-left">
+                                </div>
                             </div>
                             <div class="content pull-left" style="padding-left:20pt">
                                 <div style="display:flex;flex-direction:row;">
@@ -38,17 +38,16 @@
                           </div>
                         </div>
                 </div>
-            </li>
-        </ul>
         </div>
         <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope, $http) {
-            $http.get("http://18.111.122.242:8080/api/events")
+            $http.get("/api/events")
             .then(function(response) {
                 $scope.myWelcome = response.data;
             });
         });
         </script>
+        
     </body>
 </html>

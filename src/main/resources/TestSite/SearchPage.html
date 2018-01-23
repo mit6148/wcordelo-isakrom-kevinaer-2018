@@ -317,115 +317,51 @@ form.example::after {
             </div>
           </div>
           <div id="EventList">
-            <ul id="Results"></ul>
-            <li ng-repeat="event in events | filter:searchText">
+              <div ng-repeat="event in myWelcome | filter:searchText">
                 <div class="container">
-  
-                    <div class="col-md-4">
-              
-                      <div class="cardy">
-                        <div class="image pull-left">
-              
+                        <div class="col-md-4">
+                            <div class="cardy">
+                                <div class="image pull-left">
+                                </div>
+                            </div>
+                            <div class="content pull-left" style="padding-left:20pt">
+                                <div style="display:flex;flex-direction:row;">
+                                    <h4 id="EventTitle" href="eventPage.html#"+>{{event.name}</h4> 
+                                    <script>
+                                        var value1="value1";
+                                        var value2="value2";
+                                        var queryString = "?para1=" + value1 + "&para2=" + value2;
+                                        var link = "page2.html" + queryString;
+                                        var yourElement = document.getElementById('EventTitle');
+                                        yourElement.setAttribute('href', link);
+                                    </script> 
+                                    <h4 id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.startDate}}</h4> 
+                                    <h4 id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.endDate}}</h4> 
+                                </div >
+                                <p id="EventText" style="padding-top:2%">
+                                    {{event.description}}
+                                </p>
+                                <hr>
+                                <small id="EventTags" item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                            </div>
+                            <div class="clearfix">
+                                <!-- TAGS GO HERE -->
+                            </div>
+                          </div>
                         </div>
-                        <div class="content pull-left" style="padding-left:20pt">
-                          <div style="display:flex;flex-direction:row;">
-                              <h4 id="EventTitle">{{event.name}}</h4> 
-                              <h4 id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.startDate}}</h4> 
-                              <h4 id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{event.endDate}}</h4> 
-                          </div >
-                          <p id="EventText" style="padding-top:2%">
-                          {{event.description}}
-                          </p>
-                          <hr>
-                          <small id="EventTags" item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                        </div>
-                        <div class="clearfix">
-              
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </li>
-            </ul>
-          </div>
-        </div>
-        </div>
-        </div>
-        <div class="card container">
-          <template>
-            <div class="container">
-  
-              <div class="col-md-4">
-        
-                <div class="cardy">
-                  <div class="image pull-left">
-        
-                  </div>
-                  <div class="content pull-left" style="padding-left:20pt">
-                    <div style="display:flex;flex-direction:row;">
-                        <h4 id="EventTitle"></h4> 
-                        <h4 id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">Date</h4> 
-                        <h4 id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">Location</h4> 
-                    </div >
-                    <p id="EventText" style="padding-top:2%">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <hr>
-                    <small id="EventTags" item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                  </div>
-                  <div class="clearfix">
-        
-                  </div>
                 </div>
-              </div>
-            </div>
-          </template>
         </div>
-<!--Flow of SearchBar with MVP and Angular
-1. API call to get data on events and make an array of events
-2. Add every event to the search list via the showContent and ng-repeat 
-3. Use the angular realtime filetring to filter all events while the amount of events is reasonable-->
-<!-- In the showContent() function the template is extracted and the 
-correct text for each part is filled in -->
-<script>
-  var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope, $http) {
-    $http.get("http://18.111.122.242:8080/api/events")
-    .then(function(response) {
-        var EventsArray = response.data;
-        app.controller('myCtrl', ['$scope', '$window', function($scope, $window) {
-        $scope.EventsArray = $window.EventsArray.data;
-        }]);
-        var eventsNum = EventsArray.length;
-for (var i = 0; i < eventsNum; i++) {
-  var temp = document.getElementsByTagName("template")[0];
-  h4 = temp.content.querySelectorAll("h4");
-  p = temp.content.querySelectorAll("p");
-  small = temp.content.querySelectorAll("small");
-  h4[0].textContent = EventsArray[i][name];
-  h4[1].textContent = EventsArray[i][startDate];
-  h4[2].textContent = EventsArray[i][endDate];
-  p[0].textContent = EventsArray[i][description];
-  small[0].textContent = EventsArray[i][organization];
-  var clon = temp.content.cloneNode(true);
-  var EventTitle = clon.getElementById("EventTitle");
-  document.getElementById("Results").appendChild(clon);
-    //Do something
-    };
-  })
-});
-</script>
-<script>
-function showContent(Title, Date) {
-  var temp = document.getElementsByTagName("template")[0];
-  h4 = temp.content.querySelectorAll("h4");
-  h4[0].textContent = Title;
-  h4[1].textContent = Date;
-  var clon = temp.content.cloneNode(true);
-  var EventTitle = clon.getElementById("EventTitle");
-  document.getElementById("Results").appendChild(clon);
-}
-</script>
-  </body>
+        </div>
+        <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $http.get("/api/events")
+            .then(function(response) {
+                $scope.myWelcome = response.data;
+            });
+        });
+        </script>
+      </div>
+    </body>
 </html>
+         
