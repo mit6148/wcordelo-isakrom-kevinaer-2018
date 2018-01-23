@@ -278,7 +278,7 @@ form.example::after {
         <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
         <a class="nav-link al-right" href="#">Sign up</a>
      </nav>  
-     <div class="card" ng-app="Search">
+     <div class="card" ng-app="myApp" ng-controller="myCtrl">
         <!--Card content-->
         <div class="card-body container">
           <form class="example" action="action_page.php">
@@ -326,15 +326,15 @@ form.example::after {
                             </div>
                             <div class="content pull-left" style="padding-left:20pt">
                                 <div style="display:flex;flex-direction:row;">
-                                    <h4 id="EventTitle" href="eventPage.html#"+>{{ovent.name}</h4> 
+                                    <h4> <a id="EventTitle" href="eventPage.html#">{{ovent.name}}</a></h4> 
                                     <script>
                                         var queryString = "?para1=" + {{ovent.id}};
                                         var link = "page2.html" + queryString;
                                         var yourElement = document.getElementById('EventTitle');
                                         yourElement.setAttribute('href', link);
                                     </script> 
-                                    <h4 id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}}</h4> 
-                                    <h4 id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h4> 
+                                    <h4><a id="EventDate" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}}</a></h4> 
+                                    <h4><a id="EventLocation" style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</a></h4> 
                                 </div >
                                 <p id="EventText" style="padding-top:2%">
                                     {{ovent.description}}
