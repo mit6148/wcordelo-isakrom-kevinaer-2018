@@ -51,4 +51,9 @@ public class AdminServiceImpl implements AdminService {
     public boolean exists(String id) {
         return adminDAO.exists(id);
     }
+
+    @Override
+    public long count() {
+        return adminDAO.count();
+    }
 }
