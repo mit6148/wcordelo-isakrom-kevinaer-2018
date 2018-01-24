@@ -1,4 +1,4 @@
-package io.smartraise.helper;
+package io.smartraise.util;
 
 public class Parser {
 

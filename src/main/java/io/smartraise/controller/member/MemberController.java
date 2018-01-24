@@ -80,6 +80,7 @@ public class MemberController implements CrudController<Member> {
     public ResponseEntity delete(@PathVariable("id") String id, Principal principal){
         try {
             memberService.delete(id);
+            credentialService.removeType(UserType.MEMBER, id);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

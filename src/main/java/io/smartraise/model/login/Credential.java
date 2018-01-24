@@ -66,6 +66,8 @@ public class Credential {
         this.types.add(type);
     }
 
+    public void removeType(UserType type) { this.types.remove(type); }
+
     public void setEmail(String email) {
         this.email = email;
     }

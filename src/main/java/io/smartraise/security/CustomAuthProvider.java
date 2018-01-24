@@ -1,6 +1,6 @@
 package io.smartraise.security;
 
-import io.smartraise.helper.Parser;
+import io.smartraise.util.Parser;
 import io.smartraise.model.login.Credential;
 import io.smartraise.model.login.SignUp;
 import io.smartraise.service.CredentialService;

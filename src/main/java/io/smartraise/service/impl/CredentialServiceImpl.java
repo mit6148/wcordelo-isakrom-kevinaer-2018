@@ -1,9 +1,8 @@
 package io.smartraise.service.impl;
 
-import io.smartraise.helper.MapToModel;
-import io.smartraise.helper.Parser;
+import io.smartraise.util.MapToModel;
+import io.smartraise.util.Parser;
 import io.smartraise.model.accounts.Administrator;
-import io.smartraise.model.accounts.Member;
 import io.smartraise.model.login.SignUp;
 import io.smartraise.security.PasswordHashing;
 import io.smartraise.dao.CredentialDAO;
@@ -139,6 +138,13 @@ public class CredentialServiceImpl implements CredentialService{
     public void addType(Credential.UserType type, String id) {
         Credential credential = credentialDAO.findOne(id);
         credential.addType(type);
+        credentialDAO.save(credential);
+    }
+
+    @Override
+    public void removeType(Credential.UserType type, String id) {
+        Credential credential = credentialDAO.findOne(id);
+        credential.removeType(type);
         credentialDAO.save(credential);
     }
 
