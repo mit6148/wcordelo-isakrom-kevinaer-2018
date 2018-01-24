@@ -1,6 +1,7 @@
 package io.smartraise.security;
 
-import io.smartraise.helper.Parser;
+import io.smartraise.util.Parser;
+import io.smartraise.model.login.Credential;
 import io.smartraise.model.login.SignUp;
 import io.smartraise.service.CredentialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,11 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @ComponentScan("io.smartraise.smartraise")
 public class CustomAuthProvider implements AuthenticationProvider {
@@ -24,13 +28,18 @@ public class CustomAuthProvider implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
 
         try {
+            Credential credential;
             if (Parser.isEmail(user)){
-                credentialService.authenticate(new SignUp(user, "",password));
+                credential = credentialService.authenticate(new SignUp(user, "",password));
             } else {
-                credentialService.authenticate(new SignUp("", user, password));
+                credential = credentialService.authenticate(new SignUp("", user, password));
+            }
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            if (credential.getTypes().contains(Credential.UserType.ADMINISTRATOR)) {
+                authorities.add(new SimpleGrantedAuthority("ADMIN"));
             }
             return new UsernamePasswordAuthenticationToken(
-                    user, password, new ArrayList<>());
+                    credential.getUsername(), password, authorities);
         } catch (Exception e) {
             return null;
         }

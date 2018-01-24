@@ -1,7 +1,7 @@
 package io.smartraise.service.impl;
 
 import io.smartraise.dao.AdminDAO;
-import io.smartraise.helper.Parser;
+import io.smartraise.util.Parser;
 import io.smartraise.model.accounts.Administrator;
 import io.smartraise.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +50,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean exists(String id) {
         return adminDAO.exists(id);
+    }
+
+    @Override
+    public long count() {
+        return adminDAO.count();
     }
 }

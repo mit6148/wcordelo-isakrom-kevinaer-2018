@@ -1,21 +1,23 @@
 package io.smartraise.service.impl;
 
+import io.smartraise.dao.ContactInformationDAO;
 import io.smartraise.dao.MemberDAO;
-import io.smartraise.helper.Parser;
+import io.smartraise.util.Parser;
 import io.smartraise.model.accounts.Member;
 import io.smartraise.model.fundraise.Organization;
-import io.smartraise.model.login.Credential;
 import io.smartraise.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private MemberDAO memberDAO;
+
+    @Autowired
+    private ContactInformationDAO contactInformationDAO;
 
     @Override
     public Member get(String id) throws Exception{
@@ -30,6 +32,7 @@ public class MemberServiceImpl implements MemberService {
     public void create(Member member) throws Exception {
         if (isValid(member) && !memberDAO.exists(member.getUsername())) {
             memberDAO.save(member);
+            contactInformationDAO.save(member.getContactInformation());
         } else {
             throw new Exception("Member already exists");
         }
@@ -44,6 +47,7 @@ public class MemberServiceImpl implements MemberService {
     public void update(Member member) throws Exception {
         if (memberDAO.exists(member.getUsername())) {
             memberDAO.save(member);
+            contactInformationDAO.save(member.getContactInformation());
         } else {
             throw new Exception("No member found");
         }
@@ -52,6 +56,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void delete(String id) throws Exception {
         if (memberDAO.exists(id)) {
+            contactInformationDAO.delete(id);
             memberDAO.delete(id);
         } else {
             throw new Exception("No member found");

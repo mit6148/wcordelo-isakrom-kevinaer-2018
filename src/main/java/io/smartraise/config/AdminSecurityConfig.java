@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@Order(1)
+@Order(2)
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

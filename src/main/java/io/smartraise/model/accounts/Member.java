@@ -2,8 +2,10 @@ package io.smartraise.model.accounts;
 
 import io.smartraise.model.fundraise.Organization;
 import io.smartraise.model.Privilege;
+import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,11 +21,18 @@ public class Member {
     @Id
     private final String username;
     @Indexed(unique = true)
+    @Deprecated
     private String email;
+    @Deprecated
     private String firstName;
+    @Deprecated
     private String lastName;
     private Privilege privilege;
     private final Set<String> organizations;
+
+    @DBRef
+    @CascadeSave
+    private ContactInformation contactInformation;
 
     public Member(String email, String username) {
         this.firstName = "";
@@ -32,6 +41,7 @@ public class Member {
         this.email = email;
         this.privilege = Privilege.MEMBER_NOT_VERIFIED;
         this.organizations = new HashSet<>();
+        this.contactInformation = new ContactInformation(this.username);
     }
 
     public Member(String firstName, String lastName, String username) {
@@ -41,6 +51,7 @@ public class Member {
         this.email = "";
         this.privilege = Privilege.NOT_VISIBLE;
         this.organizations = new HashSet<>();
+        this.contactInformation = new ContactInformation(this.username);
     }
 
     public Member() {
@@ -50,6 +61,14 @@ public class Member {
         this.username = "";
         this.privilege = Privilege.MEMBER_NOT_VERIFIED;
         this.organizations = new HashSet<>();
+    }
+
+    public ContactInformation getContactInformation() {
+        return contactInformation;
+    }
+
+    public void setContactInformation(ContactInformation contactInformation) {
+        this.contactInformation = contactInformation;
     }
 
     public String getFirstName() {

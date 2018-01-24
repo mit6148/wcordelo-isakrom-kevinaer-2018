@@ -52,7 +52,6 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization get(String id) throws Exception {
-        Organization organization = organizationDAO.findOne(id.toString());
         return organizationDAO.findOne(id.toString());
     }
 

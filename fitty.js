@@ -5,7 +5,7 @@ export default ((w) => {
     return;
   }
 
-  // node list to array helper method
+  // node list to array util method
   const toArray = (nl) => [].slice.call(nl);
 
   // states

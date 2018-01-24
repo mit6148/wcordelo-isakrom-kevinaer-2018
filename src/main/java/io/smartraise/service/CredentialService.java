@@ -63,6 +63,14 @@ public interface CredentialService {
     void addType(Credential.UserType type, String id);
 
     /**
+     * Removes a  type of user type {@link Credential.UserType} from user's {@link Credential}
+     *
+     * @param type  the type of user account {@link Credential.UserType}
+     * @param id    the id of the user
+     */
+    void removeType(Credential.UserType type, String id);
+
+    /**
      * Checks if {@link Credential} contains a {@link Credential.UserType} user account
      * @param type  the type of user account {@link Credential.UserType}
      * @param id    the id of the user

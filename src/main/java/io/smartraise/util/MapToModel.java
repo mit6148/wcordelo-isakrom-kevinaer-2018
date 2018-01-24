@@ -1,4 +1,4 @@
-package io.smartraise.helper;
+package io.smartraise.util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
