@@ -164,7 +164,6 @@
     </form>
 </nav>
     <div class="container jumbotron">
-        <div class="row">
             <div id="blurb" class="col column">
                 <h1>It seems you aren't logged in right now</h1>
                 <div style="padding-top: 20pt">
@@ -181,18 +180,43 @@
                 <div class="form">
                     <form action="api/login" method="post">
                       <div class="form-group">
-                        <label for="text">Email address:</label>
-                        <input type="text" class="form-control" name="username">
+                        <label for="text">Username:</label>
+                        <input id="username" type="text" class="form-control" name="username">
                       </div>
                       <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" name="password">
+                        <input type="password" id="password" class="form-control" name="password">
                       </div>
                       <button type="submit" class="btn submit btn-default">Submit</button>
                     </form>
                 </div>
             </div>
-        </div>
+        <script>
+            var app = angular.module('putserviceApp', []);
+            app.controller('putserviceCtrl', function ($scope, $http) {
+            // Simple Post request example:
+            var data = 'parameters', config='contenttype';
+            $scope.username = document.getElementById("username").nodeValue;
+            $scope.password = document.getElementById("password").nodeValue;
+            $scope.postdata = function (username, password) {
+            var data = {
+            username: username,
+            password: password;
+            };
+            $http.post("api/login", data, config).then(function (response) {
+            //Go to user's profile
+                
+            var username = response.data.username;
+            var newUrl = "/member?" + username;
+            window.location = newUrl;
+            // This function handles success
+            }, function (response) {
+            //Go to error page
+            //add error text and redirection
+            // this function handles error
+            });
+            });
+        </script>
         <div class="row">
             <div class="col" style="align-content: center">
                 <h1>Register</h1>

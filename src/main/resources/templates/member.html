@@ -106,7 +106,7 @@
   -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
-
+        
 .loginmodal {
   text-align: center;
   font-size: 14px;
@@ -164,6 +164,9 @@
         .navbar {
           white-space: nowrap;
           width:100%;
+          margin: auto;
+          z-index: 100;
+          position: fixed;
         }
         .navbar-brand{
           -webkit-text-fill-color: white;
@@ -182,10 +185,6 @@
         .al-right{
          float: right;
          -webkit-text-fill-color: white;
-        }
-        .navbar{
-          z-index: 100;
-          position: fixed;
         }
         .jumbotron{
           width: 90%;
@@ -225,6 +224,16 @@
           width: 100%;
           font-size: 18px;
       }
+        input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+}
 
                 .image {
                 float: left;
@@ -272,13 +281,11 @@
   <body style="background:#ffe0b2">
     <nav class="navbar navbar-default" >
         <a href="TestSite.html" class="navbar-brand">SmartRaise</a>
-         <form class="form-inline my-2 my-lg-0" >
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <form class="form-inline" style="margin: auto" >
         <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
         <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="../templates/search.html" style="margin-left:10pt">Search Charities</a>
+        <input type="text" name="search" placeholder="Search..">
     </form>
-        <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
-        <a class="nav-link al-right" href="#">Sign up</a>
      </nav>  
      <div class="card">
 
@@ -305,7 +312,7 @@
                         <button class="tablinks" onclick="openTab(event, 'Donations')">Donations</button>
                     </div>
                     <div class="column">
-                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Future Events</button>
+                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Membership</button>
                     </div>
                 </div>
               </div>

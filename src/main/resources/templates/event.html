@@ -114,7 +114,12 @@
   opacity: 0.6;
   transition: opacity ease 0.5s;
 }
-
+.btn-success{
+    margin-left: 580pt;
+    margin-top; 50pt;
+    width: 15%;
+    border-radius: 5px;
+}
 .login-help{
   font-size: 12px;
 }
@@ -238,11 +243,19 @@
      <div class="card">
 
         <!--Card image-->
-        <div class="view overlay hm-white-slight" style="width: inherit">
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" style="height: 275pt; width:inherit; z-index: 5">
+        <div class="view overlay hm-white-slight" style="width: inherit;">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" style="height: 275pt; width:inherit; z-index: 0; position: relative">
             <a href="#">
                 <div class="mask"></div>
             </a>
+            <div class="progress row container">
+                <div class="progress-bar column" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:50%; z-index: 5">
+                    <span class="sr-only">70% Complete</span>
+                </div>
+            </div>
+                <div class="column">
+                    <button class="btn-success" style="position: absolute;">Donate</button>
+                </div>
             <div class="bottom-right" style="-webkit-text-fill-color: white; z-index: 0">Bottom Right</div>
         </div>
 

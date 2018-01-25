@@ -37,6 +37,9 @@ form.example input[type=text] {
   -webkit-text-fill-color: gray;
   background: white;
 }
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
 
 /* Style the submit button */
 form.example button {
@@ -198,6 +201,20 @@ form.example::after {
           justify-content:center;
           align-items:center;
         }
+        .search{
+            max-width:none;
+            padding: 15px;
+            font-size: 17px;
+            border: none;
+            float: left;
+            width: 665pt;
+            position:sticky;
+            background: white;
+            border-style: solid;
+            border-color: gainsboro;
+            border-radius: 5pt;
+
+        }
         .card {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
           width: 700pt;
@@ -285,11 +302,12 @@ form.example::after {
             <button type="submit" script="Clone()"><i class="fa fa-search">Search</i></button>
           </form>
           -->
-          <div class="row" style="margin-top:10pt">
-              <label>Search: <input ng-model="searchText"></label>
-            <!-- put options here -->
+          <div class="row" style="padding-left: 10pt">
+            <form action="action_page.php">
+              <input type="text" class="search" placeholder="Search.." name="search" ng-model="searchText" >
+            </form>
           </div>
-          <div id="EventList">
+          <div id="EventList" class="ng-cloak">
               <div ng-repeat="ovent in myWelcome | filter:searchText">
                 <div class="container">
 
