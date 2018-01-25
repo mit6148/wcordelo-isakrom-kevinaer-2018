@@ -12,7 +12,7 @@ public class AdminServiceImpl implements AdminService {
     private AdminDAO adminDAO;
 
     @Override
-    public Administrator get(String id) throws Exception {
+    public Administrator get(String id){
         if (Parser.isEmail(id)) {
             return adminDAO.findByEmail(id);
         } else {
@@ -21,25 +21,23 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void create(Administrator admin) throws Exception {
-        if (!this.isValid(admin)) {
-            throw new Exception("Fields empty");
-        }
-        if (adminDAO.exists(admin.getUsername())) {
-            throw new Exception("Member already exists");
+    public boolean create(Administrator admin) {
+        if (this.isValid(admin) && !adminDAO.exists(admin.getUsername())) {
+            return false;
         } else {
             adminDAO.save(admin);
+            return true;
         }
     }
 
     @Override
-    public void update(Administrator admin) throws Exception {
-
+    public boolean update(Administrator admin) {
+        return true;
     }
 
     @Override
-    public void delete(String id) throws Exception {
-
+    public boolean delete(String id) {
+        return true;
     }
 
     @Override

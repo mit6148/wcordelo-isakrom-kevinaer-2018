@@ -18,68 +18,70 @@ public class OrganizationServiceImpl implements OrganizationService {
     private OrganizationDAO organizationDAO;
 
     @Override
-    public Set<Organization> getFromMember(Member member) throws Exception {
+    public Set<Organization> getFromMember(Member member) {
         return new HashSet<>(organizationDAO.findAllByOrganizationIdIn(member.getOrganizations()));
     }
 
     @Override
-    public void addAdmin(Member member, String id) throws Exception {
+    public void addAdmin(Member member, String id) {
         Organization organization = this.get(id);
         organization.addAdmin(member);
         this.update(organization);
     }
 
     @Override
-    public void deleteAdmin(Member member, String id) throws Exception {
+    public void deleteAdmin(Member member, String id) {
         Organization organization = this.get(id);
         organization.removeAdmin(member);
         this.update(organization);
     }
 
     @Override
-    public void addMember(Member member, String id) throws Exception {
+    public void addMember(Member member, String id) {
         Organization organization = this.get(id);
         organization.addMember(member);
         this.update(organization);
     }
 
     @Override
-    public void deleteMember(Member member, String id) throws Exception {
+    public void deleteMember(Member member, String id) {
         Organization organization = this.get(id);
         organization.removeMember(member);
         this.update(organization);
     }
 
     @Override
-    public Organization get(String id) throws Exception {
+    public Organization get(String id) {
         return organizationDAO.findOne(id.toString());
     }
 
     @Override
-    public Organization create(Organization organization) throws Exception {
-        if (isValid(organization) && !organizationDAO.exists(organization.getOrganizationId())) {
+    public boolean create(Organization organization) {
+        if (isValid(organization) && !exists(organization.getOrganizationId())) {
             organizationDAO.save(organization);
-            return organization;
+            return true;
         } else {
-            throw new Exception("Invalid organization");
+            return false;
         }
     }
 
     @Override
-    public void update(Organization organization) throws Exception {
-        if (organizationDAO.exists(organization.getOrganizationId())) {
+    public boolean update(Organization organization) {
+        if (exists(organization.getOrganizationId()) && isValid(organization)) {
             organizationDAO.save(organization);
+            return true;
         } else {
-            throw new Exception("Organization doesn't exist");
+            return false;
         }
     }
 
     @Override
-    public void delete(String id) throws Exception {
+    public boolean delete(String id) {
         if (organizationDAO.exists(id)) {
             organizationDAO.delete(id);
+            return true;
         } else {
-            throw new Exception("Organization doesn't exist");
+            return false;
         }
     }
 

@@ -3,8 +3,10 @@ package io.smartraise.model.accounts;
 import io.smartraise.model.donations.Donation;
 import io.smartraise.model.Privilege;
 import io.smartraise.model.donations.Payment;
+import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +24,8 @@ public class Donor {
     private String firstName;
     private String lastName;
     private Privilege privilege;
+    @DBRef
+    @CascadeSave
     private Payment payment;
 
     /**

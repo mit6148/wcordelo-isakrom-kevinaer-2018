@@ -12,46 +12,52 @@ public class DonationServiceImpl implements DonationService {
     private DonationDAO donationDAO;
 
     @Override
-    public List<Donation> getDonationsByOrganization(String organizationId) throws Exception {
+    public List<Donation> getDonationsByOrganization(String organizationId) {
         return donationDAO.findAllByOrganization(organizationId);
     }
 
     @Override
-    public List<Donation> getDonationsByEvent(String eventId) throws Exception {
+    public List<Donation> getDonationsByEvent(String eventId) {
         return donationDAO.findAllByEvent(eventId);
     }
 
     @Override
-    public List<Donation> getDonationsByDonor(String donorId) throws Exception {
+    public List<Donation> getDonationsByDonor(String donorId) {
         return donationDAO.findAllByDonor(donorId);
     }
 
     @Override
-    public Donation get(String id) throws Exception {
+    public Donation get(String id) {
         return donationDAO.findOne(id);
     }
 
     @Override
-    public Donation create(Donation donation) throws Exception {
+    public boolean create(Donation donation) {
         if (isValid(donation) && !donationDAO.exists(donation.getDonationId())) {
             donationDAO.save(donation);
-            return donation;
+            return true;
         } else {
-            throw new Exception("Invalid donation");
+            return false;
         }
     }
 
     @Override
-    public void update(Donation donation) throws Exception {
-        if (isValid(donation)) {
+    public boolean update(Donation donation) {
+        if (isValid(donation) && exists(donation.getDonationId())) {
             donationDAO.save(donation);
+            return true;
+        } else {
+            return false;
         }
     }
 
     @Override
-    public void delete(String id) throws Exception {
+    public boolean delete(String id) {
         if (donationDAO.exists(id)) {
             donationDAO.delete(id);
+            return true;
+        } else {
+            return false;
         }
     }
 

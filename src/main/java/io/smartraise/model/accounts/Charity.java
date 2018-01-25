@@ -2,7 +2,9 @@ package io.smartraise.model.accounts;
 
 import io.smartraise.model.Privilege;
 import io.smartraise.model.donations.Payment;
+import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.UUID;
 
@@ -13,6 +15,8 @@ public class Charity {
     private String name;
     private String description;
     private Privilege privilege;
+    @DBRef
+    @CascadeSave
     private Payment payment;
     private String website;
 
@@ -53,7 +57,7 @@ public class Charity {
         this.privilege = privilege;
     }
 
-    public Object getPayment() {
+    public Payment getPayment() {
         return payment;
     }
 

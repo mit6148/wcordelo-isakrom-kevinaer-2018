@@ -1,6 +1,7 @@
 package io.smartraise.service.impl;
 
 import io.smartraise.dao.CharityDAO;
+import io.smartraise.dao.PaymentDAO;
 import io.smartraise.model.accounts.Charity;
 import io.smartraise.service.CharityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,39 +15,48 @@ public class CharityServiceImpl implements CharityService {
     @Autowired
     private CharityDAO charityDAO;
 
+    @Autowired
+    private PaymentDAO paymentDAO;
+
     @Override
     public Set<Charity> getCharities(List<String> terms) {
         return new HashSet<>(charityDAO.findAllByNameContaining(terms));
     }
 
     @Override
-    public Charity get(String id) throws Exception {
+    public Charity get(String id) {
         return charityDAO.findOne(id);
     }
 
     @Override
-    public Charity create(Charity charity) throws Exception {
-        if (isValid(charity)) {
+    public boolean create(Charity charity) {
+        if (isValid(charity) && !exists(charity.getCharityId())) {
             charityDAO.save(charity);
-            return charity;
+            return true;
         } else {
-            throw new Exception("Not a valid charity");
+            return false;
         }
     }
 
     @Override
-    public void update(Charity charity) throws Exception {
+    public boolean update(Charity charity) {
         if (charityDAO.exists(charity.getCharityId())) {
             charityDAO.save(charity);
+            return true;
         } else {
-            throw new Exception("Charity doesn't exist");
+            return false;
         }
     }
 
     @Override
-    public void delete(String id) throws Exception {
+    public boolean delete(String id) {
+        Charity charity = this.get(id);
         if (charityDAO.exists(id)) {
-            charityDAO.delete(id);
+            paymentDAO.delete(charity.getPayment());
+            charityDAO.delete(charity);
+            return true;
+        } else {
+            return false;
         }
     }
 

@@ -23,28 +23,26 @@ public class OrganizationEventController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity readAll(@PathVariable("id") String id, Principal principal) {
-        try {
-            return ResponseEntity.ok(eventService.getEventsFromOrganization(id));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e);
-        }
+        return ResponseEntity.ok(eventService.getEventsFromOrganization(id));
+//        try {
+//            return ResponseEntity.ok(eventService.getEventsFromOrganization(id));
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(e);
+//        }
     }
 
     @RequestMapping(value = "/active", method = RequestMethod.GET)
     public ResponseEntity readAllActive(@PathVariable("id") String id, Principal principal) {
-        try {
-            return ResponseEntity.ok(eventService.getCurrentEventsFromOrganization(id));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e);
-        }
+        return ResponseEntity.ok(eventService.getCurrentEventsFromOrganization(id));
+//        try {
+//            return ResponseEntity.ok(eventService.getCurrentEventsFromOrganization(id));
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(e);
+//        }
     }
 
     @RequestMapping(value = "/donations", method = RequestMethod.GET)
     public ResponseEntity getAllDonations(@PathVariable("id") String id, Principal principal) {
-        try {
-            return ResponseEntity.ok(donationService.getDonationsByOrganization(id));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e);
-        }
+        return ResponseEntity.ok(donationService.getDonationsByOrganization(id));
     }
 }

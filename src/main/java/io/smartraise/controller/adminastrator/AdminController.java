@@ -28,6 +28,8 @@ public class AdminController {
 //        return "admin";
 //    }
 
+    //TODO Remove exception handler
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity createAdmin(@RequestBody Administrator administrator, Principal principal) {
         try {

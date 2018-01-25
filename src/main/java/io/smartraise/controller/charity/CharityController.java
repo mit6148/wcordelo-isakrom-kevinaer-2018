@@ -2,6 +2,7 @@ package io.smartraise.controller.charity;
 
 import io.smartraise.controller.CrudController;
 import io.smartraise.model.Request;
+import io.smartraise.model.Response;
 import io.smartraise.model.accounts.Charity;
 import io.smartraise.service.CharityService;
 import io.smartraise.service.RequestService;
@@ -25,45 +26,39 @@ public class CharityController implements CrudController<Charity> {
     @Override
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity create(@RequestBody Charity charity) {
-        try {
-            charity = charityService.create(charity);
+        if (charityService.create(charity)){
+            charity = charityService.get(charity.getCharityId());
             Request request = requestService.makeRequest(Request.RequestType.VERIFY_CHARITY, charity);
             return ResponseEntity.ok(charity);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        } else {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity read(@PathVariable("id") String id, Principal principal) {
-        try {
-            return ResponseEntity.ok(charityService.get(id));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        return ResponseEntity.ok(charityService.get(id));
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity update(
             @PathVariable("id") String id, @RequestBody Charity charity, Principal principal) {
-        try {
-            charityService.update(charity);
+        if (charityService.update(charity)) {
             return ResponseEntity.ok(charity);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        } else  {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable("id") String id, Principal principal) {
-        try {
-            charityService.delete(id);
+        if (charityService.delete(id)){
             return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        } else {
+            return ResponseEntity.badRequest().build();
         }
     }
 }

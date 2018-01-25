@@ -4,7 +4,7 @@ package io.smartraise.service.skeleton;
  *  Service interface for a CRUD service involving accounts models.
  * @param <T>   the type of model for the CRUD service
  */
-public interface AccountService<T> {
+public interface AccountCrudService<T> {
 
     /**
      *  Obtains a model
@@ -12,30 +12,26 @@ public interface AccountService<T> {
      * @return the model
      * @throws Exception
      */
-    T get(String id) throws Exception;
+    T get(String id);
 
     /**
      *  Creates a new model
      * @param t     the  model being created
-     * @throws Exception
+     * @return true if successfully created model, false otherwise
      */
-    void create(T t) throws Exception;
+    boolean create(T t);
 
     /**
      *  Updates an existing model
      * @param t     the updated model
-     * @throws Exception
+     * @return true if successfully updated model, false otherwise
      */
-    void update(T t) throws Exception;
+    boolean update(T t);
 
     /**
      *  Deletes a model
      * @param id    the id of the model being deleted
      * @throws Exception
      */
-    void delete(String id) throws Exception;
-
-    boolean isValid(T t);
-
-    boolean exists(String id);
+    boolean delete(String id);
 }

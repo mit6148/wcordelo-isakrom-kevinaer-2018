@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
     private ContactInformationDAO contactInformationDAO;
 
     @Override
-    public Member get(String id) throws Exception{
+    public Member get(String id) {
         if (Parser.isEmail(id)) {
             return memberDAO.findByEmail(id);
         } else {
@@ -29,37 +29,39 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void create(Member member) throws Exception {
+    public boolean create(Member member) {
         if (isValid(member) && !memberDAO.exists(member.getUsername())) {
             memberDAO.save(member);
-            contactInformationDAO.save(member.getContactInformation());
+            return true;
         } else {
-            throw new Exception("Member already exists");
+            return false;
         }
     }
 
     @Override
-    public Member getPublic(Member member) throws Exception {
+    public Member getPublic(Member member) {
         return new Member(member.getFirstName(), member.getLastName(), member.getUsername());
     }
 
     @Override
-    public void update(Member member) throws Exception {
+    public boolean update(Member member) {
         if (memberDAO.exists(member.getUsername())) {
             memberDAO.save(member);
-            contactInformationDAO.save(member.getContactInformation());
+//            contactInformationDAO.save(member.getContactInformation());
+            return true;
         } else {
-            throw new Exception("No member found");
+            return false;
         }
     }
 
     @Override
-    public void delete(String id) throws Exception {
+    public boolean delete(String id) {
         if (memberDAO.exists(id)) {
             contactInformationDAO.delete(id);
             memberDAO.delete(id);
+            return true;
         } else {
-            throw new Exception("No member found");
+            return false;
         }
     }
 
@@ -69,24 +71,24 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Set<Member> getMembersFromOrganization(Organization organization) throws Exception {
+    public Set<Member> getMembersFromOrganization(Organization organization) {
         return new HashSet<>(memberDAO.findAllByUsernameIn(organization.getMembers()));
     }
 
     @Override
-    public Set<Member> getAdminsFromOrganization(Organization organization) throws Exception {
+    public Set<Member> getAdminsFromOrganization(Organization organization) {
         return new HashSet<>(memberDAO.findAllByUsernameIn(organization.getAdmin()));
     }
 
     @Override
-    public void addOrganization(String username, String organizationId) throws Exception{
+    public void addOrganization(String username, String organizationId) {
         Member member = this.get(username);
         member.addOrganization(organizationId);
         this.update(member);
     }
 
     @Override
-    public void removeOrganization(String username, String organizationId) throws Exception{
+    public void removeOrganization(String username, String organizationId) {
         Member member = this.get(username);
         member.removeOrganization(organizationId);
         this.update(member);

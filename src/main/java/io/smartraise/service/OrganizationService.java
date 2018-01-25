@@ -2,15 +2,15 @@ package io.smartraise.service;
 
 import io.smartraise.model.accounts.Member;
 import io.smartraise.model.fundraise.Organization;
-import io.smartraise.service.skeleton.ItemService;
+import io.smartraise.service.skeleton.CrudService;
+import io.smartraise.service.skeleton.ValidationService;
 
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Service for the {@link Organization} model
  */
-public interface OrganizationService extends ItemService<Organization> {
+public interface OrganizationService extends CrudService<Organization>, ValidationService<Organization> {
 
 //    /**
 //     * Gets all {@link Member} in an {@link Organization}
@@ -32,40 +32,35 @@ public interface OrganizationService extends ItemService<Organization> {
      *  Adds a {@link Member} into the {@link Organization}
      * @param member    the {@link Member} being added
      * @param id    the id of the {@link Organization}
-     * @throws Exception
      */
-    void addMember(Member member, String id) throws Exception;
+    void addMember(Member member, String id);
 
     /**
      *  Removes a {@link Member} from the {@link Organization}
      * @param member    the {@link Member} being removed
      * @param id    the id of the {@link Organization}
-     * @throws Exception
      */
-    void deleteMember(Member member, String id) throws Exception;
+    void deleteMember(Member member, String id);
 
     /**
      *  Adds a {@link Member} into the {@link Organization}'s admin list
      * @param member    the {@link Member} being added to the admin list
      * @param id    the id of the {@link Organization}
-     * @throws Exception
      */
-    void addAdmin(Member member, String id) throws Exception;
+    void addAdmin(Member member, String id);
 
     /**
      *  Removes a {@link Member} from the {@link Organization}'s admin list
      * @param member    the {@link Member} being removed from the admin list
      * @param id    the id of the {@link Organization}
-     * @throws Exception
      */
-    void deleteAdmin(Member member, String id) throws Exception;
+    void deleteAdmin(Member member, String id);
 
     /**
      * Gets all organization a {@link Member} is a part of
      * @param member  the {@link Member}
      * @return the set of organizations a {@link Member is a part of}
-     * @throws Exception
      */
-    Set<Organization> getFromMember(Member member) throws Exception;
+    Set<Organization> getFromMember(Member member);
 
 }

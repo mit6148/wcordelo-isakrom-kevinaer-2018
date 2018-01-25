@@ -25,50 +25,40 @@ public class OrganizationController implements CrudController<Organization> {
     @Override
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity create(@RequestBody Organization organization) {
-        try {
-            organizationService.create(organization);
+        if (organizationService.create(organization)) {
             for (String member: organization.getMembers()) {
                 memberService.addOrganization(member, organization.getOrganizationId());
             }
             return ResponseEntity.ok(organization);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        } else {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity read(@PathVariable("id") String id, Principal principal) {
-        try {
-            return ResponseEntity.ok(organizationService.get(id));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        return ResponseEntity.ok(organizationService.get(id));
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity update(
             @PathVariable("id") String id, @RequestBody Organization organization, Principal principal) {
-        try {
-            if (!organization.getOrganizationId().equals(id)){
-                throw new Exception("Organization id doesn't match organization");
+            if (organization.getOrganizationId().equals(id) && organizationService.update(organization)){
+                return ResponseEntity.ok(organization);
+            } else {
+                return ResponseEntity.badRequest().build();
             }
-            organizationService.update(organization);
-            return ResponseEntity.ok(organization);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable("id") String id, Principal principal) {
-        try {
-            organizationService.delete(id);
+        if (organizationService.delete(id)) {
             return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        } else {
+            return ResponseEntity.badRequest().build();
         }
     }
 }

@@ -20,53 +20,49 @@ public class EventServiceImpl implements EventService {
     private EventDAO eventDAO;
 
     @Override
-    public Event get(String id) throws Exception {
+    public Event get(String id) {
         return eventDAO.findOne(id);
     }
 
     @Override
-    public Event create(Event event) throws Exception {
+    public boolean create(Event event) {
         if (isValid(event) && !eventDAO.exists(event.getEventId())) {
             eventDAO.save(event);
-            return event;
+            return true;
         } else {
-            throw new Exception("Not a valid event");
+            return false;
         }
     }
 
     @Override
-    public void update(Event event) throws Exception {
-        if (eventDAO.exists(event.getEventId())) {
+    public boolean update(Event event) {
+        if (this.exists(event.getEventId()) && this.isValid(event)) {
             eventDAO.save(event);
+            return true;
         } else {
-            throw new Exception("Event doesn't exist");
+            return false;
         }
     }
 
     @Override
-    public void delete(String id) throws Exception {
+    public boolean delete(String id) {
         if (eventDAO.exists(id)) {
             eventDAO.delete(id);
+            return true;
+        } else {
+            return false;
         }
     }
 
     @Override
-    public List<Event> getEventsFromOrganization(String organizationId)throws Exception{
-        if (organizationDAO.exists(organizationId.toString())) {
-            return eventDAO.findAllByOrganization(organizationId);
-        } else {
-            throw new Exception("Organization doesn't exist");
-        }
+    public List<Event> getEventsFromOrganization(String organizationId) {
+        return eventDAO.findAllByOrganization(organizationId);
     }
 
     @Override
-    public List<Event> getCurrentEventsFromOrganization(String organizationId) throws Exception {
-        if (organizationDAO.exists(organizationId.toString())) {
-            return eventDAO.findAllByOrganizationAndEndDateAfter(
-                    organizationId, Calendar.getInstance().getTime());
-        } else {
-            throw new Exception("Organization doesn't exist");
-        }
+    public List<Event> getCurrentEventsFromOrganization(String organizationId) {
+        return eventDAO.findAllByOrganizationAndEndDateAfter(
+                organizationId, Calendar.getInstance().getTime());
     }
 
     @Override
