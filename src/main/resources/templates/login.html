@@ -143,6 +143,15 @@
             margin-left: auto;
             margin-right: auto;
         }
+        input{
+            display: block;
+            font-size:11px;
+            padding:4px 2px;
+            border:solid 1px #aacfe4;
+            width:70px;
+            margin:2px 0 20px 10px;
+        }
+    
     </style>
 </head>
 <body style="background:#ffe0b2">
@@ -157,30 +166,52 @@
     <div class="container jumbotron">
         <div class="row">
             <div id="blurb" class="col column">
-                <h1>Blurb</h1>
-                <p>In order to verify your donations we need users </p>
+                <h1>It seems you aren't logged in right now</h1>
+                <div style="padding-top: 20pt">
+                    <h5>In order to make full use of SmartRaises features
+                for event hosting, profile creation, and whitelisting, 
+                a user account is required. If you don't have one 
+                please register via the button below! 
+                    Thank you for your support!</h5>
+                <button class="btn submit btn-default" style="padding-top: 10pt">Register!</button>
+                </div>
             </div>
             <hr width="1" size="500">
             <div id="loginform"class="col column">
                 <div class="form">
-                    <form action="/action_page.php">
+                    <form action="api/login" method="post">
                       <div class="form-group">
                         <label for="text">Email address:</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" name="username">
                       </div>
                       <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd">
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox"> Remember me</label>
+                        <input type="password" class="form-control" name="password">
                       </div>
                       <button type="submit" class="btn submit btn-default">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col" style="align-content: center">
+                <h1>Register</h1>
+                <form>
+                    
+                 <p>Account Type</p><input list="browsers" name="browser">
+                      <datalist id="browsers">
+                        <option value="Member">
+                        <option value="Charity">
+                        <option value="Organization">
+                      </datalist>
+                </form>
+            </div>
+            <br>
+            <div>
+            </div>
+        </div>
     </div>
+<!--
 =======
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 <head>
@@ -210,3 +241,4 @@
 >>>>>>> cc53bf024403a6291f28e9eae7c857b07b560a1d
 </body>
 </html>
+-->
