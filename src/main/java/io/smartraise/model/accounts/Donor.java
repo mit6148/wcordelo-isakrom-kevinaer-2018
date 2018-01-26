@@ -15,6 +15,7 @@ import java.util.UUID;
 /**
  * Model representing a user that wants to just donate
  */
+@Deprecated
 public class Donor {
 
     @Id

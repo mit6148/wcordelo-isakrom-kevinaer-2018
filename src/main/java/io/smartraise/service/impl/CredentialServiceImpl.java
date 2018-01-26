@@ -33,20 +33,21 @@ public class CredentialServiceImpl implements CredentialService{
     }
 
     private void newForm(SignUp signUp) throws Exception {
-        switch (signUp.getType()) {
-            case DONOR:
-                donorService.create(MapToModel.mapToDonor(signUp.getAccount()));
-                break;
-            case MEMBER:
-                memberService.create(MapToModel.mapToMember(signUp.getAccount()));
-                break;
-            case ADMINISTRATOR:
-                Administrator administrator = MapToModel.mapToAdmin(signUp.getAccount());
-                adminService.create(MapToModel.mapToAdmin(signUp.getAccount()));
-                break;
-            default:
-                throw new Exception("Invalid class");
-        }
+        memberService.create(signUp.getAccount());
+//        switch (signUp.getType()) {
+//            case DONOR:
+//                donorService.create(MapToModel.mapToDonor(signUp.getAccount()));
+//                break;
+//            case MEMBER:
+//                memberService.create(MapToModel.mapToMember(signUp.getAccount()));
+//                break;
+//            case ADMINISTRATOR:
+//                Administrator administrator = MapToModel.mapToAdmin(signUp.getAccount());
+//                adminService.create(MapToModel.mapToAdmin(signUp.getAccount()));
+//                break;
+//            default:
+//                throw new Exception("Invalid class");
+//        }
     }
 
     @Override

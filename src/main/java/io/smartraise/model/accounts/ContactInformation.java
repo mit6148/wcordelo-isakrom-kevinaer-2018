@@ -21,6 +21,9 @@ public class ContactInformation {
 
     public ContactInformation(String username) {
         this.username = username;
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
         this.address = "372 Memorial Drive";
         this.city = "Cambridge";
         this.state = "MA";
@@ -31,6 +34,9 @@ public class ContactInformation {
 
     public ContactInformation() {
         this.username = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
         this.address = "372 Memorial Drive";
         this.city = "Cambridge";
         this.state = "MA";
