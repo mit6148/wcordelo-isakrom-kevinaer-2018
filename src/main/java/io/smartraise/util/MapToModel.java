@@ -3,7 +3,6 @@ package io.smartraise.util;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import io.smartraise.model.accounts.Administrator;
-import io.smartraise.model.accounts.Donor;
 import io.smartraise.model.accounts.Member;
 
 import java.util.Map;
@@ -31,14 +30,5 @@ public class MapToModel {
     public static Administrator mapToAdmin(Map<String, Object> objectMap) {
         JsonElement jsonElement = GSON.toJsonTree(objectMap);
         return GSON.fromJson(jsonElement, Administrator.class);
-    }
-
-    /**
-     * @param objectMap the json mapping
-     * @return {@link Donor} created from mapping
-     */
-    public static Donor mapToDonor(Map<String, Object> objectMap) {
-        JsonElement jsonElement = GSON.toJsonTree(objectMap);
-        return GSON.fromJson(jsonElement, Donor.class);
     }
 }

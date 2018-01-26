@@ -3,7 +3,6 @@ package io.smartraise.controller;
 import io.smartraise.model.login.SignUp;
 import io.smartraise.service.deprecated.AdminService;
 import io.smartraise.service.CredentialService;
-import io.smartraise.service.deprecated.DonorService;
 import io.smartraise.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +21,6 @@ public class SignupAPIController {
     @Autowired
     private MemberService memberService;
 
-    @Autowired
-    private DonorService donorService;
-
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity createUser(@RequestBody SignUp signUp) {
         try {
@@ -39,7 +35,6 @@ public class SignupAPIController {
     public ResponseEntity deleteUser(@PathVariable("id") String id) {
         try {
             memberService.delete(id);
-            donorService.delete(id);
             credentialService.delete(id);
             return ResponseEntity.ok().build();
         } catch (Exception e) {

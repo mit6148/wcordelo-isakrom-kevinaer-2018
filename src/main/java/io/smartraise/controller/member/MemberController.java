@@ -3,8 +3,10 @@ package io.smartraise.controller.member;
 import io.smartraise.controller.CrudController;
 import io.smartraise.model.Response;
 import io.smartraise.model.accounts.Member;
+import io.smartraise.model.fundraise.Donation;
 import io.smartraise.model.login.Credential.UserType;
 import io.smartraise.service.CredentialService;
+import io.smartraise.service.DonationService;
 import io.smartraise.service.MemberService;
 import io.smartraise.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class MemberController implements CrudController<Member> {
 
     @Autowired
     private OrganizationService organizationService;
+
+    @Autowired
+    private DonationService donationService;
 
     @Override
     @RequestMapping(method = RequestMethod.POST)
@@ -75,5 +80,20 @@ public class MemberController implements CrudController<Member> {
         } else {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @RequestMapping(value = "/{id}/donation", method = RequestMethod.POST)
+    public ResponseEntity createDonation(
+            @PathVariable("id") String id, @RequestBody Donation donation, Principal principal) {
+        if (donationService.create(donation)) {
+            return ResponseEntity.ok(donationService.getDonationsByDonor(donation.getDonationId()));
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @RequestMapping(value = "/{id}/donations", method = RequestMethod.GET)
+    public ResponseEntity getDonations(@PathVariable("id") String id, Principal principal) {
+        return ResponseEntity.ok(donationService.getDonationsByDonor(id));
     }
 }

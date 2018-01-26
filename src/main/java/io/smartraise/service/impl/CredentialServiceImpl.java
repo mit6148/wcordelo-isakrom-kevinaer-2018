@@ -7,7 +7,6 @@ import io.smartraise.dao.CredentialDAO;
 import io.smartraise.model.login.Credential;
 import io.smartraise.service.deprecated.AdminService;
 import io.smartraise.service.CredentialService;
-import io.smartraise.service.deprecated.DonorService;
 import io.smartraise.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,9 +17,6 @@ public class CredentialServiceImpl implements CredentialService{
 
     @Autowired
     private MemberService memberService;
-
-    @Autowired
-    private DonorService donorService;
 
     @Autowired
     private AdminService adminService;

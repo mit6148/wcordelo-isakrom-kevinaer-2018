@@ -3,7 +3,6 @@ package io.smartraise.config;
 import io.smartraise.service.*;
 import io.smartraise.service.deprecated.AdminService;
 import io.smartraise.service.deprecated.AdminServiceImpl;
-import io.smartraise.service.deprecated.DonorService;
 import io.smartraise.service.impl.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,9 +26,6 @@ public class ServiceConfig {
 
     @Bean
     public DonationService donationService() { return new DonationServiceImpl(); }
-
-    @Bean
-    public DonorService donorService() { return new DonorServiceImpl(); }
 
     @Bean
     public EventService eventService() { return new EventServiceImpl(); }

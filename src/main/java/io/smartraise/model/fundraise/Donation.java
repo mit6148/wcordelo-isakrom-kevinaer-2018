@@ -1,7 +1,6 @@
 package io.smartraise.model.fundraise;
 
 import io.smartraise.model.accounts.Payment;
-import io.smartraise.model.accounts.Donor;
 import org.springframework.data.annotation.Id;
 
 import java.util.Calendar;
