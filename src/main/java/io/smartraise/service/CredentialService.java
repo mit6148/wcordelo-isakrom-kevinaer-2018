@@ -52,6 +52,7 @@ public interface CredentialService {
      * @return true if user has admin privileges, false otherwise
      * @throws Exception
      */
+    @Deprecated
     boolean isAdmin(String user) throws Exception;
 
     /**
@@ -60,6 +61,7 @@ public interface CredentialService {
      * @param type  the type of user account {@link Credential.UserType}
      * @param id    the id of the user
      */
+    @Deprecated
     void addType(Credential.UserType type, String id);
 
     /**
@@ -68,6 +70,7 @@ public interface CredentialService {
      * @param type  the type of user account {@link Credential.UserType}
      * @param id    the id of the user
      */
+    @Deprecated
     void removeType(Credential.UserType type, String id);
 
     /**
@@ -76,6 +79,7 @@ public interface CredentialService {
      * @param id    the id of the user
      * @return
      */
+    @Deprecated
     boolean containsType(Credential.UserType type, String id);
 
     void delete(String id);

@@ -7,6 +7,7 @@ import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 
+@Deprecated
 public class CascadeDeleteCallback implements ReflectionUtils.FieldCallback {
 
     private Object source;

@@ -1,9 +1,9 @@
 package io.smartraise.service.impl;
 
-import io.smartraise.dao.DonorDAO;
+import io.smartraise.dao.deprecated.DonorDAO;
 import io.smartraise.dao.PaymentDAO;
 import io.smartraise.model.accounts.Donor;
-import io.smartraise.service.DonorService;
+import io.smartraise.service.deprecated.DonorService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class DonorServiceImpl implements DonorService {

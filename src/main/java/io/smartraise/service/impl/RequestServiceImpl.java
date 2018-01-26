@@ -5,11 +5,10 @@ import io.smartraise.dao.ResponseDAO;
 import io.smartraise.model.Request;
 import io.smartraise.model.Response;
 import io.smartraise.model.accounts.Administrator;
-import io.smartraise.model.accounts.Charity;
+import io.smartraise.model.fundraise.Charity;
 import io.smartraise.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;

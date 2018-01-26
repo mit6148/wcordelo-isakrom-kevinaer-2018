@@ -2,8 +2,7 @@ package io.smartraise.controller.charity;
 
 import io.smartraise.controller.CrudController;
 import io.smartraise.model.Request;
-import io.smartraise.model.Response;
-import io.smartraise.model.accounts.Charity;
+import io.smartraise.model.fundraise.Charity;
 import io.smartraise.service.CharityService;
 import io.smartraise.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/charity")

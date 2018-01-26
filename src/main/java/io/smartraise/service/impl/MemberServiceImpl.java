@@ -2,6 +2,7 @@ package io.smartraise.service.impl;
 
 import io.smartraise.dao.ContactInformationDAO;
 import io.smartraise.dao.MemberDAO;
+import io.smartraise.dao.PaymentDAO;
 import io.smartraise.util.Parser;
 import io.smartraise.model.accounts.Member;
 import io.smartraise.model.fundraise.Organization;
@@ -19,13 +20,12 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private ContactInformationDAO contactInformationDAO;
 
+    @Autowired
+    private PaymentDAO paymentDAO;
+
     @Override
     public Member get(String id) {
-        if (Parser.isEmail(id)) {
-            return memberDAO.findByEmail(id);
-        } else {
-            return memberDAO.findOne(id);
-        }
+        return memberDAO.findOne(id);
     }
 
     @Override
@@ -58,6 +58,7 @@ public class MemberServiceImpl implements MemberService {
     public boolean delete(String id) {
         if (memberDAO.exists(id)) {
             contactInformationDAO.delete(id);
+            paymentDAO.deleteAllByUsername(id);
             memberDAO.delete(id);
             return true;
         } else {

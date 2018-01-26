@@ -1,6 +1,5 @@
 package io.smartraise.model.accounts;
 
-import io.smartraise.model.donations.Payment;
 import io.smartraise.model.Privilege;
 import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;

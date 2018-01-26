@@ -1,8 +1,7 @@
-package io.smartraise.model.donations;
+package io.smartraise.model.fundraise;
 
-import io.smartraise.model.accounts.Charity;
+import io.smartraise.model.accounts.Payment;
 import io.smartraise.model.accounts.Donor;
-import io.smartraise.model.fundraise.Event;
 import org.springframework.data.annotation.Id;
 
 import java.util.Calendar;
@@ -21,6 +20,7 @@ public class Donation {
     private final String charity;
     private final String organization;
     private final String event;
+    private final float amount;
     private final Date date;
 
     /**
@@ -33,6 +33,7 @@ public class Donation {
         this.charity = "";
         this.event = "";
         this.organization = "";
+        this.amount = 0;
         this.date = Calendar.getInstance().getTime();
     }
 
@@ -87,5 +88,9 @@ public class Donation {
     public String toString() {
         return String.format("Donation {Donor: %s, Event: %s, Charity: %s",
                 donor, event, charity);
+    }
+
+    public float getAmount() {
+        return amount;
     }
 }

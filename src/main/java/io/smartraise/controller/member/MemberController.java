@@ -37,25 +37,11 @@ public class MemberController implements CrudController<Member> {
         } else {
             return ResponseEntity.badRequest().build();
         }
-//        try {
-//            if (!credentialService.exists(member.getUsername())) {
-//                throw new Exception("No user found matching that username");
-//            }
-//            if (credentialService.containsType(UserType.MEMBER, member.getUsername())) {
-//                throw new Exception("User account wiht this user name already exists");
-//            }
-//            memberService.create(member);
-//            credentialService.addType(UserType.MEMBER, member.getUsername());
-//            return ResponseEntity.status(201).build();
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity read(@PathVariable("id") String id, Principal principal){
-//        Administrator administrator = new Administrator();
         return ResponseEntity.ok(memberService.get(id));
     }
 
@@ -68,15 +54,6 @@ public class MemberController implements CrudController<Member> {
         } else {
             return ResponseEntity.badRequest().build();
         }
-//        try {
-//            if (!member.getUsername().equals(id)) {
-//                throw new Exception("Forbidden!");
-//            }
-//            memberService.update(member);
-//            return ResponseEntity.ok(member);
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
     }
 
     @Override
@@ -88,13 +65,6 @@ public class MemberController implements CrudController<Member> {
         } else {
             return ResponseEntity.badRequest().build();
         }
-//        try {
-//            memberService.delete(id);
-//            credentialService.removeType(UserType.MEMBER, id);
-//            return ResponseEntity.ok().build();
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
     }
 
     @RequestMapping(value = "/{id}/organizations", method = RequestMethod.GET)
@@ -105,14 +75,5 @@ public class MemberController implements CrudController<Member> {
         } else {
             return ResponseEntity.badRequest().build();
         }
-//        try {
-//            Member member = memberService.get(id);
-//            if (member == null){
-//                throw new Exception("User doesn't exist");
-//            }
-//            return ResponseEntity.ok(organizationService.getFromMember(member));
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
     }
 }

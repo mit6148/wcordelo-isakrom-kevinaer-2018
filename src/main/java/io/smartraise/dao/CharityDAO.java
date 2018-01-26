@@ -1,11 +1,10 @@
 package io.smartraise.dao;
 
 import io.smartraise.model.Privilege;
-import io.smartraise.model.accounts.Charity;
+import io.smartraise.model.fundraise.Charity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface CharityDAO extends MongoRepository<Charity, String> {
 

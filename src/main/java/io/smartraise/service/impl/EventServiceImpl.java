@@ -1,10 +1,7 @@
 package io.smartraise.service.impl;
 
-import io.smartraise.dao.DonationDAO;
 import io.smartraise.dao.EventDAO;
 import io.smartraise.dao.OrganizationDAO;
-import io.smartraise.model.Privilege;
-import io.smartraise.model.donations.Donation;
 import io.smartraise.model.fundraise.Event;
 import io.smartraise.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +80,23 @@ public class EventServiceImpl implements EventService {
     @Override
     public Set<Event> getAll() {
         return new HashSet<>(eventDAO.findAll());
+    }
+
+    @Override
+    public List<Event> getCurrentEvents() {
+        Date date = Calendar.getInstance().getTime();
+        return eventDAO.findAllByStartDateBeforeAndEndDateAfterOrderByStartDate(date, date);
+    }
+
+    @Override
+    public List<Event> getExpiredEvents() {
+        Date date = Calendar.getInstance().getTime();
+        return eventDAO.findAllByEndDateAfterOrderByEndDate(date);
+    }
+
+    @Override
+    public List<Event> getFutureEvents() {
+        Date date = Calendar.getInstance().getTime();
+        return eventDAO.findAllByStartDateAfterOrderByStartDate(date);
     }
 }
