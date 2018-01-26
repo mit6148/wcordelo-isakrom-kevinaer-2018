@@ -1,11 +1,11 @@
-package io.smartraise.service.impl;
+package io.smartraise.service.deprecated;
 
-import io.smartraise.dao.AdminDAO;
+import io.smartraise.dao.deprecated.AdminDAO;
 import io.smartraise.util.Parser;
 import io.smartraise.model.accounts.Administrator;
-import io.smartraise.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@Deprecated
 public class AdminServiceImpl implements AdminService {
 
     @Autowired

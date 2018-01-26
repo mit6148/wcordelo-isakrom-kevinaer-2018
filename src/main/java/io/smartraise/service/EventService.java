@@ -16,4 +16,10 @@ public interface EventService extends CrudService<Event>, ValidationService<Even
     Set<Event> getEventsByQueries(List<String> queries);
 
     Set<Event> getAll();
+
+    List<Event> getCurrentEvents();
+
+    List<Event> getExpiredEvents();
+
+    List<Event> getFutureEvents();
 }

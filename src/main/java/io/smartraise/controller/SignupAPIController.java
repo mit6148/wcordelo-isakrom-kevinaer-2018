@@ -1,21 +1,13 @@
 package io.smartraise.controller;
 
-import io.smartraise.model.login.Credential;
 import io.smartraise.model.login.SignUp;
-import io.smartraise.service.AdminService;
+import io.smartraise.service.deprecated.AdminService;
 import io.smartraise.service.CredentialService;
-import io.smartraise.service.DonorService;
+import io.smartraise.service.deprecated.DonorService;
 import io.smartraise.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/user")

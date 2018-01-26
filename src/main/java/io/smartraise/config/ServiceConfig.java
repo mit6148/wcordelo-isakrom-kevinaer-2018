@@ -1,6 +1,9 @@
 package io.smartraise.config;
 
 import io.smartraise.service.*;
+import io.smartraise.service.deprecated.AdminService;
+import io.smartraise.service.deprecated.AdminServiceImpl;
+import io.smartraise.service.deprecated.DonorService;
 import io.smartraise.service.impl.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

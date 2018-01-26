@@ -9,9 +9,9 @@ import java.util.Set;
 
 public interface MemberDAO extends MongoRepository<Member, String> {
 
-    Member findByEmail(String email);
+//    Member findByEmail(String email);
 
-    Member findByContactInformation_Email(String email);
+//    Member findByContactInformation_Email(String email);
 
     List<Member> findAllByUsernameIn(Set<String> usernames);
 }

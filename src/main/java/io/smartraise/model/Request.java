@@ -1,7 +1,7 @@
 package io.smartraise.model;
 
 import io.smartraise.model.accounts.Administrator;
-import io.smartraise.model.accounts.Charity;
+import io.smartraise.model.fundraise.Charity;
 import org.springframework.data.annotation.Id;
 
 import java.util.*;

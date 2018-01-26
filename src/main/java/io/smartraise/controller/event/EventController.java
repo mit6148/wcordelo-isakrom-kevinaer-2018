@@ -2,8 +2,6 @@ package io.smartraise.controller.event;
 
 import io.smartraise.controller.CrudController;
 import io.smartraise.model.Privilege;
-import io.smartraise.model.Response;
-import io.smartraise.model.accounts.Charity;
 import io.smartraise.model.fundraise.Event;
 import io.smartraise.service.CharityService;
 import io.smartraise.service.DonationService;
@@ -14,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/event")

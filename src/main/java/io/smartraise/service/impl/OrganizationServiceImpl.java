@@ -1,12 +1,8 @@
 package io.smartraise.service.impl;
 
-import io.smartraise.dao.EventDAO;
 import io.smartraise.dao.OrganizationDAO;
 import io.smartraise.model.accounts.Member;
-import io.smartraise.model.donations.Donation;
-import io.smartraise.model.fundraise.Event;
 import io.smartraise.model.fundraise.Organization;
-import io.smartraise.service.MemberService;
 import io.smartraise.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -96,5 +92,17 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public boolean exists(String id) {
         return organizationDAO.exists(id);
+    }
+
+    @Override
+    public List<Organization> getAll() {
+        List<Organization> organizations = organizationDAO.findAll();
+        Collections.sort(organizations, new Comparator<Organization>() {
+            @Override
+            public int compare(Organization o1, Organization o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        return organizations;
     }
 }

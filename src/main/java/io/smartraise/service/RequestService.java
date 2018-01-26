@@ -2,7 +2,7 @@ package io.smartraise.service;
 
 import io.smartraise.model.Request;
 import io.smartraise.model.accounts.Administrator;
-import io.smartraise.model.accounts.Charity;
+import io.smartraise.model.fundraise.Charity;
 
 import java.util.List;
 

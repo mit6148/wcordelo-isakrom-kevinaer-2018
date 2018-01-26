@@ -10,6 +10,7 @@ import java.util.Map;
  */
 public class SignUp {
 
+    @Deprecated
     private Credential.UserType type;
     private String username;
     private String email;

@@ -5,6 +5,7 @@ import io.smartraise.model.fundraise.Organization;
 import io.smartraise.service.skeleton.CrudService;
 import io.smartraise.service.skeleton.ValidationService;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -62,5 +63,7 @@ public interface OrganizationService extends CrudService<Organization>, Validati
      * @return the set of organizations a {@link Member is a part of}
      */
     Set<Organization> getFromMember(Member member);
+
+    List<Organization> getAll();
 
 }

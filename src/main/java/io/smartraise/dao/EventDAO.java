@@ -14,4 +14,10 @@ public interface EventDAO extends MongoRepository<Event, String> {
     List<Event> findAllByOrganizationAndEndDateAfter(String organizationId, Date date);
 
     List<Event> findAllByDescriptionContaining(List<String> queries);
+
+    List<Event> findAllByStartDateBeforeAndEndDateAfterOrderByStartDate(Date start, Date end);
+
+    List<Event> findAllByStartDateAfterOrderByStartDate(Date start);
+
+    List<Event> findAllByEndDateAfterOrderByEndDate(Date date);
 }

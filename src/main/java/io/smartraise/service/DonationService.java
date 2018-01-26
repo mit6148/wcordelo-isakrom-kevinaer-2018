@@ -1,6 +1,6 @@
 package io.smartraise.service;
 
-import io.smartraise.model.donations.Donation;
+import io.smartraise.model.fundraise.Donation;
 import io.smartraise.service.skeleton.CrudService;
 import io.smartraise.service.skeleton.ValidationService;
 

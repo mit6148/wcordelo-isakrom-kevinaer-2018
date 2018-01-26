@@ -1,19 +1,18 @@
-package io.smartraise.controller.adminastrator;
+package io.smartraise.controller.deprecated;
 
 import io.smartraise.model.accounts.Administrator;
 import io.smartraise.model.login.Credential;
-import io.smartraise.service.AdminService;
+import io.smartraise.service.deprecated.AdminService;
 import io.smartraise.service.CredentialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/admin")
+@Deprecated
 public class AdminController {
 
     @Autowired

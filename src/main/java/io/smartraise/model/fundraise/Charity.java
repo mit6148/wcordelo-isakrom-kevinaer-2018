@@ -1,7 +1,7 @@
-package io.smartraise.model.accounts;
+package io.smartraise.model.fundraise;
 
 import io.smartraise.model.Privilege;
-import io.smartraise.model.donations.Payment;
+import io.smartraise.model.accounts.Payment;
 import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -14,6 +14,7 @@ public class Charity {
     private final String charityId;
     private String name;
     private String description;
+    @Deprecated
     private Privilege privilege;
     @DBRef
     @CascadeSave

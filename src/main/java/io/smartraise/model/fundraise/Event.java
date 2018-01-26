@@ -1,12 +1,12 @@
 package io.smartraise.model.fundraise;
 
-import io.smartraise.model.accounts.Charity;
-import io.smartraise.model.donations.Donation;
 import org.springframework.data.annotation.Id;
 
 import java.util.*;
 
 public class Event {
+
+    // TODO add tags
 
     @Id
     private final String eventId;
@@ -16,7 +16,6 @@ public class Event {
     private Date endDate;
     private final String organization;
     private final String charity;
-    private String image;
 
     public Event() {
         this.eventId = UUID.randomUUID().toString();
@@ -26,7 +25,6 @@ public class Event {
         this.endDate = Calendar.getInstance().getTime();
         this.organization = "";
         this.charity = "";
-        this.image = "";
     }
 
     public String getEventId() {
@@ -73,11 +71,4 @@ public class Event {
         return charity;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 }

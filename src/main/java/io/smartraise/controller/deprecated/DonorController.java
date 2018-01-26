@@ -1,13 +1,12 @@
-package io.smartraise.controller.donor;
+package io.smartraise.controller.deprecated;
 
 import io.smartraise.controller.CrudController;
-import io.smartraise.model.Response;
 import io.smartraise.model.accounts.Donor;
-import io.smartraise.model.donations.Donation;
+import io.smartraise.model.fundraise.Donation;
 import io.smartraise.model.login.Credential.UserType;
 import io.smartraise.service.CredentialService;
 import io.smartraise.service.DonationService;
-import io.smartraise.service.DonorService;
+import io.smartraise.service.deprecated.DonorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +15,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/donor")
+@Deprecated
 public class DonorController implements CrudController<Donor> {
 
     @Autowired

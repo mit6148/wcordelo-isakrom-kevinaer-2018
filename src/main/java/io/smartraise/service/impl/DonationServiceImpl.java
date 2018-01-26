@@ -1,7 +1,7 @@
 package io.smartraise.service.impl;
 
 import io.smartraise.dao.DonationDAO;
-import io.smartraise.model.donations.Donation;
+import io.smartraise.model.fundraise.Donation;
 import io.smartraise.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 

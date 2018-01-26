@@ -1,15 +1,13 @@
 package io.smartraise.service.impl;
 
-import io.smartraise.util.MapToModel;
 import io.smartraise.util.Parser;
-import io.smartraise.model.accounts.Administrator;
 import io.smartraise.model.login.SignUp;
 import io.smartraise.security.PasswordHashing;
 import io.smartraise.dao.CredentialDAO;
 import io.smartraise.model.login.Credential;
-import io.smartraise.service.AdminService;
+import io.smartraise.service.deprecated.AdminService;
 import io.smartraise.service.CredentialService;
-import io.smartraise.service.DonorService;
+import io.smartraise.service.deprecated.DonorService;
 import io.smartraise.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,20 +32,6 @@ public class CredentialServiceImpl implements CredentialService{
 
     private void newForm(SignUp signUp) throws Exception {
         memberService.create(signUp.getAccount());
-//        switch (signUp.getType()) {
-//            case DONOR:
-//                donorService.create(MapToModel.mapToDonor(signUp.getAccount()));
-//                break;
-//            case MEMBER:
-//                memberService.create(MapToModel.mapToMember(signUp.getAccount()));
-//                break;
-//            case ADMINISTRATOR:
-//                Administrator administrator = MapToModel.mapToAdmin(signUp.getAccount());
-//                adminService.create(MapToModel.mapToAdmin(signUp.getAccount()));
-//                break;
-//            default:
-//                throw new Exception("Invalid class");
-//        }
     }
 
     @Override
@@ -73,9 +57,7 @@ public class CredentialServiceImpl implements CredentialService{
     public Credential create(SignUp signUp) throws Exception {
         if (signUp.getUsername().isEmpty()
                 && signUp.getEmail().isEmpty()
-                && (signUp.getType() == Credential.UserType.ADMINISTRATOR
-                    || signUp.getType() == Credential.UserType.MEMBER
-                    || signUp.getType() == Credential.UserType.DONOR)){
+                && signUp.getPassword().isEmpty()){
             throw new Exception("Needs a valid user name and email");
         }
         if (credentialDAO.exists(signUp.getUsername())
