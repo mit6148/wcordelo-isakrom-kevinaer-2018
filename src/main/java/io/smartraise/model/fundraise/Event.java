@@ -14,6 +14,7 @@ public class Event {
     private String description;
     private Date startDate;
     private Date endDate;
+    private float goal;
     private final String organization;
     private final String charity;
 
@@ -25,6 +26,7 @@ public class Event {
         this.endDate = Calendar.getInstance().getTime();
         this.organization = "";
         this.charity = "";
+        this.goal = 0;
     }
 
     public String getEventId() {
@@ -71,4 +73,11 @@ public class Event {
         return charity;
     }
 
+    public float getGoal() {
+        return goal;
+    }
+
+    public void setGoal(float goal) {
+        this.goal = goal;
+    }
 }

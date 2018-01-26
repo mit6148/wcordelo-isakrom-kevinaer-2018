@@ -2,13 +2,14 @@ package io.smartraise.model.fundraise;
 
 import io.smartraise.model.accounts.Payment;
 import org.springframework.data.annotation.Id;
+import io.smartraise.model.accounts.*;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
 /**
- * Model representing a donation made by {@link Donor} for {@link Event} contributing to {@link Charity}
+ * Model representing a donation made by {@link Member} for {@link Event} contributing to {@link Charity}
  */
 public class Donation {
 
