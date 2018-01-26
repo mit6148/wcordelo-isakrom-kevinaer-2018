@@ -426,6 +426,7 @@
                             </div>
                             <script>
                                 fitty('#EventList');
+                                console.log('Does fitty work?');
                             </script>
                             <script>
                                 var app = angular.module('myApp', []);
@@ -447,6 +448,9 @@
 
     <script>
         function openTab(evt, cityName) {
+
+            evt.preventDefault();
+
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
@@ -458,6 +462,7 @@
             }
             document.getElementById(cityName).style.display = "block";
             evt.currentTarget.className += " active";
+
         }
 
         document.getElementById("defaultTab").click();
