@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<!-- <html lang="en" ng-app="putserviceApp"> -->
 <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
 
@@ -176,45 +181,68 @@
             </div>
             <hr width="1" size="500">
             <div id="loginform"class="col column">
-                <div class="form">
-                    <form action="api/login" method="post">
-                      <div class="form-group">
-                        <label for="text">Username:</label>
-                        <input id="username" type="text" class="form-control" name="username">
-                      </div>
-                      <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" id="password" class="form-control" name="password">
-                      </div>
-                      <button type="submit" class="btn submit btn-default">Submit</button>
+                <div class="form"><!-- ng-controller="putserviceCtrl"> -->
+                    <form th:action="@{/login}" method="post"> <!--ng-submit="submit()" --> 
+                        <div th:if="${param.error}" class="alert alert-error">    
+                            Invalid username and password.
+                        </div>
+                        <div th:if="${param.logout}" class="alert alert-success"> 
+                            You have been logged out.
+                        </div>
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username"/>        
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password"/>    
+                        <div class="form-actions">
+                            <button type="submit" class="btn submit btn-default">Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>
         <script>
             var app = angular.module('putserviceApp', []);
+            console.log("iniiiit ");
             app.controller('putserviceCtrl', function ($scope, $http) {
             // Simple Post request example:
-            var data = 'parameters', config='contenttype';
-            $scope.username = document.getElementById("username").nodeValue;
-            $scope.password = document.getElementById("password").nodeValue;
-            $scope.postdata = function (username, password) {
-            var data = {
-            username: username,
-            password: password;
-            };
-            $http.post("api/login", data, config).then(function (response) {
-            //Go to user's profile
+            // var data = 'parameters';
+            // var config= {
+            //     'headers' : {
+            //         'Content-Type': 'application/json'
+            //     } 
+            // }
+            // $scope.username = "";//document.getElementById("username").nodeValue;
+            // $scope.password = "";//document.getElementById("password").nodeValue;
 
-            var username = response.data.username;
-            var newUrl = "/member?" + username;
-            window.location = newUrl;
-            // This function handles success
-            }, function (response) {
-            //Go to error page
-            //add error text and redirection
-            // this function handles error
-            });
-            });
+            $scope.login = {
+                'username': '',
+                'password': ''
+            }
+            $scope.submit = function () {
+                var data = {
+                    username: $scope.login.username,
+                    password: $scope.login.password
+                };
+                var config = {
+                    'headers' : {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                console.log(data);
+                $http.post("login", data, config).then(function (response) {
+                // $http.post(config).then(function (response) {
+                //Go to user's profile
+
+                var username = response.data.username;
+                var newUrl = "/member?" + username;
+                window.location = newUrl;
+                // This function handles success
+                }, function (response) {
+                    console.log(response);
+                //Go to error page
+                //add error text and redirection
+                // this function handles error
+                })
+            }});
         </script>
         <div class="row">
             <div class="col" style="align-content: center">

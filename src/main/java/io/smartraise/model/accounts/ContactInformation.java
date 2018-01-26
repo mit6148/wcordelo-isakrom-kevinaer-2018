@@ -37,12 +37,19 @@ public class ContactInformation {
         this.firstName = "";
         this.lastName = "";
         this.email = "";
-        this.address = "372 Memorial Drive";
-        this.city = "Cambridge";
-        this.state = "MA";
-        this.country = "USA";
-        this.zipCode = "02139";
-        this.phone = "123-456-7890";
+        this.address = "";
+        this.city = "";
+        this.state = "";
+        this.country = "";
+        this.zipCode = "";
+        this.phone = "";
+    }
+
+    private ContactInformation(String username, String firstName, String lastName, String email) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     public String getUsername() {
@@ -119,5 +126,13 @@ public class ContactInformation {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public ContactInformation getPrivate() {
+        return new ContactInformation(
+                this.username,
+                this.firstName,
+                this.lastName,
+                this.email);
     }
 }

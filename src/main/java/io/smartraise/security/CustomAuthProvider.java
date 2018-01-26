@@ -41,7 +41,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
             return new UsernamePasswordAuthenticationToken(
                     credential.getUsername(), password, authorities);
         } catch (Exception e) {
-            return null;
+            throw (AuthenticationException) e;
         }
     }
 

@@ -41,6 +41,13 @@ public class Member {
         this.payment = new Payment();
     }
 
+    public Member(String username, Set<String> organizations, ContactInformation contactInformation) {
+        this.username = username;
+        this.organizations = organizations;
+        this.contactInformation = contactInformation;
+        this.privilege = new HashSet<>();
+    }
+
     public Set<Privilege> getPrivilege() {
         return privilege;
     }
@@ -95,6 +102,10 @@ public class Member {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public Member getPrivate() {
+        return new Member(this.username, this.getOrganizations(), this.contactInformation.getPrivate());
     }
 
 }

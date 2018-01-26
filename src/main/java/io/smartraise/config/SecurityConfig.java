@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@Order(1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -29,8 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
 //                .antMatchers("/api/*").hasAuthority("ADMIN")
-                .antMatchers("/member/*").authenticated()
-//                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
             .formLogin()
                 .loginPage("/login")
