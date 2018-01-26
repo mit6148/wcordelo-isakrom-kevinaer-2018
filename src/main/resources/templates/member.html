@@ -3,13 +3,13 @@
 <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
-    <link href="master.css" type="text/css"/>
-    <script type="text/javascript" src="js/fitty.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/fitty.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/w3.css">
+    <link rel="stylesheet" type="text/css" href="css/master.css">
 
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
@@ -164,35 +164,9 @@
             height: 75%;
         }
 
-        .navbar-default {
-            background-color: #ef6c00;
-            width: 100%;
-        }
-
-        .navbar {
-            white-space: nowrap;
-            width: 100%;
-            margin: auto;
-            z-index: 100;
-            position: fixed;
-        }
-
-        .navbar-brand {
-            -webkit-text-fill-color: white;
-        }
-
         .body {
             background: #ffe0b2;
             -webkit-text-fill-color: black;
-        }
-
-        a.navbar-brand {
-            z-index: 100;
-            left: 0px;
-            top: 0px;
-            display: block;
-            width: 173px;
-            background-size: 100% 100%;
         }
 
         .al-right {
@@ -303,10 +277,10 @@
 <nav class="navbar navbar-default">
     <a href="TestSite.html" class="navbar-brand">SmartRaise</a>
     <form class="form-inline" style="margin: auto">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
         <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
         <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="../templates/search.html"
            style="margin-left:10pt">Search Charities</a>
-        <input type="text" name="search" placeholder="Search..">
     </form>
 </nav>
 <div class="card">
