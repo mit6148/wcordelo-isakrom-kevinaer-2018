@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 public class Payment {
 
     @Id
-    private String id;
+    private String username;
     private long cardNumber;
     private String cardType;
     private String nameOnCard;
@@ -13,7 +13,7 @@ public class Payment {
     private int cvv;
 
     public Payment() {
-        this.id = "";
+        this.username = "";
         this.cardNumber = 0;
         this.cardType = "";
         this.nameOnCard = "";
@@ -21,8 +21,8 @@ public class Payment {
         this.cvv = 0;
     }
 
-    public String getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
     public long getCardNumber() {

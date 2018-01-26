@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.HashSet;
-
+@Deprecated
 public class Administrator {
 
     @Id

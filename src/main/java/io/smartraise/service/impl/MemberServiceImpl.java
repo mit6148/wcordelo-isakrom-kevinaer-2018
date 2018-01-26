@@ -40,7 +40,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member getPublic(Member member) {
-        return new Member(member.getFirstName(), member.getLastName(), member.getUsername());
+        return new Member(member.getUsername());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean isValid(Member member) {
-        return !(member.getUsername().isEmpty() && member.getEmail().isEmpty());
+        return !(member.getUsername().isEmpty());
     }
 
     @Override

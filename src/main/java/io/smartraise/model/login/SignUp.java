@@ -1,5 +1,7 @@
 package io.smartraise.model.login;
 
+import io.smartraise.model.accounts.Member;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,14 +14,14 @@ public class SignUp {
     private String username;
     private String email;
     private String password;
-    private Map<String, Object> account;
+    private Member account;
 
     public SignUp(){
         type = Credential.UserType.NONE;
         email = "";
         password = "";
         username = "";
-        account = new HashMap<>();
+        account = new Member();
     }
 
     public SignUp(String email, String username, String password) {
@@ -27,6 +29,7 @@ public class SignUp {
         this.email = email;
         this.password = password;
         this.username = username;
+        account = new Member();
     }
 
     public Credential.UserType getType() {
@@ -59,7 +62,7 @@ public class SignUp {
         this.password = password;
     }
 
-    public Map<String, Object> getAccount() {
-        return new HashMap<>(account);
+    public Member getAccount() {
+        return account;
     }
 }
