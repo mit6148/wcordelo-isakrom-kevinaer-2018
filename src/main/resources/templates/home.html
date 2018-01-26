@@ -213,101 +213,106 @@
         </div>
     </div>
 </div>
-<div id="CharityDrops" style="overflow:scroll; height:400px;" class="row">
-    <!--PAST EVENTS -->
-    <div id="pastEvents" class="column" style="margin: auto">
-        <div ng-repeat="event in pastEvents">
-            <div id="card" class="card container drop-card" style="width: 300pt">
-            <div id="body" class="row">
-                <div id="icon" class="column">
-                    <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
-                    FUCK
-                </div>
-                <div id="text" class="column" style="padding-left: 20pt">
-                    <div id="EventName" style="padding-top: 2pt">
-                        <b>Event Name</b>
+<div class="card" style="background-color: wheat">
+    <div id="CharityDrops" style="overflow:scroll; height:400px;" class="row">
+        <!--PAST EVENTS -->
+        <div id="pastEvents" class="column" style="margin: auto; padding-left: 10pt">
+            <h3>Past Events</h3>
+            <div ng-repeat="event in pastEvents">
+                <div id="card" class="card container drop-card" style="width: 275pt">
+                <div id="body" class="row">
+                    <div id="icon" class="column">
+                        <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
+                        FUCK
                     </div>
-                    <div id="CharityName" style="padding-top: 2pt">
-                        <small>Charity Name</small>
-                    </div>
-                    <div id="Money" class="pull-right" style="padding-top: 2pt">
-                        Money Raise
+                    <div id="text" class="column" style="padding-left: 20pt">
+                        <div id="EventName" style="padding-top: 2pt">
+                            <b>{{event.name}}</b>
+                        </div>
+                        <div id="CharityName" style="padding-top: 2pt">
+                            <small>{{organization.charityId}}</small>
+                        </div>
+                        <div id="Money" class="pull-right" style="padding-top: 2pt">
+                            Money Raise
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="footer" class="row" style="padding-left: 15pt">
-                <div id="Sponsor" class="column">
-                    Sponsor
-                </div>
-                <div id="Time" class="push-left column" style="padding-left: 160pt">
-                    Time
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-     <!--CURRENT EVENTS -->
-    <div id="currentEvents" class="column" style="margin: auto">
-        <div ng-repeat="event in pastEvents">
-            <div id="card" class="card container drop-card" style="width: 300pt">
-            <div id="body" class="row">
-                <div id="icon" class="column">
-                    <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
-                    FUCK
-                </div>
-                <div id="text" class="column" style="padding-left: 20pt">
-                    <div id="EventName" style="padding-top: 2pt">
-                        <b>Event Name</b>
+                <div id="footer" class="row" style="padding-left: 15pt">
+                    <div id="Sponsor" class="column">
+                        {{organization.organizationId}}
                     </div>
-                    <div id="CharityName" style="padding-top: 2pt">
-                        <small>Charity Name</small>
-                    </div>
-                    <div id="Money" class="pull-right" style="padding-top: 2pt">
-                        Money Raise
+                    <div id="Time" class="push-left column" style="padding-left: 160pt">
+                        {{organization.startTime}}
                     </div>
                 </div>
             </div>
-            <div id="footer" class="row" style="padding-left: 15pt" style="width: 300pt">
-                <div id="Sponsor" class="column">
-                    Sponsor
-                </div>
-                <div id="Time" class="push-left column" style="padding-left: 160pt">
-                    Time
-                </div>
             </div>
         </div>
-        </div>
-    </div>
-     <!--FUTURE EVENTS -->
-    <div id="futureEvents" class="column" style="margin: auto">
-        <div ng-repeat="event in pastEvents">
-            <div id="card" class="card container drop-card" style="width: 300pt">
-            <div id="body" class="row">
-                <div id="icon" class="column">
-                    <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
-                    FUCK
+         <!--CURRENT EVENTS -->
+        <div id="currentEvents" class="column" style="margin: auto">
+            <h3>Current Events</h3>
+            <div ng-repeat="event in currentEvents">
+                <div id="card" class="card container drop-card" style="width: 275pt">
+                <div id="body" class="row">
+                    <div id="icon" class="column">
+                        <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
+                        FUCK
+                    </div>
+                    <div id="text" class="column" style="padding-left: 20pt">
+                        <div id="EventName" style="padding-top: 2pt">
+                            <b>{{event.name}}</b>
+                        </div>
+                        <div id="CharityName" style="padding-top: 2pt">
+                            <small>{{organization.charityId}}</small>
+                        </div>
+                        <div id="Money" class="pull-right" style="padding-top: 2pt">
+                            Money Raise
+                        </div>
+                    </div>
                 </div>
-                <div id="text" class="column" style="padding-left: 20pt">
-                    <div id="EventName" style="padding-top: 2pt">
-                        <b>Event Name</b>
+                <div id="footer" class="row" style="padding-left: 15pt">
+                    <div id="Sponsor" class="column">
+                        {{organization.organizationId}}
                     </div>
-                    <div id="CharityName" style="padding-top: 2pt">
-                        <small>Charity Name</small>
-                    </div>
-                    <div id="Money" class="pull-right" style="padding-top: 2pt">
-                        Money Raise
+                    <div id="Time" class="push-left column" style="padding-left: 160pt">
+                        {{organization.startTime}}
                     </div>
                 </div>
             </div>
-            <div id="footer" class="row" style="padding-left: 15pt">
-                <div id="Sponsor" class="column">
-                    Sponsor
-                </div>
-                <div id="Time" class="push-left column" style="padding-left: 160pt">
-                    Time
-                </div>
             </div>
         </div>
+         <!--FUTURE EVENTS -->
+        <div id="futureEvents" class="column" style="margin: auto; padding-right: 10pt">
+            <h3>Future Events</h3>
+            <div ng-repeat="event in futureEvents">
+                <div id="card" class="card container drop-card" style="width: 275pt">
+                <div id="body" class="row">
+                    <div id="icon" class="column">
+                        <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
+                        FUCK
+                    </div>
+                    <div id="text" class="column" style="padding-left: 20pt">
+                        <div id="EventName" style="padding-top: 2pt">
+                            <b>{{event.name}}</b>
+                        </div>
+                        <div id="CharityName" style="padding-top: 2pt">
+                            <small>{{organization.charityId}}</small>
+                        </div>
+                        <div id="Money" class="pull-right" style="padding-top: 2pt">
+                            Money Raise
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="row" style="padding-left: 15pt">
+                    <div id="Sponsor" class="column">
+                        {{organization.organizationId}}
+                    </div>
+                    <div id="Time" class="push-left column" style="padding-left: 160pt">
+                        {{organization.startTime}}
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
     </div>
 </div>
@@ -374,5 +379,25 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $http.get("/api/events/current")
+            .then(function(response) {
+                console.log(response.data)
+                $scope.currentEvents = response.data;
+            });
+            $http.get("/api/events/past")
+            .then(function(response) {
+                console.log(response.data)
+                $scope.pastEvents = response.data;
+            });
+            $http.get("/api/events/future")
+            .then(function(response) {
+                console.log(response.data)
+                $scope.futureEvents = response.data;
+            });
+        });
+</script>
 </body>
 </html>
