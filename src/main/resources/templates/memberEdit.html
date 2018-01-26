@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SmartRaise</title>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Roboto);
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: 	#64dd17;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #b2ff59;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #88ff00;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.person {
+    border: 10px solid white;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 1;
+}
+.person:hover {
+    border-color: #f1f1f1;
+    opacity: .7;
+}
+
+/****** LOGIN MODAL ******/
+.loginmodal-container {
+  padding: 30px;
+  max-width: 350px;
+  width: 100% !important;
+  background-color: #F7F7F7;
+  margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-family: roboto;
+}
+
+.loginmodal-container h1 {
+  text-align: center;
+  font-size: 1.8em;
+  font-family: roboto;
+}
+
+.loginmodal-container input[type=submit] {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+  background: #ff9800;
+}
+
+.loginmodal-container input[type=text], input[type=password] {
+  height: 44px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  background: #ffe0b2;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.loginmodal-container input[type=text]:hover, input[type=password]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+        
+.loginmodal {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+/* border-radius: 3px; */
+/* -webkit-user-select: none;
+  user-select: none; */
+}
+
+.loginmodal-submit {
+  /* border: 1px solid #3079ed; */
+  border: 0px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: #4d90fe;
+  padding: 17px 0px;
+  font-family: roboto;
+  font-size: 14px;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+.loginmodal-submit:hover {
+  /* border: 1px solid #2f5bb7; */
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
+
+.loginmodal-container a {
+  text-decoration: none;
+  color: #666;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  opacity: 0.6;
+  transition: opacity ease 0.5s;
+} 
+
+.login-help{
+  font-size: 12px;
+}
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 75%;
+        }
+        .navbar-default {
+            background-color: 		#ef6c00;
+            width:100%;
+        }
+        .navbar {
+          white-space: nowrap;
+          width:100%;
+          margin: auto;
+          z-index: 100;
+          position: fixed;
+        }
+        .navbar-brand{
+          -webkit-text-fill-color: white;
+        }
+        .body {
+            background: #ffe0b2;
+          -webkit-text-fill-color: black;
+        }
+        a.navbar-brand {
+        z-index: 100;
+        left: 0px;
+        top: 0px;
+        display: block;
+        width: 173px;
+        background-size: 100% 100%; }
+        .al-right{
+         float: right;
+         -webkit-text-fill-color: white;
+        }
+        .jumbotron{
+          width: 90%;
+          justify-content:center;
+          align-items:center;
+        }
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          width: 700pt;
+          margin: auto;
+          border-top: 1000pt;
+      }
+      #itcard{
+        background: #fff;
+                display: inline-block;
+                border: 1px solid #ddd;
+                width: 751px;
+                height: 220px;
+      }
+      .title {
+          color: grey;
+          font-size: 18px;
+      }
+      tablinks{
+        color: grey;
+      }
+      
+      button {
+          border: none;
+          outline: 0;
+          display: inline-block;
+          padding: 8px;
+          color: white;
+          background-color: #000;
+          text-align: center;
+          cursor: pointer;
+          width: 100%;
+          font-size: 18px;
+      }
+        input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+}
+
+                .image {
+                float: left;
+                background: #000;
+                width: 184px;
+                height: 220px
+                }
+
+                .content {
+                float: left;
+                height: 140px;
+                width: 73%;
+                overflow:hidden
+                padding: 5px;
+                }
+
+                .content h4 {
+                margin: 5px 0;
+                }
+
+                .hr {
+                display: block;
+                height: 1px;
+                border: 0;
+                border-top: 1px solid #ccc;
+                margin: 1em 0;
+                padding: 0;
+               }
+               .bottom-right {
+                    position:absolute;
+                    top: 175pt;
+                    right: 525pt;
+                    float: inherit;
+                }
+                .hr {
+                display: block;
+                height: 1px;
+                border: 0;
+                border-top: 1px solid #ccc;
+                margin: 1em 0;
+                padding: 0;
+               }
+        </style>
+  </head>
+  <body style="background:#ffe0b2">
+    <nav class="navbar navbar-default" >
+        <a href="TestSite.html" class="navbar-brand">SmartRaise</a>
+    <form class="form-inline" style="margin: auto" >
+        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
+        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="../templates/search.html" style="margin-left:10pt">Search Charities</a>
+        <input type="text" name="search" placeholder="Search..">
+    </form>
+     </nav>  
+     <div class="card">
+
+        <!--Card image-->
+        <div class="view overlay hm-white-slight" style="width: inherit">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" style="height: 275pt; width:inherit; z-index: -1">
+            <a href="#">
+                <div class="mask"></div>
+            </a>
+            <div class="bottom-right" style="-webkit-text-fill-color: red; z-index: 5">
+                <img src="https://shop.lego.com/static/images/svg/lego-logo.svg" class="person" style="width: 150pt; height: 150pt">
+            </div>
+        </div>
+    
+        <!--Card content-->
+        <div class="card-body container">
+               <!-- Tab links -->
+              <div class="tab" style="background: #64dd17">
+                <div class="row" style="background: #64dd17; float: right">
+                    <div class="column" >
+                        <button class="tablinks" id="defaultTab" onclick="openTab(event, 'Information and Members')">Information and Members</button>
+                    </div>
+                    <div class="column">
+                        <button class="tablinks" onclick="openTab(event, 'Donations')">Donations</button>
+                    </div>
+                    <div class="column" style="padding-right: 10pt">
+                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Membership</button>
+                    </div>
+                </div>
+              </div>
+            <div class="row" style="width:inherit">
+                <div class="column">
+                   
+                </div>
+                <div class="column">
+                    <!-- Tab content -->
+              <div id="Information and Members" class="tabcontent w3-animate-opacity" style="display:none">
+                <h3>Information and Members</h3>
+                <textarea name="message" rows="10" cols="94" style="width: inherit; align-self: center">
+                    <p>The LEGO Group is a privately held company based in Billund, Denmark. The company is still owned by the Kirk Kristiansen family who founded it in 1932.
+                    It is the LEGO® philosophy that ‘good quality play’ enriches
+                    a child’s life – and lays the foundation for later adult life. We
+                    believe that play is a key element in children’s growth and development
+                    and stimulates the imagination and the emergence of
+                    ideas and creative expression. All LEGO products are based
+                    on this underlying philosophy of learning and development
+                    through play.
+                  
+                    Only the best is good enough
+                    True to its motto ‘Only the best is good enough’, the LEGO
+                    Group has been emphasising the importance of high quality
+                    since 1932, where the founder Ole Kirk Kristiansen began
+                    making wooden toys. High quality and safe products have remained
+                    the focal point for the LEGO Group throughout the years -
+                    and it still is. LEGO products are tested rigorously to live up 
+                    to the strictest safety and quality standards
+                    as well as our own high expectations. This approach
+                    has made children and adults return to LEGO products time
+                    and again.
+                </p>
+                <p>
+                    Systematic creativity
+                    LEGO bricks are all part of the LEGO system, which essentially
+                    means that they can easily be combined in innumerable
+                    ways – and just as easily be dismantled. The more LEGO
+                    bricks you have, the more fertile your creativity can become.
+                    The combination of a structured system, logic and unlimited
+                    creativity encourages the child to learn through play in a
+                    wholly unique LEGO fashion. 
+                </p>
+                <p>
+                    A positive impact
+                    The LEGO Group wants to leave a positive impact – be it in
+                    respect to the Group’s stakeholders or the wider community.
+                    The LEGO Group is committed to caring for the environment
+                    and the society that children will inherit, and to inspiring and
+                    developing the builders of tomorrow.
+                </p>
+                </textarea>
+              </div>
+
+              <div id="Donations" class="tabcontent w3-animate-opacity">
+                <h3>Donations</h3>
+                <p>Paris is the capital of France.</p> 
+              </div>
+
+              <div id="Future Events" class="tabcontent w3-animate-opacity">
+                <h3>Future Events</h3>
+                      <div class="container">
+
+                          <div class="col-md-4">
+                    
+                            <div id="itcard">
+                              <div class="image pull-left">
+                                <img src="http://www.aljazeera.com/mritems/imagecache/midthumbnail/mritems/Images/2016/10/8/f04833e2aed14f10be924562e232fb87_18.jpg" class="image pull-left">
+                              </div>
+                              <div class="content pull-left" style="padding-left:20pt; font-size: 1vw">
+                                <div style="display:flex;flex-direction:row;">
+                                    <h4 style=" font-size: 1.5vw">Charity Drive for Haiti</h4> 
+                                    <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">January 21, 2018</h4> 
+                                    <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">Boston Commons, Boston, MA</h4> 
+                                </div >
+                                <p style="padding-top:2%">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                                <hr>
+                                <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                              </div>
+                              <div class="clearfix">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="container">
+
+                            <div class="col-md-4">
+                      
+                              <div id="itcard">
+                                <div class="image pull-left">
+                                  <img src="http://www.aljazeera.com/mritems/imagecache/midthumbnail/mritems/Images/2016/10/8/f04833e2aed14f10be924562e232fb87_18.jpg" class="image pull-left">
+                                </div>
+                                <div class="content pull-left" style="padding-left:20pt; font-size: 1vw">
+                                  <div style="display:flex;flex-direction:row;">
+                                      <h4 style=" font-size: 1.5vw">Charity Drive for Haiti</h4> 
+                                      <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">January 21, 2018</h4> 
+                                      <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">Boston Commons, Boston, MA</h4> 
+                                  </div >
+                                  <p style="padding-top:2%">
+                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                  </p>
+                                  <hr>
+                                  <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                                </div>
+                                <div class="clearfix">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="container">
+
+                              <div class="col-md-4">
+                        
+                                <div id="itcard">
+                                  <div class="image pull-left">
+                                    <img src="http://www.aljazeera.com/mritems/imagecache/midthumbnail/mritems/Images/2016/10/8/f04833e2aed14f10be924562e232fb87_18.jpg" class="image pull-left">
+                                  </div>
+                                  <div class="content pull-left" style="padding-left:20pt; font-size: 1vw">
+                                    <div style="display:flex;flex-direction:row;">
+                                        <h4 style=" font-size: 1.5vw">Charity Drive for Haiti</h4> 
+                                        <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">January 21, 2018</h4> 
+                                        <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">Boston Commons, Boston, MA</h4> 
+                                    </div >
+                                    <p style="padding-top:2%">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                    <hr>
+                                    <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                                  </div>
+                                  <div class="clearfix">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+              </div>
+        </div>
+                </div>
+            </div>
+              
+        <script>
+          function openTab(evt, cityName) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                  tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                  tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              document.getElementById(cityName).style.display = "block";
+              evt.currentTarget.className += " active";
+          }
+          </script>
+          <script>
+                document.getElementById("defaultTab").click();
+            </script>
+    </div>  
+  </body>
+</html>

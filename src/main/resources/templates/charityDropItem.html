@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>CharityDropCard</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <style>
+            icon-image {
+                height: 60pt;
+                width: 60pt;
+                background-color: black;
+                padding-left: 10pt;
+                padding-top: 10pt;
+            }
+            .card{
+                width: 300pt;
+                padding: 8pt;
+            }
+            #Time{
+                position: relative;
+                float: right;
+            }
+            #Money{
+                -webkit-text-fill-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="card" class="card container drop-card">
+            <div id="body" class="row">
+                <div id="icon" class="column">
+                    <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
+                    FUCK
+                </div>
+                <div id="text" class="column" style="padding-left: 20pt">
+                    <div id="EventName" style="padding-top: 2pt">
+                        <b>Event Name</b>
+                    </div>
+                    <div id="CharityName" style="padding-top: 2pt">
+                        <small>Charity Name</small>
+                    </div>
+                    <div id="Money" class="pull-right" style="padding-top: 2pt">
+                        Money Raise
+                    </div>
+                </div>
+            </div>
+            <div id="footer" class="row" style="padding-left: 15pt">
+                <div id="Sponsor" class="column">
+                    Sponsor
+                </div>
+                <div id="Time" class="push-left column" style="padding-left: 160pt">
+                    Time
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
