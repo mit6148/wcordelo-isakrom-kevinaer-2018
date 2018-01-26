@@ -142,6 +142,15 @@
             margin-left: auto;
             margin-right: auto;
         }
+        input{
+            display: block;
+            font-size:11px;
+            padding:4px 2px;
+            border:solid 1px #aacfe4;
+            width:70px;
+            margin:2px 0 20px 10px;
+        }
+
     </style>
 </head>
 <body style="background:#ffe0b2">
@@ -154,58 +163,75 @@
     </form>
 </nav>
     <div class="container jumbotron">
-        <div class="row">
             <div id="blurb" class="col column">
-                <h1>Blurb</h1>
-                <p>In order to verify your donations we need users </p>
+                <h1>It seems you aren't logged in right now</h1>
+                <div style="padding-top: 20pt">
+                    <h5>In order to make full use of SmartRaises features
+                for event hosting, profile creation, and whitelisting,
+                a user account is required. If you don't have one
+                please register via the button below!
+                    Thank you for your support!</h5>
+                <button class="btn submit btn-default" style="padding-top: 10pt">Register!</button>
+                </div>
             </div>
             <hr width="1" size="500">
             <div id="loginform"class="col column">
                 <div class="form">
-                    <form action="/action_page.php">
+                    <form action="api/login" method="post">
                       <div class="form-group">
-                        <label for="text">Email address:</label>
-                        <input type="text" class="form-control" id="email">
+                        <label for="text">Username:</label>
+                        <input id="username" type="text" class="form-control" name="username">
                       </div>
                       <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd">
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox"> Remember me</label>
+                        <input type="password" id="password" class="form-control" name="password">
                       </div>
                       <button type="submit" class="btn submit btn-default">Submit</button>
                     </form>
                 </div>
             </div>
+        <script>
+            var app = angular.module('putserviceApp', []);
+            app.controller('putserviceCtrl', function ($scope, $http) {
+            // Simple Post request example:
+            var data = 'parameters', config='contenttype';
+            $scope.username = document.getElementById("username").nodeValue;
+            $scope.password = document.getElementById("password").nodeValue;
+            $scope.postdata = function (username, password) {
+            var data = {
+            username: username,
+            password: password;
+            };
+            $http.post("api/login", data, config).then(function (response) {
+            //Go to user's profile
+
+            var username = response.data.username;
+            var newUrl = "/member?" + username;
+            window.location = newUrl;
+            // This function handles success
+            }, function (response) {
+            //Go to error page
+            //add error text and redirection
+            // this function handles error
+            });
+            });
+        </script>
+        <div class="row">
+            <div class="col" style="align-content: center">
+                <h1>Register</h1>
+                <form>
+
+                 <p>Account Type</p><input list="browsers" name="browser">
+                      <datalist id="browsers">
+                        <option value="Member">
+                        <option value="Charity">
+                        <option value="Organization">
+                      </datalist>
+                </form>
+            </div>
+            <br>
+            <div>
+            </div>
         </div>
     </div>
-<!-- =======
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-<head>
-    <title tiles:fragment="title">Messages : Create</title>
-</head>
-<body>
-<div tiles:fragment="content">
-    <form name="f" th:action="@{/login}" method="post">
-        <fieldset>
-            <legend>Please Login</legend>
-            <div th:if="${param.error}" class="alert alert-error">
-                Invalid username and password.
-            </div>
-            <div th:if="${param.logout}" class="alert alert-success">
-                You have been logged out.
-            </div>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username"/>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password"/>
-            <div class="form-actions">
-                <button type="submit" class="btn">Log in</button>
-            </div>
-        </fieldset>
-    </form>
-</div>
->>>>>>> cc53bf024403a6291f28e9eae7c857b07b560a1d
-</body>
-</html> -->
+</html>
