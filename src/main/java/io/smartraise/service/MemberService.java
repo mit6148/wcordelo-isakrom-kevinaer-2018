@@ -5,7 +5,7 @@ import io.smartraise.model.fundraise.Organization;
 import io.smartraise.service.skeleton.AccountCrudService;
 import io.smartraise.service.skeleton.ValidationService;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Service for the {@link Member} model
@@ -24,14 +24,14 @@ public interface MemberService extends AccountCrudService<Member>, ValidationSer
      * @param organization    the {@link Organization}
      * @return  a set of all {@link Member} in the {@link Organization}
      */
-    Set<Member> getMembersFromOrganization(Organization organization);
+    List<Member> getMembersFromOrganization(Organization organization);
 
     /**
      * Gets all admin {@link Member} in an {@link Organization}
      * @param organization    the {@link Organization}
      * @return  a set of all admin {@link Member} in the {@link Organization}
      */
-    Set<Member> getAdminsFromOrganization(Organization organization);
+    List<Member> getAdminsFromOrganization(Organization organization);
 
     /**
      * Adds an {@link Organization} to the {@link Member}'s organization
