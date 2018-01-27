@@ -15,26 +15,35 @@
         <p id="memberId" th:text="${profile.username}" />
         <p th:text="${profile.contactInformation.email}" />
         <p th:text="${profile.contactInformation.firstName} + ' ' +${profile.contactInformation.lastName} "></p>
+    <div ng-controller="ImageController">
+        <img height="240" width="240" id="image" name="image" src="" />
+    </div>
+
 
     <div ng-controller="MainController">
-        <div id="orgs">
-            <h3>Orgs</h3>
-            <div ng-repeat="org in orgs">
-                <b>{{org.name}}</b>
-            </div>
-        </div>
+        <form name="upload" id="upload" method="POST" enctype="multipart/form-data" action="/member/patricia66/upload/profile">
+            <label >Select File</label>
+            <input type="file" class="file" name="file" id="file"/>
+            <input type="submit" name="submit" value="Upload" />
+        </form>
     </div>
+
     <script>
         var app = angular.module('myApp', ["ngRoute"]);
         app.controller("MainController", function ($http, $scope) {
-            id = document.getElementById("memberId").innerText;//window.location.pathname.slice(window.location.pathname.lastIndexOf("/")+1)
-            console.log($scope);
-            $http.get("/api/member/"+id+"/organizations")
-                .then(function(response) {
-                    console.log(response.data)
-                    $scope.orgs = response.data;
-                });
+            id = document.getElementById("memberId").innerText;
+            document.getElementById('upload').action = "member/"+id+"/upload/profile"
         });
+        app.controller("ImageController", function ($http, $scope) {
+            console.log("image");
+            id = document.getElementById("memberId").innerText;
+            $http.get("/member/"+id+"/profile")
+                .then(function(response) {
+                    console.log(response)
+                    document.getElementById('image').src = response.data
+                });
+
+        })
     </script>
     </body>
 </html>

@@ -2,6 +2,7 @@ package io.smartraise.controller.view;
 
 import io.smartraise.model.accounts.Member;
 import io.smartraise.service.MemberService;
+import io.smartraise.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,14 @@ public class MemberViewController {
     @Autowired
     private MemberService memberService;
 
+    @Autowired
+    private OrganizationService organizationService;
+
     @GetMapping("/member/{id}")
     public String getMember(@PathVariable("id") String id, Model model){
-        model.addAttribute("profile", memberService.get(id));
+        Member member = memberService.get(id);
+        model.addAttribute("profile", member);
+        model.addAttribute("orgs", organizationService.getFromMember(member));
         return "profile";
     }
 
