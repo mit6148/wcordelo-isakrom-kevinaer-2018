@@ -6,6 +6,9 @@ import io.smartraise.service.deprecated.AdminServiceImpl;
 import io.smartraise.service.impl.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.MultipartFilter;
 
 @Configuration
 public class ServiceConfig {
@@ -35,4 +38,20 @@ public class ServiceConfig {
 
     @Bean
     public RequestService requestService() { return new RequestServiceImpl(); }
+
+    @Bean
+    public ImageService imageService() { return new ImageServiceImpl(); }
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multi = new CommonsMultipartResolver();
+        multi.setMaxUploadSize(1000000);
+        return multi;
+    }
+
+    @Bean
+    @Order(0)
+    public MultipartFilter multipartFilter() {
+        return new MultipartFilter();
+    }
 }

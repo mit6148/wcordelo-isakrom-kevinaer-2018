@@ -3,14 +3,12 @@ package io.smartraise.service.impl;
 import io.smartraise.dao.ContactInformationDAO;
 import io.smartraise.dao.MemberDAO;
 import io.smartraise.dao.PaymentDAO;
-import io.smartraise.util.Parser;
 import io.smartraise.model.accounts.Member;
 import io.smartraise.model.fundraise.Organization;
 import io.smartraise.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class MemberServiceImpl implements MemberService {
 
@@ -72,13 +70,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Set<Member> getMembersFromOrganization(Organization organization) {
-        return new HashSet<>(memberDAO.findAllByUsernameIn(organization.getMembers()));
+    public List<Member> getMembersFromOrganization(Organization organization) {
+        return memberDAO.findAllByOrganizationsContainsOrderByContactInformationUsernameAsc(organization.getOrganizationId());
     }
 
     @Override
-    public Set<Member> getAdminsFromOrganization(Organization organization) {
-        return new HashSet<>(memberDAO.findAllByUsernameIn(organization.getAdmin()));
+    public List<Member> getAdminsFromOrganization(Organization organization) {
+        return memberDAO.findAllByOrganizationsContainsOrderByContactInformationUsernameAsc(organization.getOrganizationId());
     }
 
     @Override

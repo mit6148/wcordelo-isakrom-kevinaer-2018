@@ -44,13 +44,13 @@ public class ContactInformation {
         this.zipCode = "";
         this.phone = "";
     }
-
-    private ContactInformation(String username, String firstName, String lastName, String email) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+//
+//    private ContactInformation(String username, String firstName, String lastName, String email) {
+//        this.username = username;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//    }
 
     public String getUsername() {
         return username;
@@ -128,11 +128,11 @@ public class ContactInformation {
         this.phone = phone;
     }
 
-    public ContactInformation getPrivate() {
-        return new ContactInformation(
-                this.username,
-                this.firstName,
-                this.lastName,
-                this.email);
-    }
+//    public ContactInformation getPrivate() {
+//        return new ContactInformation(
+//                this.username,
+//                this.firstName,
+//                this.lastName,
+//                this.email);
+//    }
 }

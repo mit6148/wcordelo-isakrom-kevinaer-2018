@@ -13,5 +13,5 @@ public interface MemberDAO extends MongoRepository<Member, String> {
 
 //    Member findByContactInformation_Email(String email);
 
-    List<Member> findAllByUsernameIn(Set<String> usernames);
+    List<Member> findAllByOrganizationsContainsOrderByContactInformationUsernameAsc(String id);
 }

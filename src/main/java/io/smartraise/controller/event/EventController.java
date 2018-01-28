@@ -46,7 +46,7 @@ public class EventController implements CrudController<Event> {
 //                && (charityService.get(event.getCharity()).getPrivilege() == Privilege.CHARITY_VERIFIED)) {
 //                throw new Exception("Not valid groups");
 //            }
-//            event = eventService.create(event);
+//            event = eventService.createProfile(event);
 //            return ResponseEntity.ok(event);
 //        } catch (Exception e) {
 //            return ResponseEntity.badRequest().body(e);

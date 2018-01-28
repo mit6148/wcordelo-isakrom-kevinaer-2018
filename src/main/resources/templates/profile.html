@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+    <script type="text/javascript">
+        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname.slice(0,window.location.pathname.lastIndexOf("/")) + '" />'));
+    </script>
+</head>
+<body ng-app="myApp" >
+    <h1 >Result</h1>
+        <p id="memberId" th:text="${profile.username}" />
+        <p th:text="${profile.contactInformation.email}" />
+        <p th:text="${profile.contactInformation.firstName} + ' ' +${profile.contactInformation.lastName} "></p>
+    <div ng-controller="ImageController">
+        <img height="240" width="240" id="image" name="image" src="" />
+    </div>
+
+
+    <div ng-controller="MainController">
+        <form name="upload" id="upload" method="POST" enctype="multipart/form-data" action="/member/patricia66/upload/profile">
+            <label >Select File</label>
+            <input type="file" class="file" name="file" id="file"/>
+            <input type="submit" name="submit" value="Upload" />
+        </form>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', ["ngRoute"]);
+        app.controller("MainController", function ($http, $scope) {
+            id = document.getElementById("memberId").innerText;
+            document.getElementById('upload').action = "member/"+id+"/upload/profile"
+        });
+        app.controller("ImageController", function ($http, $scope) {
+            console.log("image");
+            id = document.getElementById("memberId").innerText;
+            $http.get("/member/"+id+"/profile")
+                .then(function(response) {
+                    console.log(response)
+                    document.getElementById('image').src = response.data
+                });
+
+        })
+    </script>
+    </body>
+</html>
