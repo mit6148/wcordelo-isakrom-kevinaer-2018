@@ -1,6 +1,8 @@
 package io.smartraise.model.fundraise;
 
+import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.*;
 
@@ -15,8 +17,12 @@ public class Event {
     private Date startDate;
     private Date endDate;
     private float goal;
-    private final String organization;
-    private final String charity;
+    @DBRef
+    @CascadeSave
+    private final Organization organization;
+    @DBRef
+    @CascadeSave
+    private final Charity charity;
 
     public Event() {
         this.eventId = UUID.randomUUID().toString();
@@ -24,8 +30,8 @@ public class Event {
         this.description = "";
         this.startDate = Calendar.getInstance().getTime();
         this.endDate = Calendar.getInstance().getTime();
-        this.organization = "";
-        this.charity = "";
+        this.organization =  new Organization();
+        this.charity = new Charity();
         this.goal = 0;
     }
 
@@ -65,11 +71,11 @@ public class Event {
         this.endDate = endDate;
     }
 
-    public String getOrganization() {
+    public Organization getOrganization() {
         return organization;
     }
 
-    public String getCharity() {
+    public Charity getCharity() {
         return charity;
     }
 

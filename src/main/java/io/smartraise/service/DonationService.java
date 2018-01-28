@@ -1,6 +1,8 @@
 package io.smartraise.service;
 
+import io.smartraise.model.accounts.Member;
 import io.smartraise.model.fundraise.Donation;
+import io.smartraise.model.fundraise.Event;
 import io.smartraise.service.skeleton.CrudService;
 import io.smartraise.service.skeleton.ValidationService;
 
@@ -28,4 +30,6 @@ public interface DonationService extends CrudService<Donation>, ValidationServic
     List<Donation> getDonationsByEvent(String eventId);
 
     List<Donation> getDonationsByDonor(String donorId);
+
+    boolean makeDonation(Event event, Member member);
 }

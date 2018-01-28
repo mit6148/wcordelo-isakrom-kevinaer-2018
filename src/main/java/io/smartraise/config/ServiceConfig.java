@@ -40,6 +40,9 @@ public class ServiceConfig {
     public RequestService requestService() { return new RequestServiceImpl(); }
 
     @Bean
+    public PaymentService paymentService() { return new PaymentServiceImpl(); }
+
+    @Bean
     public ImageService imageService() { return new ImageServiceImpl(); }
 
     @Bean

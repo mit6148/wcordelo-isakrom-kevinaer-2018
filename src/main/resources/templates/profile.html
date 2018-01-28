@@ -19,6 +19,23 @@
         <img height="240" width="240" id="image" name="image" src="" />
     </div>
 
+    <div>
+        <h2>Organizations</h2>
+        <div th:each="org, org1:${orgs}">
+            <div th:text="${org.name}"></div>
+            <div th:text="${org.description}"></div>
+            <a th:href="@{${org.website}}">LINK</a>
+        </div>
+    </div>
+
+    <div>
+        <h2>Donations</h2>
+        <div th:each="donation, donation1:${donations}">
+            <div th:text="${donation.charity.name}"></div>
+            <div th:text=" ${donation.amount}"></div>
+            <div th:text="${donation.date}"></div>
+        </div>
+    </div>
 
     <div ng-controller="MainController">
         <form name="upload" id="upload" method="POST" enctype="multipart/form-data" action="/member/patricia66/upload/profile">

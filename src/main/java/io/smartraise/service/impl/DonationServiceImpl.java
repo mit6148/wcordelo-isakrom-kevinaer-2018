@@ -1,7 +1,9 @@
 package io.smartraise.service.impl;
 
 import io.smartraise.dao.DonationDAO;
+import io.smartraise.model.accounts.Member;
 import io.smartraise.model.fundraise.Donation;
+import io.smartraise.model.fundraise.Event;
 import io.smartraise.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +15,7 @@ public class DonationServiceImpl implements DonationService {
 
     @Override
     public List<Donation> getDonationsByOrganization(String organizationId) {
-        return donationDAO.findAllByOrganization(organizationId);
+        return donationDAO.findAllByOrganization_OrganizationId(organizationId);
     }
 
     @Override
@@ -23,7 +25,7 @@ public class DonationServiceImpl implements DonationService {
 
     @Override
     public List<Donation> getDonationsByDonor(String donorId) {
-        return donationDAO.findAllByDonor(donorId);
+        return donationDAO.findAllByDonor_Username(donorId);
     }
 
     @Override
@@ -69,5 +71,11 @@ public class DonationServiceImpl implements DonationService {
     @Override
     public boolean exists(String id) {
         return donationDAO.exists(id);
+    }
+
+    @Override
+    public boolean makeDonation(Event event, Member member) {
+        Donation donation = new Donation(member, event, 0);
+        return create(donation);
     }
 }

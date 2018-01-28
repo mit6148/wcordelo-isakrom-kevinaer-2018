@@ -22,23 +22,23 @@ public class Member {
     @CascadeSave
     private ContactInformation contactInformation;
 
-    @DBRef
-    @CascadeSave
-    private Payment payment;
+//    @DBRef
+//    @CascadeSave
+//    private Payment payment;
 
     public Member(String username) {
         this.username = username;
         this.privilege = new HashSet<>();
         this.organizations = new HashSet<>();
         this.contactInformation = new ContactInformation(this.username);
-        this.payment = new Payment();
+//        this.payment = new Payment();
     }
 
     public Member() {
         this.username = "";
         this.privilege = new HashSet<>();
         this.organizations = new HashSet<>();
-        this.payment = new Payment();
+//        this.payment = new Payment();
     }
 
 //    public Member(String username, Set<String> organizations, ContactInformation contactInformation) {
@@ -96,13 +96,13 @@ public class Member {
         this.contactInformation = contactInformation;
     }
 
-    public Payment getPayment() {
-        return payment;
-    }
+//    public Payment getPayment() {
+//        return payment;
+//    }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
+//    public void setPayment(Payment payment) {
+//        this.payment = payment;
+//    }
 
 //    public Member getPrivate() {
 //        return new Member(this.username, this.getOrganizations(), this.contactInformation.getPrivate());

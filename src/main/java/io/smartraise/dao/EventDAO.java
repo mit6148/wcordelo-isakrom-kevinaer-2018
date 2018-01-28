@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface EventDAO extends MongoRepository<Event, String> {
 
-    List<Event> findAllByOrganization(String organizationId);
+    List<Event> findAllByOrganization_OrganizationId(String organizationId);
 
     List<Event> findAllByOrganizationAndEndDateAfter(String organizationId, Date date);
 

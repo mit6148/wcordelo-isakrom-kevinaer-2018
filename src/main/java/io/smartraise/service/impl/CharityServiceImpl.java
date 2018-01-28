@@ -52,7 +52,8 @@ public class CharityServiceImpl implements CharityService {
     public boolean delete(String id) {
         Charity charity = this.get(id);
         if (charityDAO.exists(id)) {
-            paymentDAO.delete(charity.getPayment());
+            // TODO Delete charity payment
+//            paymentDAO.delete(charity.getPayment());
             charityDAO.delete(charity);
             return true;
         } else {

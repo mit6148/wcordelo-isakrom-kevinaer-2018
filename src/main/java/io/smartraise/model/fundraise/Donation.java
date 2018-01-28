@@ -1,8 +1,10 @@
 package io.smartraise.model.fundraise;
 
 import io.smartraise.model.accounts.Payment;
+import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
 import io.smartraise.model.accounts.*;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -15,11 +17,19 @@ public class Donation {
 
     @Id
     private final String donationId;
-    private final String donor;
+    @DBRef
+    @CascadeSave
+    private final Member donor;
     private Payment payment;
-    private final String charity;
-    private final String organization;
-    private final String event;
+    @DBRef
+    @CascadeSave
+    private final Charity charity;
+    @DBRef
+    @CascadeSave
+    private final Organization organization;
+    @DBRef
+    @CascadeSave
+    private final Event event;
     private final float amount;
     private final Date date;
 
@@ -28,12 +38,22 @@ public class Donation {
      */
     public Donation() {
         this.donationId = UUID.randomUUID().toString();
-        this.donor = "";
+        this.donor = new Member();
         this.payment = new Payment();
-        this.charity = "";
-        this.event = "";
-        this.organization = "";
+        this.charity = new Charity();
+        this.event = new Event();
+        this.organization = new Organization();
         this.amount = 0;
+        this.date = Calendar.getInstance().getTime();
+    }
+
+    public Donation(Member donor, Event event, float amount) {
+        this.donationId = UUID.randomUUID().toString();
+        this.donor = donor;
+        this.charity = event.getCharity();
+        this.organization = event.getOrganization();
+        this.event = event;
+        this.amount = amount;
         this.date = Calendar.getInstance().getTime();
     }
 
@@ -41,7 +61,7 @@ public class Donation {
         return donationId;
     }
 
-    public String getDonor() {
+    public Member getDonor() {
         return donor;
     }
 
@@ -53,15 +73,15 @@ public class Donation {
         this.payment = payment;
     }
 
-    public String getCharity() {
+    public Charity getCharity() {
         return charity;
     }
 
-    public String getOrganization() {
+    public Organization getOrganization() {
         return organization;
     }
 
-    public String getEvent() {
+    public Event getEvent() {
         return event;
     }
 
