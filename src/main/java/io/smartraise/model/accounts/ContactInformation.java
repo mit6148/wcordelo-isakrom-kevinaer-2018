@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 public class ContactInformation {
 
     @Id
-    private final String username;
+    private String username;
     private String firstName;
     private String lastName;
     private String email;
@@ -128,7 +128,11 @@ public class ContactInformation {
         this.phone = phone;
     }
 
-//    public ContactInformation getPrivate() {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    //    public ContactInformation getPrivate() {
 //        return new ContactInformation(
 //                this.username,
 //                this.firstName,

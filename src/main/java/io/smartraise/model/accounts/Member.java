@@ -1,6 +1,7 @@
 package io.smartraise.model.accounts;
 
 import io.smartraise.model.Privilege;
+import io.smartraise.model.fundraise.Organization;
 import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -14,9 +15,9 @@ import java.util.Set;
 public class Member {
 
     @Id
-    private final String username;
+    private String username;
     private final Set<Privilege> privilege;
-    private final Set<String> organizations;
+    private Set<String> organizations;
 
     @DBRef
     @CascadeSave
@@ -83,11 +84,6 @@ public class Member {
         }
     }
 
-    @Override
-    public String toString() {
-        return String.format("Member {Username: %s, Email: %s}", this.username, this.contactInformation.getEmail());
-    }
-
     public ContactInformation getContactInformation() {
         return contactInformation;
     }
@@ -96,7 +92,15 @@ public class Member {
         this.contactInformation = contactInformation;
     }
 
-//    public Payment getPayment() {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setOrganizations(Set<String> organizations) {
+        this.organizations = organizations;
+    }
+
+    //    public Payment getPayment() {
 //        return payment;
 //    }
 

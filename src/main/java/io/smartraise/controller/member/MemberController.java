@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.security.Principal;
 
 @RestController
@@ -74,8 +76,13 @@ public class MemberController implements CrudController<Member> {
     }
 
     @RequestMapping(value = "/{id}/payment", method = RequestMethod.POST)
-    public ResponseEntity updatePayment(@RequestBody Payment payment, Principal principal){
+    public ResponseEntity updatePayment(@PathVariable("id") String id, @RequestBody Payment payment, Principal principal, HttpServletResponse response){
         if (paymentService.update(payment)) {
+            try {
+                response.sendRedirect("/member/"+id);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.badRequest().build();

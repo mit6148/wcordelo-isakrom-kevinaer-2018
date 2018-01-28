@@ -69,6 +69,9 @@ public class CredentialServiceImpl implements CredentialService{
                             hash,
                             salt,
                             signUp.getUsername());
+            signUp.getAccount().setUsername(signUp.getUsername());
+            signUp.getAccount().getContactInformation().setUsername(signUp.getUsername());
+            signUp.getAccount().getContactInformation().setEmail(signUp.getEmail());
             newForm(signUp);
             credentialDAO.save(newCredential);
             return newCredential;
