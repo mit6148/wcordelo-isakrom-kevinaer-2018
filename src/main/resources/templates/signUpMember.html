@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Sign Up | Member</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <style>
 .navbar-default {
@@ -130,39 +132,30 @@ button:hover {
     <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#myModal">Log In</a>
     <a class="nav-link al-right" href="../templates/signUp">Sign up</a>
 </nav>
-<div class="">
 <form id="regForm" action="/action_page.php">
   <h1>Register:</h1>
   <!-- One "tab" for each step in the form: -->
-  <div class="tab">Account Type
-      <select class="custom-select" id="memberType">
-  <option selected>Open this select menu</option>
-  <option value="1">Member</option>
-  <option value="2">Charity</option>
-  <option value="3">Organization</option>
-      </select>
+  <div class="tab">Name:
+    <p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
+    <p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>
   </div>
-  <div class="tab">
-    <h1>Member Sign Up</h1>
-    <p><input placeholder="First Name" oninput="this.className = ''" name="firstName"></p>
-    <p><input placeholder="Last Name" oninput="this.className = ''" name="lastName"></p>
-    <p><input placeholder="Username" oninput="this.className = ''" name="username"></p>
-    <p><input placeholder="Password" type="password" oninput="this.className = ''" name="username"></p>
-    <p><input placeholder="E-mail..." type="email" oninput="this.className = ''" name="email"></p>
-    <p><input placeholder="Street Address" oninput="this.className = ''" name="username"></p>
-    <p><input placeholder="City" oninput="this.className = ''" name="username"></p>
-    <p><input placeholder="State" oninput="this.className = ''" name="username"></p>
-    <p><input placeholder="Zip Code" oninput="this.className = ''" name="username"></p>
+  <div class="tab">Contact Info:
+    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
     <p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
   </div>
-  <div class="tab">
-      <h1>Charity</h1>
+<div class="tab">
+    Location Information:
+    <p><input placeholder="Street Address" oninput="this.className = ''" name="streetAddres"></p>
+    <p><input placeholder="City" oninput="this.className = ''" name="city"></p>
+    <p><input placeholder="State" oninput="this.className = ''" name="state"></p>
+    <p><input placeholder="Zip Code" oninput="this.className = ''" name="zipCode"></p>  
+</div>
+  <div class="tab">Birthday:
     <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
     <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
     <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
   </div>
-  <div class="tab">
-      <h1>Organization</h1>
+  <div class="tab">Login Info:
     <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
     <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
   </div>
@@ -184,6 +177,7 @@ button:hover {
 <script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the crurrent tab
+
 function showTab(n) {
   // This function will display the specified tab of the form...
   var x = document.getElementsByClassName("tab");
@@ -204,21 +198,6 @@ function showTab(n) {
 }
 
 function nextPrev(n) {
-  if (currentTab == 0 && n=1){
-      var memType = document.getElementById("memberType");
-      if (memType == "Member"){
-          n = 1
-      }
-      if (memType == "Charity"){
-          n = 2
-      }
-      if (memType == "Organization"){
-          n = 3
-      }
-  }
-    if (n == -1){
-        n = currentTab*-1;
-    }
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
@@ -228,7 +207,7 @@ function nextPrev(n) {
   // Increase or decrease the current tab by 1:
   currentTab = currentTab + n;
   // if you have reached the end of the form...
-  if (currentTab == 1 | currentTab == 2 | currentTab == 3) {
+  if (currentTab >= x.length) {
     // ... the form gets submitted:
     document.getElementById("regForm").submit();
     return false;
@@ -269,6 +248,6 @@ function fixStepIndicator(n) {
   x[n].className += " active";
 }
 </script>
-</div>
+
 </body>
 </html>
