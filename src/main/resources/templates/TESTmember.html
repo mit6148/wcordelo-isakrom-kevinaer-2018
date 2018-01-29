@@ -5,14 +5,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body >
-    <h1 >Result</h1>
+    <!--View Profile info-->
+    <h1 >Member</h1>
         <p id="memberId" th:text="${profile.username}" />
         <p th:text="${profile.contactInformation.email}" />
         <p th:text="${profile.contactInformation.firstName} + ' ' +${profile.contactInformation.lastName} "></p>
+
+    <!--View profile picture-->
     <div>
         <img height="240" width="240" id="image" name="image" th:src="${profile_image}"/>
     </div>
 
+    <!--View organizations user is in-->
     <div>
         <h2>Organizations</h2>
         <div th:each="org, org1:${orgs}">
@@ -22,6 +26,7 @@
         </div>
     </div>
 
+    <!--View donations user made-->
     <div>
         <h2>Donations</h2>
         <div th:each="donation, donation1:${donations}">
@@ -31,18 +36,15 @@
         </div>
     </div>
 
+    <!--Edit member button-->
     <form method="GET" th:action="@{'/member/'+${profile.username}+'/edit'}" >
         <input type="submit" name="button" value="Edit">
     </form>
 
-    <!--<a href="@Url.Action(@{'/member/'+${profile.username}+'/edit'})" method="GET">Edit</a>-->
+    <!--Logout Button-->
+    <form method="POST" th:action="@{'/logout'}" >
+        <input type="submit" name="button" value="Logout">
+    </form>
 
-    <!--<div >-->
-        <!--<form name="upload" id="upload" method="POST" enctype="multipart/form-data" th:object="${profile}" th:action="@{'/member/' + ${profile.username} +'/profile'}">-->
-            <!--<label >Select File</label>-->
-            <!--<input type="file" class="file" name="file" id="file"/>-->
-            <!--<input type="submit" name="submit" value="Upload" />-->
-        <!--</form>-->
-    <!--</div>-->
     </body>
 </html>

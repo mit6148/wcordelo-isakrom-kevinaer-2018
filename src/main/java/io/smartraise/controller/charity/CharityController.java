@@ -26,7 +26,7 @@ public class CharityController implements CrudController<Charity> {
     public ResponseEntity create(@RequestBody Charity charity) {
         if (charityService.create(charity)){
             charity = charityService.get(charity.getCharityId());
-            Request request = requestService.makeRequest(Request.RequestType.VERIFY_CHARITY, charity);
+//            Request request = requestService.makeRequest(Request.RequestType.VERIFY_CHARITY, charity);
             return ResponseEntity.ok(charity);
         } else {
             return ResponseEntity.badRequest().build();

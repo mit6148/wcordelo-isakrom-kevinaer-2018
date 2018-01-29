@@ -1,28 +1,19 @@
 package io.smartraise.controller.view;
 
-import io.smartraise.model.Image;
 import io.smartraise.model.login.SignUp;
 import io.smartraise.security.CustomAuthProvider;
 import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
-import java.security.Security;
 
 @Controller
 public class SignupViewController {
@@ -51,7 +42,7 @@ public class SignupViewController {
     @GetMapping(value = "/signup")
     public String getSignUp(Model model) {
         model.addAttribute("user",new SignUp());
-        return "signup2";
+        return "TESTsignup";
     }
 
     @PostMapping("/signup")

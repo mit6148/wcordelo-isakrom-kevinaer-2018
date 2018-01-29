@@ -15,6 +15,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/login?error");
+//        httpServletResponse.sendRedirect("/login?error");
+        redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/login?error=true");
     }
 }
