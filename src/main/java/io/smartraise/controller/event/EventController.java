@@ -34,7 +34,6 @@ public class EventController implements CrudController<Event> {
     public ResponseEntity create(@RequestBody Event event) {
         if (charityService.exists(event.getCharity().getCharityId())
                 && organizationService.exists(event.getOrganization().getOrganizationId())
-                && (charityService.get(event.getCharity().getCharityId()).getPrivilege() == Privilege.CHARITY_VERIFIED)
                 && eventService.create(event)) {
             return ResponseEntity.ok(eventService.get(event.getEventId()));
         } else {
