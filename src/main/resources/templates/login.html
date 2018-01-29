@@ -14,9 +14,18 @@
 
         /****** LOGIN MODAL ******/
         /***modified from https://bootsnipp.com/snippets/featured/clean-modal-login-form***/
+        hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
         .container {
             padding: 30px;
-            width: 100% !important;
+            width: 90%;
             background-color: #F7F7F7;
             margin: 0 auto;
             border-radius: 2px;
@@ -137,7 +146,6 @@
         }
         .jumbotron{
             position: relative;
-            width: 90%;
             justify-content:center;
             align-self:center;
             background: white;
@@ -153,13 +161,11 @@
             padding:4px 2px;
             border:solid 1px #aacfe4;
             width:70px;
-            margin:2px 0 20px 10px;
         }
-
-    </style>
+ </style>
 </head>
 <body style="background:#ffe0b2">
-<nav class="navbar navbar-default" >
+<nav class="navbar navbar-default" style="z-index: 100">
     <a href="home" class="navbar-brand">SmartRaise</a>
     <form class="form-inline my-2 my-lg-0" >
         <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -168,35 +174,56 @@
     </form>
 </nav>
     <div class="container jumbotron">
-            <div id="blurb" class="col column">
-                <h1>It seems you aren't logged in right now</h1>
-                <div style="padding-top: 20pt">
-                    <h5>In order to make full use of SmartRaises features
-                for event hosting, profile creation, and whitelisting,
-                a user account is required. If you don't have one
-                please register via the button below!
-                    Thank you for your support!</h5>
-                <button class="btn submit btn-default" style="padding-top: 10pt">Register!</button>
-                </div>
-            </div>
-            <hr width="1" size="500">
-            <div id="loginform"class="col column">
+        <div class="row">
+            <div id="loginform"class="col-sm-4">
                 <div class="form"><!-- ng-controller="putserviceCtrl"> -->
                     <form th:action="@{/login}" method="post"> <!--ng-submit="submit()" --> 
-                        <div th:if="${param.error}" class="alert alert-error">    
+                        <div th:if="${param.logout}" class="alert alert-warning"> 
+                            You have been logged out.
+                </div>
+                        <div th:if="${param.error}" class="alert alert-danger">    
                             Invalid username and password.
                         </div>
-                        <div th:if="${param.logout}" class="alert alert-success"> 
-                            You have been logged out.
-                        </div>
+                        <h1>Login</h1>
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username"/>        
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password"/>    
                         <div class="form-actions">
-                            <button type="submit" class="btn submit btn-default">Submit</button>
+                            <button type="submit" class="btn submit btn-default" style="margin: 10pt; font-size: 15pt;">Login</button>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div id="blurb" class="col-sm-8">
+                <h2 style="text-align: center">Register</h1>
+                <div style="padding: 10pt">
+                    <p style="text-align: center">Please make an account using the buttons below in order to make full of the SmartRaise website!</p>
+                <div class="container" style="width: inherit">
+                    <div class="row">
+                        <div class="col-sm-5" style="margin: auto; padding: 5pt;">
+                            <h2 style="text-align: center">Member</h2>
+                            <p style="text-align: center">
+                            - Create your own customizable profile page to display organizations that you endorse.
+                                <br>
+                            - Join organizations to promote positive change as a group. 
+                            </p>
+                            <button type="button" class="btn submit btn-default" id="nextBtn" onclick="loadMember()" style="margin: auto; font-size: 15pt; padding: 10px 20px;">Member</button>
+                        </div>
+                        <div class="col-sm-1">
+                            <hr width="1" size="500">
+                        </div>
+                        <div class="col-sm-5" style="margin: auto; padding: 5pt;">
+                            <h2 style="text-align: center">Organization</h2>
+                            <p style="text-align: center">
+                            - Create a page for your organization in order to help legitimize fundraising events.
+                                <br>
+                            - Facilitate event creation, group all members under one name and promote your events!
+                            </p>
+                            <button type="button" class="btn submit btn-default" id="nextBtn" onclick="loadOrganization()"  style="margin: auto;  font-size: 15pt; padding: 10px 20px;">Register Organization</button>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         <script>
@@ -244,22 +271,6 @@
                 })
             }});
         </script>
-        <div class="row">
-            <div class="col" style="align-content: center">
-                <h1>Register</h1>
-                <form>
-
-                 <p>Account Type</p><input list="browsers" name="browser">
-                      <datalist id="browsers">
-                        <option value="Member">
-                        <option value="Charity">
-                        <option value="Organization">
-                      </datalist>
-                </form>
-            </div>
-            <br>
-            <div>
-            </div>
-        </div>
+     </div>
     </div>
 </html>
