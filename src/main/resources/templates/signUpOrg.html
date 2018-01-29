@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="./js/fitty.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="./css/master.css">
+	<link rel="stylesheet" type="text/css" href="css/master.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 	<!-- Google Fonts -->
@@ -54,16 +54,6 @@
 			z-index: 100;
 			position: absolute;
 			top: 0;
-		}
-
-		.body {
-			background-color: #ffe0b2;
-			-webkit-text-fill-color: black;
-		}
-
-		* {
-			box-sizing: border-box;
-			-webkit-text-fill-color: black;
 		}
 
 		body {
@@ -202,10 +192,25 @@
 			text-align: center;
 			margin-top: 5px;
 		}
+
+		.navbar.navbar-inverse {
+			border: none;
+		}
+		.navbar .navbar-brand {
+			padding-top: 0px;
+			margin-top: 7px;
+		}
+		.navbar .navbar-brand img {
+			height: 50px;
+		}
+
+		.logo {
+			padding-left: 10px ;
+		}
 	</style>
 <body>
 <nav class="navbar navbar-default">
-	<a href="home" class="navbar-brand">SmartRaise</a>
+	<a href="home.html" class="navbar-brand"><img src="./img/SR.png"><span class="logo">SmartRaise</span></a>
 	<form class="form-inline my-2 my-lg-0">
 		<input class="form-control mr-sm-2" type="text" placeholder="Search">
 		<a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
