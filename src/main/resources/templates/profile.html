@@ -3,12 +3,6 @@
 <head>
     <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-
-    <script type="text/javascript">
-        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname.slice(0,window.location.pathname.lastIndexOf("/")) + '" />'));
-    </script>
 </head>
 <body >
     <h1 >Result</h1>
@@ -50,23 +44,5 @@
             <!--<input type="submit" name="submit" value="Upload" />-->
         <!--</form>-->
     <!--</div>-->
-
-    <script>
-        var app = angular.module('myApp', ["ngRoute"]);
-        app.controller("MainController", function ($http, $scope) {
-            id = document.getElementById("memberId").innerText;
-            document.getElementById('upload').action = "member/"+id+"/upload/profile"
-        });
-        app.controller("ImageController", function ($http, $scope) {
-            console.log("image");
-            id = document.getElementById("memberId").innerText;
-            $http.get("/member/"+id+"/profile")
-                .then(function(response) {
-                    console.log(response)
-                    document.getElementById('image').src = response.data
-                });
-
-        })
-    </script>
     </body>
 </html>

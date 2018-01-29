@@ -3,6 +3,7 @@ package io.smartraise.service.impl;
 import io.smartraise.dao.ImageDAO;
 import io.smartraise.model.Image;
 import io.smartraise.service.ImageService;
+import io.smartraise.util.ImageURI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,7 +39,11 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public String get(String id, Image.ImageType imageType) throws IOException {
-        return "data:image/png;base64, "+imageDAO.getDistinctByIdAndType(id, imageType).getBytes();
+        if (imageDAO.existsByIdAndType(id, imageType)) {
+            return "data:image/png;base64, " + imageDAO.getDistinctByIdAndType(id, imageType).getBytes();
+        } else {
+            return ImageURI.EMPTY_PROFILE;
+        }
     }
 
     @Override

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 
-@Controller
+@RestController
 public class ImageController {
 
     @Autowired
@@ -25,30 +25,6 @@ public class ImageController {
 
     @Autowired
     private ImageService imageService;
-
-//    @GetMapping("/files/{filename:.+}")
-//    @ResponseBody
-//    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-//
-//        Resource file = storageService.loadAsResource(filename);
-//        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-//                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
-//    }
-//
-//    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-//    @ResponseBody
-//    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-//        String uploadDir = "\\uploads\\";
-//        String realPath = request.getServletContext().getRealPath(uploadDir);
-//
-//        File transferFile = new File(realPath + "\\" + file.getOriginalFilename());
-//        try {
-//            file.transferTo(transferFile);
-//            return "Success";
-//        } catch (IOException e) {
-//            return "Failure";
-//        }
-//    }
 
     @RequestMapping(value = "/member/{id}/profile", method = RequestMethod.POST)
     @ResponseBody

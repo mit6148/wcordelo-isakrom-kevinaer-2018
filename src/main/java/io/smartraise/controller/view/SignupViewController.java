@@ -58,8 +58,8 @@ public class SignupViewController {
     public void getEditMember(@ModelAttribute("user") SignUp signUp, HttpServletResponse response, HttpServletRequest request) {
         try {
             if (credentialService.create(signUp) != null) {
-                Resource resource = context.getResource("classpath:blank.png");
-                imageService.create(resource.getFile(), signUp.getUsername(), Image.ImageType.PROFILE);
+//                Resource resource = context.getResource("//cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
+//                imageService.create(resource.getFile(), signUp.getUsername(), Image.ImageType.PROFILE);
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(signUp.getUsername(), signUp.getPassword());
                 request.getSession();
 
