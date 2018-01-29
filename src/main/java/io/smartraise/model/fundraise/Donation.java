@@ -30,7 +30,7 @@ public class Donation {
     @DBRef
     @CascadeSave
     private final Event event;
-    private final float amount;
+    private final double amount;
     private final Date date;
 
     /**
@@ -110,7 +110,7 @@ public class Donation {
                 donor, event, charity);
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 }

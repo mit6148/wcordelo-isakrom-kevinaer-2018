@@ -1,5 +1,6 @@
 package io.smartraise.model.fundraise;
 
+import io.smartraise.model.accounts.Address;
 import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -16,7 +17,8 @@ public class Event {
     private String description;
     private Date startDate;
     private Date endDate;
-    private float goal;
+    private Address address;
+    private double goal;
     @DBRef
     @CascadeSave
     private final Organization organization;
@@ -33,6 +35,7 @@ public class Event {
         this.organization =  new Organization();
         this.charity = new Charity();
         this.goal = 0;
+        this.address = new Address();
     }
 
     public String getEventId() {
@@ -79,11 +82,19 @@ public class Event {
         return charity;
     }
 
-    public float getGoal() {
+    public double getGoal() {
         return goal;
     }
 
-    public void setGoal(float goal) {
+    public void setGoal(double goal) {
         this.goal = goal;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

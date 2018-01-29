@@ -1,6 +1,7 @@
 package io.smartraise.model.fundraise;
 
 import io.smartraise.model.Privilege;
+import io.smartraise.model.accounts.Address;
 import io.smartraise.model.accounts.Payment;
 import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
@@ -20,14 +21,16 @@ public class Charity {
 //    @CascadeSave
 //    private Payment payment;
     private String website;
+    @DBRef
+    @CascadeSave
+    private Address address;
 
     public Charity() {
         this.charityId = UUID.randomUUID().toString();
         this.name = "";
         this.description = "";
-        this.privilege = Privilege.CHARITY_VERIFIED;
-//        this.payment = new Payment();
         this.website = "";
+        this.address = new Address();
     }
 
     public String getCharityId() {
@@ -72,5 +75,13 @@ public class Charity {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
