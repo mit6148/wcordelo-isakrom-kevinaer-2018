@@ -19,9 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationListener authenticationListener;
 
-//    @Autowired
-//    private CustomAuthenticationFailureHandler failureHandler;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

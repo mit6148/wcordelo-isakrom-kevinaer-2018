@@ -1,7 +1,10 @@
 package io.smartraise.model.fundraise;
 
+import io.smartraise.model.accounts.Address;
 import io.smartraise.model.accounts.Member;
+import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +20,9 @@ public class Organization {
     private String name;
     private String description;
     private String website;
+    @DBRef
+    @CascadeSave
+    private Address address;
     private final Set<String> members;
     private final Set<String> admin;
 
@@ -25,6 +31,7 @@ public class Organization {
         this.name = "";
         this.description = "";
         this.website = "";
+        this.address = new Address();
         this.members = new HashSet<>();
         this.admin = new HashSet<>();
     }
@@ -85,6 +92,14 @@ public class Organization {
             this.members.add(member.getUsername());
         }
         this.admin.add(member.getUsername());
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
