@@ -14,7 +14,7 @@
 
         /****** LOGIN MODAL ******/
         /***modified from https://bootsnipp.com/snippets/featured/clean-modal-login-form***/
-        hr { 
+        hr {
     display: block;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
@@ -22,7 +22,7 @@
     margin-right: auto;
     border-style: inset;
     border-width: 1px;
-} 
+}
         .container {
             padding: 30px;
             width: 90%;
@@ -177,18 +177,18 @@
         <div class="row">
             <div id="loginform"class="col-sm-4">
                 <div class="form"><!-- ng-controller="putserviceCtrl"> -->
-                    <form th:action="@{/login}" method="post"> <!--ng-submit="submit()" --> 
-                        <div th:if="${param.logout}" class="alert alert-warning"> 
+                    <form th:action="@{/login}" method="post"> <!--ng-submit="submit()" -->
+                        <div th:if="${param.logout}" class="alert alert-warning">
                             You have been logged out.
                 </div>
-                        <div th:if="${param.error}" class="alert alert-danger">    
+                        <div th:if="${param.error}" class="alert alert-danger">
                             Invalid username and password.
                         </div>
                         <h1>Login</h1>
                         <label for="username">Username</label>
-                        <input type="text" id="username" name="username"/>        
+                        <input type="text" id="username" name="username"/>
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password"/>    
+                        <input type="password" id="password" name="password"/>
                         <div class="form-actions">
                             <button type="submit" class="btn submit btn-default" style="margin: 10pt; font-size: 15pt;">Login</button>
                         </div>
@@ -206,9 +206,12 @@
                             <p style="text-align: center">
                             - Create your own customizable profile page to display organizations that you endorse.
                                 <br>
-                            - Join organizations to promote positive change as a group. 
+                            - Join organizations to promote positive change as a group.
                             </p>
-                            <button type="button" class="btn submit btn-default" id="nextBtn" onclick="loadMember()" style="margin: auto; font-size: 15pt; padding: 10px 20px;">Member</button>
+                            <!--<button type="button" class="btn submit btn-default" id="nextBtn" onclick="loadMember()" style="margin: auto; font-size: 15pt; padding: 10px 20px;">Member</button>-->
+                            <form th:action="@{/signup}">
+                                <input type="submit" class="btn submit btn-default" value="Register Member" style="margin: auto;  font-size: 15pt; padding: 10px 20px;"/>
+                            </form>
                         </div>
                         <div class="col-sm-1">
                             <hr width="1" size="500">
@@ -220,7 +223,9 @@
                                 <br>
                             - Facilitate event creation, group all members under one name and promote your events!
                             </p>
-                            <button type="button" class="btn submit btn-default" id="nextBtn" onclick="loadOrganization()"  style="margin: auto;  font-size: 15pt; padding: 10px 20px;">Register Organization</button>
+                            <form th:action="@{/organization}">
+                                <input type="submit" class="btn submit btn-default" value="Register Organization" style="margin: auto;  font-size: 15pt; padding: 10px 20px;"/>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -235,7 +240,7 @@
             // var config= {
             //     'headers' : {
             //         'Content-Type': 'application/json'
-            //     } 
+            //     }
             // }
             // $scope.username = "";//document.getElementById("username").nodeValue;
             // $scope.password = "";//document.getElementById("password").nodeValue;

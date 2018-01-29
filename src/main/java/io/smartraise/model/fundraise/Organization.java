@@ -68,6 +68,28 @@ public class Organization {
         return members;
     }
 
+    public void addMember(String member) {
+        this.members.add(member);
+    }
+
+    public void removeMember(String member) {
+        if (this.admin.contains(member)) {
+            this.admin.remove(member);
+        }
+        this.members.remove(member);
+    }
+
+    public void addAdmin(String member) {
+        if (!members.contains(member)) {
+            members.add(member);
+        }
+        admin.add(member);
+    }
+
+    public void removeAdmin(String member) {
+        admin.add(member);
+    }
+
     public void addMember(Member member) {
         this.members.add(member.getUsername());
     }

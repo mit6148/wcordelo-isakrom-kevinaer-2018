@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Sign Up | Member</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./js/jquery.min.js"></script>
-    <script type="text/javascript" src="./js/angular.min.js"></script>
-    <script type="text/javascript" src="./js/fitty.min.js"></script>
+    <script type="text/javascript" th:href="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:href="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:href="@{/js/angular.min.js}"></script>
+    <script type="text/javascript" th:href="@{/js/fitty.min.js}"></script>
 
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/master.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
     <style>
@@ -331,7 +331,7 @@
     <div class="container">
         <div class="row main">
             <div class="main-login main-center">
-                <form class="form-horizontal" method="post" action="#">
+                <form class="form-horizontal" th:action="@{'/signup'}" th:object="${user}" th:method="POST">
                     <div class="form-group" style="align-self: center">
                         <h3 class="title">Member Registration</h3>
                         <hr>
@@ -339,18 +339,18 @@
                         <div class="row">
 
                             <div class="col-sm-6 form-group">
-                                <label for="name" class="cols-sm-2 control-label">First Name</label>
+                                <label class="cols-sm-2 control-label">First Name</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter your First Name"/>
+                                    <input th:field="*{account.contactInformation.firstName}" type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter your First Name"/>
                                 </div>
                             </div>
 
                             <div class="col-sm-6 form-group">
-                                <label for="name" class="cols-sm-2 control-label">Last Name</label>
+                                <label class="cols-sm-2 control-label">Last Name</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your Last Name"/>
+                                    <input th:field="*{account.contactInformation.lastName}" type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your Last Name"/>
                                 </div>
                             </div>
 
@@ -358,43 +358,37 @@
 
                         <div class="row">
                             <div class="col-sm-6 form-group">
-                                <label for="username" class="cols-sm-2 control-label">Username</label>
+                                <label class="cols-sm-2 control-label">Username</label>
                                 <!--<div class="cols-sm-10">-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username"/>
+                                    <input th:field="*{username}" type="text" class="form-control" name="username" id="username" placeholder="Enter your Username"/>
                                 </div>
                                 <!--</div>-->
                             </div>
 
                             <div class="col-sm-6 form-group">
-                                <label for="email" class="cols-sm-2 control-label">Email</label>
+                                <label class="cols-sm-2 control-label">Email</label>
                                 <!--<div class="cols-sm-10">-->
-                                    <div class="input-group">
-								        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email"/>
-                                    </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input th:field="*{email}" type="text" class="form-control" name="email" id="email" placeholder="Enter your Email"/>
+                                </div>
                                 <!--</div>-->
                             </div>
-
-
-
-
-
-
                         </div>
 
                         <div class="row">
                             <div class="col-sm-6 form-group">
-                                <label for="password" class="cols-sm-2 control-label">Password</label>
+                                <label class="cols-sm-2 control-label">Password</label>
                                     <div class="input-group">
 								        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password"/>
+                                        <input th:field="*{password}" type="password" class="form-control" name="password" id="password" placeholder="Enter your Password"/>
                                     </div>
                             </div>
 
                             <div class="col-sm-6 form-group">
-                                <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                                <label class="cols-sm-2 control-label">Confirm Password</label>
                                     <div class="input-group">
 								        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                                         <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password"/>
@@ -408,14 +402,14 @@
                                 <label class="cols-sm-2 control-label">Address</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="address" id="address" placeholder="Address"/>
+                                    <input th:field="*{account.contactInformation.address}" type="text" class="form-control" name="address" id="address" placeholder="Address"/>
                                 </div>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label class="cols-sm-2 control-label">City</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="city" id="city" placeholder="City"/>
+                                    <input th:field="*{account.contactInformation.city}" type="text" class="form-control" name="city" id="city" placeholder="City"/>
                                 </div>
                             </div>
 
@@ -423,7 +417,7 @@
                                 <label class="cols-sm-2 control-label">State</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="state" id="state" placeholder="State"/>
+                                    <input th:field="*{account.contactInformation.state}" type="text" class="form-control" name="state" id="state" placeholder="State"/>
                                 </div>
                             </div>
 
@@ -436,38 +430,16 @@
                                 <label class="cols-sm-2 control-label">Country</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="country" id="country" placeholder="Enter your Country"/>
+                                    <input th:field="*{account.contactInformation.country}" type="text" class="form-control" name="country" id="country" placeholder="Enter your Country"/>
                                 </div>
                             </div>
                             <div class=" col-sm-6 form-group">
                                 <label class="cols-sm-2 control-label">Zip Code</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Enter your Zip Code"/>
+                                    <input th:field="*{account.contactInformation.zipCode}" type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Enter your Zip Code"/>
                                 </div>
                             </div>
-                            <!--<div class="form-group">-->
-                                <!--<label for="email" class="cols-sm-2 control-label">Your Email</label>-->
-                                <!--<div class="cols-sm-10">-->
-                                    <!--<div class="input-group">-->
-								<!--<span class="input-group-addon"><i class="fa fa-envelope fa"-->
-                                                                   <!--aria-hidden="true"></i></span>-->
-                                        <!--<input type="text" class="form-control" name="email" id="email"-->
-                                               <!--placeholder="Enter your Email"/>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-
-                            <!--<div class="form-group">-->
-                                <!--<label for="username" class="cols-sm-2 control-label">Username</label>-->
-                                <!--<div class="cols-sm-10">-->
-                                    <!--<div class="input-group">-->
-                                        <!--<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>-->
-                                        <!--<input type="text" class="form-control" name="username" id="username"-->
-                                               <!--placeholder="Enter your Username"/>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
 
                         </div>
 
@@ -476,27 +448,15 @@
                                 <label class="cols-sm-2 control-label">Phone Number</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Enter your Phone Number"/>
+                                    <input th:field="*{account.contactInformation.phone}" type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Enter your Phone Number"/>
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                    <!--<label for="name" class="cols-sm-2 control-label">Name</label>-->
-                    <!--&lt;!&ndash;<div class="">&ndash;&gt;-->
-                    <!--<div class="input-group">-->
-                        <!--<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>-->
-                        <!--<input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name"/>-->
-                    <!--</div>-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
-
-
-
-
                     <div class="form-group ">
-                        <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                        <button th:formmethod="post" type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
                     </div>
                     <div class="login-register">
                         <a href="index.php">Login</a>

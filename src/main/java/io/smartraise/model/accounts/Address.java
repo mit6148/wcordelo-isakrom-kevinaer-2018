@@ -1,7 +1,13 @@
 package io.smartraise.model.accounts;
 
+import org.springframework.data.annotation.Id;
+
+import java.util.UUID;
+
 public class Address {
 
+    @Id
+    private String id;
     private String address;
     private String city;
     private String state;
@@ -9,7 +15,16 @@ public class Address {
     private String zipCode;
 
     public Address() {
+        this.id = UUID.randomUUID().toString();
         this.country = "USA";
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getAddress() {

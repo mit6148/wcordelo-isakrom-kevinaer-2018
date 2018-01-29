@@ -58,19 +58,6 @@ public class MemberViewController {
 //                response.sendRedirect("/home");
             return "login";
         }
-
-//        try {
-//            if (principal != null && principal.getName().equalsIgnoreCase(id)) {
-//                ModelAndView mav = new ModelAndView("edit1");
-//                mav.addObject("profile", memberService.get(id));
-//                return mav;
-//            } else {
-//                response.sendRedirect("/home");
-//                return null;
-//            }
-//        } catch (IOException e) {
-//            return null;
-//        }
     }
 
     @PostMapping("/member/{id}/edit")

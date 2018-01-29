@@ -105,4 +105,32 @@ public class OrganizationServiceImpl implements OrganizationService {
         });
         return organizations;
     }
+
+    @Override
+    public void addMember(String member, String id) {
+        Organization organization = this.get(id);
+        organization.addMember(member);
+        this.update(organization);
+    }
+
+    @Override
+    public void deleteMember(String member, String id) {
+        Organization organization = this.get(id);
+        organization.removeMember(member);
+        this.update(organization);
+    }
+
+    @Override
+    public void addAdmin(String member, String id) {
+        Organization organization = this.get(id);
+        organization.addAdmin(member);
+        this.update(organization);
+    }
+
+    @Override
+    public void deleteAdmin(String member, String id) {
+        Organization organization = this.get(id);
+        organization.removeAdmin(member);
+        this.update(organization);
+    }
 }
