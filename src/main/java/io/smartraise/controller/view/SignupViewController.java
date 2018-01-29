@@ -42,7 +42,7 @@ public class SignupViewController {
     @GetMapping(value = "/signup")
     public String getSignUp(Model model) {
         model.addAttribute("user",new SignUp());
-        return "TESTsignup";
+        return "signUpMember";
     }
 
     @PostMapping("/signup")
