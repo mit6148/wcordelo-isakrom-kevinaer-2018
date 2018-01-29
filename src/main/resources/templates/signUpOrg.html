@@ -1,9 +1,15 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Sign Up | Charity</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	<script type="text/javascript" th:href="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:href="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:href="@{/js/angular.min.js}"></script>
+	<script type="text/javascript" th:href="@{/js/fitty.min.js}"></script>
 
+<<<<<<< HEAD
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/angular.min.js"></script>
@@ -229,6 +235,7 @@
 
 		<div class="row main">
 			<div class="main-login main-center">
+				<form class="form-horizontal" th:method="POST" th:action="@{'/organization'}" th:object="${organization}">
 					<div class="form-group" style="align-self: center">
 						<h3 class="title">Organization Registration</h3>
 						<hr>
@@ -237,6 +244,7 @@
 								<label class="cols-sm-2 control-label">Name</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-sitemap" aria-hidden="true"></i></span>
+									<input type="text" th:field="*{name}" class="form-control" name="name" id="name" placeholder="Enter the Organization Name"/>
 								</div>
 							</div>
 
@@ -244,6 +252,7 @@
 								<label class="cols-sm-2 control-label">Website</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-rss" aria-hidden="true"></i></span>
+									<input type="text" th:field="*{website}" class="form-control" name="website" id="website" placeholder="Enter the Organization Website"/>
 								</div>
 							</div>
 
@@ -255,12 +264,14 @@
 								<label class="cols-sm-2 control-label">Address</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.address}" class="form-control" name="address" id="address" placeholder="Enter the Organization Address"/>
 								</div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label class="cols-sm-2 control-label">City</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+										<input type="text" th:field="*{address.city}" class="form-control" name="city" id="city" placeholder="Enter the Organization City"/>
 									</div>
 							</div>
 
@@ -272,12 +283,14 @@
 								<label class="cols-sm-2 control-label">State</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.state}" class="form-control" name="state" id="state" placeholder="Enter the Organization State"/>
 								</div>
 							</div>
 							<div class=" col-sm-6 form-group">
 								<label class="cols-sm-2 control-label">Zip Code</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
+										<input type="text" th:field="*{address.zipCode}" class="form-control" name="zipcode" id="zipcode" placeholder="Enter the Organization Zip Code"/>
 									</div>
 							</div>
 
@@ -287,7 +300,11 @@
 
 
 					<div class="form-group ">
+                        <button th:formmethod="post" type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
 					</div>
+					<!--<div class="login-register">-->
+						<!--<a href="index.php">Login</a>-->
+					<!--</div>-->
 				</form>
 			</div>
 		</div>
