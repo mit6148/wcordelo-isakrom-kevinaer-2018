@@ -219,10 +219,120 @@
     </div>
 </div>
 <div class="card" style="background-color: wheat" ng-app="myApp" ng-controller="myCtrl">
-    <div id="CharityDrops" style="overflow:scroll; height:500pt;" class="row">
+    <div id="CharityDrops" style="overflow:scroll; height:500pt; padding-top: 50pt; background-color: antiquewhite" class="row">
         <!--PAST EVENTS -->
-        <div id="pastEvents" class="column" style="margin: auto; padding-left: 10pt">
-            <h3>Past Events</h3>
+        <div id="pastEvents" class="column card" style="margin: auto;">
+            <h3 style="align-self: center">Past Events</h3>
+            <!-- TESTY START -->
+            <div id="card" class="card container drop-card" style="width: 275pt; border-radius: 0pt">
+                <div id="body" class="row">
+                    <div id="icon" class="column">
+                        <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
+                        FUCK
+                    </div>
+                    <div id="text" class="column" style="padding-left: 20pt">
+                        <div id="EventName" style="padding-top: 2pt">
+                            <b>NAME</b>
+                        </div>
+                        <div id="CharityName" style="padding-top: 2pt">
+                            CHARITY
+                        </div>
+                        <div id="Money" class="pull-right" style="padding-top: 2pt">
+                            MONEY
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="row card" style="padding-left: 15pt">
+                    <div id="Sponsor" class="column">
+                       ORGANIZATION
+                    </div>
+                    <div id="Time" class="push-left column" style="padding-left: 160pt">
+                        START TIME
+                    </div>
+                </div>
+            </div>
+            <div id="card" class="card container drop-card" style="width: 275pt">
+                <div id="body" class="row">
+                    <div id="icon" class="column">
+                        <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
+                        FUCK
+                    </div>
+                    <div id="text" class="column" style="padding-left: 20pt">
+                        <div id="EventName" style="padding-top: 2pt">
+                            <b>NAME</b>
+                        </div>
+                        <div id="CharityName" style="padding-top: 2pt">
+                            CHARITY
+                        </div>
+                        <div id="Money" class="pull-right" style="padding-top: 2pt">
+                            MONEY
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="row card" style="padding-left: 15pt">
+                    <div id="Sponsor" class="column">
+                       ORGANIZATION
+                    </div>
+                    <div id="Time" class="push-left column" style="padding-left: 160pt">
+                        START TIME
+                    </div>
+                </div>
+            </div>
+            <div id="card" class="card container drop-card" style="width: 275pt">
+                <div id="body" class="row">
+                    <div id="icon" class="column">
+                        <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
+                        FUCK
+                    </div>
+                    <div id="text" class="column" style="padding-left: 20pt">
+                        <div id="EventName" style="padding-top: 2pt">
+                            <b>NAME</b>
+                        </div>
+                        <div id="CharityName" style="padding-top: 2pt">
+                            CHARITY
+                        </div>
+                        <div id="Money" class="pull-right" style="padding-top: 2pt">
+                            MONEY
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="row card" style="padding-left: 15pt">
+                    <div id="Sponsor" class="column">
+                       ORGANIZATION
+                    </div>
+                    <div id="Time" class="push-left column" style="padding-left: 160pt">
+                        START TIME
+                    </div>
+                </div>
+            </div>
+            <div id="card" class="card container drop-card" style="width: 275pt">
+                <div id="body" class="row">
+                    <div id="icon" class="column">
+                        <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
+                        FUCK
+                    </div>
+                    <div id="text" class="column" style="padding-left: 20pt">
+                        <div id="EventName" style="padding-top: 2pt">
+                            <b>NAME</b>
+                        </div>
+                        <div id="CharityName" style="padding-top: 2pt">
+                            CHARITY
+                        </div>
+                        <div id="Money" class="pull-right" style="padding-top: 2pt">
+                            MONEY
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="row card" style="padding-left: 15pt">
+                    <div id="Sponsor" class="column">
+                       ORGANIZATION
+                    </div>
+                    <div id="Time" class="push-left column" style="padding-left: 160pt">
+                        START TIME
+                    </div>
+                </div>
+            </div>
+            <!-- TESTY END -->
             <div ng-repeat="event in pastEvents">
                 <div id="card" class="card container drop-card" style="width: 275pt">
                 <div id="body" class="row">
@@ -242,7 +352,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="footer" class="row" style="padding-left: 15pt">
+                <div id="footer" class="row card" style="padding-left: 15pt">
                     <div id="Sponsor" class="column">
                         {{organization.organizationId}}
                     </div>
@@ -254,8 +364,8 @@
             </div>
         </div>
          <!--CURRENT EVENTS -->
-        <div id="currentEvents" class="column" style="margin: auto">
-            <h3>Current Events</h3>
+        <div id="currentEvents" class="column card" style="margin: auto">
+            <h3 style="align-self: center">Current Events</h3>
             <div ng-repeat="event in currentEvents">
                 <div id="card" class="card container drop-card" style="width: 275pt">
                 <div id="body" class="row">
@@ -287,10 +397,10 @@
             </div>
         </div>
          <!--FUTURE EVENTS -->
-        <div id="futureEvents" class="column" style="margin: auto; padding-right: 10pt">
-            <h3>Future Events</h3>
+        <div id="futureEvents" class="column card" style="margin: auto;">
+            <h3 style="align-self: center">Future Events</h3>
             <div ng-repeat="event in futureEvents">
-                <div id="card" class="card container drop-card" style="width: 275pt">
+                <div id="card" class="card container drop-card" style="width: 275pt;">
                 <div id="body" class="row">
                     <div id="icon" class="column">
                         <img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">
