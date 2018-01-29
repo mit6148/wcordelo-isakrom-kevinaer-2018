@@ -1,270 +1,289 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign Up | Charity</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+	<title>Sign Up | Charity</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<!-- Website CSS style -->
-		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
-		<!-- Website Font style -->
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-		
-		<!-- Google Fonts -->
-		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-<style>
-.navbar-default {
-            background-color: 		#ef6c00;
-            width:100%;
-        }
-        .navbar {
-            white-space: nowrap;
-            width:100%;
-        }
-        .navbar-brand{
-            -webkit-text-fill-color: white;
-        }
-        .body {
-            background-color: #ffe0b2;
-            -webkit-text-fill-color: white;
-        }
-        a.navbar-brand {
-            z-index: 100;
-            left: 0px;
-            top: 0px;
-            display: block;
-            width: 173px;
-            background-size: 100% 100%; }
-        .al-right{
-            float: right;
-            -webkit-text-fill-color: white;
-        }
-        .navbar{
-            z-index: 100;
-            position: absolute;
-            top: 0;
-        }
-.body {
-            background-color: #ffe0b2;
-            -webkit-text-fill-color: black;
-        }
-* {
-  box-sizing: border-box;
-    -webkit-text-fill-color: black;
-}
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/fitty.min.js"></script>
 
-body {
-  background-color: #ffe0b2;
-}
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/master.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-#regForm {
-  background-color: #ffffff;
-  margin: 100px auto;
-  font-family: Raleway;
-  padding: 40px;
-  width: 70%;
-  min-width: 300px;
-}
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+	<style>
+		.navbar-default {
+			background-color: #ef6c00;
+			width: 100%;
+		}
 
-h1 {
-  text-align: center;  
-}
+		.navbar {
+			white-space: nowrap;
+			width: 100%;
+		}
 
-input {
-  padding: 10px;
-  width: 100%;
-  font-size: 17px;
-  border: 1px solid #aaaaaa;
-}
+		.navbar-brand {
+			-webkit-text-fill-color: white;
+		}
 
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-  background-color: #ffdddd;
-}
+		.body {
+			background-color: #ffe0b2;
+			-webkit-text-fill-color: white;
+		}
 
-/* Hide all steps by default: */
-.tab {
-  display: none;
-}
+		a.navbar-brand {
+			z-index: 100;
+			left: 0px;
+			top: 0px;
+			display: block;
+			width: 173px;
+			background-size: 100% 100%;
+		}
 
-button {
-  background-color: #4CAF50;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 17px;
-  cursor: pointer;
-}
+		.al-right {
+			float: right;
+			-webkit-text-fill-color: white;
+		}
 
-button:hover {
-  opacity: 0.8;
-}
+		.navbar {
+			z-index: 100;
+			position: absolute;
+			top: 0;
+		}
 
-#prevBtn {
-  background-color: #bbbbbb;
-}
+		.body {
+			background-color: #ffe0b2;
+			-webkit-text-fill-color: black;
+		}
 
-/* Make circles that indicate the steps of the form: */
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;  
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
-}
+		* {
+			box-sizing: border-box;
+			-webkit-text-fill-color: black;
+		}
 
-.step.active {
-  opacity: 1;
-}
+		body {
+			background-color: #ffe0b2;
+		}
 
-/* Mark the steps that are finished and valid: */
-.step.finish {
-  background-color: #4CAF50;
-}
-.main{
- 	margin-top: 70px;
-}
+		#regForm {
+			background-color: #ffffff;
+			margin: 100px auto;
+			font-family: Raleway;
+			padding: 40px;
+			width: 70%;
+			min-width: 300px;
+		}
 
-h1.title { 
-	font-size: 50px;
-	font-weight: 400; 
-}
+		h1 {
+			text-align: center;
+		}
 
-hr{
-	width: 10%;
-	color: #fff;
-}
+		input {
+			padding: 10px;
+			width: 100%;
+			font-size: 17px;
+			border: 1px solid #aaaaaa;
+		}
 
-.form-group{
-	margin-bottom: 15px;
-}
+		/* Mark input boxes that gets an error on validation: */
+		input.invalid {
+			background-color: #ffdddd;
+		}
 
-label{
-	margin-bottom: 15px;
-}
+		/* Hide all steps by default: */
+		.tab {
+			display: none;
+		}
 
-input,
-input::-webkit-input-placeholder {
-    font-size: 11px;
-    padding-top: 3px;
-}
+		button {
+			background-color: #4CAF50;
+			color: #ffffff;
+			border: none;
+			padding: 10px 20px;
+			font-size: 17px;
+			cursor: pointer;
+		}
 
-.main-login{
- 	background-color: #fff;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		button:hover {
+			opacity: 0.8;
+		}
 
-}
+		#prevBtn {
+			background-color: #bbbbbb;
+		}
 
-.main-center{
- 	margin-top: 30px;
- 	margin: 0 auto;
- 	max-width: 330px;
-    padding: 40px 40px;
+		/* Make circles that indicate the steps of the form: */
+		.step {
+			height: 15px;
+			width: 15px;
+			margin: 0 2px;
+			background-color: #bbbbbb;
+			border: none;
+			border-radius: 50%;
+			display: inline-block;
+			opacity: 0.5;
+		}
 
-}
+		.step.active {
+			opacity: 1;
+		}
 
-.login-button{
-	margin-top: 5px;
-}
+		/* Mark the steps that are finished and valid: */
+		.step.finish {
+			background-color: #4CAF50;
+		}
 
-.login-register{
-	font-size: 11px;
-	text-align: center;
-}
-</style>
+		.main {
+			margin-top: 70px;
+		}
+
+		h1.title {
+			font-size: 50px;
+			font-weight: 400;
+		}
+
+		hr {
+			width: 10%;
+			color: #fff;
+			align-content: center;
+		}
+
+		.form-group {
+			margin-bottom: 15px;
+		}
+
+		label {
+			margin-bottom: 15px;
+		}
+
+		input,
+		input::-webkit-input-placeholder {
+			font-size: 11px;
+			padding-top: 3px;
+		}
+
+		.main-login {
+			background-color: #fff;
+			/* shadows and rounded borders */
+			-moz-border-radius: 2px;
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
+			-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+			-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+			box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+		}
+
+		.main-center {
+			margin-top: 30px;
+			margin: 0 auto;
+			max-width: 330px;
+			padding: 40px 40px;
+
+		}
+
+		.login-button {
+			margin-top: 5px;
+		}
+
+		.login-register {
+			font-size: 11px;
+			text-align: center;
+		}
+	</style>
 <body>
-<nav class="navbar navbar-default" >
-    <a href="home" class="navbar-brand">SmartRaise</a>
-    <form class="form-inline my-2 my-lg-0" >
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
-        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="../templates/search.html" style="margin-left:10pt">Search Charities</a>
-    </form>
-    <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#myModal">Log In</a>
-    <a class="nav-link al-right" href="../templates/signUp">Sign up</a>
+<nav class="navbar navbar-default">
+	<a href="home" class="navbar-brand">SmartRaise</a>
+	<form class="form-inline my-2 my-lg-0">
+		<input class="form-control mr-sm-2" type="text" placeholder="Search">
+		<a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
+		<a class="btn btn-outline-success my-2 my-sm-0 al-right" href="../templates/search.html"
+		   style="margin-left:10pt">Search Charities</a>
+	</form>
+	<a class="nav-link al-right" href="#" data-toggle="modal" data-target="#myModal">Log In</a>
+	<a class="nav-link al-right" href="../templates/signUp">Sign up</a>
 </nav>
 <form>
 	<div class="container">
-			<div class="row main">
-				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="#">
-						<div class="form-group" style="align-self: center">
-                            <h3 class="title">Member Registration</h3>
-	               		<hr />
-							<label for="name" class="cols-sm-2 control-label">Your Name</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
-								</div>
+		<div class="row main">
+			<div class="main-login main-center">
+				<form class="form-horizontal" method="post" action="#">
+					<div class="form-group" style="align-self: center">
+						<h3 class="title">Member Registration</h3>
+						<hr>
+						<label for="name" class="cols-sm-2 control-label">Your Name</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="name" id="name"
+									   placeholder="Enter your Name"/>
 							</div>
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Your Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-								</div>
+					<div class="form-group">
+						<label for="email" class="cols-sm-2 control-label">Your Email</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-envelope fa"
+																   aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="email" id="email"
+									   placeholder="Enter your Email"/>
 							</div>
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label for="username" class="cols-sm-2 control-label">Username</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
-								</div>
+					<div class="form-group">
+						<label for="username" class="cols-sm-2 control-label">Username</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="username" id="username"
+									   placeholder="Enter your Username"/>
 							</div>
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-								</div>
+					<div class="form-group">
+						<label for="password" class="cols-sm-2 control-label">Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-lock fa-lg"
+																   aria-hidden="true"></i></span>
+								<input type="password" class="form-control" name="password" id="password"
+									   placeholder="Enter your Password"/>
 							</div>
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
-								</div>
+					<div class="form-group">
+						<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-lock fa-lg"
+																   aria-hidden="true"></i></span>
+								<input type="password" class="form-control" name="confirm" id="confirm"
+									   placeholder="Confirm your Password"/>
 							</div>
 						</div>
+					</div>
 
-						<div class="form-group ">
-							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-						</div>
-						<div class="login-register">
-				            <a href="index.php">Login</a>
-				         </div>
-					</form>
-				</div>
+					<div class="form-group ">
+						<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+					</div>
+					<div class="login-register">
+						<a href="index.php">Login</a>
+					</div>
+				</form>
 			</div>
 		</div>
+	</div>
 </form>
-	<script type="text/javascript" src="assets/js/bootstrap.js"></script>
 </body>
 </html>
