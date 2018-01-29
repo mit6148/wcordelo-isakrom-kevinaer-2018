@@ -9,9 +9,9 @@ public interface DonationDAO extends MongoRepository<Donation, String> {
 
     List<Donation> findAllByEvent(String id);
 
-    List<Donation> findAllByOrganization(String id);
+    List<Donation> findAllByOrganization_OrganizationId(String id);
 
-    List<Donation> findAllByDonor(String id);
+    List<Donation> findAllByDonor_Username(String id);
 
-    List<Donation> findAllByCharity(String id);
+    List<Donation> findAllByCharity_CharityId(String id);
 }

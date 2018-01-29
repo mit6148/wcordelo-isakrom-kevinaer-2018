@@ -66,4 +66,8 @@ public class SignUp {
     public Member getAccount() {
         return account;
     }
+
+    public void setAccount(Member account) {
+        this.account = account;
+    }
 }

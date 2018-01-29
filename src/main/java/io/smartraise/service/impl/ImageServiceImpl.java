@@ -6,6 +6,7 @@ import io.smartraise.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ImageServiceImpl implements ImageService {
@@ -22,6 +23,18 @@ public class ImageServiceImpl implements ImageService {
         imageDAO.save(image);
         return true;
     }
+
+    @Override
+    public boolean create(File file, String id, Image.ImageType type) {
+        if (imageDAO.existsByIdAndType(id, type)) {
+            this.delete(id, type);
+        }
+        Image image = new Image(file, id, type);
+        imageDAO.save(image);
+        return true;
+    }
+
+
 
     @Override
     public String get(String id, Image.ImageType imageType) throws IOException {

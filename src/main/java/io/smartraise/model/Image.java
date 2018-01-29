@@ -2,6 +2,8 @@ package io.smartraise.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -29,6 +31,22 @@ public class Image {
         }
         this.type = type;
     }
+
+    public Image(File file, String id, ImageType type) {
+        this.id = id;
+        try {
+            byte[] bytesArray = new byte[(int) file.length()];
+
+            FileInputStream fis = new FileInputStream(file);
+            fis.read(bytesArray); //read file into bytes[]
+            fis.close();
+            this.bytes = encodeBase64String(bytesArray);
+        } catch (IOException e) {
+            this.bytes = encodeBase64String(new byte[0]);
+        }
+        this.type = type;
+    }
+
 
     public String getBytes() {
         return bytes;

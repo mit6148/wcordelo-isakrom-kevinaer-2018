@@ -1,6 +1,9 @@
 package io.smartraise.controller.view;
 
+import io.smartraise.model.Image;
 import io.smartraise.model.accounts.Member;
+import io.smartraise.service.DonationService;
+import io.smartraise.service.ImageService;
 import io.smartraise.service.MemberService;
 import io.smartraise.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.security.Principal;
 
 @Controller
 public class MemberViewController {
@@ -18,26 +25,61 @@ public class MemberViewController {
     @Autowired
     private OrganizationService organizationService;
 
+    @Autowired
+    private DonationService donationService;
+
+    @Autowired
+    private ImageService imageService;
+
     @GetMapping("/member/{id}")
-    public String getMember(@PathVariable("id") String id, Model model){
-        Member member = memberService.get(id);
-        model.addAttribute("profile", member);
-        model.addAttribute("orgs", organizationService.getFromMember(member));
-        return "profile";
+    public String getMember(@PathVariable("id") String id, Model model, Principal principal){
+        if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+            Member member = memberService.get(id);
+            try {
+                model.addAttribute("profile_image", imageService.get(id, Image.ImageType.PROFILE));
+            } catch (IOException e) {
+                return "home";
+            }
+            model.addAttribute("profile", member);
+            model.addAttribute("orgs", organizationService.getFromMember(member));
+            model.addAttribute("donations", donationService.getDonationsByDonor(id));
+            model.addAttribute("donations", donationService.getDonationsByDonor(id));
+            return "profile";
+        } else {
+            return "home";
+        }
     }
 
     @GetMapping("/member/{id}/edit")
-    public ModelAndView getEditMember(@PathVariable("id") String id){
-        ModelAndView mav = new ModelAndView("edit");
-        mav.addObject("user", memberService.get(id));
-        return mav;
+    public ModelAndView getEditMember(@PathVariable("id") String id, Principal principal, HttpServletResponse response){
+        try {
+            if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+                ModelAndView mav = new ModelAndView("edit1");
+                mav.addObject("profile", memberService.get(id));
+                return mav;
+            } else {
+                response.sendRedirect("/home");
+                return null;
+            }
+        } catch (IOException e) {
+            return null;
+        }
     }
 
-    @RequestMapping(value = "/member/{id}/edit", method = RequestMethod.PUT)
-    public ModelAndView loginProcess(@ModelAttribute("user") Member member) {
-        memberService.update(member);
-        ModelAndView mav = new ModelAndView("profile");
-        mav.addObject("user", memberService.get(member.getUsername()));
-        return mav;
+    @PostMapping("/member/{id}/edit")
+    public void putEditMember(@PathVariable("id") String id,
+                              @ModelAttribute("profile") Member member,
+                              Principal principal,
+                              HttpServletResponse response){
+        try {
+            if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+                memberService.update(member);
+                response.sendRedirect("/member/" + id);
+            } else {
+                response.sendRedirect("/home");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

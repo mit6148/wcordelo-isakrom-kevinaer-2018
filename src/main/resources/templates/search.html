@@ -329,8 +329,8 @@ form.example::after {
                           <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
                         </div>
                           <script>
-                              var queryString = "?" + document.getElementById("eventId").innerText;
-                              var link = "eventPage" + queryString;
+                              var queryString = "/" + document.getElementById("eventId").innerText;
+                              var link = "event" + queryString;
                               console.log(queryString);
                               var yourElement = document.getElementById('eventTitle');
                               yourElement.setAttribute('href', link);

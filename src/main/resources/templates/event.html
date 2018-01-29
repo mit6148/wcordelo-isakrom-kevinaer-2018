@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>SmartRaise</title>
-    <meta charset="utf-8" content="width=device-width, initial-scale=1">
+    <meta charset=" utf-8" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -232,7 +232,7 @@
   </head>
   <body style="background:#ffe0b2">
     <nav class="navbar navbar-default" >
-        <a href="home" class="navbar-brand">SmartRaise</a>
+        <a th:href="@{'/'}" class="navbar-brand">SmartRaise</a>
         <form class="form" >
 
           <button class="btn btn-outline-success my-2 my-sm-0 al-right" type="submit">Search</button>
@@ -264,39 +264,46 @@
                 <div class="row">
                         <div class="col-sm-4" style="text-align:center">
                             <!--Title-->
-                            <h4 class="card-title">Charity</h4>
-                            <!--Text-->
-                            <img src="http://static2.businessinsider.com/image/5899ffcf6e09a897008b5c04-1200/.jpg" class="person" style="width: 150pt; height: 150pt">
-                            <p class="card-text">The Geneva Convencitions are a thing signed by a bunch of people to
-                            stop ppl from doing realallllly shitty things ot each other.</p>
-                            <hr>
-                            <small item-width="max-content">Contact Info</small>
-                            <br>
-                            <small>783-420-6648</small>
-                            <br>
-                            <small>somewhere, just not here</small>
-                            <!--Title-->
-                            <h4 class="card-title">Host</h4>
-                            <!--Text-->
-                            <img src="http://static2.businessinsider.com/image/5899ffcf6e09a897008b5c04-1200/.jpg" class="person" style="width: 150pt; height: 150pt">
-                            <p class="card-text">This is John. John is a terrible human being but an amazing businessman.
-                                John wants to feel like he's a good person so he started this fundraiser. Fuck John.</p>
-                            <hr>
-                            <small item-width="max-content">Contact Info</small>
-                            <br>
-                            <small>783-420-6648</small>
-                            <br>
-                            <small>somewhere, just not here</small>
+                            <div th:object="${event.charity}">
+                                <h4 class="card-title" th:text="*{name}">Charity</h4>
+                                <!--Text-->
+                                <img src="http://static2.businessinsider.com/image/5899ffcf6e09a897008b5c04-1200/.jpg" class="person" style="width: 150pt; height: 150pt">
+                                <p class="card-text" th:text="*{description}">The Geneva Convencitions are a thing signed by a bunch of people to
+                                stop ppl from doing realallllly shitty things ot each other.</p>
+                                <hr>
+                                <small item-width="max-content">Contact Info</small>
+                                <br>
+                                <small>783-420-6648</small>
+                                <br>
+                                <a th:href="*{website}">somewhere, just not here</a>
+                            </div>
+                            <div th:object="${event.organization}">
+                                <!--Title-->
+                                <h4 class="card-title" th:text="*{name}">Host</h4>
+                                <!--Text-->
+                                <img src="http://static2.businessinsider.com/image/5899ffcf6e09a897008b5c04-1200/.jpg" class="person" style="width: 150pt; height: 150pt">
+                                <p class="card-text" th:text="*{description}">This is John. John is a terrible human being but an amazing businessman.
+                                    John wants to feel like he's a good person so he started this fundraiser. Fuck John.</p>
+                                <hr>
+                                <small item-width="max-content">Contact Info</small>
+                                <br>
+                                <small>783-420-6648</small>
+                                <br>
+                                <small>somewhere, just not here</small>
+                            </div>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8" th:object="${event}">
                             <!--Title-->
                             <div class="row">
-                                    <h4 class="card-title" style="vertical-align:middle">{{ovent.name}}</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted" style="vertical-align:middle">{{ovent.startDate}}</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted" style="vertical-align:middle">{{ovent.endDate}}</h6>
+                                    <h3 class="card-title" style="vertical-align:middle" th:text="*{name}"></h3>
                             </div>
+                            <div class="row">
+                                <h6 class="card-subtitle mb-2 text-muted" style="vertical-align:middle" th:text="*{startDate}"></h6>
+                                <h6 class="card-subtitle mb-2 text-muted" style="vertical-align:middle" data-th-text="*{endDate}"></h6>
+                            </div>
+
                             <!--Text-->
-                            {{ovent.description}}
+                            <a th:text="*{description}"></a>
                             </div>
                       </div>
         </div>

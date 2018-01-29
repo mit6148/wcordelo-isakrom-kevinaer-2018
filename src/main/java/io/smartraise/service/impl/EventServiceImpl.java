@@ -53,7 +53,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsFromOrganization(String organizationId) {
-        return eventDAO.findAllByOrganization(organizationId);
+        return eventDAO.findAllByOrganization_OrganizationId(organizationId);
     }
 
     @Override

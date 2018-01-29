@@ -3,16 +3,16 @@ package io.smartraise.controller.member;
 import io.smartraise.controller.CrudController;
 import io.smartraise.model.Response;
 import io.smartraise.model.accounts.Member;
+import io.smartraise.model.accounts.Payment;
 import io.smartraise.model.fundraise.Donation;
 import io.smartraise.model.login.Credential.UserType;
-import io.smartraise.service.CredentialService;
-import io.smartraise.service.DonationService;
-import io.smartraise.service.MemberService;
-import io.smartraise.service.OrganizationService;
+import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.security.Principal;
 
 @RestController
@@ -30,6 +30,9 @@ public class MemberController implements CrudController<Member> {
 
     @Autowired
     private DonationService donationService;
+
+    @Autowired
+    private PaymentService paymentService;
 
     @Override
     @RequestMapping(method = RequestMethod.POST)
@@ -70,6 +73,25 @@ public class MemberController implements CrudController<Member> {
         } else {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @RequestMapping(value = "/{id}/payment", method = RequestMethod.POST)
+    public ResponseEntity updatePayment(@PathVariable("id") String id, @RequestBody Payment payment, Principal principal, HttpServletResponse response){
+        if (paymentService.update(payment)) {
+            try {
+                response.sendRedirect("/member/"+id);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @RequestMapping(value = "/{id}/payment", method = RequestMethod.GET)
+    public ResponseEntity getPayment(@PathVariable("id") String id, Principal principal){
+        return ResponseEntity.ok(paymentService.get(id));
     }
 
     @RequestMapping(value = "/{id}/organizations", method = RequestMethod.GET)

@@ -34,23 +34,23 @@ public class ImageController {
 //        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
 //                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
 //    }
+//
+//    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+//    @ResponseBody
+//    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+//        String uploadDir = "\\uploads\\";
+//        String realPath = request.getServletContext().getRealPath(uploadDir);
+//
+//        File transferFile = new File(realPath + "\\" + file.getOriginalFilename());
+//        try {
+//            file.transferTo(transferFile);
+//            return "Success";
+//        } catch (IOException e) {
+//            return "Failure";
+//        }
+//    }
 
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    @ResponseBody
-    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-        String uploadDir = "\\uploads\\";
-        String realPath = request.getServletContext().getRealPath(uploadDir);
-
-        File transferFile = new File(realPath + "\\" + file.getOriginalFilename());
-        try {
-            file.transferTo(transferFile);
-            return "Success";
-        } catch (IOException e) {
-            return "Failure";
-        }
-    }
-
-    @RequestMapping(value = "/member/{id}/upload/profile", method = RequestMethod.POST)
+    @RequestMapping(value = "/member/{id}/profile", method = RequestMethod.POST)
     @ResponseBody
     public void uploadProfile(@PathVariable("id") String id,
                                 @RequestParam("file") MultipartFile file,

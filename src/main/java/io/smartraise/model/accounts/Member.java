@@ -1,6 +1,7 @@
 package io.smartraise.model.accounts;
 
 import io.smartraise.model.Privilege;
+import io.smartraise.model.fundraise.Organization;
 import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -14,31 +15,31 @@ import java.util.Set;
 public class Member {
 
     @Id
-    private final String username;
+    private String username;
     private final Set<Privilege> privilege;
-    private final Set<String> organizations;
+    private Set<String> organizations;
 
     @DBRef
     @CascadeSave
     private ContactInformation contactInformation;
 
-    @DBRef
-    @CascadeSave
-    private Payment payment;
+//    @DBRef
+//    @CascadeSave
+//    private Payment payment;
 
     public Member(String username) {
         this.username = username;
         this.privilege = new HashSet<>();
         this.organizations = new HashSet<>();
         this.contactInformation = new ContactInformation(this.username);
-        this.payment = new Payment();
+//        this.payment = new Payment();
     }
 
     public Member() {
         this.username = "";
         this.privilege = new HashSet<>();
         this.organizations = new HashSet<>();
-        this.payment = new Payment();
+//        this.payment = new Payment();
     }
 
 //    public Member(String username, Set<String> organizations, ContactInformation contactInformation) {
@@ -83,11 +84,6 @@ public class Member {
         }
     }
 
-    @Override
-    public String toString() {
-        return String.format("Member {Username: %s, Email: %s}", this.username, this.contactInformation.getEmail());
-    }
-
     public ContactInformation getContactInformation() {
         return contactInformation;
     }
@@ -96,13 +92,21 @@ public class Member {
         this.contactInformation = contactInformation;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setOrganizations(Set<String> organizations) {
+        this.organizations = organizations;
     }
+
+    //    public Payment getPayment() {
+//        return payment;
+//    }
+
+//    public void setPayment(Payment payment) {
+//        this.payment = payment;
+//    }
 
 //    public Member getPrivate() {
 //        return new Member(this.username, this.getOrganizations(), this.contactInformation.getPrivate());

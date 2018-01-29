@@ -20,6 +20,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             Authentication authentication) throws IOException, ServletException {
-        redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/member?"+authentication.getName());
+        redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/member/"+authentication.getName());
     }
 }

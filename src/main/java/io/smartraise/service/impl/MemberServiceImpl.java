@@ -45,7 +45,6 @@ public class MemberServiceImpl implements MemberService {
     public boolean update(Member member) {
         if (memberDAO.exists(member.getUsername())) {
             memberDAO.save(member);
-//            contactInformationDAO.save(member.getContactInformation());
             return true;
         } else {
             return false;
@@ -71,12 +70,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<Member> getMembersFromOrganization(Organization organization) {
-        return memberDAO.findAllByOrganizationsContainsOrderByContactInformationUsernameAsc(organization.getOrganizationId());
+        return memberDAO.findAllByOrganizationsContainsOrderByUsername(organization.getOrganizationId());
     }
 
     @Override
     public List<Member> getAdminsFromOrganization(Organization organization) {
-        return memberDAO.findAllByOrganizationsContainsOrderByContactInformationUsernameAsc(organization.getOrganizationId());
+        return memberDAO.findAllByOrganizationsContainsOrderByUsername(organization.getOrganizationId());
     }
 
     @Override

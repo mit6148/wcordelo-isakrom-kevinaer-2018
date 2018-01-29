@@ -16,9 +16,9 @@ public class Charity {
     private String description;
     @Deprecated
     private Privilege privilege;
-    @DBRef
-    @CascadeSave
-    private Payment payment;
+//    @DBRef
+//    @CascadeSave
+//    private Payment payment;
     private String website;
 
     public Charity() {
@@ -26,7 +26,7 @@ public class Charity {
         this.name = "";
         this.description = "";
         this.privilege = Privilege.CHARITY_VERIFIED;
-        this.payment = new Payment();
+//        this.payment = new Payment();
         this.website = "";
     }
 
@@ -57,14 +57,14 @@ public class Charity {
     public void setPrivilege(Privilege privilege) {
         this.privilege = privilege;
     }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
+//
+//    public Payment getPayment() {
+//        return payment;
+//    }
+//
+//    public void setPayment(Payment payment) {
+//        this.payment = payment;
+//    }
 
     public String getWebsite() {
         return website;
