@@ -38,9 +38,7 @@ public class MemberController implements CrudController<Member> {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity create(@RequestBody Member member) {
         if (credentialService.exists(member.getUsername())
-                && !credentialService.containsType(UserType.MEMBER, member.getUsername())
                 && memberService.create(member)) {
-            credentialService.addType(UserType.MEMBER, member.getUsername());
             return ResponseEntity.status(201).build();
         } else {
             return ResponseEntity.badRequest().build();
@@ -68,7 +66,6 @@ public class MemberController implements CrudController<Member> {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable("id") String id, Principal principal){
         if (memberService.delete(id)) {
-            credentialService.removeType(UserType.MEMBER, id);
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.badRequest().build();
@@ -76,7 +73,10 @@ public class MemberController implements CrudController<Member> {
     }
 
     @RequestMapping(value = "/{id}/payment", method = RequestMethod.POST)
-    public ResponseEntity updatePayment(@PathVariable("id") String id, @RequestBody Payment payment, Principal principal, HttpServletResponse response){
+    public ResponseEntity updatePayment(@PathVariable("id") String id,
+                                        @RequestBody Payment payment,
+                                        Principal principal,
+                                        HttpServletResponse response){
         if (paymentService.update(payment)) {
             try {
                 response.sendRedirect("/member/"+id);

@@ -1,10 +1,9 @@
 package io.smartraise.config;
 
 import io.smartraise.security.CustomAuthProvider;
-import io.smartraise.security.CustomAuthenticationSuccessHandler;
+import io.smartraise.security.AuthenticationListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,7 +17,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private CustomAuthProvider authProvider;
 
     @Autowired
-    private CustomAuthenticationSuccessHandler successHandler;
+    private AuthenticationListener authenticationListener;
+
+//    @Autowired
+//    private CustomAuthenticationFailureHandler failureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,10 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .successHandler(successHandler)
+                .successHandler(authenticationListener)
+                .failureHandler(authenticationListener)
                 .permitAll()
                 .and()
             .logout()
+                .invalidateHttpSession(true)
+                .logoutUrl("/")
                 .permitAll();
     }
 

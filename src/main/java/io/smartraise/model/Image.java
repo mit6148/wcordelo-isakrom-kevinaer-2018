@@ -47,6 +47,13 @@ public class Image {
         this.type = type;
     }
 
+    public Image(String string, String id, ImageType type) {
+        this.id = id;
+        this.bytes = string;
+        this.bytes = encodeBase64String(new byte[0]);
+        this.type = type;
+    }
+
 
     public String getBytes() {
         return bytes;

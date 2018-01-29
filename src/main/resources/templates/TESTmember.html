@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body >
+    <!--View Profile info-->
+    <h1 >Member</h1>
+        <p id="memberId" th:text="${profile.username}" />
+        <p th:text="${profile.contactInformation.email}" />
+        <p th:text="${profile.contactInformation.firstName} + ' ' +${profile.contactInformation.lastName} "></p>
+
+    <!--View profile picture-->
+    <div>
+        <img height="240" width="240" id="image" name="image" th:src="${profile_image}"/>
+    </div>
+
+    <!--View organizations user is in-->
+    <div>
+        <h2>Organizations</h2>
+        <div th:each="org, org1:${orgs}">
+            <div th:text="${org.name}"></div>
+            <div th:text="${org.description}"></div>
+            <a th:href="@{${org.website}}">LINK</a>
+        </div>
+    </div>
+
+    <!--View donations user made-->
+    <div>
+        <h2>Donations</h2>
+        <div th:each="donation, donation1:${donations}">
+            <div th:text="${donation.charity.name}"></div>
+            <div th:text=" ${donation.amount}"></div>
+            <div th:text="${donation.date}"></div>
+        </div>
+    </div>
+
+    <!--Edit member button-->
+    <form method="GET" th:action="@{'/member/'+${profile.username}+'/edit'}" >
+        <input type="submit" name="button" value="Edit">
+    </form>
+
+    <!--Logout Button-->
+    <form method="POST" th:action="@{'/logout'}" >
+        <input type="submit" name="button" value="Logout">
+    </form>
+
+    </body>
+</html>

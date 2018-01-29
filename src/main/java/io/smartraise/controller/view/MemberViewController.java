@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -44,26 +43,34 @@ public class MemberViewController {
             model.addAttribute("orgs", organizationService.getFromMember(member));
             model.addAttribute("donations", donationService.getDonationsByDonor(id));
             model.addAttribute("donations", donationService.getDonationsByDonor(id));
-            return "profile";
+            return "TESTmember";
         } else {
             return "home";
         }
     }
 
     @GetMapping("/member/{id}/edit")
-    public ModelAndView getEditMember(@PathVariable("id") String id, Principal principal, HttpServletResponse response){
-        try {
-            if (principal != null && principal.getName().equalsIgnoreCase(id)) {
-                ModelAndView mav = new ModelAndView("edit1");
-                mav.addObject("profile", memberService.get(id));
-                return mav;
-            } else {
-                response.sendRedirect("/home");
-                return null;
-            }
-        } catch (IOException e) {
-            return null;
+    public String getEditMember(@PathVariable("id") String id, Model model, Principal principal, HttpServletResponse response){
+        if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+            model.addAttribute("profile", memberService.get(id));
+            return "TESTedit";
+        } else {
+//                response.sendRedirect("/home");
+            return "login";
         }
+
+//        try {
+//            if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+//                ModelAndView mav = new ModelAndView("edit1");
+//                mav.addObject("profile", memberService.get(id));
+//                return mav;
+//            } else {
+//                response.sendRedirect("/home");
+//                return null;
+//            }
+//        } catch (IOException e) {
+//            return null;
+//        }
     }
 
     @PostMapping("/member/{id}/edit")
