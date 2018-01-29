@@ -16,6 +16,7 @@ public class Member {
 
     @Id
     private String username;
+    @Deprecated
     private final Set<Privilege> privilege;
     private Set<String> organizations;
 

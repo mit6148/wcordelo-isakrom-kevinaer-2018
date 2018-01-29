@@ -58,6 +58,34 @@ public interface OrganizationService extends CrudService<Organization>, Validati
     void deleteAdmin(Member member, String id);
 
     /**
+     *  Adds a {@link Member} into the {@link Organization}
+     * @param member    the {@link Member} being added
+     * @param id    the id of the {@link Organization}
+     */
+    void addMember(String member, String id);
+
+    /**
+     *  Removes a {@link Member} from the {@link Organization}
+     * @param member    the {@link Member} being removed
+     * @param id    the id of the {@link Organization}
+     */
+    void deleteMember(String member, String id);
+
+    /**
+     *  Adds a {@link Member} into the {@link Organization}'s admin list
+     * @param member    the {@link Member} being added to the admin list
+     * @param id    the id of the {@link Organization}
+     */
+    void addAdmin(String member, String id);
+
+    /**
+     *  Removes a {@link Member} from the {@link Organization}'s admin list
+     * @param member    the {@link Member} being removed from the admin list
+     * @param id    the id of the {@link Organization}
+     */
+    void deleteAdmin(String member, String id);
+
+    /**
      * Gets all organization a {@link Member} is a part of
      * @param member  the {@link Member}
      * @return the set of organizations a {@link Member is a part of}
