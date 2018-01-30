@@ -506,7 +506,7 @@
                     <button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
                 </div>
                 <div class="column">
-                    <button><a th:href="@{/member/{id}/edit(id=${profile.username})}">Edit Profile</a></button>
+                    <button><a style="color: white;" th:href="@{/member/{id}/edit(id=${profile.username})}">Edit Profile</a></button>
                 </div>
             </div>
         </div>
@@ -539,52 +539,7 @@
 
 
                 </div>
-
-                <!--Events-->
-                <!--<div id="Events" class="tabcontent w3-animate-opacity">-->
-                    <!--<h3>Events</h3>-->
-                    <!--<div class="col">-->
-                        <!--<div class="event-card">-->
-                            <!--<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">-->
-                             <!--<div class="card-block">-->
-                                <!--<div class="row">-->
-                                    <!--<div class="col">-->
-                                        <!--<div class="row card-title"><h3>Fundraising Event of the Century</h3></div>-->
-                                        <!--<div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col card-date">-->
-                                        <!--<div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>-->
-                                        <!--<div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!--<p class="event-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>-->
-                                <!--<p class="card-charity">All donations go to: GoFund Me, Inc.</p></div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div id="Events" class="tabcontent w3-animate-opacity">-->
-                    <!--<h3>Events</h3>-->
-                    <!--<div class="col">-->
-                        <!--<div class="event-card" th:each="event: ${current}">-->
-                            <!--<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">-->
-                            <!--<div class="card-block">-->
-                                <!--<div class="row">-->
-                                    <!--<div class="col">-->
-                                        <!--<div class="row card-title" th:text="${event.name}"><h3>Fundraising Event of the Century</h3></div>-->
-                                        <!--<div class="row card-organization" th:text=" 'Hosted by: ' + ${event.organization}"><p>Hosted by: N/A</p></div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col card-date">-->
-                                        <!--<div class="row card-start-date" th:text=" 'Start Date: ' + ${event.startDate}"><span>Start Date: N/A</span></div>-->
-                                        <!--<div class="row card-end-date" th:text=" 'End Date: ' + ${event.endDate}"><span>End Date: N/A</span></div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!--<p class="event-description" th:text="${event.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>-->
-                                <!--<p class="card-charity" th:text=" 'All donations go to: ' + ${event.charity}">All donations go to: GoFund Me, Inc.</p></div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
+                
                 <!--Statistics-->
                 <div id="Statistics" class="tabcontent w3-animate-opacity">
                     <h3>Statistics</h3>
@@ -619,61 +574,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!--<div class="card" ng-app="myApp" ng-controller="myCtrl">-->
-                        <!--&lt;!&ndash;Card content&ndash;&gt;-->
-                        <!--<div class="card-body container">-->
-                            <!--<div class="row" style="padding-left: 10pt">-->
-                                <!--<form action="action_page.php">-->
-                                    <!--<input type="text" class="search" placeholder="Search.." name="search" ng-model="searchText" >-->
-                                <!--</form>-->
-                            <!--</div>-->
-                            <!--<div id="EventList" class="ng-cloak">-->
-                                <!--<div ng-repeat="ovent in myWelcome | filter:searchText">-->
-                                    <!--<div class="container">-->
-
-                                        <!--<div class="cardy">-->
-                                            <!--<div class="image pull-left">-->
-                                                <!--<img src="" style="z-index: 10">-->
-                                                <!--<p id="eventId" class="invis">{{ovent.eventId}}</p>-->
-                                            <!--</div>-->
-                                            <!--<div class="content pull-left" style="padding-left:20pt">-->
-                                                <!--<div style="display:flex;flex-direction:row;">-->
-                                                    <!--<a href="" id="eventTitle"><h5 >{{ovent.name}}</h5></a>-->
-                                                    <!--<h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}} </h6>-->
-                                                    <!--<h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>-->
-                                                <!--</div >-->
-                                                <!--<p style="padding-top:2%">-->
-                                                    <!--{{ovent.description}}-->
-                                                <!--</p>-->
-                                                <!--<hr>-->
-                                                <!--<small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>-->
-                                            <!--</div>-->
-                                            <!--<script>-->
-                                                <!--var queryString = "?" + document.getElementById("eventId").innerText;-->
-                                                <!--var link = "eventPage" + queryString;-->
-                                                <!--console.log(queryString);-->
-                                                <!--var yourElement = document.getElementById('eventTitle');-->
-                                                <!--yourElement.setAttribute('href', link);-->
-                                            <!--</script>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<script>-->
-                                <!--var app = angular.module('myApp', []);-->
-                                <!--app.controller('myCtrl', function ($scope, $http) {-->
-                                    <!--$http.get("/api/events")-->
-                                        <!--.then(function (response) {-->
-                                            <!--console.log(response.data)-->
-                                            <!--$scope.myWelcome = response.data;-->
-                                        <!--});-->
-                                <!--});-->
-                            <!--</script>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                <!--</div>-->
             </div>
         </div>
     </div>
