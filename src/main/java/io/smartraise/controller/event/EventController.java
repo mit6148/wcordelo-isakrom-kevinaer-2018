@@ -2,15 +2,15 @@ package io.smartraise.controller.event;
 
 import io.smartraise.controller.CrudController;
 import io.smartraise.model.Privilege;
+import io.smartraise.model.fundraise.DonationRequest;
 import io.smartraise.model.fundraise.Event;
-import io.smartraise.service.CharityService;
-import io.smartraise.service.DonationService;
-import io.smartraise.service.EventService;
-import io.smartraise.service.OrganizationService;
+import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.security.Principal;
 
 @RestController
@@ -28,6 +28,9 @@ public class EventController implements CrudController<Event> {
 
     @Autowired
     private CharityService charityService;
+
+    @Autowired
+    private MemberService memberService;
 
     @Override
     @RequestMapping(method = RequestMethod.POST)
@@ -82,5 +85,28 @@ public class EventController implements CrudController<Event> {
     @RequestMapping(value = "/{id}/donations", method = RequestMethod.GET)
     public ResponseEntity getDonations(@PathVariable("id") String id, Principal principal) {
         return ResponseEntity.ok(donationService.getDonationsByEvent(id));
+    }
+
+    @RequestMapping(value = "/{id}/donation", method = RequestMethod.POST)
+    public ResponseEntity createDonation(@PathVariable("id") String id,
+                                         @RequestBody DonationRequest donationRequest,
+                                         Principal principal,
+                                         HttpServletResponse response) throws IOException {
+        if (principal != null) {
+            if (donationRequest.getDonorId().isEmpty()) {
+                donationRequest.setDonorId(principal.getName());
+            }
+            if (donationService.makeDonation(
+                    eventService.get(donationRequest.getEventId()),
+                    memberService.get(donationRequest.getDonorId()),
+                    donationRequest.getAmount())) {
+                return ResponseEntity.ok(true);
+            } else {
+                return ResponseEntity.ok(false);
+            }
+        } else {
+            response.sendRedirect("/login");
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
