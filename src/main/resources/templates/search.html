@@ -26,7 +26,6 @@
 * {
   box-sizing: border-box;
 }
-
 /* Style the search field */
 form.example input[type=text] {
   padding: 10px;
@@ -40,7 +39,6 @@ form.example input[type=text] {
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
-
 /* Style the submit button */
 form.example button {
   float: left;
@@ -53,18 +51,15 @@ form.example button {
   border-left: none; /* Prevent double borders */
   cursor: pointer;
 }
-
 form.example button:hover {
   background: #28a745;
 }
-
 /* Clear floats */
 form.example::after {
   content: "";
   clear: both;
   display: table;
 }
-
 /****** LOGIN MODAL ******/
 .loginmodal-container {
   padding: 30px;
@@ -77,13 +72,11 @@ form.example::after {
   overflow: hidden;
   font-family: roboto;
 }
-
 .loginmodal-container h1 {
   text-align: center;
   font-size: 1.8em;
   font-family: roboto;
 }
-
 .loginmodal-container input[type=submit] {
   width: 100%;
   display: block;
@@ -91,7 +84,6 @@ form.example::after {
   position: relative;
   background: #ff9800;
 }
-
 .loginmodal-container input[type=text], input[type=password] {
   height: 44px;
   font-size: 16px;
@@ -106,7 +98,6 @@ form.example::after {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-
 .loginmodal-container input[type=text]:hover, input[type=password]:hover {
   border: 1px solid #b9b9b9;
   border-top: 1px solid #a0a0a0;
@@ -114,7 +105,6 @@ form.example::after {
   -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
-
 .loginmodal {
   text-align: center;
   font-size: 14px;
@@ -126,7 +116,6 @@ form.example::after {
 /* -webkit-user-select: none;
   user-select: none; */
 }
-
 .loginmodal-submit {
   /* border: 1px solid #3079ed; */
   border: 0px;
@@ -138,7 +127,6 @@ form.example::after {
   font-size: 14px;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
-
 .loginmodal-submit:hover {
   /* border: 1px solid #2f5bb7; */
   border: 0px;
@@ -146,7 +134,6 @@ form.example::after {
   background-color: #357ae8;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
 }
-
 .loginmodal-container a {
   text-decoration: none;
   color: #666;
@@ -156,7 +143,6 @@ form.example::after {
   opacity: 0.6;
   transition: opacity ease 0.5s;
 }
-
 .login-help{
   font-size: 12px;
 }
@@ -201,20 +187,19 @@ form.example::after {
           justify-content:center;
           align-items:center;
         }
-        .search {
-                max-width: none;
-                padding: 1pt;
-                font-size: 15px;
-                border: none;
-                float: left;
-                width: auto;
-                position: sticky;
-                background: white;
-                border-style: solid;
-                border-color: gainsboro;
-                border-radius: 5pt;
-                -webkit-text-fill-color: black;
-            }
+        .search{
+            max-width:none;
+            padding: 15px;
+            font-size: 17px;
+            border: none;
+            float: left;
+            width: 665pt;
+            position:sticky;
+            background: white;
+            border-style: solid;
+            border-color: gainsboro;
+            border-radius: 5pt;
+        }
         .card {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
           width: 700pt;
@@ -236,7 +221,6 @@ form.example::after {
           font-size: 0px;
           z-index: -1;
       }
-
       button {
           border: none;
           outline: 0;
@@ -249,7 +233,6 @@ form.example::after {
           width: 100%;
           font-size: 18px;
       }
-
                 .cardy {
                 background: #fff;
                 display: inline-block;
@@ -257,26 +240,22 @@ form.example::after {
                 width: 751px;
                 height: 220px;
                 }
-
                 .image {
                 float: left;
                 background: #000;
                 width: 184px;
                 height: 220px
                 }
-
                 .content {
                 float: left;
                 height: 140px;
                 width: 73%;
-                overflow:hidden;
+                overflow:hidden
                 padding: 5px;
                 }
-
                 .content h4 {
                 margin: 5px 0;
                 }
-
                 .hr {
                 display: block;
                 height: 1px;
@@ -285,25 +264,6 @@ form.example::after {
                 margin: 1em 0;
                 padding: 0;
         }
-          .floating-menu {
-    font-family: sans-serif;
-    background: #fd7e14;
-    padding: 10pt;
-    width: auto;
-    z-index: 100;
-    position: fixed;
-    margin-left: 20pt;
-              border-radius: 5%;
-  }
-  .floating-menu a, 
-  .floating-menu h3 {
-    margin-top: 70pt;
-    font-size: 0.9em;
-    display: block;
-    margin: 0 0.5em;
-    color: white;
-    margin-left: 20pt;
-  }
         </style>
   </head>
   <body style="background:#ffe0b2">
@@ -312,32 +272,7 @@ form.example::after {
         <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
         <a class="nav-link al-right" href="#">Sign up</a>
      </nav>
-    <div class="column">
-    <div class="floating-menu" ng-app="myApp" ng-controller="myCtrl" style="width:200pt ; top: 70pt;-webkit-text-fill-color: white; background-color: 	#fe6b40">
-    <h2>Search Menu</h2>
-    <div class="container" style="margin-top: 5pt;">
-        <div class="row">
-        <h6 style="margin-top: 5pt; margin-right: auto">General:</h6>
-        <input type="text" class="search" placeholder="Search.." name="search" ng-model="generalText" style="margin-top: 5pt">
-        </div>
-        <div class="row">
-        <h6 style="margin-top: 5pt; margin-right: auto">Name:</h6>
-        <br>
-        <input type="text" class="search" placeholder="Search.." name="search" ng-model="nameText" style="margin-top: 5pt">
-        </div>
-        <div class="row">
-        <h6 style="margin-top: 5pt; margin-right: auto">Host</h6>
-        <br>
-        <input type="text" class="search" placeholder="Search.." style="margin-top: 5pt" name="search" ng-model="hostText" >
-        </div>
-        <div class="row">
-        <h6 style="margin-top: 5pt; margin-right: auto">Location</h6>
-        <br>
-        <input type="text" style="margin-top: 5pt" class="search" placeholder="Search.." name="search" ng-model="locationText" >
-        </div>
-    </div>
-  </div>
-     <div class="card" ng-app="myApp" ng-controller="myCtrl" style="margin-left: 230pt; margin-top: 75pt">
+     <div class="card" ng-app="myApp" ng-controller="myCtrl">
         <!--Card content-->
         <div class="card-body container">
             <!-- Form Stuff
@@ -347,16 +282,14 @@ form.example::after {
           </form>
           -->
           <div class="row" style="padding-left: 10pt">
-            <h1>Search Results</h1>
+            <form action="action_page.php">
+              <input type="text" class="search" placeholder="Search.." name="search" ng-model="searchText" >
+            </form>
           </div>
           <div id="EventList" class="ng-cloak">
-              <div ng-repeat="ovent in myWelcome | filter:{searchText, name: nameText, location: locationText, host: hostText}">
+              <div ng-repeat="ovent in myWelcome | filter:searchText">
                 <div class="container">
-                        <script>
-                            var time = ovent.startDate;
-                            var date = new Date(time);
-                            truTime = date.toString()
-                        </script>
+
                       <div class="cardy">
                                 <div class="image pull-left">
                                     <img src="" style="z-index: 10">
@@ -365,14 +298,13 @@ form.example::after {
                         <div class="content pull-left" style="padding-left:20pt">
                           <div style="display:flex;flex-direction:row;">
                               <a href="" id="eventTitle"><h5 >{{ovent.name}}</h5></a>
-                              <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{truTime}} </h6>
+                              <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}} </h6>
                               <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>
-                          </div>
+                          </div >
                           <p style="padding-top:2%">
                          {{ovent.description}}
                           </p>
                           <hr>
-                          <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
                         </div>
                           <script>
                               var queryString = "/" + document.getElementById("eventId").innerText;
@@ -401,6 +333,5 @@ form.example::after {
         </script>
       </div>
      </div>
-      </div>
   </body>
 </html>
