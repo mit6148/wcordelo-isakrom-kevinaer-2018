@@ -306,152 +306,120 @@ input[type=text]:focus {
               <div class="tab" style="background: #64dd17">
                 <div class="row" style="background: #64dd17; float: right">
                     <div class="column" >
-                        <button class="tablinks" id="defaultTab" onclick="openTab(event, 'Information and Members')">Information and Members</button>
+                        <button class="tablinks" id="defaultTab" onclick="openTab(event, 'Information and Members')">Contact Information</button>
                     </div>
                     <div class="column">
-                        <button class="tablinks" onclick="openTab(event, 'Donations')">Donations</button>
+                        <button class="tablinks" onclick="openTab(event, 'Donations')">Profile Picture</button>
                     </div>
                     <div class="column" style="padding-right: 10pt">
-                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Membership</button>
+                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Payment</button>
                     </div>
                 </div>
               </div>
             <div class="row" style="width:inherit">
                 <div class="column">
-                   
-                </div>
-                <div class="column">
                     <!-- Tab content -->
-              <div id="Information and Members" class="tabcontent w3-animate-opacity" style="display:none">
-                <h3>Information and Members</h3>
-                <textarea name="message" rows="10" cols="94" style="width: inherit; align-self: center">
-                    <p>The LEGO Group is a privately held company based in Billund, Denmark. The company is still owned by the Kirk Kristiansen family who founded it in 1932.
-                    It is the LEGO® philosophy that ‘good quality play’ enriches
-                    a child’s life – and lays the foundation for later adult life. We
-                    believe that play is a key element in children’s growth and development
-                    and stimulates the imagination and the emergence of
-                    ideas and creative expression. All LEGO products are based
-                    on this underlying philosophy of learning and development
-                    through play.
-                  
-                    Only the best is good enough
-                    True to its motto ‘Only the best is good enough’, the LEGO
-                    Group has been emphasising the importance of high quality
-                    since 1932, where the founder Ole Kirk Kristiansen began
-                    making wooden toys. High quality and safe products have remained
-                    the focal point for the LEGO Group throughout the years -
-                    and it still is. LEGO products are tested rigorously to live up 
-                    to the strictest safety and quality standards
-                    as well as our own high expectations. This approach
-                    has made children and adults return to LEGO products time
-                    and again.
-                </p>
-                <p>
-                    Systematic creativity
-                    LEGO bricks are all part of the LEGO system, which essentially
-                    means that they can easily be combined in innumerable
-                    ways – and just as easily be dismantled. The more LEGO
-                    bricks you have, the more fertile your creativity can become.
-                    The combination of a structured system, logic and unlimited
-                    creativity encourages the child to learn through play in a
-                    wholly unique LEGO fashion. 
-                </p>
-                <p>
-                    A positive impact
-                    The LEGO Group wants to leave a positive impact – be it in
-                    respect to the Group’s stakeholders or the wider community.
-                    The LEGO Group is committed to caring for the environment
-                    and the society that children will inherit, and to inspiring and
-                    developing the builders of tomorrow.
-                </p>
-                </textarea>
-              </div>
-
-              <div id="Donations" class="tabcontent w3-animate-opacity">
-                <h3>Donations</h3>
-                <p>Paris is the capital of France.</p> 
-              </div>
-
-              <div id="Future Events" class="tabcontent w3-animate-opacity">
-                <h3>Future Events</h3>
-                      <div class="container">
-
-                          <div class="col-md-4">
-                    
-                            <div id="itcard">
-                              <div class="image pull-left">
-                                <img src="http://www.aljazeera.com/mritems/imagecache/midthumbnail/mritems/Images/2016/10/8/f04833e2aed14f10be924562e232fb87_18.jpg" class="image pull-left">
-                              </div>
-                              <div class="content pull-left" style="padding-left:20pt; font-size: 1vw">
-                                <div style="display:flex;flex-direction:row;">
-                                    <h4 style=" font-size: 1.5vw">Charity Drive for Haiti</h4> 
-                                    <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">January 21, 2018</h4> 
-                                    <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">Boston Commons, Boston, MA</h4> 
-                                </div >
-                                <p style="padding-top:2%">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                                <hr>
-                                <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                              </div>
-                              <div class="clearfix">
-                              </div>
-                            </div>
-                          </div>
+                  <div id="Information and Members" class="tabcontent w3-animate-opacity" style="display: block; width: 680pt; margin-left: 10pt; border: 0pt solid black;">
+                <h3>Contact Information</h3>
+            <div class="panel panel-default container">
+            <form th:action="@{'/member/' + ${profile.username} + '/edit'}" th:object="${profile}" th:method="POST">
+            <input hidden th:field="*{username}"/>
+            <input hidden th:field="*{contactInformation.username}"/>
+            <input hidden th:field="*{organizations}">
+                <div class="panel-body form-horizontal payment-form">
+                    <div class="row form-group">
+                        <label for="concept" class="col-sm-3 control-label">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" th:field="*{contactInformation.firstName}" placeholder="First Name"/>
+                            <input type="text" th:field="*{contactInformation.lastName}" placeholder="Last Name"/>
                         </div>
-                        <div class="container">
+                    </div>
+                    <div class="row form-group">
+                        <label for="description" class="col-sm-3 control-label">E-mail</label>
+                        <div class="col-sm-9">
+                            <input type="text" th:field="*{contactInformation.email}" placeholder="E-mail"/>
+                        </div>
+                    </div> 
+                    <div class="row form-group">
+                        <label for="amount" class="col-sm-3 control-label">Address</label>
+                        <div class="col-sm-9">
+                    <input type="text" th:field="*{contactInformation.address}" placeholder="Address"/>
+                            <br>
+                    <input type="text" th:field="*{contactInformation.city}" placeholder="City"/>
+                            <br>
+                    <input type="text" th:field="*{contactInformation.state}" placeholder="State"/>
+                            <br>
+                    <input type="text" th:field="*{contactInformation.country}" placeholder="Country"/>
+                            <br>
+                    <input type="text" th:field="*{contactInformation.zipCode}" placeholder="Zip Code"/>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="number" class="col-sm-3 control-label">Phone Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" placeholder="787-334-3422" th:field="*{contactInformation.phone}"/>
+                        </div>
+                    </div>   
+                    <div class="row form-group">
+                        <div class="col-sm-12 text-right">
+                            <button type="button" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-plus">Submit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+        </div>
+        </div>
 
-                            <div class="col-md-4">
-                      
-                              <div id="itcard">
-                                <div class="image pull-left">
-                                  <img src="http://www.aljazeera.com/mritems/imagecache/midthumbnail/mritems/Images/2016/10/8/f04833e2aed14f10be924562e232fb87_18.jpg" class="image pull-left">
-                                </div>
-                                <div class="content pull-left" style="padding-left:20pt; font-size: 1vw">
-                                  <div style="display:flex;flex-direction:row;">
-                                      <h4 style=" font-size: 1.5vw">Charity Drive for Haiti</h4> 
-                                      <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">January 21, 2018</h4> 
-                                      <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">Boston Commons, Boston, MA</h4> 
-                                  </div >
-                                  <p style="padding-top:2%">
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                  </p>
-                                  <hr>
-                                  <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                                </div>
-                                <div class="clearfix">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="container">
+              <div id="Donations" style="display: block; width: 680pt; margin-left: 10pt; border: 0pt solid black;" class="tabcontent w3-animate-opacity">
+                <h3>Profile Picture</h3>
+                <form name="upload" id="upload" method="POST" enctype="multipart/form-data" th:object="${profile}" th:action="@{'/member/' + ${profile.username} +'/profile'}">
+            <label >Select File</label>
+            <input type="file" class="file" name="file" id="file"/>
+            <input type="submit" name="submit" value="Upload" />
+        </form>
+              </div>
 
-                              <div class="col-md-4">
-                        
-                                <div id="itcard">
-                                  <div class="image pull-left">
-                                    <img src="http://www.aljazeera.com/mritems/imagecache/midthumbnail/mritems/Images/2016/10/8/f04833e2aed14f10be924562e232fb87_18.jpg" class="image pull-left">
-                                  </div>
-                                  <div class="content pull-left" style="padding-left:20pt; font-size: 1vw">
-                                    <div style="display:flex;flex-direction:row;">
-                                        <h4 style=" font-size: 1.5vw">Charity Drive for Haiti</h4> 
-                                        <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">January 21, 2018</h4> 
-                                        <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">Boston Commons, Boston, MA</h4> 
-                                    </div >
-                                    <p style="padding-top:2%">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    </p>
-                                    <hr>
-                                    <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                                  </div>
-                                  <div class="clearfix">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+              <div id="Future Events" style="display: block; width: 680pt; margin-left: 10pt; border: 0pt solid black;" class="tabcontent w3-animate-opacity">
+         <div style="align-content: center">
+            <h4>Add payment:</h4>
+            <div class="panel panel-default container">
+                <div class="panel-body form-horizontal payment-form">
+                    <div class="row form-group">
+                        <label for="concept" class="col-sm-3 control-label">Concept</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="concept" name="concept">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="description" class="col-sm-3 control-label">Description</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="description" name="description">
+                        </div>
+                    </div> 
+                    <div class="row form-group">
+                        <label for="amount" class="col-sm-3 control-label">Amount</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="amount" name="amount">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="date" class="col-sm-3 control-label">Date</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="date" name="date">
+                        </div>
+                    </div>   
+                    <div class="row form-group">
+                        <div class="col-sm-12 text-right">
+                            <button type="button" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-plus"></span> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
               </div>
         </div>
                 </div>
