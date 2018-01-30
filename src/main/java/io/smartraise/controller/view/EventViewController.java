@@ -1,5 +1,6 @@
 package io.smartraise.controller.view;
 
+import io.smartraise.model.fundraise.Charity;
 import io.smartraise.model.fundraise.DonationRequest;
 import io.smartraise.model.fundraise.Event;
 import io.smartraise.model.fundraise.Organization;
@@ -40,7 +41,9 @@ public class EventViewController {
             event.setOrganization(organization);
             model.addAttribute("organization", organization);
             model.addAttribute("event", event);
+            System.out.println(event.getStartDate());
             model.addAttribute("charities", charityService.getAllSorted());
+            model.addAttribute("selectedCharity", new Charity());
             return "createEvent";
         } else {
             return "login";
@@ -48,14 +51,15 @@ public class EventViewController {
     }
 
     @PostMapping("/event")
-    public void createEvent(@Param("org") String org,
-                            @ModelAttribute("event") Event event,
-                            @ModelAttribute("organization") Organization organization,
-            HttpServletResponse response, Principal principal) throws IOException {
-        if (principal != null) {
-            response.sendRedirect("/");
+    public void createEvent(@ModelAttribute("event") Event event,
+                            HttpServletResponse response, Principal principal) throws IOException {
+        if (principal != null
+                && event.getOrganization().getMembers().contains(principal.getName())
+                && eventService.create(event)) {
+            response.sendRedirect("/event/"+event.getEventId());
+//            response.sendRedirect("/");
         } else {
-            response.sendRedirect("/login");
+            response.sendRedirect("/");
         }
     }
 

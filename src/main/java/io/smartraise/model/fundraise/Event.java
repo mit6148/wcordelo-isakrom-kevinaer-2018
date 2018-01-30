@@ -4,7 +4,10 @@ import io.smartraise.model.accounts.Address;
 import io.smartraise.util.CascadeSave;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 public class Event {
@@ -15,7 +18,9 @@ public class Event {
     private final String eventId;
     private String name;
     private String description;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     private Date endDate;
     private Address address;
     private double goal;

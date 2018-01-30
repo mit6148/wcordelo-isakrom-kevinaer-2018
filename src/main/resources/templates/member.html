@@ -3,65 +3,18 @@
 <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/angular.min.js"></script>
-    <script type="text/javascript" src="js/fitty.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/angular.min.js"></script>
+    <script type="text/javascript" src="./js/fitty.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/w3.css">
-    <link rel="stylesheet" type="text/css" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/w3.css">
+    <link rel="stylesheet" type="text/css" href="./css/master.css">
 
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
         /* Style the tab */
-        .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-        }
-
-        /* Style the buttons that are used to open the tab content */
-        .tab button {
-            background-color: #64dd17;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-        }
-
-        /* Change background color of buttons on hover */
-        .tab button:hover {
-            background-color: #b2ff59;
-        }
-
-        /* Create an active/current tablink class */
-        .tab button.active {
-            background-color: #88ff00;
-        }
-
-        /* Style the tab content */
-        .tabcontent {
-            display: none;
-            padding: 6px 12px;
-            border: 1px solid #ccc;
-            border-top: none;
-        }
-
-        .person {
-            border: 10px solid white;
-            margin-bottom: 25px;
-            width: 80%;
-            height: 80%;
-            opacity: 1;
-        }
-
-        .person:hover {
-            border-color: #f1f1f1;
-            opacity: .7;
-        }
 
         /****** LOGIN MODAL ******/
         .loginmodal-container {
@@ -257,13 +210,6 @@
             padding: 0;
         }
 
-        .bottom-right {
-            position: absolute;
-            top: 175pt;
-            right: 525pt;
-            float: inherit;
-        }
-
         .hr {
             display: block;
             height: 1px;
@@ -272,11 +218,171 @@
             margin: 1em 0;
             padding: 0;
         }
+
+        /* Profile Style */
+
+        body
+        {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .fb-profile img.fb-image-lg{
+            z-index: 0;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .fb-image-profile
+        {
+            margin: -90px 10px 0px 50px;
+            z-index: 9;
+            width: 20%;
+        }
+
+        @media (max-width:768px)
+        {
+
+            .fb-profile-text>h1{
+                font-weight: 700;
+                font-size:16px;
+            }
+
+            .fb-image-profile
+            {
+                margin: -45px 10px 0px 25px;
+                z-index: 9;
+                width: 20%;
+            }
+        }
+
+        /* NavBar CSS Code */
+
+        .navbar.navbar-inverse {
+            border: none;
+        }
+        .navbar .navbar-brand {
+            padding-top: 0px;
+            margin-top: 7px;
+        }
+        .navbar .navbar-brand img {
+            height: 50px;
+        }
+
+        .logo {
+            padding-left: 10px ;
+        }
+
+        /* Profile Image*/
+        .img-fluid {
+            height: 275pt;
+            width:inherit;
+            z-index: -1
+        }
+
+        .person {
+            border: 10px solid white;
+            margin-bottom: 25px;
+            width: 150pt;
+            height: 150pt;
+            opacity: 1;
+
+        }
+
+        .view.overlay {
+            width: inherit;
+            margin: -1px;
+        }
+
+        .profile-img {
+            position: absolute;
+            top: 175pt;
+            right: 525pt;
+            float: inherit;
+
+        }
+
+        .profile-name {
+            position: absolute;
+            top: 175pt;
+            left: 186pt;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            color: white;
+
+        }
+
+        .member {
+            margin-left: 20px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .donation {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .donation-box {
+            position: absolute;
+            border-radius: 5px;
+            background: #64dd17;
+            border: #64dd17;
+            width: 200px;
+            height: 50px;
+            right: 18pt;
+            top: 198pt;
+        }
+
+        .row-content {
+            background: #64dd17;
+            float: right;
+            margin: 0px;
+        }
+
+        /*Tab Content*/
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: #64dd17;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #b2ff59;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #88ff00;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            /*border: 1px solid #ccc;*/
+            border-top: none;
+        }
+
     </style>
 </head>
 <body style="background:#ffe0b2">
 <nav class="navbar navbar-default">
-    <a href="TestSite.html" class="navbar-brand">SmartRaise</a>
+    <a href="home.html" class="navbar-brand"><img src="./img/SR.png"><span class="logo">SmartRaise</span></a>
     <form class="form-inline" style="margin: auto">
         <input class="form-control mr-sm-2" type="text" placeholder="Search">
         <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
@@ -284,36 +390,55 @@
            style="margin-left:10pt">Search Charities</a>
     </form>
 </nav>
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<!--<div class="container">-->
+    <!--<div class="fb-profile">-->
+        <!--<img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>-->
+        <!--<img align="left" class="fb-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>-->
+        <!--<div class="fb-profile-text">-->
+            <!--<h1>Eli Macy</h1>-->
+            <!--<p>Girls just wanna go fun.</p>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div> &lt;!&ndash; /container &ndash;&gt;-->
+
 <div class="card">
 
     <!--Card image-->
-    <div class="view overlay hm-white-slight" style="width: inherit">
-        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid"
-             style="height: 275pt; width:inherit; z-index: -1">
-        <a href="#">
-            <div class="mask"></div>
-        </a>
-        <div class="bottom-right" style="-webkit-text-fill-color: red; z-index: 5">
-            <img src="https://shop.lego.com/static/images/svg/lego-logo.svg" class="person"
-                 style="width: 150pt; height: 150pt">
-        </div>
+    <div class="view overlay">
+        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg">
+        <!--<div class="row">-->
+            <div class="profile-img">
+                <img class="person" src="https://shop.lego.com/static/images/svg/lego-logo.svg">
+            </div>
+            <div class="profile-name">
+                <h2 class="name">First Name Last Name</h2>
+                <p class="member"><h7>Member since: Jan 29, 2018</h7></p>
+                <p class="member"><h7 class="email">Email: email@mit.edu</h7></p>
+
+            </div>
+            <div class="donation-box">
+                <div class="donation">Amount Donated: $1000</div>
+            </div>
+        <!--</div>-->
+
+
     </div>
 
     <!--Card content-->
     <div class="card-body container">
         <!-- Tab links -->
         <div class="tab" style="background: #64dd17">
-            <div class="row" style="background: #64dd17; float: right">
+            <div class="row row-content">
                 <div class="column">
-                    <button class="tablinks" id="defaultTab" onclick="openTab(event, 'Information and Members')">
-                        Information and Members
-                    </button>
+                    <button class="tablinks" id="defaultTab" onclick="openTab(event, 'Organization')">Organization</button>
                 </div>
                 <div class="column">
-                    <button class="tablinks" onclick="openTab(event, 'Donations')">Donations</button>
+                    <button class="tablinks" onclick="openTab(event, 'Events')">Events</button>
                 </div>
                 <div class="column">
-                    <button class="tablinks" onclick="openTab(event, 'Future Events')">Membership</button>
+                    <button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
                 </div>
             </div>
         </div>
@@ -323,60 +448,43 @@
             </div>
             <div class="column">
                 <!-- Tab content -->
-                <div id="Information and Members" class="tabcontent w3-animate-opacity" style="display:none">
-                    <h3>Information and Members</h3>
-                    <p>The LEGO Group is a privately held company based in Billund, Denmark. The company is still owned
-                        by the Kirk Kristiansen family who founded it in 1932.
-                        It is the LEGO® philosophy that ‘good quality play’ enriches
-                        a child’s life – and lays the foundation for later adult life. We
-                        believe that play is a key element in children’s growth and development
-                        and stimulates the imagination and the emergence of
-                        ideas and creative expression. All LEGO products are based
-                        on this underlying philosophy of learning and development
-                        through play.
+                <div id="Organization" class="tabcontent w3-animate-opacity" style="display:none">
+                    <h3>Organization</h3>
 
-                        Only the best is good enough
-                        True to its motto ‘Only the best is good enough’, the LEGO
-                        Group has been emphasising the importance of high quality
-                        since 1932, where the founder Ole Kirk Kristiansen began
-                        making wooden toys. High quality and safe products have remained
-                        the focal point for the LEGO Group throughout the years -
-                        and it still is. LEGO products are tested rigorously to live up
-                        to the strictest safety and quality standards
-                        as well as our own high expectations. This approach
-                        has made children and adults return to LEGO products time
-                        and again.
-                    </p>
-                    <p>
-                        Systematic creativity
-                        LEGO bricks are all part of the LEGO system, which essentially
-                        means that they can easily be combined in innumerable
-                        ways – and just as easily be dismantled. The more LEGO
-                        bricks you have, the more fertile your creativity can become.
-                        The combination of a structured system, logic and unlimited
-                        creativity encourages the child to learn through play in a
-                        wholly unique LEGO fashion.
-                    </p>
-                    <p>
-                        A positive impact
-                        The LEGO Group wants to leave a positive impact – be it in
-                        respect to the Group’s stakeholders or the wider community.
-                        The LEGO Group is committed to caring for the environment
-                        and the society that children will inherit, and to inspiring and
-                        developing the builders of tomorrow.
-                    </p>
+                    <!--Card-->
+                    <div class="testimonial-card">
+
+                        <!--Bacground color-->
+                        <div class="card-up indigo lighten-1">
+                        </div>
+
+                        <!--Avatar-->
+                        <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
+                        </div>
+
+                        <div class="card-body">
+                            <!--Name-->
+                            <h4 class="card-title">Anna Doe</h4>
+                            <hr>
+                            <!--Quotation-->
+                            <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+
                 </div>
 
-                <div id="Donations" class="tabcontent w3-animate-opacity">
-                    <h3>Donations</h3>
+                <div id="Events" class="tabcontent w3-animate-opacity">
+                    <h3>Events</h3>
                     <p>Paris is the capital of France.</p>
                 </div>
 
 
 
 
-                <div id="Future Events" class="tabcontent w3-animate-opacity">
-                    <h3>Future Events</h3>
+                <div id="Statistics" class="tabcontent w3-animate-opacity">
+                    <h3>Statistics</h3>
 
                     <div class="card" ng-app="myApp" ng-controller="myCtrl">
                         <!--Card content-->
@@ -425,14 +533,13 @@
                                 </div>
                             </div>
                             <script>
-                                fitty('#EventList');
+                                fitty('#Future Events');
                                 console.log('Does fitty work?');
-                            </script>
-                            <script>
+
                                 var app = angular.module('myApp', []);
-                                app.controller('myCtrl', function($scope, $http) {
+                                app.controller('myCtrl', function ($scope, $http) {
                                     $http.get("/api/events")
-                                        .then(function(response) {
+                                        .then(function (response) {
                                             console.log(response.data)
                                             $scope.myWelcome = response.data;
                                         });

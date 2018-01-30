@@ -350,11 +350,27 @@
                                 <label class="cols-sm-4 control-label">Organization</label>
                                 <div>
                                     <label type="text" class="form-control" th:text="${organization.name}"/>
-                                    <div hidden th:field="*{organization}" th:value="${organization}"></div>
+                                    <input hidden th:field="*{organization}" th:value="${organization}"></input>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label th:for="*{startDate}" class="col-2 col-form-label">Start Time</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                                    <input class="form-control" type="datetime-local" th:field="*{startDate}" th:value="${#dates.formatISO(event.startDate)}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label th:for="*{endDate}" class="col-2 col-form-label">Start Time</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                                    <input class="form-control" type="datetime-local" th:field="*{endDate}" th:value="${#dates.formatISO(event.endDate)}">
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label class="cols-sm-2 control-label">Address</label>
@@ -415,9 +431,9 @@
                             <div class=" col-sm-6 form-group">
                                 <label class="cols-sm-2 control-label">Charities</label>
                                  <div class="form-group">
-                                    <select class="form-control" th:field="*{charity}">
+                                    <select class="form-control" th:field="*{charity}" required="required">
                                         <div >
-                                            <option th:each="charity :${charities}" th:value="${charity}" th:text="${charity.name}" ></option>
+                                            <option th:each="option :${charities}" th:value="${option.charityId}" th:text="${option.name}" ></option>
                                         </div>
                                     </select>
                                   </div>
