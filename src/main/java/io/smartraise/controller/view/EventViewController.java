@@ -57,7 +57,6 @@ public class EventViewController {
 
     @PostMapping("/event")
     public void createEvent(@ModelAttribute("event") Event event,
-                            @RequestParam("file") MultipartFile file,
                             HttpServletResponse response, Principal principal) throws IOException {
         if (principal != null
                 && event.getOrganization().getMembers().contains(principal.getName())
