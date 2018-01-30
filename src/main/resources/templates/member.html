@@ -527,7 +527,7 @@
                     <button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
                 </div>
                 <div class="column">
-                    <!--<button><a th:href="@{/event(org=${organization.organizationId})}">Edit Profile</a></button>-->
+                    <button><a th:href="@{/member/{id}/edit(id=${profile.username})}">Edit Profile</a></button>
                 </div>
             </div>
         </div>
