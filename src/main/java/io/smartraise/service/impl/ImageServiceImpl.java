@@ -44,8 +44,12 @@ public class ImageServiceImpl implements ImageService {
     public String get(String id, Image.ImageType imageType) throws IOException {
         if (imageDAO.existsByIdAndType(id, imageType)) {
             return "data:image/png;base64, " + imageDAO.getDistinctByIdAndType(id, imageType).getBytes();
-        } else {
+        } else if (imageType.equals(Image.ImageType.PROFILE)) {
             return imageURI.getEmptyProfile();
+        } else if (imageType.equals(Image.ImageType.ORG)) {
+            return imageURI.getEmptyOrg();
+        } else {
+            return imageURI.getEmptyOrg();
         }
     }
 
