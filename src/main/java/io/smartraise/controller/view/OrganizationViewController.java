@@ -45,4 +45,16 @@ public class OrganizationViewController {
             response.sendRedirect("/login?error");
         }
     }
+
+    @GetMapping("/organization/{id}")
+    public String getOrganization(@PathVariable("id") String id,
+                                      Model model, Principal principal, HttpServletResponse response){
+        if (principal != null && !principal.getName().isEmpty()) {
+            Organization organization = organizationService.get(id);
+            model.addAttribute("organization",organization);
+            return "organization";
+        } else {
+            return "login";
+        }
+    }
 }

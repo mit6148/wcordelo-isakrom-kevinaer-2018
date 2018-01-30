@@ -15,6 +15,9 @@ public class ImageServiceImpl implements ImageService {
     @Autowired
     private ImageDAO imageDAO;
 
+    @Autowired
+    private ImageURI imageURI;
+
     @Override
     public boolean create(MultipartFile file, String id, Image.ImageType type) {
         if (imageDAO.existsByIdAndType(id, type)) {
@@ -42,7 +45,7 @@ public class ImageServiceImpl implements ImageService {
         if (imageDAO.existsByIdAndType(id, imageType)) {
             return "data:image/png;base64, " + imageDAO.getDistinctByIdAndType(id, imageType).getBytes();
         } else {
-            return ImageURI.EMPTY_PROFILE;
+            return imageURI.getEmptyProfile();
         }
     }
 
