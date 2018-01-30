@@ -8,6 +8,7 @@ import io.smartraise.model.fundraise.Organization;
 import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,9 @@ public class EventViewController {
 
     @Autowired
     private OrganizationService organizationService;
+
+    @Autowired
+    private MemberService memberService;
 
     @Autowired
     private ImageService imageService;
@@ -75,6 +79,7 @@ public class EventViewController {
         model.addAttribute("charityImage", imageService.get(event.getCharity().getCharityId(), Image.ImageType.ORG));
         model.addAttribute("orgImage", imageService.get(event.getOrganization().getOrganizationId(), Image.ImageType.ORG));
         model.addAttribute("donations", donationService.getDonationsByEvent(id));
+        model.addAttribute("donationRequest", new DonationRequest());
         return "event";
     }
 
@@ -94,14 +99,20 @@ public class EventViewController {
         model.addAttribute("current", current);
         model.addAttribute("future", future);
         model.addAttribute("images", map);
+        if (principal != null) {
+            model.addAttribute("user", principal.getName());
+        }
         return "home";
     }
 
 
-//    @PostMapping("/event/{id}/donations")
-//    public String getMember(@PathVariable("id") String id, @RequestBody DonationRequest donationRequest, Principal principal){
-//        model.addAttribute("event", eventService.get(id));
-//        model.addAttribute("donations", donationService.getDonationsByEvent(id));
-//        return "event";
-//    }
+    @RequestMapping(value = "/event/{id}/donation",method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String getMember(@PathVariable("id") String id, DonationRequest donationRequest, Principal principal) {
+        if (principal != null) {
+            donationService.makeDonation(eventService.get(id), memberService.get(principal.getName()), donationRequest.getAmount());
+            return "redirect:/event/"+id;
+        } else {
+            return "redirect:/login";
+        }
+    }
 }
