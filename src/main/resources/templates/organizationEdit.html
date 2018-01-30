@@ -312,7 +312,7 @@ input[type=text]:focus {
                         <button class="tablinks" onclick="openTab(event, 'Donations')">Profile Picture</button>
                     </div>
                     <div class="column" style="padding-right: 10pt">
-                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Payment</button>
+                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Add Members</button>
                     </div>
                 </div>
               </div>
@@ -381,42 +381,13 @@ input[type=text]:focus {
 
               <div id="Future Events" style="display: block; width: 680pt; margin-left: 10pt; border: 0pt solid black;" class="tabcontent w3-animate-opacity">
          <div style="align-content: center">
-            <h4>Add payment:</h4>
-            <div class="panel panel-default container">
-                <div class="panel-body form-horizontal payment-form">
-                    <div class="row form-group">
-                        <label for="concept" class="col-sm-3 control-label">Concept</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="concept" name="concept">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <label for="description" class="col-sm-3 control-label">Description</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="description" name="description">
-                        </div>
-                    </div> 
-                    <div class="row form-group">
-                        <label for="amount" class="col-sm-3 control-label">Amount</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" id="amount" name="amount">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <label for="date" class="col-sm-3 control-label">Date</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="date" name="date">
-                        </div>
-                    </div>   
-                    <div class="row form-group">
-                        <div class="col-sm-12 text-right">
-                            <button type="button" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-plus"></span> Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>            
+                <form name="upload" id="upload" method="POST" enctype="multipart/form-data" th:object="${profile}" th:action="@{'/member/' + ${profile.username} +'/profile'}" style="padding: 10pt;">
+            <label >Member Name</label>
+            <input type="text" class="file" name="file"/>
+              <button type="button" class="btn btn-primary" style="margin: 10pt;">
+                                <span class="glyphicon glyphicon-plus">Add</span>
+                            </button>      
+        </form>
         </div>
               </div>
         </div>
