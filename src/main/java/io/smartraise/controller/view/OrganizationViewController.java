@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class OrganizationViewController {
             model.addAttribute("organization", new Organization());
             return "signUpOrg";
         } else {
-            return "login";
+            return "redirect:/login";
         }
     }
 
@@ -49,12 +50,12 @@ public class OrganizationViewController {
     @GetMapping("/organization/{id}")
     public String getOrganization(@PathVariable("id") String id,
                                       Model model, Principal principal, HttpServletResponse response){
-        if (principal != null && !principal.getName().isEmpty()) {
+//        if (principal != null && !principal.getName().isEmpty()) {
             Organization organization = organizationService.get(id);
             model.addAttribute("organization",organization);
             return "organization";
-        } else {
-            return "login";
-        }
+//        } else {
+//            return "login";
+//        }
     }
 }

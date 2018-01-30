@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -50,12 +51,13 @@ public class EventViewController {
             model.addAttribute("selectedCharity", new Charity());
             return "createEvent";
         } else {
-            return "login";
+            return "redirect:/login";
         }
     }
 
     @PostMapping("/event")
     public void createEvent(@ModelAttribute("event") Event event,
+                            @RequestParam("file") MultipartFile file,
                             HttpServletResponse response, Principal principal) throws IOException {
         if (principal != null
                 && event.getOrganization().getMembers().contains(principal.getName())

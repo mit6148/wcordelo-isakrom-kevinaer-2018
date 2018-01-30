@@ -30,7 +30,7 @@ public class ImageController {
     @Autowired
     private ImageURI imageURI;
 
-    @RequestMapping(value = "/profile/member/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/member/{id}/profile", method = RequestMethod.POST)
     @ResponseBody
     public void uploadProfile(@PathVariable("id") String id,
                                 @RequestParam("file") MultipartFile file,
@@ -39,7 +39,7 @@ public class ImageController {
         response.sendRedirect("/member/"+id);
     }
 
-    @RequestMapping(value = "/profile/member/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    @RequestMapping(value = "/member/{id}/profile", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody
     public ResponseEntity getProfile(@PathVariable("id") String id) {
         try {

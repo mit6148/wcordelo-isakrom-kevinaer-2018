@@ -12,7 +12,7 @@ import static org.apache.tomcat.util.codec.binary.Base64.encodeBase64String;
 
 public class Image {
 
-    public enum ImageType { PROFILE, COVER}
+    public enum ImageType { PROFILE, COVER, ORG }
 
     private String bytes;
     private String mime;
