@@ -762,15 +762,20 @@
             margin: 1em 0;
             padding: 0;
         }
-        
+
     </style>
 </head>
 <body style="background:#ffe0b2">
 <nav class="navbar navbar-default" >
-    <a href="home" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
     <a class="nav-link al-right" href="search" >Search Events</a>
-    <a class="nav-link al-right" href="login" >Log In</a>
-    <a class="nav-link al-right" href="signup">Sign up</a>
+    <div th:if="${principal!=null}">
+        <a class="nav-link al-right" th:href="@{'/member'+${principal.username}}" >Profile</a>
+    </div>
+    <div th:if="${principal==null}">
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
 </nav>
 <div class="card" ng-app="myApp" ng-controller="myCtrl" style="margin-left: 20%">
     <!--Card content-->
@@ -781,7 +786,7 @@
                 <input type="text" class="search" placeholder="Search.." name="search" ng-model="searchText" style="width: 670pt">
             </form>
         </div>
-        
+
           <!--EVENTS-->
           <div id="Past Events" class="tabcontent tabicontent w3-animate-opacity" style=" background-color: white; display: block;">
                     <div id="EventList" class="">
@@ -819,8 +824,8 @@
                             </div>
                         </div>
                     </div>
-                </div> 
-        
+                </div>
+
           <div id="Past Events" class="tabcontent tabicontent w3-animate-opacity" style=" background-color: white; display: block;">
                     <div id="EventList" class="">
                         <div th:each="event: ${past}">
@@ -857,8 +862,8 @@
                             </div>
                         </div>
                     </div>
-                </div> 
-        
+                </div>
+
           <div id="Futuree Events" class="tabcontent tabicontent w3-animate-opacity" style=" background-color: white; display: block;">
                     <div id="EventList" class="">
                         <div th:each="event: ${future}">
@@ -895,7 +900,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
         <!--
           <div id="EventList" class="ng-cloak">
               <div ng-repeat="ovent in myWelcome | filter:searchText">

@@ -61,7 +61,7 @@ public class MemberViewController {
             model.addAttribute("donations", donationService.getDonationsByDonor(id));
             return "member";
         } else {
-            return "home";
+            return "redirect:/home";
         }
     }
 

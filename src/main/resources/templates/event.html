@@ -257,10 +257,15 @@
 <body style="background:#ffe0b2" ng-app="myApp" ng-controller="myCtrl">
 <canvas height='1' id='confetti' width='1' style="z-index: 88"></canvas>
 <nav class="navbar navbar-default" >
-    <a href="../../home" class="navbar-brand"><img src="../../../img/SR.png"><span class="logo">SmartRaise</span></a>
-    <a class="nav-link al-right" href="../../../search" >Search Events</a>
-    <a class="nav-link al-right" href="../../../login" >Log In</a>
-    <a class="nav-link al-right" href="../../../signup">Sign up</a>
+    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <div th:if="${principal!=null}">
+        <a class="nav-link al-right" th:href="@{'/member'+${principal.username}}" >Profile</a>
+    </div>
+    <div th:if="${principal==null}">
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
 </nav>
 <div class="modal fade" id="donate">
     <div class="container modal-dialog">

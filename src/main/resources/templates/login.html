@@ -4,7 +4,7 @@
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
@@ -79,11 +79,11 @@
             font-weight: 700;
             padding: 0 8px;
         }
-        
+
         .jumbotron {
         	padding-top: 100px;
         }
-        
+
         .submit {
             /* border: 1px solid #3079ed; */
             border: 0px;
@@ -118,7 +118,7 @@
         .help {
             font-size: 12px;
         }
-        
+
         .body {
             background-color: #ffe0b2;
             -webkit-text-fill-color: white;
@@ -140,10 +140,15 @@
 </head>
 <body style="background:#ffe0b2">
 <nav class="navbar navbar-default" >
-    <a href="home" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
     <a class="nav-link al-right" href="search" >Search Events</a>
-    <a class="nav-link al-right" href="login" >Log In</a>
-    <a class="nav-link al-right" href="signup">Sign up</a>
+    <div th:if="${principal!=null}">
+        <a class="nav-link al-right" th:href="@{'/member'+${principal.username}}" >Profile</a>
+    </div>
+    <div th:if="${principal==null}">
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
 </nav>
 <div class="container jumbotron">
     <div class="row">
@@ -243,4 +248,5 @@
     </script>
 </div>
 </div>
+</body>
 </html>
