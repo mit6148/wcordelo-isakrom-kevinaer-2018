@@ -17,6 +17,9 @@
   height: 100%;
   width: 100%;
 }
+        :root{
+            --progress-percent: 0;
+        }
 
 
 a.iprodev {
@@ -281,14 +284,17 @@ a.iprodev:hover {
                       <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                       </div>
-                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" style="width: 50pt">
+                      <input type="number" id="donateAmount" class="form-control" aria-label="Amount (to the nearest dollar)" style="width: 50pt">
                       <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
+                        <span  class="input-group-text">.00</span>
                       </div>
                     </div>
                    <div id="buttons" class="row" style="display: inline; margin: 20pt; align-self: center; width: auto">
                     <button type="button" class="btn btn-outline-danger" onclick="closeMode()">Cancel</button>
                     <button type="button" class="btn btn-outline-info" onclick="donate()" style="margin: 10pt">Confirm</button>
+                    <div class="alert alert-warning" id="valWarn" style="display: none">
+                      The amount donated must be greater than 0.
+                    </div>
                     <div class="alert alert-warning" id="donWarn" style="display: none">
                       Confirm donation again to finalize it.
                     </div>
@@ -314,16 +320,30 @@ a.iprodev:hover {
           </script>
           <script>
               clicky = 0
+              document.getElementById("valWarn").style.display = "none" ;
+              document.getElementById("donWarn").style.display = "none" ;
+              
               function donFade(){
-                  clicky = 0
+                  clicky = 0;
+                  document.getElementById("valWarn").style.display = "none" ;
+                  document.getElementById("donWarn").style.display = "none" ;
               }
+              
               function donate(){
                   if (clicky == 1){
                       confettito();
                       closeMode();
+                       document.getElementById("valWarn").style.display = "none" ;
+                  document.getElementById("donWarn").style.display = "none" ;
+                  } if(document.getElementById("donateAmount").value > 0.01){
+                       document.getElementById("valWarn").style.display = "none" ; 
+                  } if(clicky != 1){
+                       document.getElementById("donWarn").style.display = "none" ; 
+                  } if(document.getElementById("donateAmount").value <= 0.01 || document.getElementById("donateAmount").value == ""){
+                      document.getElementById("valWarn").style.display = "block"  ;    
                   } else {
                       clicky = clicky + 1;
-                      document.getElementById("donWarn").style.display = "block"
+                      document.getElementById("donWarn").style.display = "block";
                   }
               }
           </script>
@@ -336,18 +356,42 @@ a.iprodev:hover {
             <a href="#">
                 <div class="mask"></div>
             </a>
-            <div class="progress row container" style="position: absolute; top: 226pt; width: 590pt; margin-left: 14pt">
+            <!--
+            <div class=" row container" style="position: absolute; top: 226pt; width: 590pt; margin-left: 14pt">
                 <div class="container">
-                  <div class="progress">
-                      <div th:with="progress=${event.donation/event.goal*100}">
+                    <div class="progress">
+                      <div>
+                         <script th:inline="javascript">
+                              /*<![CDATA[ */
+                            var sdas = [[${event.donation}/${event.goal}*100]];
+                            console.log(sdas)
+                            /* ]]>*/
+                          </script>
 
                       </div>
-                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%; z-index: 5">
+                    <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="percent" aria-valuemin="0" aria-valuemax="100" style="width:20%
+                    ; z-index: 5">
                       100%
                     </div>
+                      <script th:inline="javascript">
+                            /*<![CDATA[*/
+
+                              //  var donation = /*[[${event.donation}]]*/;
+                            //    var goal = /*[[${event.goal}]]*/;
+                                var donation = 20;
+                                var goal = 100;
+                                 percent = donation/goal*100;
+                                var percentstr = percent.toString() + "%";
+                                var progress = document.getElementById("progressBar");
+                                progress.innerHTML = percentstr;
+                                
+                            /*]]>*/
+                            </script>
                   </div>
                 </div>
+
             </div>
+-->
                 <div class="column">
                     <button class="btn-success" style="position: absolute; top: 215pt; z-index: 90;" data-toggle="modal" data-target="#donate">Donate</button>
                 </div>
