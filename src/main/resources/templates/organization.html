@@ -32,6 +32,9 @@
 .tab button:hover {
     background-color: #b2ff59;
 }
+        #createEv:hover{
+            background-color: #b2ff59;
+        }
 
 /* Create an active/current tablink class */
 .tab button.active {
@@ -54,7 +57,6 @@
 }
 .person:hover {
     border-color: #f1f1f1;
-    opacity: .7;
 }
 
 /****** LOGIN MODAL ******/
@@ -259,6 +261,12 @@
                     left: 525pt;
                     float: inherit;
                 }
+        .bottom-right {
+                    position:absolute;
+                    top: 225pt;
+                    right: 525pt;
+                    float: inherit;
+                }
                 .hr {
                 display: block;
                 height: 1px;
@@ -269,7 +277,7 @@
                }
         </style>
   </head>
-  <body style="background:#ffe0b2">
+  <body style="background:#ffe0b2" ng-app="myApp" ng-controller="myCtrl">
     <nav class="navbar navbar-default" >
         <a href="TestSite.html" class="navbar-brand">SmartRaise</a>
         <form class="form" >
@@ -298,7 +306,7 @@
         <div class="card-body container">
                <!-- Tab links -->
               <div class="tab">
-                <div class="row" style="background: #64dd17">
+                <div class="row" style="background: #64dd17; padding-left: 5pt">
                     <div class="column" >
                         <button class="tablinks" id="defaultTab" onclick="openTab(event, 'Information and Members')">Information and Members</button>
                     </div>
@@ -306,7 +314,7 @@
                         <button class="tablinks" onclick="openTab(event, 'Donations')">Donations</button>
                     </div>
                     <div class="column">
-                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Future Events</button>
+                        <button class="tablinks" onclick="openTab(event, 'Future Events')">Events</button>
                     </div>
                 </div>
               </div>
@@ -361,87 +369,163 @@
               </div>
 
               <div id="Future Events" class="tabcontent w3-animate-opacity">
-                <h3>Future Events</h3>
-                      <div class="container">
-
-                          <div class="col-md-4">
-                    
-                            <div id="itcard">
-                              <div class="image pull-left">
-                                <img src="http://www.aljazeera.com/mritems/imagecache/midthumbnail/mritems/Images/2016/10/8/f04833e2aed14f10be924562e232fb87_18.jpg" class="image pull-left">
-                              </div>
-                              <div class="content pull-left" style="padding-left:20pt; font-size: 1vw">
-                                <div style="display:flex;flex-direction:row;">
-                                    <h4 style=" font-size: 1.5vw">Charity Drive for Haiti</h4> 
-                                    <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">January 21, 2018</h4> 
-                                    <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">Boston Commons, Boston, MA</h4> 
-                                </div >
-                                <p style="padding-top:2%">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
-                                <hr>
-                                <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                              </div>
-                              <div class="clearfix">
-                              </div>
-                            </div>
-                          </div>
+                <div class="tab">
+                    <div class="row" style="background: #64dd17; padding-left: 5pt">
+                        <div class="column" >
+                            <button class="tablinks" id="defaultTabi" onclick="openTabi(event, 'Past Events')">Past Events</button>
                         </div>
+                        <div class="column">
+                            <button class="tablinks" onclick="openTabi(event, 'Current Events')">Current Events</button>
+                        </div>
+                        <div class="column">
+                            <button class="tablinks" onclick="openTabi(event, 'Futuree Events')">Future Events</button>
+                        </div>
+                        <div class="column">
+                            <form action="createEvent.html">
+                                <button><a>Create Event +</a></button>
+                            </form>
+                        </div>
+                    </div>
+                <div id="Past Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll;background-color: white">
+                <div id="EventList" class="ng-cloak">
+                      <div ng-repeat="ovent in myWelcome">
                         <div class="container">
-
-                            <div class="col-md-4">
-                      
-                              <div id="itcard">
-                                <div class="image pull-left">
-                                  <img src="http://www.aljazeera.com/mritems/imagecache/midthumbnail/mritems/Images/2016/10/8/f04833e2aed14f10be924562e232fb87_18.jpg" class="image pull-left">
-                                </div>
-                                <div class="content pull-left" style="padding-left:20pt; font-size: 1vw">
+                                <script>
+                                    var time = ovent.startDate;
+                                    var date = new Date(time);
+                                    truTime = date.toString()
+                                </script>
+                              <div class="cardy">
+                                        <div class="image pull-left">
+                                            <img src="" style="z-index: 10">
+                                            <p id="eventId" class="invis">{{ovent.eventId}}</p>
+                                        </div>
+                                <div class="content pull-left" style="padding-left:20pt">
                                   <div style="display:flex;flex-direction:row;">
-                                      <h4 style=" font-size: 1.5vw">Charity Drive for Haiti</h4> 
-                                      <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">January 21, 2018</h4> 
-                                      <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">Boston Commons, Boston, MA</h4> 
-                                  </div >
+                                      <a href="" id="eventTitle"><h5 >{{ovent.name}}</h5></a>
+                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{truTime}} </h6>
+                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>
+                                  </div>
                                   <p style="padding-top:2%">
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                 {{ovent.description}}
                                   </p>
                                   <hr>
                                   <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
                                 </div>
-                                <div class="clearfix">
-                                </div>
+                                  <script>
+                                      var queryString = "/" + document.getElementById("eventId").innerText;
+                                      var link = "event" + queryString;
+                                      console.log(queryString);
+                                      var yourElement = document.getElementById('eventTitle');
+                                      yourElement.setAttribute('href', link);
+                                  </script>
                               </div>
                             </div>
-                          </div>
-                          <div class="container">
-
-                              <div class="col-md-4">
-                        
-                                <div id="itcard">
-                                  <div class="image pull-left">
-                                    <img src="http://www.aljazeera.com/mritems/imagecache/midthumbnail/mritems/Images/2016/10/8/f04833e2aed14f10be924562e232fb87_18.jpg" class="image pull-left">
+                        </div>
+                </div>
+                </div>
+                    
+                <div id="Current Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll; background-color: white">
+                <div id="EventList" class="ng-cloak">
+                      <div ng-repeat="ovent in myWelcome">
+                        <div class="container">
+                                <script>
+                                    var time = ovent.startDate;
+                                    var date = new Date(time);
+                                    truTime = date.toString()
+                                </script>
+                              <div class="cardy">
+                                        <div class="image pull-left">
+                                            <img src="" style="z-index: 10">
+                                            <p id="eventId" class="invis">{{ovent.eventId}}</p>
+                                        </div>
+                                <div class="content pull-left" style="padding-left:20pt">
+                                  <div style="display:flex;flex-direction:row;">
+                                      <a href="" id="eventTitle"><h5 >{{ovent.name}}</h5></a>
+                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{truTime}} </h6>
+                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>
                                   </div>
-                                  <div class="content pull-left" style="padding-left:20pt; font-size: 1vw">
-                                    <div style="display:flex;flex-direction:row;">
-                                        <h4 style=" font-size: 1.5vw">Charity Drive for Haiti</h4> 
-                                        <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">January 21, 2018</h4> 
-                                        <h4 style="padding-left:20%;-webkit-text-fill-color: grey; font-size: 1.5vw">Boston Commons, Boston, MA</h4> 
-                                    </div >
-                                    <p style="padding-top:2%">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    </p>
-                                    <hr>
-                                    <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
-                                  </div>
-                                  <div class="clearfix">
-                                  </div>
+                                  <p style="padding-top:2%">
+                                 {{ovent.description}}
+                                  </p>
+                                  <hr>
+                                  <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
                                 </div>
+                                  <script>
+                                      var queryString = "/" + document.getElementById("eventId").innerText;
+                                      var link = "event" + queryString;
+                                      console.log(queryString);
+                                      var yourElement = document.getElementById('eventTitle');
+                                      yourElement.setAttribute('href', link);
+                                  </script>
                               </div>
                             </div>
+                        </div>
+                </div>
+                </div>
+                    
+                <div id="Futuree Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll;background-color: white">
+                <div id="EventList" class="ng-cloak">
+                      <div ng-repeat="ovent in myWelcome">
+                        <div class="container">
+                                <script>
+                                    var time = ovent.startDate;
+                                    var date = new Date(time);
+                                    truTime = date.toString()
+                                </script>
+                              <div class="cardy">
+                                        <div class="image pull-left">
+                                            <img src="" style="z-index: 10">
+                                            <p id="eventId" class="invis">{{ovent.eventId}}</p>
+                                        </div>
+                                <div class="content pull-left" style="padding-left:20pt">
+                                  <div style="display:flex;flex-direction:row;">
+                                      <a href="" id="eventTitle"><h5 >{{ovent.name}}</h5></a>
+                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{truTime}} </h6>
+                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>
+                                  </div>
+                                  <p style="padding-top:2%">
+                                 {{ovent.description}}
+                                  </p>
+                                  <hr>
+                                  <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                                </div>
+                                  <script>
+                                      var queryString = "/" + document.getElementById("eventId").innerText;
+                                      var link = "event" + queryString;
+                                      console.log(queryString);
+                                      var yourElement = document.getElementById('eventTitle');
+                                      yourElement.setAttribute('href', link);
+                                  </script>
+                              </div>
+                            </div>
+                        </div>
+                </div>
+                </div>
+                    
+                </div>
               </div>
         </div>
+        <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $http.get("/api/events/current")
+            .then(function(response) {
+                console.log(response.data)
+                $scope.currentEvents = response.data;
+            });
+            $http.get("/api/events/past")
+            .then(function(response) {
+                console.log(response.data)
+                $scope.pastEvents = response.data;
+            });
+            $http.get("/api/events/future")
+            .then(function(response) {
+                console.log(response.data)
+                $scope.futureEvents = response.data;
+            });
+        });
+         </script>
         <script>
           function openTab(evt, cityName) {
 
@@ -463,6 +547,24 @@
           <script>
                 document.getElementById("defaultTab").click();
             </script>
+         <script>
+          function openTabi(evt, cityName) {
+
+              evt.preventDefault();
+
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabicontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                  tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                  tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              document.getElementById(cityName).style.display = "block";
+              evt.currentTarget.className += " active";
+          }
+          </script>
     </div>  
   </body>
 </html>
