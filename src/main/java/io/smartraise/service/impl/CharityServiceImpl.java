@@ -6,6 +6,7 @@ import io.smartraise.model.fundraise.Charity;
 import io.smartraise.service.CharityService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -74,5 +75,17 @@ public class CharityServiceImpl implements CharityService {
     @Override
     public Set<Charity> getAll() {
         return new HashSet<>(charityDAO.findAll());
+    }
+
+    @Override
+    public List<Charity> getAllSorted() {
+        List<Charity> charities = charityDAO.findAll();
+        charities.sort(new Comparator<Charity>() {
+            @Override
+            public int compare(Charity o1, Charity o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        return charities;
     }
 }

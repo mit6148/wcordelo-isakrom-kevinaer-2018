@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Even Creation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -332,7 +331,7 @@
     <div class="container">
         <div class="row main">
             <div class="main-login main-center">
-                <form class="form-horizontal" action="/signup" method="POST">
+                <form class="form-horizontal" th:object="${event}" th:action="@{/event}" method="POST">
                     <div class="form-group" style="align-self: center">
                         <h3 class="title">Event Creation</h3>
                         <hr>
@@ -343,47 +342,32 @@
                                 <label class="cols-sm-4 control-label">Event Name</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="eventName" id="eventName" placeholder="Name your event" value=""/>
+                                    <input th:field="*{name}" type="text" class="form-control" placeholder="Name your event" value=""/>
                                 </div>
                             </div>
 
+                            <div class="col-sm-12 form-group">
+                                <label class="cols-sm-4 control-label">Organization</label>
+                                <div>
+                                    <label type="text" class="form-control" th:text="${organization.name}"/>
+                                    <div hidden th:field="*{organization}" th:value="${organization}"></div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label for="example-datetime-local-input" class="col-2 col-form-label">Start Time</label>
-                                <!--<div class="cols-sm-10">-->
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-                                </div>
-                                <!--</div>-->
-                            </div>
-
-                            <div class="col-sm-6 form-group">
-                                <label for="example-datetime-local-input" class="col-2 col-form-label">End Time</label>
-                                <!--<div class="cols-sm-10">-->
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-                                </div>
-                                <!--</div>-->
-                            </div>
-                        </div>
-                        
                         <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label class="cols-sm-2 control-label">Address</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="account.contactInformation.address" id="address" placeholder="Address" value=""/>
+                                    <input th:field="*{address.address}" type="text" class="form-control" name="account.contactInformation.address" id="address" placeholder="Address" value=""/>
                                 </div>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label class="cols-sm-2 control-label">City</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="account.contactInformation.city" id="city" placeholder="City" value=""/>
+                                    <input th:field="*{address.city}" type="text" class="form-control" name="account.contactInformation.city" id="city" placeholder="City" value=""/>
                                 </div>
                             </div>
 
@@ -391,7 +375,7 @@
                                 <label class="cols-sm-2 control-label">State</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="account.contactInformation.state" id="state" placeholder="State" value=""/>
+                                    <input th:field="*{address.state}" type="text" class="form-control" name="account.contactInformation.state" id="state" placeholder="State" value=""/>
                                 </div>
                             </div>
 
@@ -404,14 +388,14 @@
                                 <label class="cols-sm-2 control-label">Country</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="account.contactInformation.country" id="country" placeholder="Enter your Country" value=""/>
+                                    <input th:field="*{address.country}" type="text" class="form-control" name="account.contactInformation.country" id="country" placeholder="Enter your Country" value=""/>
                                 </div>
                             </div>
                             <div class=" col-sm-6 form-group">
                                 <label class="cols-sm-2 control-label">Zip Code</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="account.contactInformation.zipCode" id="zipcode" placeholder="Enter your Zip Code" value=""/>
+                                    <input th:field="*{address.zipCode}" type="text" class="form-control" name="account.contactInformation.zipCode" id="zipcode" placeholder="Enter your Zip Code" value=""/>
                                 </div>
                             </div>
 
@@ -422,45 +406,45 @@
                                 <label class="cols-sm-2 control-label">Fundraising Goal</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="account.contactInformation.phone" id="phoneNumber" placeholder="Enter the goal amount to be raised" value=""/>
+                                    <input th:field="*{goal}" type="text" class="form-control" name="account.contactInformation.phone" id="phoneNumber" placeholder="Enter the goal amount to be raised" value=""/>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class=" col-sm-6 form-group">
                                 <label class="cols-sm-2 control-label">Charities</label>
                                  <div class="form-group">
-                                    <label for="exampleSelect1">Example select</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <div ng-repeat="charity in Charities">
-                                            <option>charity.name</option>
+                                    <select class="form-control" th:field="*{charity}">
+                                        <div >
+                                            <option th:each="charity :${charities}" th:value="${charity}" th:text="${charity.name}" ></option>
                                         </div>
                                     </select>
                                   </div>
                             </div>
                         </div>
                         </div>
-                   
-                    <div class="tab">  
+
+                    <div class="tab">
                         <div>
                             <h3>Event Description</h3>
-                            <textarea></textarea>
+                            <textarea th:field="*{description}"></textarea>
                         </div>
-                        <div>
-                            <h3>Cover Photo</h3>
-                            <form name="upload" id="upload" method="POST" enctype="multipart/form-data" th:object="${profile}" th:action="idk the path">
-                                <label >Select File</label>
-                                <input type="file" class="file" name="file" id="file"/>
-                                <input type="submit" name="submit" value="Upload" />
-                            </form>
-                        </div>
+                        <!--<div>-->
+                            <!--<h3>Cover Photo</h3>-->
+                            <!--<form name="upload" id="upload" method="POST" enctype="multipart/form-data" th:object="${profile}" th:action="idk the path">-->
+                                <!--<label >Select File</label>-->
+                                <!--<input type="file" class="file" name="file" id="file"/>-->
+                                <!--<input type="submit" name="submit" value="Upload" />-->
+                            <!--</form>-->
+                        <!--</div>-->
                     </div>
                     <div class="form-group ">
                         <div style="overflow:auto;">
                           <div style="float:right;">
                             <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                             <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                              <button th:formmethod="post" type="submit" id="submitBtn" onclick="nextPrev(1)" style="display: none">Submit</button>
                           </div>
                         </div>
                     </div>
@@ -485,11 +469,14 @@
         //... and fix the Previous/Next buttons:
         if (n == 0) {
             document.getElementById("prevBtn").style.display = "none";
+            document.getElementById("nextBtn").style.display = "inline";
+            document.getElementById("submitBtn").style.display = "none";
         } else {
             document.getElementById("prevBtn").style.display = "inline";
         }
         if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit";
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("submitBtn").style.display = "inline";
         } else {
             document.getElementById("nextBtn").innerHTML = "Next";
         }
@@ -500,7 +487,7 @@
     function nextPrev(n) {
         // This function will figure out which tab to display
         var x = document.getElementsByClassName("tab");
-        console.log(x)  
+        console.log(x)
         // Exit the function if any field in the current tab is invalid:
         if (n == 1 && !validateForm()) return false;
         // Hide the current tab:
