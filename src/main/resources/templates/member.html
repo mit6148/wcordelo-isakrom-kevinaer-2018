@@ -3,14 +3,13 @@
 <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" th:href="@{/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:href="@{/js/jquery.min.js}"></script>
-    <script type="text/javascript" th:href="@{/js/angular.min.js}"></script>
-    <script type="text/javascript" th:href="@{/js/fitty.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>   
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/w3.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
 
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
@@ -255,23 +254,6 @@
             }
         }
 
-        /* NavBar CSS Code */
-
-        .navbar.navbar-inverse {
-            border: none;
-        }
-        .navbar .navbar-brand {
-            padding-top: 0px;
-            margin-top: 7px;
-        }
-        .navbar .navbar-brand img {
-            height: 50px;
-        }
-
-        .logo {
-            padding-left: 10px ;
-        }
-
         /* Profile Image*/
         .img-fluid {
             height: 275pt;
@@ -482,14 +464,11 @@
     </style>
 </head>
 <body style="background:#ffe0b2">
-<nav class="navbar navbar-default">
-    <a href="home.html" class="navbar-brand"><img src="./img/SR.png"><span class="logo">SmartRaise</span></a>
-    <form class="form-inline" style="margin: auto">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
-        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="../templates/search.html"
-           style="margin-left:10pt">Search Charities</a>
-    </form>
+<nav class="navbar navbar-default" >
+    <a href="../home" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="../search" >Search Events</a>
+    <a class="nav-link al-right" href="../login" >Log In</a>
+    <a class="nav-link al-right" href="../signup">Sign up</a>
 </nav>
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -508,7 +487,7 @@
                 <p class="member"><h7 class="email" th:text=" 'Email: ' + ${profile.contactInformation.email}"></h7></p>
             </div>
             <div class="donation-box">
-                <div class="donation" th:text=" 'Total Donated: ' + ${#numbers.formatDecimal(profile.donation, 0, 'COMMA', 2, 'POINT')}"></div>
+                <div class="donation" th:text=" 'Total Donated: $' + ${#numbers.formatDecimal(profile.donation, 0, 'COMMA', 2, 'POINT')}"></div>
             </div>
     </div>
 

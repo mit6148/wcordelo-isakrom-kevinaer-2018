@@ -4,56 +4,25 @@
     <title>Even Creation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
-    <script type="text/javascript" href="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" href="/js/jquery.min.js"></script>
-    <script type="text/javascript" href="/js/angular.min.js"></script>
-    <script type="text/javascript" href="/js/fitty.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/master.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>   
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
     <style>
-        .navbar-default {
-            background-color: #ef6c00;
-            width: 100%;
-        }
-
-        .navbar {
-            white-space: nowrap;
-            width: 100%;
-        }
-
-        .navbar-brand {
-            -webkit-text-fill-color: white;
-        }
 
         .body {
             background-color: #ffe0b2;
             -webkit-text-fill-color: white;
         }
 
-        a.navbar-brand {
-            z-index: 100;
-            left: 0px;
-            top: 0px;
-            display: block;
-            width: 173px;
-            background-size: 100% 100%;
-        }
-
         .al-right {
             float: right;
             -webkit-text-fill-color: white;
         }
-
-        .navbar {
-            z-index: 100;
-            position: absolute;
-            top: 0;
-        }
-
+        
         body {
             background-color: #ffe0b2;
         }
@@ -297,34 +266,13 @@
             font-size: 11px;
             text-align: center;
         }
-
-        .navbar.navbar-inverse {
-            border: none;
-        }
-        .navbar .navbar-brand {
-            padding-top: 0px;
-            margin-top: 7px;
-        }
-        .navbar .navbar-brand img {
-            height: 50px;
-        }
-
-        .logo {
-            padding-left: 10px ;
-        }
-        /**/
     </style>
 <body>
-<nav class="navbar navbar-default">
-    <a href="home.html" class="navbar-brand"><img src="./img/SR.png"><span class="logo">SmartRaise</span></a>
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
-        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="../templates/search.html"
-           style="margin-left:10pt">Search Charities</a>
-    </form>
-    <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#myModal">Log In</a>
-    <a class="nav-link al-right" href="../templates/signUp">Sign up</a>
+<nav class="navbar navbar-default" >
+    <a href="home" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <a class="nav-link al-right" href="login" >Log In</a>
+    <a class="nav-link al-right" href="signup">Sign up</a>
 </nav>
 
 <form>

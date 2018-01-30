@@ -3,57 +3,28 @@
 <head>
 	<title>Sign Up | Charity</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<script type="text/javascript" th:href="@{/js/bootstrap.min.js}"></script>
-	<script type="text/javascript" th:href="@{/js/jquery.min.js}"></script>
-	<script type="text/javascript" th:href="@{/js/angular.min.js}"></script>
-	<script type="text/javascript" th:href="@{/js/fitty.min.js}"></script>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>   
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 	<style>
-		.navbar-default {
-			background-color: #ef6c00;
-			width: 100%;
-		}
-
-		.navbar {
-			white-space: nowrap;
-			width: 100%;
-		}
-
-		.navbar-brand {
-			-webkit-text-fill-color: white;
-		}
 
 		.body {
 			background-color: #ffe0b2;
 			-webkit-text-fill-color: white;
 		}
 
-		a.navbar-brand {
-			z-index: 100;
-			left: 0px;
-			top: 0px;
-			display: block;
-			width: 173px;
-			background-size: 100% 100%;
-		}
-
 		.al-right {
 			float: right;
 			-webkit-text-fill-color: white;
 		}
-
-		.navbar {
-			z-index: 100;
-			position: absolute;
-			top: 0;
-		}
-
+		
 		body {
 			background-color: #ffe0b2;
 		}
@@ -127,7 +98,7 @@
 		}
 
 		.main {
-			margin-top: 70px;
+			padding-top: 70px;
 		}
 
 		h1.title {
@@ -180,7 +151,6 @@
 
 		}
 
-
 		.login-button {
 			margin-top: 5px;
 		}
@@ -190,41 +160,23 @@
 			text-align: center;
 			margin-top: 5px;
 		}
-
-		.navbar.navbar-inverse {
-			border: none;
-		}
-		.navbar .navbar-brand {
-			padding-top: 0px;
-			margin-top: 7px;
-		}
-		.navbar .navbar-brand img {
-			height: 50px;
-		}
-
-		.logo {
-			padding-left: 10px ;
-		}
 	</style>
 <body ng-app="">
-<nav class="navbar navbar-default">
-	<a href="home.html" class="navbar-brand"><img src="./img/SR.png"><span class="logo">SmartRaise</span></a>
-	<form class="form-inline my-2 my-lg-0">
-		<input class="form-control mr-sm-2" type="text" placeholder="Search">
-		<a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
-		<a class="btn btn-outline-success my-2 my-sm-0 al-right" href="../templates/search.html"
-		   style="margin-left:10pt">Search Charities</a>
-	</form>
-	<a class="nav-link al-right" href="#" data-toggle="modal" data-target="#myModal">Log In</a>
-	<a class="nav-link al-right" href="../templates/signUp">Sign up</a>
+<nav class="navbar navbar-default" >
+    <a href="home" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <a class="nav-link al-right" href="login" >Log In</a>
+    <a class="nav-link al-right" href="signup">Sign up</a>
 </nav>
+
 
 <form>
 	<div class="container">
 
 		<div class="row main">
 			<div class="main-login main-center">
-				<form class="form-horizontal" th:method="POST" th:action="@{'/organization'}" th:object="${organization}">
+				<form class="form-horizontal" th:method="POST" th:action="@{'/organization'}"
+					  th:object="${organization}">
 					<div class="form-group" style="align-self: center">
 						<h3 class="title">Organization Registration</h3>
 						<hr>
@@ -232,8 +184,10 @@
 							<div class="col-sm-6 form-group">
 								<label class="cols-sm-2 control-label">Name</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-sitemap" aria-hidden="true"></i></span>
-									<input type="text" th:field="*{name}" class="form-control" name="name" id="name" placeholder="Enter the Organization Name"/>
+									<span class="input-group-addon"><i class="fa fa-sitemap"
+																	   aria-hidden="true"></i></span>
+									<input type="text" th:field="*{name}" class="form-control" name="name" id="name"
+										   placeholder="Enter the Organization Name"/>
 								</div>
 							</div>
 
@@ -241,7 +195,8 @@
 								<label class="cols-sm-2 control-label">Website</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-rss" aria-hidden="true"></i></span>
-									<input type="text" th:field="*{website}" class="form-control" name="website" id="website" placeholder="Enter the Organization Website"/>
+									<input type="text" th:field="*{website}" class="form-control" name="website"
+										   id="website" placeholder="Enter the Organization Website"/>
 								</div>
 							</div>
 
@@ -252,16 +207,19 @@
 							<div class="cols-sm-6 form-group">
 								<label class="cols-sm-2 control-label">Address</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
-									<input type="text" th:field="*{address.address}" class="form-control" name="address" id="address" placeholder="Enter the Organization Address"/>
+									<span class="input-group-addon"><i class="fa fa-location-arrow"
+																	   aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.address}" class="form-control" name="address"
+										   id="address" placeholder="Enter the Organization Address"/>
 								</div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label class="cols-sm-2 control-label">City</label>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-										<input type="text" th:field="*{address.city}" class="form-control" name="city" id="city" placeholder="Enter the Organization City"/>
-									</div>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.city}" class="form-control" name="city"
+										   id="city" placeholder="Enter the Organization City"/>
+								</div>
 							</div>
 
 
@@ -271,16 +229,19 @@
 							<div class="col-sm-6 form-group">
 								<label class="cols-sm-2 control-label">State</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
-									<input type="text" th:field="*{address.state}" class="form-control" name="state" id="state" placeholder="Enter the Organization State"/>
+									<span class="input-group-addon"><i class="fa fa-globe"
+																	   aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.state}" class="form-control" name="state"
+										   id="state" placeholder="Enter the Organization State"/>
 								</div>
 							</div>
 							<div class=" col-sm-6 form-group">
 								<label class="cols-sm-2 control-label">Zip Code</label>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
-										<input type="text" th:field="*{address.zipCode}" class="form-control" name="zipcode" id="zipcode" placeholder="Enter the Organization Zip Code"/>
-									</div>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.zipCode}" class="form-control" name="zipcode"
+										   id="zipcode" placeholder="Enter the Organization Zip Code"/>
+								</div>
 							</div>
 
 						</div>
@@ -289,10 +250,12 @@
 
 
 					<div class="form-group ">
-                        <button th:formmethod="post" type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+						<button th:formmethod="post" type="submit"
+								class="btn btn-primary btn-lg btn-block login-button">Register
+						</button>
 					</div>
 					<!--<div class="login-register">-->
-						<!--<a href="index.php">Login</a>-->
+					<!--<a href="index.php">Login</a>-->
 					<!--</div>-->
 				</form>
 			</div>

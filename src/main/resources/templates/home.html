@@ -3,13 +3,13 @@
 <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>   
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
 
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
@@ -175,13 +175,10 @@
 
 
 <nav class="navbar navbar-default" >
-    <a href="home.html" class="navbar-brand"><img src="./img/SR.png"><span class="logo">SmartRaise</span></a>
-    <form class="form-inline my-2 my-lg-0" >
-        <a class="btn btn-primary" href="search">Search Events</a>
-        <a class="btn btn-primary" href="../templates/search.html" style="margin-left:10pt">Search Charities</a>
-    </form>
-    <a class="nav-link al-right" href="/login" >Log In</a>
-    <a class="nav-link al-right" href="../templates/signUp">Sign up</a>
+    <a href="home" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <a class="nav-link al-right" href="login" >Log In</a>
+    <a class="nav-link al-right" href="signup">Sign up</a>
 </nav>
 <!-- Tessttt -->
 <!--carousel based off of https://www.w3schools.com/bootstrap4/bootstrap_carousel.asp -->
