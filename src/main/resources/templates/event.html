@@ -3,10 +3,10 @@
 <head>
     <title>SmartRaise</title>
     <meta charset=" utf-8" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
- 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <style>
@@ -263,34 +263,33 @@
     <a class="nav-link al-right" href="../../../signup">Sign up</a>
 </nav>
 <div class="modal fade" id="donate">
-    <div class="container modal-dialog">
-        <div class="modal-content container" style="width: 200pt; height: auto; margin: auto; border: 1px solid black">
-            <div id="info" style="align-items: center">
-                <h2 style="margin-left: auto; padding-left: 47pt; margin-top: 15pt">Donate!</h2>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
+        <div class="container modal-dialog">
+            <div class="modal-content container" style="width: 200pt; height: auto; margin: auto; border: 1px solid black">
+                <div id="info" style="align-items: center">
+                    <h2 style="margin-left: auto;
+    padding-left: 47pt; margin-top: 15pt">Donate!</h2>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
+                      </div>
+                      <input type="number" id="donateAmount" class="form-control" aria-label="Amount (to the nearest dollar)" style="width: 50pt">
+                      <div class="input-group-append">
+                        <span  class="input-group-text">.00</span>
+                      </div>
                     </div>
-                    <input type="number" id="donateAmount" class="form-control"
-                           aria-label="Amount (to the nearest dollar)" style="width: 50pt">
-                    <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
-                    </div>
-                </div>
-                <div id="buttons" class="row" style="display: inline; margin: 20pt; align-self: center; width: auto">
+                   <div id="buttons" class="row" style="display: inline; margin: 20pt; align-self: center; width: auto">
                     <button type="button" class="btn btn-outline-danger" onclick="closeMode()">Cancel</button>
-                    <button type="button" class="btn btn-outline-info" onclick="donate()" style="margin: 10pt">Confirm
-                    </button>
+                    <button type="button" class="btn btn-outline-info" onclick="donate()" style="margin: 10pt">Confirm</button>
                     <div class="alert alert-warning" id="valWarn" style="display: none">
-                        The amount donated must be greater than 0.
+                      The amount donated must be greater than 0.
                     </div>
                     <div class="alert alert-warning" id="donWarn" style="display: none">
-                        Confirm donation again to finalize it.
+                      Confirm donation again to finalize it.
                     </div>
+                </div>
                 </div>
             </div>
         </div>
-    </div>
     <script>
         function closeMode() {
             $('#donate').modal('hide');
@@ -350,11 +349,9 @@
         <a href="#">
             <div class="mask"></div>
         </a>
-        <div class="column">
-            <button class="btn-success" style="position: absolute; top: 215pt; z-index: 90;" data-toggle="modal"
-                    data-target="#donate">Donate
-            </button>
-        </div>
+         <div class="column">
+                    <button class="btn-success" style="position: absolute; top: 215pt; z-index: 90;" data-toggle="modal" data-target="#donate">Donate</button>
+                </div>
         <div class="bottom-right" style="-webkit-text-fill-color: white; z-index: 0">Bottom Right</div>
     </div>
 
@@ -434,6 +431,7 @@
 
         </div>
     </div>
+    
     <script>
         var retina = window.devicePixelRatio,
             // Math shorthands
