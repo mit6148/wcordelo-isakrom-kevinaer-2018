@@ -43,7 +43,7 @@ public class MemberViewController {
             model.addAttribute("profile", member);
             model.addAttribute("orgs", organizationService.getFromMember(member));
             model.addAttribute("donations", donationService.getDonationsByDonor(id));
-            return "TESTmember";
+            return "member";
         } else {
             return "home";
         }

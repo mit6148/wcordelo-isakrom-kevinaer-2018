@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./js/jquery.min.js"></script>
-    <script type="text/javascript" src="./js/angular.min.js"></script>
-    <script type="text/javascript" src="./js/fitty.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/w3.css">
-    <link rel="stylesheet" type="text/css" href="./css/master.css">
+    <script type="text/javascript" th:href="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:href="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:href="@{/js/angular.min.js}"></script>
+    <script type="text/javascript" th:href="@{/js/fitty.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/w3.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
 
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
@@ -500,15 +500,15 @@
     <div class="view overlay">
         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg">
             <div class="profile-img">
-                <img class="person" src="https://shop.lego.com/static/images/svg/lego-logo.svg">
+                <img class="person" th:src="${profile_image}">
             </div>
             <div class="profile-name">
-                <h2 class="name">First Name Last Name</h2>
+                <h2 class="name" th:text="${profile.contactInformation.firstName} + ' ' +${profile.contactInformation.lastName} "></h2>
                 <p class="member"><h7>Member since: Jan 29, 2018</h7></p>
-                <p class="member"><h7 class="email">Email: email@mit.edu</h7></p>
+                <p class="member"><h7 class="email" th:text=" 'Email: ' + ${profile.contactInformation.email}"></h7></p>
             </div>
             <div class="donation-box">
-                <div class="donation">Total Donated: $10000</div>
+                <div class="donation" th:text=" 'Total Donated: ' + ${profile.donation}"></div>
             </div>
     </div>
 
@@ -536,59 +536,20 @@
 
                     <div class="row row-card">
                         <!--Card-->
-                        <div class="testimonial-card">
+                        <div class="testimonial-card" th:each="org, org1:${orgs}">
 
                             <!--Avatar-->
-                            <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
+                            <div class="avatar"><img class="rounded-circle" th:src="@{/img/org.png}">
                             </div>
 
                             <div class="card-body">
                                 <!--Name-->
-                                <h4 class="card-title">Theta Delta Chi</h4>
+                                <h4 class="card-title" th:text="${org.name}"></h4>
                                 <hr>
                                 <!--Quotation-->
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
+                                <p th:text="${org.description}"></p>
                             </div>
-
                         </div>
-                        <!--/.Card-->
-
-                        <!--Card-->
-                        <div class="testimonial-card">
-
-                            <!--Avatar-->
-                            <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
-                            </div>
-
-                            <div class="card-body">
-                                <!--Name-->
-                                <h4 class="card-title">Theta Delta Chi</h4>
-                                <hr>
-                                <!--Quotation-->
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
-                            </div>
-
-                        </div>
-                        <!--/.Card-->
-
-                        <!--Card-->
-                        <div class="testimonial-card">
-
-                            <!--Avatar-->
-                            <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
-                            </div>
-
-                            <div class="card-body">
-                                <!--Name-->
-                                <h4 class="card-title">Theta Delta Chi</h4>
-                                <hr>
-                                <!--Quotation-->
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
-                            </div>
-
-                        </div>
-                        <!--/.Card-->
-
                     </div>
 
 
@@ -600,7 +561,7 @@
                     <div class="col">
                         <div class="event-card">
                             <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">
-                            <div class="card-block">
+                             <div class="card-block">
                                 <div class="row">
                                     <div class="col">
                                         <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
@@ -614,124 +575,60 @@
                                 <p class="event-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
                                 <p class="card-charity">All donations go to: GoFund Me, Inc.</p></div>
                         </div>
-
-                        <div class="event-card">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">
-                            <div class="card-block">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
-                                        <div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>
-                                    </div>
-                                    <div class="col card-date">
-                                        <div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>
-                                        <div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>
-                                    </div>
-                                </div>
-                                <p class="event-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
-                                <p class="card-charity">All donations go to: GoFund Me, Inc.</p></div>
-                        </div>
-
-                        <div class="event-card">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">
-                            <div class="card-block">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
-                                        <div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>
-                                    </div>
-                                    <div class="col card-date">
-                                        <div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>
-                                        <div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>
-                                    </div>
-                                </div>
-                                <p class="event-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
-                                <p class="card-charity">All donations go to: GoFund Me, Inc.</p></div>
-                        </div>
-
                     </div>
                 </div>
+
+                <!--<div id="Events" class="tabcontent w3-animate-opacity">-->
+                    <!--<h3>Events</h3>-->
+                    <!--<div class="col">-->
+                        <!--<div class="event-card" th:each="event: ${current}">-->
+                            <!--<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">-->
+                            <!--<div class="card-block">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col">-->
+                                        <!--<div class="row card-title" th:text="${event.name}"><h3>Fundraising Event of the Century</h3></div>-->
+                                        <!--<div class="row card-organization" th:text=" 'Hosted by: ' + ${event.organization}"><p>Hosted by: N/A</p></div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col card-date">-->
+                                        <!--<div class="row card-start-date" th:text=" 'Start Date: ' + ${event.startDate}"><span>Start Date: N/A</span></div>-->
+                                        <!--<div class="row card-end-date" th:text=" 'End Date: ' + ${event.endDate}"><span>End Date: N/A</span></div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<p class="event-description" th:text="${event.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>-->
+                                <!--<p class="card-charity" th:text=" 'All donations go to: ' + ${event.charity}">All donations go to: GoFund Me, Inc.</p></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <!--Statistics-->
                 <div id="Statistics" class="tabcontent w3-animate-opacity">
                     <h3>Statistics</h3>
                     <h5>History of Donation Events</h5>
 
-                    <div class="event-card">
+                    <div class="event-card" th:each="donation, donation1:${donations}">
                         <div class="card-block">
                             <div class="row">
                                 <div class="col">
-                                    <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
-                                    <div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>
+                                    <div class="row card-title"><h3 ></h3></div>
+                                    <div class="row card-organization"><p>Hosted by: N/A</p></div>
                                 </div>
                                 <div class="col card-date">
-                                    <div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>
-                                    <div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>
+                                    <div class="row card-start-date" th:text=" 'Date of Donation: ' + ${donation.date}"><span>Date of Donation: N/A</span></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p class="card-charity">All donations go to: GoFund Me, Inc.</p>
+                                    <p class="card-charity" th:text=" 'All funds go to ' + ${donation.charity.name}">All donations go to: N/A</p>
                                 </div>
                                 <div class="col event-history">
                                     <div class="event-donated">
-                                        <div class="donation">Amount Donated: $1000</div>
+                                        <div class="donation" th:text=" 'Amount Donated: ' + ${donation.amount}">Amount Donated: N/A</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="event-card">
-                        <div class="card-block">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
-                                    <div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>
-                                </div>
-                                <div class="col card-date">
-                                    <div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>
-                                    <div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="card-charity">All donations go to: GoFund Me, Inc.</p>
-                                </div>
-                                <div class="col event-history">
-                                    <div class="event-donated">
-                                        <div class="donation">Amount Donated: $1000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="event-card">
-                        <div class="card-block">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
-                                    <div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>
-                                </div>
-                                <div class="col card-date">
-                                    <div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>
-                                    <div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="card-charity">All donations go to: GoFund Me, Inc.</p>
-                                </div>
-                                <div class="col event-history">
-                                    <div class="event-donated">
-                                        <div class="donation">Amount Donated: $1000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                   
                     <!--<div class="card" ng-app="myApp" ng-controller="myCtrl">-->
                         <!--&lt;!&ndash;Card content&ndash;&gt;-->
                         <!--<div class="card-body container">-->
