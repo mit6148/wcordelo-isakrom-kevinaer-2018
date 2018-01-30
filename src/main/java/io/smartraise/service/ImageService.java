@@ -12,7 +12,7 @@ public interface ImageService {
 
     boolean create (File image, String id, Image.ImageType imageType);
 
-    String get(String id, Image.ImageType imageType) throws IOException;
+    String get(String id, Image.ImageType imageType) throws Exception;
 
     boolean delete(String id, Image.ImageType imageType);
 

@@ -25,12 +25,14 @@ public class Organization {
     private Address address;
     private final Set<String> members;
     private final Set<String> admin;
+    private double donation;
 
     public Organization(){
         this.organizationId = UUID.randomUUID().toString();
         this.name = "";
         this.description = "";
         this.website = "";
+        this.donation = 0;
         this.address = new Address();
         this.members = new HashSet<>();
         this.admin = new HashSet<>();
@@ -141,5 +143,13 @@ public class Organization {
     @Override
     public String toString() {
         return String.format("Organization {Name: %s, Description: %s}",this.name, this.description);
+    }
+
+    public double getDonation() {
+        return donation;
+    }
+
+    public void setDonation(double donation) {
+        this.donation = donation;
     }
 }

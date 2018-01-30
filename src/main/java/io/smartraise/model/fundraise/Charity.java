@@ -24,12 +24,14 @@ public class Charity {
     @DBRef
     @CascadeSave
     private Address address;
+    private double donation;
 
     public Charity() {
         this.charityId = UUID.randomUUID().toString();
         this.name = "";
         this.description = "";
         this.website = "";
+        this.donation = 0;
         this.address = new Address();
     }
 
@@ -83,5 +85,13 @@ public class Charity {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public double getDonation() {
+        return donation;
+    }
+
+    public void setDonation(double donation) {
+        this.donation = donation;
     }
 }

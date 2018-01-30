@@ -36,7 +36,7 @@ public class MemberViewController {
             Member member = memberService.get(id);
             try {
                 model.addAttribute("profile_image", imageService.get(id, Image.ImageType.PROFILE));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 return "home";
             }
             model.addAttribute("payment", paymentService.get(id));

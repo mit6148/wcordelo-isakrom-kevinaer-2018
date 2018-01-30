@@ -30,6 +30,7 @@ public class Event {
     @DBRef
     @CascadeSave
     private Charity charity;
+    private double donation;
 
     public Event() {
         this.eventId = UUID.randomUUID().toString();
@@ -40,6 +41,7 @@ public class Event {
         this.organization =  new Organization();
         this.charity = new Charity();
         this.goal = 0;
+        this.donation = 0;
         this.address = new Address();
     }
 
@@ -109,5 +111,13 @@ public class Event {
 
     public void setCharity(Charity charity) {
         this.charity = charity;
+    }
+
+    public double getDonation() {
+        return donation;
+    }
+
+    public void setDonation(double donation) {
+        this.donation = donation;
     }
 }
