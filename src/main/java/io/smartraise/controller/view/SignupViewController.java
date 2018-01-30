@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 
 @Controller
 public class SignupViewController {
@@ -40,8 +41,11 @@ public class SignupViewController {
     private CustomAuthProvider authProvider;
 
     @GetMapping(value = "/signup")
-    public String getSignUp(Model model) {
+    public String getSignUp(Model model, Principal principal) {
         model.addAttribute("user",new SignUp());
+        if (principal != null) {
+            return "redirect:/member/"+principal.getName();
+        }
         return "signUpMember";
     }
 

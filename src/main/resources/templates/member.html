@@ -466,9 +466,11 @@
 <body style="background:#ffe0b2">
 <nav class="navbar navbar-default" >
     <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
-    <a class="nav-link al-right" href="../search" >Search Events</a>
-    <a class="nav-link al-right" href="../login" >Log In</a>
-    <a class="nav-link al-right" href="../signup">Sign up</a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <div>
+        <a class="nav-link al-right" th:href="@{'/member/'+${profile.username}}" >Profile</a>
+        <a class="nav-link al-right" href="logout" >Log Out</a>
+    </div>
 </nav>
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>

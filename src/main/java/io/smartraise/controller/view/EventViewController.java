@@ -49,6 +49,7 @@ public class EventViewController {
             System.out.println(event.getStartDate());
             model.addAttribute("charities", charityService.getAllSorted());
             model.addAttribute("selectedCharity", new Charity());
+            model.addAttribute("user", principal.getName());
             return "createEvent";
         } else {
             return "redirect:/login";
@@ -75,6 +76,9 @@ public class EventViewController {
         model.addAttribute("charityImage", imageService.get(event.getCharity().getCharityId(), Image.ImageType.ORG));
         model.addAttribute("orgImage", imageService.get(event.getOrganization().getOrganizationId(), Image.ImageType.ORG));
         model.addAttribute("donations", donationService.getDonationsByEvent(id));
+        if (principal != null) {
+            model.addAttribute("user", principal.getName());
+        }
         return "event";
     }
 

@@ -127,8 +127,14 @@
 <nav class="navbar navbar-default" >
     <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
     <a class="nav-link al-right" href="search" >Search Events</a>
-    <a class="nav-link al-right" href="login" >Log In</a>
-    <a class="nav-link al-right" href="signup">Sign up</a>
+    <div th:if="${user != null}">
+        <a class="nav-link al-right" th:href="@{'/member/'+${user}}" >Profile</a>
+        <a class="nav-link al-right" href="logout" >Log Out</a>
+    </div>
+    <div>
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
 </nav>
 <div class="container">
     <form id="regForm" action="/action_page.php">

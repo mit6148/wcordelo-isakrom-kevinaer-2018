@@ -76,6 +76,7 @@ public class MemberViewController {
             Payment payment = paymentService.get(id);
             model.addAttribute("profile", memberService.get(id));
             model.addAttribute("payment", paymentService.get(id));
+            model.addAttribute("user", principal.getName());
             return "memberEdit";
         } else {
 //                response.sendRedirect("/home");

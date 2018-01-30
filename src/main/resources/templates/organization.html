@@ -4,7 +4,7 @@
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
@@ -514,10 +514,16 @@
 </head>
 <body style="background:#ffe0b2" ng-app="myApp" ng-controller="myCtrl">
 <nav class="navbar navbar-default" >
-    <a href="../home" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
-    <a class="nav-link al-right" href="../search" >Search Events</a>
-    <a class="nav-link al-right" href="../login" >Log In</a>
-    <a class="nav-link al-right" href="../signup">Sign up</a>
+    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <div th:if="${user != null}">
+        <a class="nav-link al-right" th:href="@{'/member/'+${user}}" >Profile</a>
+        <a class="nav-link al-right" href="logout" >Log Out</a>
+    </div>
+    <div th:if="${user == null}">
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
 </nav>
 <div class="card">
 
