@@ -2,6 +2,7 @@ package io.smartraise.config;
 
 import io.smartraise.security.CustomAuthProvider;
 import io.smartraise.security.CustomAuthenticationFailureHandler;
+import io.smartraise.util.ImageURI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,4 +16,9 @@ public class ProviderConfig {
 //    public CustomAuthenticationFailureHandler customAuthenticationFailureHandler() {
 //        return new CustomAuthenticationFailureHandler();
 //    }
+
+    @Bean
+    public ImageURI imageURI() {
+        return new ImageURI();
+    }
 }
