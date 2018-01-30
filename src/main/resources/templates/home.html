@@ -298,7 +298,7 @@
                 <div th:each="event: ${past}">
                     <div id="card" class="card container drop-card" style="width: 275pt">
                         <div class="row" style="margin: auto;">
-                            <div class="col-sm-4" style="padding-top: 17pt;padding-left: 0pt">
+                            <div class="col-sm-4" style="padding-top: 5pt;padding-bottom: 5pt;padding-left: 0pt">
                                 <img height="120" width="120" th:src="${images['__${event.eventId}__']}"/>
                             </div>
                             <div id="text" class="col-sm-8" style="padding-left: 20pt">
@@ -319,12 +319,12 @@
             <div class="card" style="overflow: scroll; height: 347pt; background-color: #fffaf7">
                 <div th:each="event: ${current}">
                     <div id="card" class="card container drop-card" style="width: 275pt">
-                        <div class="column" style="margin: auto;">
-                            <div>
+                        <div class="row" style="margin: auto;">
+                            <div class="col-sm-4" style="padding-top: 5pt;padding-bottom: 5pt;padding-left: 0pt">
                                 <img height="120" width="120" th:src="${images['__${event.eventId}__']}"/>
                             </div>
-                            <div id="text" class="column" style="padding-left: 20pt">
-                                <div >
+                            <div id="text" class="col-sm-8" style="padding-left: 20pt">
+                                <div>
                                     <a th:href="@{/event/{id}(id=${event.eventId})}" th:text="${event.name}" style="padding-top: 2pt"></a>
                                 </div>
                                 <div th:text="${event.charity.name}" style="padding-top: 2pt"></div>
@@ -337,16 +337,16 @@
         </div>
         <!--Future EVENTS-->
         <div class="column" style="margin: auto;">
-            <h3 style="align-self: center; padding: 10pt">Current Events</h3>
+            <h3 style="align-self: center; padding: 10pt">Future Events</h3>
             <div class="card" style="overflow: scroll; height: 347pt; background-color: #fffaf7">
                 <div th:each="event: ${future}">
                     <div id="card" class="card container drop-card" style="width: 275pt">
-                        <div class="column" style="margin: auto;">
-                            <div>
+                        <div class="row" style="margin: auto;">
+                            <div class="col-sm-4" style="padding-top: 5pt;padding-bottom: 5pt;padding-left: 0pt">
                                 <img height="120" width="120" th:src="${images['__${event.eventId}__']}"/>
                             </div>
-                            <div id="text" class="column" style="padding-left: 20pt">
-                                <div >
+                            <div id="text" class="col-sm-8" style="padding-left: 20pt">
+                                <div>
                                     <a th:href="@{/event/{id}(id=${event.eventId})}" th:text="${event.name}" style="padding-top: 2pt"></a>
                                 </div>
                                 <div th:text="${event.charity.name}" style="padding-top: 2pt"></div>

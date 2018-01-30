@@ -27,7 +27,10 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-    @RequestMapping(value = "/member/{id}/profile", method = RequestMethod.POST)
+    @Autowired
+    private ImageURI imageURI;
+
+    @RequestMapping(value = "/profile/member/{id}", method = RequestMethod.POST)
     @ResponseBody
     public void uploadProfile(@PathVariable("id") String id,
                                 @RequestParam("file") MultipartFile file,
@@ -36,15 +39,14 @@ public class ImageController {
         response.sendRedirect("/member/"+id);
     }
 
-    @RequestMapping(value = "/member/{id}/profile", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    @RequestMapping(value = "/profile/member/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody
     public ResponseEntity getProfile(@PathVariable("id") String id) {
         try {
             String string = imageService.get(id, Image.ImageType.PROFILE);
             return ResponseEntity.ok(string);
         } catch (Exception e) {
-            return ResponseEntity.ok(ImageURI.EMPTY_PROFILE);
+            return ResponseEntity.ok(imageURI.getEmptyProfile());
         }
-
     }
 }
