@@ -378,6 +378,89 @@
             border-top: none;
         }
 
+        .w3-animate-opacity {
+          margin-left: 10px;
+        }
+
+        /* Card Information for Organization*/
+
+        .row-card {
+            margin-left: 10px;
+        }
+
+        .testimonial-card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+            width: 200pt;
+            margin: auto;
+            margin-top: 16px;
+            margin-left: 10px;
+            margin-right: 10px;
+            border: 10pt;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .avatar {
+            height: 200px;
+            background: #ffb366;
+        }
+
+        .rounded-circle {
+            height: 150px;
+            width: 150px;
+            margin-top: 22px;
+        }
+
+
+        /* Card information for Events*/
+        .event-card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+            width: 640pt;
+            /*margin: auto;*/
+            margin-top: 16px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 13px;
+            border: 10pt;
+            border-radius: 5px;
+            /*text-align: center;*/
+        }
+
+        .card-img-top {
+            height: 200px;
+        }
+
+        .card-block {
+            margin-left: 10px;
+        }
+
+        .card-title {
+            margin-left: 10px;
+            margin-bottom: 5px;
+        }
+
+        .card-date {
+            left: 165px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .card-organization {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .event-description {
+            color: black;
+            margin-top: 12px;
+            margin-left: 10px;
+        }
+
+        .card-charity {
+            margin-left: 10px;
+            margin-top: 20px;
+            padding-bottom: 15px;
+        }
     </style>
 </head>
 <body style="background:#ffe0b2">
@@ -392,23 +475,12 @@
 </nav>
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<!--<div class="container">-->
-    <!--<div class="fb-profile">-->
-        <!--<img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>-->
-        <!--<img align="left" class="fb-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>-->
-        <!--<div class="fb-profile-text">-->
-            <!--<h1>Eli Macy</h1>-->
-            <!--<p>Girls just wanna go fun.</p>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div> &lt;!&ndash; /container &ndash;&gt;-->
 
 <div class="card">
 
     <!--Card image-->
     <div class="view overlay">
         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg">
-        <!--<div class="row">-->
             <div class="profile-img">
                 <img class="person" src="https://shop.lego.com/static/images/svg/lego-logo.svg">
             </div>
@@ -421,7 +493,6 @@
             <div class="donation-box">
                 <div class="donation">Amount Donated: $1000</div>
             </div>
-        <!--</div>-->
 
 
     </div>
@@ -444,40 +515,125 @@
         </div>
         <div class="row" style="width: auto">
             <div class="column">
-
-            </div>
-            <div class="column">
                 <!-- Tab content -->
                 <div id="Organization" class="tabcontent w3-animate-opacity" style="display:none">
                     <h3>Organization</h3>
 
-                    <!--Card-->
-                    <div class="testimonial-card">
+                    <div class="row row-card">
+                        <!--Card-->
+                        <div class="testimonial-card">
 
-                        <!--Bacground color-->
-                        <div class="card-up indigo lighten-1">
-                        </div>
+                            <!--Avatar-->
+                            <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
+                            </div>
 
-                        <!--Avatar-->
-                        <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
-                        </div>
+                            <div class="card-body">
+                                <!--Name-->
+                                <h4 class="card-title">Theta Delta Chi</h4>
+                                <hr>
+                                <!--Quotation-->
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
+                            </div>
 
-                        <div class="card-body">
-                            <!--Name-->
-                            <h4 class="card-title">Anna Doe</h4>
-                            <hr>
-                            <!--Quotation-->
-                            <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
                         </div>
+                        <!--/.Card-->
+
+                        <!--Card-->
+                        <div class="testimonial-card">
+
+                            <!--Avatar-->
+                            <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
+                            </div>
+
+                            <div class="card-body">
+                                <!--Name-->
+                                <h4 class="card-title">Theta Delta Chi</h4>
+                                <hr>
+                                <!--Quotation-->
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                        <!--Card-->
+                        <div class="testimonial-card">
+
+                            <!--Avatar-->
+                            <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle">
+                            </div>
+
+                            <div class="card-body">
+                                <!--Name-->
+                                <h4 class="card-title">Theta Delta Chi</h4>
+                                <hr>
+                                <!--Quotation-->
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
 
                     </div>
-                    <!--/.Card-->
+
 
                 </div>
 
                 <div id="Events" class="tabcontent w3-animate-opacity">
                     <h3>Events</h3>
-                    <p>Paris is the capital of France.</p>
+                    <div class="col">
+                        <div class="event-card">
+                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
+                                        <div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>
+                                    </div>
+                                    <div class="col card-date">
+                                        <div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>
+                                        <div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>
+                                    </div>
+                                </div>
+                                <p class="event-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
+                                <p class="card-charity">All donations go to: GoFund Me, Inc.</p></div>
+                        </div>
+
+                        <div class="event-card">
+                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
+                                        <div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>
+                                    </div>
+                                    <div class="col card-date">
+                                        <div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>
+                                        <div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>
+                                    </div>
+                                </div>
+                                <p class="event-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
+                                <p class="card-charity">All donations go to: GoFund Me, Inc.</p></div>
+                        </div>
+
+                        <div class="event-card">
+                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
+                                        <div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>
+                                    </div>
+                                    <div class="col card-date">
+                                        <div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>
+                                        <div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>
+                                    </div>
+                                </div>
+                                <p class="event-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
+                                <p class="card-charity">All donations go to: GoFund Me, Inc.</p></div>
+                        </div>
+
+                    </div>
                 </div>
 
 
