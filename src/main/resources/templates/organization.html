@@ -650,9 +650,12 @@
                             <button class="tablinks" onclick="openTabi(event, 'Futuree Events')">Future Events</button>
                         </div>
                         <div class="column">
-                            <form action="createEvent.html">
-                                <button><a>Create Event +</a></button>
-                            </form>
+                            <div th:if="${#lists.contains(organization.members,user)}">
+                                <a th:href="@{/event(org=${organization.organizationId})}">Create Event</a>
+                                <!--<form th:action="@{/event(org=${organization.organizationId})}" method="get">-->
+                                    <!--<button th:formmethod="GET" type="submit">Create Event</button>-->
+                                <!--</form>-->
+                            </div>
                         </div>
                     </div>
                 <div id="Past Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll;background-color: white">
@@ -682,67 +685,69 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
 
                 <div id="Current Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll; background-color: white">
-                <div id="EventList1" class="ng-cloak">
-                    <div th:each="event: ${current}">
-                        <div class="event-card" th:object="${event}">
-                            <div class="card-block">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the Century</h3></div>
-                                        <div class="row card-organization"><p th:text="*{organization.name}">Hosted by: Theta Delta Chi</p></div>
+                    <div id="EventList" class="ng-cloak">
+                        <div th:each="event: ${current}">
+                            <div class="event-card" th:object="${event}">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the Century</h3></div>
+                                            <div class="row card-organization"><p th:text="*{organization.name}">Hosted by: Theta Delta Chi</p></div>
+                                        </div>
+                                        <div class="col card-date">
+                                            <div class="row card-start-date"><span type="datetime-local" th:text="'Start Date: ' +${#dates.format(event.startDate, 'MM-dd-yyyy')}">Start Date: Jan. 1, 2018 1:00pm</span></div>
+                                            <div class="row card-end-date"><span type="datetime-local" th:text="'End Date: '+${#dates.format(event.endDate, 'MM-dd-yyyy')}">End Date: Jan. 30, 2018 1:00pm</span></div>
+                                        </div>
                                     </div>
-                                    <div class="col card-date">
-                                        <div class="row card-start-date"><span type="datetime-local" th:text="'Start Date: ' +${#dates.format(event.startDate, 'MM-dd-yyyy')}">Start Date: Jan. 1, 2018 1:00pm</span></div>
-                                        <div class="row card-end-date"><span type="datetime-local" th:text="'End Date: '+${#dates.format(event.endDate, 'MM-dd-yyyy')}">End Date: Jan. 30, 2018 1:00pm</span></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">All donations go to: GoFund Me, Inc.</p>
-                                    </div>
-                                    <div class="col event-history">
-                                        <div class="event-donated">
-                                            <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">Amount Donated: $1000</div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">All donations go to: GoFund Me, Inc.</p>
+                                        </div>
+                                        <div class="col event-history">
+                                            <div class="event-donated">
+                                                <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">Amount Donated: $1000</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                </div>
+                    </div>
                 </div>
 
                 <div id="Futuree Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll;background-color: white">
-                <div id="EventList2" class="ng-cloak">
-                    <div th:each="event: ${future}">
-                        <div class="event-card" th:object="${event}">
-                            <div class="card-block">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the Century</h3></div>
-                                        <div class="row card-organization"><p th:text="*{organization.name}">Hosted by: Theta Delta Chi</p></div>
+                    <div id="EventList" class="ng-cloak">
+                        <div th:each="event: ${future}">
+                            <div class="event-card" th:object="${event}">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the Century</h3></div>
+                                            <div class="row card-organization"><p th:text="*{organization.name}">Hosted by: Theta Delta Chi</p></div>
+                                        </div>
+                                        <div class="col card-date">
+                                            <div class="row card-start-date"><span type="datetime-local" th:text="'Start Date: ' +${#dates.format(event.startDate, 'MM-dd-yyyy')}">Start Date: Jan. 1, 2018 1:00pm</span></div>
+                                            <div class="row card-end-date"><span type="datetime-local" th:text="'End Date: '+${#dates.format(event.endDate, 'MM-dd-yyyy')}">End Date: Jan. 30, 2018 1:00pm</span></div>
+                                        </div>
                                     </div>
-                                    <div class="col card-date">
-                                        <div class="row card-start-date"><span type="datetime-local" th:text="'Start Date: ' +${#dates.format(event.startDate, 'MM-dd-yyyy')}">Start Date: Jan. 1, 2018 1:00pm</span></div>
-                                        <div class="row card-end-date"><span type="datetime-local" th:text="'End Date: '+${#dates.format(event.endDate, 'MM-dd-yyyy')}">End Date: Jan. 30, 2018 1:00pm</span></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">All donations go to: GoFund Me, Inc.</p>
-                                    </div>
-                                    <div class="col event-history">
-                                        <div class="event-donated">
-                                            <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">Amount Donated: $1000</div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">All donations go to: GoFund Me, Inc.</p>
+                                        </div>
+                                        <div class="col event-history">
+                                            <div class="event-donated">
+                                                <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">Amount Donated: $1000</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                </div>
+                    </div>
                 </div>
 
                 </div>
@@ -791,20 +796,23 @@
             </script>
          <script>
           function openTabi(evt, cityName) {
-
+              console.log(cityName);
               evt.preventDefault();
-
               var i, tabcontent, tablinks;
               tabcontent = document.getElementsByClassName("tabicontent");
               for (i = 0; i < tabcontent.length; i++) {
                   tabcontent[i].style.display = "none";
               }
+              console.log(tabcontent);
               tablinks = document.getElementsByClassName("tablinks");
               for (i = 0; i < tablinks.length; i++) {
                   tablinks[i].className = tablinks[i].className.replace(" active", "");
               }
+              console.log(tablinks);
               document.getElementById(cityName).style.display = "block";
               evt.currentTarget.className += " active";
+              console.log(document.getElementById(cityName));
+              console.log(evt.currentTarget.className);
           }
           </script>
     </div>

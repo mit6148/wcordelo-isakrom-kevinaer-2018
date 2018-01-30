@@ -93,6 +93,11 @@ public class OrganizationViewController {
         model.addAttribute("past", past);
         model.addAttribute("current", current);
         model.addAttribute("future", future);
+        String user = "";
+        if (principal != null) {
+            user = principal.getName();
+        }
+        model.addAttribute("user", user);
         return "organization";
 //        } else {
 //            return "login";
