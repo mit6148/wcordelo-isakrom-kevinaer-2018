@@ -527,13 +527,8 @@
                     <button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
                 </div>
                 <div class="column">
-                            <div th:if="${#lists.contains(organization.members,user)}">
-                                <button><a th:href="@{/event(org=${organization.organizationId})}">Edit Profile</a></button>
-                                <!--<form th:action="@{/event(org=${organization.organizationId})}" method="get">-->
-                                    <!--<button th:formmethod="GET" type="submit">Create Event</button>-->
-                                <!--</form>-->
-                            </div>
-                        </div>
+                    <!--<button><a th:href="@{/event(org=${organization.organizationId})}">Edit Profile</a></button>-->
+                </div>
             </div>
         </div>
         <div class="row" style="width: auto">
@@ -616,24 +611,30 @@
                     <h3>Statistics</h3>
                     <h5>History of Donation Events</h5>
 
-                    <div class="event-card" th:each="donation, donation1:${donations}">
+                    <div class="event-card" th:each="donation:${donations}">
                         <div class="card-block">
                             <div class="row">
                                 <div class="col">
                                     <div class="row card-title"><h3 ></h3></div>
-                                    <div class="row card-organization"><p>Hosted by: N/A</p></div>
+                                    <div class="row card-organization"><p th:text="${donation.event.name}">Hosted by: N/A</p></div>
                                 </div>
                                 <div class="col card-date">
-                                    <div class="row card-start-date" th:text=" 'Date of Donation: ' + ${donation.date}"><span>Date of Donation: N/A</span></div>
+                                    <div class="row card-start-date" th:text=" 'Date of Donation: ' +${#dates.format(donation.date, 'MM-dd-yyyy')}"><span>Date of Donation: N/A</span></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p class="card-charity" th:text=" 'All funds go to ' + ${donation.charity.name}">All donations go to: N/A</p>
+                                    <p class="card-charity" th:text=" 'Organization: ' + ${donation.organization.name}">All donations go to: N/A</p>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col">
+                                    <p class="card-charity" th:text=" 'Charity: ' + ${donation.charity.name}">All donations go to: N/A</p>
                                 </div>
                                 <div class="col event-history">
                                     <div class="event-donated">
-                                        <div class="donation" th:text=" 'Amount Donated: ' + ${donation.amount}">Amount Donated: N/A</div>
+                                        <div class="donation" th:text=" 'Donation: $' + ${#numbers.formatDecimal(donation.amount, 0, 'COMMA', 2, 'POINT')}">Amount Donated: N/A</div>
                                     </div>
                                 </div>
                             </div>

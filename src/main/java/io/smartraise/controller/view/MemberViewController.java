@@ -42,7 +42,7 @@ public class MemberViewController {
             try {
                 model.addAttribute("profile_image", imageService.get(id, Image.ImageType.PROFILE));
             } catch (Exception e) {
-                return "home";
+
             }
 
             Map<String, String> orgImages = new HashMap<>();
@@ -68,12 +68,17 @@ public class MemberViewController {
     @GetMapping("/member/{id}/edit")
     public String getEditMember(@PathVariable("id") String id, Model model, Principal principal, HttpServletResponse response){
         if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+            try {
+                model.addAttribute("profile_image", imageService.get(id, Image.ImageType.PROFILE));
+            } catch (Exception e) {
+
+            }
             model.addAttribute("profile", memberService.get(id));
             model.addAttribute("payment", paymentService.get(id));
-            return "TESTedit";
+            return "memberEdit";
         } else {
 //                response.sendRedirect("/home");
-            return "login";
+            return "redirect:/login";
         }
     }
 
