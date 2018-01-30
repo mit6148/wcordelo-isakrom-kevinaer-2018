@@ -2,6 +2,7 @@ package io.smartraise.controller.view;
 
 import io.smartraise.model.Image;
 import io.smartraise.service.ImageService;
+import io.smartraise.util.ImageURI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -42,7 +43,7 @@ public class ImageController {
             String string = imageService.get(id, Image.ImageType.PROFILE);
             return ResponseEntity.ok(string);
         } catch (Exception e) {
-            return ResponseEntity.ok("data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==");
+            return ResponseEntity.ok(ImageURI.EMPTY_PROFILE);
         }
 
     }

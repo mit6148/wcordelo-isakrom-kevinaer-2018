@@ -1,13 +1,11 @@
 package io.smartraise.controller.view;
 
+import io.smartraise.model.Image;
 import io.smartraise.model.fundraise.Charity;
 import io.smartraise.model.fundraise.DonationRequest;
 import io.smartraise.model.fundraise.Event;
 import io.smartraise.model.fundraise.Organization;
-import io.smartraise.service.CharityService;
-import io.smartraise.service.DonationService;
-import io.smartraise.service.EventService;
-import io.smartraise.service.OrganizationService;
+import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -17,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class EventViewController {
@@ -32,6 +33,9 @@ public class EventViewController {
 
     @Autowired
     private OrganizationService organizationService;
+
+    @Autowired
+    private ImageService imageService;
 
     @GetMapping("/event")
     public String createEventForm(@Param("org") String org, Model model, Principal principal) {
@@ -70,11 +74,22 @@ public class EventViewController {
         return "event";
     }
 
-    @GetMapping("/home")
-    public String getMember(@PathVariable("id") String id, Model model, Principal principal){
-        model.addAttribute("past", eventService.getExpiredEvents());
-        model.addAttribute("current", eventService.getCurrentEvents());
-        model.addAttribute("future", eventService.getExpiredEvents());
+    @GetMapping("/")
+    public String getMember(Model model, Principal principal) throws Exception {
+        List<Event> past = eventService.getExpiredEvents();
+        List<Event> current = eventService.getCurrentEvents();
+        List<Event> future = eventService.getFutureEvents();
+        Map<String, String> map = new HashMap<>();
+        List[] events = new List[] {past, current, future};
+        for (List<Event> eventList: events) {
+            for (Event event: eventList) {
+                map.put(event.getEventId(), imageService.get(event.getEventId(), Image.ImageType.PROFILE));
+            }
+        }
+        model.addAttribute("past", past);
+        model.addAttribute("current", current);
+        model.addAttribute("future", future);
+        model.addAttribute("images", map);
         return "home";
     }
 

@@ -1,10 +1,11 @@
 package io.smartraise.service.impl;
 
-import io.smartraise.dao.DonationDAO;
+import io.smartraise.dao.*;
 import io.smartraise.model.accounts.Member;
 import io.smartraise.model.fundraise.Donation;
 import io.smartraise.model.fundraise.Event;
-import io.smartraise.service.DonationService;
+import io.smartraise.model.fundraise.Organization;
+import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -12,6 +13,18 @@ import java.util.List;
 public class DonationServiceImpl implements DonationService {
     @Autowired
     private DonationDAO donationDAO;
+
+    @Autowired
+    private EventDAO eventDAO;
+
+    @Autowired
+    private MemberDAO memberDAO;
+
+    @Autowired
+    private OrganizationDAO organizationDAO;
+
+    @Autowired
+    private CharityDAO charityDAO;
 
     @Override
     public List<Donation> getDonationsByOrganization(String organizationId) {
@@ -36,7 +49,16 @@ public class DonationServiceImpl implements DonationService {
     @Override
     public boolean create(Donation donation) {
         if (isValid(donation) && !donationDAO.exists(donation.getDonationId())) {
+            double amount = donation.getAmount();
             donationDAO.save(donation);
+            donation.getEvent().setDonation(donation.getEvent().getDonation() + amount);
+            eventDAO.save(donation.getEvent());
+            donation.getDonor().setDonation(donation.getDonor().getDonation() + amount);
+            memberDAO.save(donation.getDonor());
+            donation.getCharity().setDonation(donation.getCharity().getDonation() + amount);
+            charityDAO.save(donation.getCharity());
+            donation.getOrganization().setDonation(donation.getOrganization().getDonation() + amount);
+            organizationDAO.save(donation.getOrganization());
             return true;
         } else {
             return false;

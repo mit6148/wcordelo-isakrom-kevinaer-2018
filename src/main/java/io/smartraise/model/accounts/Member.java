@@ -19,6 +19,7 @@ public class Member {
     @Deprecated
     private final Set<Privilege> privilege;
     private Set<String> organizations;
+    private double donation;
 
     @DBRef
     @CascadeSave
@@ -41,6 +42,7 @@ public class Member {
         this.privilege = new HashSet<>();
         this.organizations = new HashSet<>();
 //        this.payment = new Payment();
+        this.donation = 0;
     }
 
 //    public Member(String username, Set<String> organizations, ContactInformation contactInformation) {
@@ -101,16 +103,11 @@ public class Member {
         this.organizations = organizations;
     }
 
-    //    public Payment getPayment() {
-//        return payment;
-//    }
+    public double getDonation() {
+        return donation;
+    }
 
-//    public void setPayment(Payment payment) {
-//        this.payment = payment;
-//    }
-
-//    public Member getPrivate() {
-//        return new Member(this.username, this.getOrganizations(), this.contactInformation.getPrivate());
-//    }
-
+    public void setDonation(double donation) {
+        this.donation = donation;
+    }
 }
