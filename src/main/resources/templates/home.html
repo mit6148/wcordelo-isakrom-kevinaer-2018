@@ -3,11 +3,14 @@
 <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script th:href="@{/js/jquery.min.js}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
         .scrollToTop{
@@ -131,60 +134,7 @@
             height: 75%;
             border-bottom: 5px solid black;
         }
-        .navbar-default {
-            background-color: #ff8829;
-            width:100%;
-        }
-        .navbar {
-            white-space: nowrap;
-            width:100%;
-        }
-        .navbar-brand{
-            -webkit-text-fill-color: white;
-        }
-        .body {
-            background-color: #ffe0b2;
-            -webkit-text-fill-color: white;
-        }
-        a.navbar-brand {
-            z-index: 100;
-            left: 0px;
-            top: 0px;
-            display: block;
-            width: 173px;
-            background-size: 100% 100%; }
-        .al-right{
-            float: right;
-            -webkit-text-fill-color: white;
-        }
-        .navbar{
-            z-index: 100;
-            position: fixed;
-        }
 
-        .navbar.navbar-inverse {
-            border: none;
-        }
-        .navbar .navbar-brand {
-            padding-top: 0px;
-            margin-top: 7px;
-        }
-        .navbar .navbar-brand img {
-            height: 50px;
-        }
-        .navbar .btn-primary,
-        .navbar .btn-primary:active:focus,
-        .navbar .btn-primary:hover {
-            background: #ff8829;
-            border-color: #ff8829;
-            box-shadow: none;
-        }
-
-        .logo {
-            padding-left: 10px ;
-        }
-
-        .
         .jumbotron{
             width: 90%;
             justify-content:center;
@@ -227,7 +177,6 @@
 <nav class="navbar navbar-default" >
     <a href="home.html" class="navbar-brand"><img src="./img/SR.png"><span class="logo">SmartRaise</span></a>
     <form class="form-inline my-2 my-lg-0" >
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
         <a class="btn btn-primary" href="search">Search Events</a>
         <a class="btn btn-primary" href="../templates/search.html" style="margin-left:10pt">Search Charities</a>
     </form>
@@ -378,125 +327,6 @@
         </div>
     </div>
 </div>
-<!--<div class="card"  ng-app="myApp" ng-controller="myCtrl">-->
-    <!--<div id="CharityDrops" style="height:500pt; padding-top: 40pt; background-color: antiquewhite" class="row ng-cloak">-->
-        <!--&lt;!&ndash;PAST EVENTS &ndash;&gt;-->
-        <!--<div id="pastEvents" class="column" style="margin: auto;">-->
-            <!--<h3 style="align-self: center; padding: 10pt">Past Events</h3>-->
-            <!--&lt;!&ndash; TESTY START &ndash;&gt;-->
-            <!--<div class="card" style="overflow: scroll; height: 347pt; background-color: #fffaf7">-->
-            <!--&lt;!&ndash; TESTY END &ndash;&gt;-->
-            <!--<div ng-repeat="event in pastEvents">-->
-                <!--<div id="card" class="card container drop-card" style="width: 275pt">-->
-                <!--<div id="body" class="row">-->
-                    <!--<div id="icon" class="column">-->
-                        <!--<img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">-->
-                        <!--FUCK-->
-                    <!--</div>-->
-                    <!--<div id="text" class="column" style="padding-left: 20pt">-->
-                        <!--<div id="EventName" style="padding-top: 2pt">-->
-                            <!--<b>{{event.name}}</b>-->
-                        <!--</div>-->
-                        <!--<div id="CharityName" style="padding-top: 2pt">-->
-                            <!--<small>{{organization.charityId}}</small>-->
-                        <!--</div>-->
-                        <!--<div id="Money" class="pull-right" style="padding-top: 2pt">-->
-                            <!--Money Raise-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div id="footer" class="row card" style="padding-left: 15pt">-->
-                    <!--<div id="Sponsor" class="column">-->
-                        <!--{{organization.organizationId}}-->
-                    <!--</div>-->
-                    <!--<div id="Time" class="push-left column" style="padding-left: 160pt">-->
-                        <!--{{organization.startTime}}-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-         <!--&lt;!&ndash;CURRENT EVENTS &ndash;&gt;-->
-        <!--<div id="currentEvents" class="column" style="margin: auto;">-->
-            <!--<h3 style="align-self: center; padding: 10pt">Current Events</h3>-->
-            <!--<div class="card" style="overflow: scroll; height: 347pt; background-color: #fffaf7">-->
-            <!--<div ng-repeat="event in currentEvents">-->
-                <!--<div id="card" class="card container drop-card" style="width: 275pt">-->
-                <!--<div id="body" class="row">-->
-                    <!--<div id="icon" class="column">-->
-                        <!--<img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">-->
-                        <!--FUCK-->
-                    <!--</div>-->
-                    <!--<div id="text" class="column" style="padding-left: 20pt">-->
-                        <!--<div id="EventName" style="padding-top: 2pt">-->
-                            <!--<b>{{event.name}}</b>-->
-                        <!--</div>-->
-                        <!--<div id="CharityName" style="padding-top: 2pt">-->
-                            <!--<small>{{organization.charityId}}</small>-->
-                        <!--</div>-->
-                        <!--<div id="Money" class="pull-right" style="padding-top: 2pt">-->
-                            <!--Money Raise-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div id="footer" class="row" style="padding-left: 15pt">-->
-                    <!--<div id="Sponsor" class="column">-->
-                        <!--{{organization.organizationId}}-->
-                    <!--</div>-->
-                    <!--<div id="Time" class="push-left column" style="padding-left: 160pt">-->
-                        <!--{{organization.startTime}}-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-         <!--&lt;!&ndash;FUTURE EVENTS &ndash;&gt;-->
-        <!--<div id="futureEvents" class="column" style="margin: auto;  padding: 10pt;">-->
-            <!--<h3 style="align-self: center; text-align: center; padding: 10pt">Future Events</h3>-->
-            <!--<div class="card" style="overflow: scroll; height: 347pt;background-color: #fffaf7">-->
-            <!--<div ng-repeat="event in futureEvents">-->
-                <!--<div id="card" class="card container drop-card" style="width: 275pt;">-->
-                <!--<div id="body" class="row">-->
-                    <!--<div id="icon" class="column">-->
-                        <!--<img class="icon-image" src="Carousel/icon.svg" style="padding-left: 15pt; padding-top: 10px">-->
-                        <!--FUCK-->
-                    <!--</div>-->
-                    <!--<div id="text" class="column" style="padding-left: 20pt">-->
-                        <!--<div id="EventName" style="padding-top: 2pt">-->
-                            <!--<b>{{event.name}}</b>-->
-                        <!--</div>-->
-                        <!--<div id="CharityName" style="padding-top: 2pt">-->
-                            <!--<small>{{organization.charityId}}</small>-->
-                        <!--</div>-->
-                        <!--<div id="Money" class="pull-right" style="padding-top: 2pt">-->
-                            <!--Money Raise-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div id="footer" class="row" style="padding-left: 15pt">-->
-                    <!--<div id="Sponsor" class="column">-->
-                        <!--{{organization.organizationId}}-->
-                    <!--</div>-->
-                    <!--<div id="Time" class="push-left column" style="padding-left: 160pt">-->
-                        <!--{{organization.startTime}}-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--
-    <div style="background: grey; width: auto;">
-        <a class="nav-link al-right" href="" style="align-self: auto" onclick="document.getElementbyId('info').scrollIntoView()">Learn More</a>
-    </div>
-    -->
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope, $http) {
