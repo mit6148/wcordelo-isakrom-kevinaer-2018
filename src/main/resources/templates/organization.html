@@ -651,7 +651,7 @@
                         </div>
                         <div class="column">
                             <div th:if="${#lists.contains(organization.members,user)}">
-                                <a th:href="@{/event(org=${organization.organizationId})}">Create Event</a>
+                                <button><a th:href="@{/event(org=${organization.organizationId})}">Create Event</a></button>
                                 <!--<form th:action="@{/event(org=${organization.organizationId})}" method="get">-->
                                     <!--<button th:formmethod="GET" type="submit">Create Event</button>-->
                                 <!--</form>-->

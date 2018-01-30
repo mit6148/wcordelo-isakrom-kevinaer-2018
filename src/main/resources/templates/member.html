@@ -508,7 +508,7 @@
                 <p class="member"><h7 class="email" th:text=" 'Email: ' + ${profile.contactInformation.email}"></h7></p>
             </div>
             <div class="donation-box">
-                <div class="donation" th:text=" 'Total Donated: ' + ${profile.donation}"></div>
+                <div class="donation" th:text=" 'Total Donated: ' + ${#numbers.formatDecimal(profile.donation, 0, 'COMMA', 2, 'POINT')}"></div>
             </div>
     </div>
 
@@ -520,9 +520,9 @@
                 <div class="column">
                     <button class="tablinks" id="defaultTab" onclick="openTab(event, 'Organization')">Organization</button>
                 </div>
-                <div class="column">
-                    <button class="tablinks" onclick="openTab(event, 'Events')">Events</button>
-                </div>
+                <!--<div class="column">-->
+                    <!--<button class="tablinks" onclick="openTab(event, 'Events')">Events</button>-->
+                <!--</div>-->
                 <div class="column">
                     <button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
                 </div>
@@ -536,15 +536,18 @@
 
                     <div class="row row-card">
                         <!--Card-->
-                        <div class="testimonial-card" th:each="org, org1:${orgs}">
+                        <div class="testimonial-card" th:each="org:${orgs}">
 
                             <!--Avatar-->
-                            <div class="avatar"><img class="rounded-circle" th:src="@{/img/org.png}">
+                            <div class="avatar"><img class="rounded-circle" th:src="${orgsImages['__${org.organizationId}__']}">
                             </div>
 
                             <div class="card-body">
                                 <!--Name-->
-                                <h4 class="card-title" th:text="${org.name}"></h4>
+                                <h4>
+                                    <a th:href="@{/organization/{id}(id=${org.organizationId})}" th:text="${org.name}" style="padding-top: 2pt"></a>
+                                </h4>
+                                <!--<h4 class="card-title" th:text="${org.name}"></h4>-->
                                 <hr>
                                 <!--Quotation-->
                                 <p th:text="${org.description}"></p>
@@ -556,27 +559,27 @@
                 </div>
 
                 <!--Events-->
-                <div id="Events" class="tabcontent w3-animate-opacity">
-                    <h3>Events</h3>
-                    <div class="col">
-                        <div class="event-card">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">
-                             <div class="card-block">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row card-title"><h3>Fundraising Event of the Century</h3></div>
-                                        <div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>
-                                    </div>
-                                    <div class="col card-date">
-                                        <div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>
-                                        <div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>
-                                    </div>
-                                </div>
-                                <p class="event-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
-                                <p class="card-charity">All donations go to: GoFund Me, Inc.</p></div>
-                        </div>
-                    </div>
-                </div>
+                <!--<div id="Events" class="tabcontent w3-animate-opacity">-->
+                    <!--<h3>Events</h3>-->
+                    <!--<div class="col">-->
+                        <!--<div class="event-card">-->
+                            <!--<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" alt="Card image cap">-->
+                             <!--<div class="card-block">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col">-->
+                                        <!--<div class="row card-title"><h3>Fundraising Event of the Century</h3></div>-->
+                                        <!--<div class="row card-organization"><p>Hosted by: Theta Delta Chi</p></div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col card-date">-->
+                                        <!--<div class="row card-start-date"><span>Start Date: Jan. 1, 2018 1:00pm</span></div>-->
+                                        <!--<div class="row card-end-date"><span>End Date: Jan. 30, 2018 1:00pm</span></div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<p class="event-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisciLorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>-->
+                                <!--<p class="card-charity">All donations go to: GoFund Me, Inc.</p></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <!--<div id="Events" class="tabcontent w3-animate-opacity">-->
                     <!--<h3>Events</h3>-->
@@ -628,7 +631,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     <!--<div class="card" ng-app="myApp" ng-controller="myCtrl">-->
                         <!--&lt;!&ndash;Card content&ndash;&gt;-->
                         <!--<div class="card-body container">-->

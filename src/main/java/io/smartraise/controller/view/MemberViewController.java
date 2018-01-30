@@ -2,6 +2,7 @@ package io.smartraise.controller.view;
 
 import io.smartraise.model.Image;
 import io.smartraise.model.accounts.Member;
+import io.smartraise.model.fundraise.Organization;
 import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class MemberViewController {
@@ -39,9 +44,20 @@ public class MemberViewController {
             } catch (Exception e) {
                 return "home";
             }
+
+            Map<String, String> orgImages = new HashMap<>();
+            Set<Organization> organizationList =  organizationService.getFromMember(member);
+            for (Organization organization: organizationList) {
+                try {
+                    orgImages.put(organization.getOrganizationId(), imageService.get(organization.getOrganizationId(), Image.ImageType.ORG));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             model.addAttribute("payment", paymentService.get(id));
             model.addAttribute("profile", member);
-            model.addAttribute("orgs", organizationService.getFromMember(member));
+            model.addAttribute("orgs", organizationList);
+            model.addAttribute("orgsImages", orgImages);
             model.addAttribute("donations", donationService.getDonationsByDonor(id));
             return "member";
         } else {
