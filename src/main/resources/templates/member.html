@@ -526,6 +526,14 @@
                 <div class="column">
                     <button class="tablinks" onclick="openTab(event, 'Statistics')">Statistics</button>
                 </div>
+                <div class="column">
+                            <div th:if="${#lists.contains(organization.members,user)}">
+                                <button><a th:href="@{/event(org=${organization.organizationId})}">Edit Profile</a></button>
+                                <!--<form th:action="@{/event(org=${organization.organizationId})}" method="get">-->
+                                    <!--<button th:formmethod="GET" type="submit">Create Event</button>-->
+                                <!--</form>-->
+                            </div>
+                        </div>
             </div>
         </div>
         <div class="row" style="width: auto">
