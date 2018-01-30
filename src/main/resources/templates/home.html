@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
@@ -14,10 +14,10 @@
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
         .scrollToTop{
-	width:100px; 
+	width:100px;
 	height:130px;
-	padding:10px; 
-	text-align:center; 
+	padding:10px;
+	text-align:center;
 	background: whiteSmoke;
 	font-weight: bold;
 	color: #444;
@@ -175,10 +175,15 @@
 
 
 <nav class="navbar navbar-default" >
-    <a href="home" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
     <a class="nav-link al-right" href="search" >Search Events</a>
-    <a class="nav-link al-right" href="login" >Log In</a>
-    <a class="nav-link al-right" href="signup">Sign up</a>
+    <div th:if="${user != null}">
+        <a class="nav-link al-right" th:href="@{'/member/'+${user}}" >Profile</a>
+    </div>
+    <div th:if="${user == null}">
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
 </nav>
 <!-- Tessttt -->
 <!--carousel based off of https://www.w3schools.com/bootstrap4/bootstrap_carousel.asp -->

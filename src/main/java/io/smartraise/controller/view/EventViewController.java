@@ -94,6 +94,9 @@ public class EventViewController {
         model.addAttribute("current", current);
         model.addAttribute("future", future);
         model.addAttribute("images", map);
+        if (principal != null) {
+            model.addAttribute("user", principal.getName());
+        }
         return "home";
     }
 
