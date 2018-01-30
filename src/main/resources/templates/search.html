@@ -288,21 +288,19 @@
 <div class="card" ng-app="myApp" ng-controller="myCtrl">
     <!--Card content-->
     <div class="card-body container">
-        <!-- Form Stuff
-      <form class="example"  action="action_page.php">
-        <input type="text" placeholder="Search.." name="search">
-        <button type="submit" script="Clone()"><i class="fa fa-search">Search</i></button>
-      </form>
-      -->
         <div class="row" style="padding-left: 10pt">
             <form action="action_page.php">
                 <input type="text" class="search" placeholder="Search.." name="search" ng-model="searchText">
             </form>
         </div>
+<<<<<<< HEAD
         <div id="EventList" class="ng-cloak">
             <div ng-repeat="ovent in myWelcome | filter:searchText">
+=======
+          <div id="EventList" class="ng-cloak">
+              <div ng-repeat="ovent in myWelcome | filter:searchText">
+>>>>>>> 4df07f2d33f9c6d8805a76eb68e34cb582e33dfa
                 <div class="container">
-
                     <div class="cardy">
                         <div class="image pull-left">
                             <img src="" style="z-index: 10">
