@@ -259,7 +259,7 @@
             float: left;
             height: 140px;
             width: 73%;
-            overflow: hidden
+            overflow: hidden;
             padding: 5px;
         }
 
@@ -725,7 +725,7 @@
             float: left;
             height: 140px;
             width: 73%;
-            overflow: hidden
+            overflow: hidden;
             padding: 5px;
         }
 
@@ -790,12 +790,12 @@
           <!--EVENTS-->
           <div id="Past Events" class="tabcontent tabicontent w3-animate-opacity" style=" background-color: white; display: block;">
                     <div id="EventList" class="">
-                        <div th:each="event: ${past}">
-                            <div class="event-card" th:object="${event}">
+                        <div >
+                            <div class="event-card">
                                 <div class="card-block">
                                     <div class="row">
                                         <div class="col">
-                                            <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the
+                                            <div class="row card-title"><h3>Fundraising Event of the
                                                 Century</h3></div>
                                             <div class="row card-organization"><p th:text="*{organization.name}">Hosted
                                                 by: Theta Delta Chi</p></div>
@@ -901,38 +901,51 @@
                         </div>
                     </div>
                 </div>
-        <!--
+        
           <div id="EventList" class="ng-cloak">
               <div ng-repeat="ovent in myWelcome | filter:searchText">
                 <div class="container">
-                    <div class="cardy">
-                        <div class="image pull-left">
-                            <img src="" style="z-index: 10">
-                            <p id="eventId" class="invis">{{ovent.eventId}}</p>
-                        </div>
-                        <div class="content pull-left" style="padding-left:20pt">
-                            <div style="display:flex;flex-direction:row;">
-                                <a href="" id="eventTitle"><h5>{{ovent.name}}</h5></a>
-                                <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.startDate}} </h6>
-                                <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>
+                   
+                    <div id="Futuree Events" class="tabcontent tabicontent w3-animate-opacity" style=" background-color: white; display: block;">
+                    <div id="EventList" class="">
+                        <div >
+                            <div class="event-card" ">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row card-title"><h3>{{ovent.name}}</h3></div>
+                                            <div class="row card-organization"><p>Hosted
+                                                by: {{ovent.organization.name}}}</p></div>
+                                        </div>
+                                        <div class="col card-date" style="margin-right: 10pt">
+                                            <div class="row card-start-date"><span type="datetime-local" >Start Date: Jan. 1, 2018 1:00pm</span>
+                                            </div>
+                                            <div class="row card-end-date"><span type="datetime-local" >End Date: Jan. 30, 2018 1:00pm</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">
+                                                All donations go to: {{ovent.charity.name}}</p>
+                                        </div>
+                                        <div class="col event-history">
+                                            <div class="event-donated">
+                                                <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">
+                                                    Amount Donated: {{ovent.donation}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <p style="padding-top:2%">
-                                {{ovent.description}}
-                            </p>
-                            <hr>
                         </div>
-                        <script>
-                            var queryString = "/" + document.getElementById("eventId").innerText;
-                            var link = "event" + queryString;
-                            console.log(queryString);
-                            var yourElement = document.getElementById('eventTitle');
-                            yourElement.setAttribute('href', link);
-                        </script>
                     </div>
+                </div> 
+                    
                 </div>
             </div>
         </div>
-        -->
         <script>
             var app = angular.module('myApp', []);
             app.controller('myCtrl', function ($scope, $http) {
