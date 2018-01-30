@@ -9,6 +9,229 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <style>
+        /* NavBar CSS Code */
+
+        .navbar.navbar-inverse {
+            border: none;
+        }
+        .navbar .navbar-brand {
+            padding-top: 0px;
+            margin-top: 7px;
+        }
+        .navbar .navbar-brand img {
+            height: 50px;
+        }
+
+        .logo {
+            padding-left: 10px ;
+        }
+
+        /* Profile Image*/
+        .img-fluid {
+            height: 275pt;
+            width:inherit;
+            z-index: -1
+        }
+
+        .person {
+            border: 10px solid white;
+            margin-bottom: 25px;
+            width: 150pt;
+            height: 150pt;
+            opacity: 1;
+
+        }
+
+        .view.overlay {
+            width: inherit;
+            margin: -1px;
+        }
+
+        .profile-img {
+            position: absolute;
+            top: 175pt;
+            right: 525pt;
+            float: inherit;
+
+        }
+
+        .profile-name {
+            position: absolute;
+            top: 175pt;
+            left: 186pt;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            color: white;
+
+        }
+
+        .member {
+            margin-left: 20px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .donation {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .donation-box {
+            position: absolute;
+            border-radius: 5px;
+            background: #64dd17;
+            border: #64dd17;
+            width: 200px;
+            height: 50px;
+            right: 18pt;
+            top: 198pt;
+        }
+
+        .row-content {
+            background: #64dd17;
+            float: right;
+            margin: 0px;
+        }
+
+        /*Tab Content*/
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: #64dd17;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #b2ff59;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #88ff00;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            /*border: 1px solid #ccc;*/
+            border-top: none;
+        }
+
+        .w3-animate-opacity {
+            margin-left: 10px;
+        }
+
+        /* Card Information for Organization*/
+
+        .row-card {
+            margin-left: 10px;
+        }
+
+        .testimonial-card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+            width: 200pt;
+            margin: auto;
+            margin-top: 16px;
+            margin-left: 10px;
+            margin-right: 10px;
+            border: 10pt;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .avatar {
+            height: 200px;
+            background: #ffb366;
+        }
+
+        .rounded-circle {
+            height: 150px;
+            width: 150px;
+            margin-top: 22px;
+        }
+
+
+        /* Card information for Events*/
+        .event-card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+            width: 640pt;
+            /*margin: auto;*/
+            margin-top: 16px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 13px;
+            border: 10pt;
+            border-radius: 5px;
+            /*text-align: center;*/
+        }
+
+        .card-img-top {
+            height: 200px;
+        }
+
+        .card-block {
+            margin-left: 10px;
+        }
+
+        .card-title {
+            margin-left: 10px;
+            margin-bottom: 5px;
+        }
+
+        .card-date {
+            left: 165px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .card-organization {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .event-description {
+            color: black;
+            margin-top: 12px;
+            margin-left: 10px;
+        }
+
+        .card-charity {
+            margin-left: 10px;
+            margin-top: 20px;
+            padding-bottom: 15px;
+        }
+
+        /*Statistics*/
+        .event-history {
+            margin-right: 50px;
+        }
+
+        .event-donated {
+            /*position: absolute;*/
+            border-radius: 5px;
+            background: #64dd17;
+            border: #64dd17;
+            width: 200px;
+            height: 50px;
+            float: right;
+            /*right: 18pt;*/
+            /*top: 198pt;*/
+        }
     /* conffeti*/
         #confetti{
   position: absolute;
@@ -323,13 +546,13 @@ a.iprodev:hover {
               clicky = 0
               document.getElementById("valWarn").style.display = "none" ;
               document.getElementById("donWarn").style.display = "none" ;
-              
+
               function donFade(){
                   clicky = 0;
                   document.getElementById("valWarn").style.display = "none" ;
                   document.getElementById("donWarn").style.display = "none" ;
               }
-              
+
               function donate(){
                   if (clicky == 1){
                       confettito();
@@ -337,11 +560,11 @@ a.iprodev:hover {
                        document.getElementById("valWarn").style.display = "none" ;
                   document.getElementById("donWarn").style.display = "none" ;
                   } if(document.getElementById("donateAmount").value > 0.01){
-                       document.getElementById("valWarn").style.display = "none" ; 
+                       document.getElementById("valWarn").style.display = "none" ;
                   } if(clicky != 1){
-                       document.getElementById("donWarn").style.display = "none" ; 
+                       document.getElementById("donWarn").style.display = "none" ;
                   } if(document.getElementById("donateAmount").value <= 0.01 || document.getElementById("donateAmount").value == ""){
-                      document.getElementById("valWarn").style.display = "block"  ;    
+                      document.getElementById("valWarn").style.display = "block"  ;
                   } else {
                       clicky = clicky + 1;
                       document.getElementById("donWarn").style.display = "block";
@@ -371,13 +594,10 @@ a.iprodev:hover {
                             <div th:object="${event.charity}">
                                 <h4 class="card-title" th:text="*{name}">Charity</h4>
                                 <!--Text-->
-                                <img src="http://static2.businessinsider.com/image/5899ffcf6e09a897008b5c04-1200/.jpg" class="person" style="width: 150pt; height: 150pt">
+                                <img th:src="${charityImage}" class="person" style="width: 150pt; height: 150pt">
                                 <p class="card-text" th:text="*{description}">The Geneva Convencitions are a thing signed by a bunch of people to
-                                stop ppl from doing realallllly shitty things ot each other.</p
+                                stop ppl from doing realallllly shitty things ot each other.</p>
                                 <small item-width="max-content">Contact Info</small>
-                                <br>
-                                <small>783-420-6648</small>
-                                <br>
                                 <a th:href="*{website}">somewhere, just not here</a>
                             </div>
                         <hr>
@@ -385,15 +605,15 @@ a.iprodev:hover {
                                 <!--Title-->
                                 <h4 class="card-title" th:text="*{name}">Host</h4>
                                 <!--Text-->
-                                <img src="http://static2.businessinsider.com/image/5899ffcf6e09a897008b5c04-1200/.jpg" class="person" style="width: 150pt; height: 150pt">
+                                <img th:src="${orgImage}" class="person" style="width: 150pt; height: 150pt">
                                 <p class="card-text" th:text="*{description}">This is John. John is a terrible human being but an amazing businessman.
                                     John wants to feel like he's a good person so he started this fundraiser. Fuck John.</p>
-                                
+
                                 <small item-width="max-content">Contact Info</small>
                                 <br>
-                                <small>783-420-6648</small>
+                                <!--<small th:text="*{address.ge}">783-420-6648</small>-->
                                 <br>
-                                <small>somewhere, just not here</small>
+                                <a th:href="*{website}">somewhere, just not here</a>
                             </div>
                         </div>
                         <div class="col-sm-8" th:object="${event}">
@@ -408,27 +628,41 @@ a.iprodev:hover {
 
                             <!--Text-->
                             <a th:text="*{description}"></a>
-                            
+
                             <div id="Donations" style="overflow: scroll">
                                 <h1>Recent Donations</h1>
-                                
-                                <div id="card" class="card container drop-card" style="width: 275pt">
-                        <div class="row" style="margin: auto;">
-                            <div class="col-sm-4" style="padding-top: 5pt;padding-bottom: 5pt;padding-left: 0pt">
-                                <img height="120" width="120" th:src="${images['__${event.eventId}__']}"/>
-                            </div>
-                            <div id="text" class="col-sm-8" style="padding-left: 20pt">
-                                <div>
-                                    <a th:href="@{/event/{id}(id=${event.eventId})}" th:text="${event.name}" style="padding-top: 2pt">DONOR NAME</a>
+                                <div class="event-card" th:each="donation:${donations}">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="row card-title"><h3 ></h3></div>
+                                                <div class="row card-organization"><p th:text="${donation.event.name}">Hosted by: N/A</p></div>
+                                            </div>
+                                            <div class="col card-date">
+                                                <div class="row card-start-date" th:text=" 'Date of Donation: ' +${#dates.format(donation.date, 'MM-dd-yyyy')}"><span>Date of Donation: N/A</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-charity" th:text=" 'Organization: ' + ${donation.organization.name}">All donations go to: N/A</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col">
+                                                <p class="card-charity" th:text=" 'Charity: ' + ${donation.charity.name}">All donations go to: N/A</p>
+                                            </div>
+                                            <div class="col event-history">
+                                                <div class="event-donated">
+                                                    <div class="donation" th:text=" 'Donation: $' + ${#numbers.formatDecimal(donation.amount, 0, 'COMMA', 2, 'POINT')}">Amount Donated: N/A</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div th:text="${event.charity.name}" style="padding-top: 2pt">DONATION TIME</div>
-                                <div th:text="'Money raised: $' + ${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}" class="pull-right" style="padding-top: 2pt">MONEY DONTED</div>
-                            </div>
-                        </div>
-                    </div>
                             </div>
                             </div>
-                            
+
                       </div>
         </div>
         <script>
