@@ -39,7 +39,7 @@ a.iprodev:hover {
   background: #A7AAAE;
   color: white;
 }
-    /* conffeti*/    
+    /* conffeti*/
         @import url(http://fonts.googleapis.com/css?family=Roboto);
 .person {
     border: 10px solid transparent;
@@ -297,7 +297,7 @@ a.iprodev:hover {
             </div>
         </div>
         <script>
-            function closeMode(){ 
+            function closeMode(){
                 $('#donate').modal('hide');
             }
           </script>
@@ -339,6 +339,9 @@ a.iprodev:hover {
             <div class="progress row container" style="position: absolute; top: 226pt; width: 590pt; margin-left: 14pt">
                 <div class="container">
                   <div class="progress">
+                      <div th:with="progress=${event.donation/event.goal*100}">
+
+                      </div>
                     <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%; z-index: 5">
                       100%
                     </div>
