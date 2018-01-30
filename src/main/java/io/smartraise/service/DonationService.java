@@ -31,5 +31,5 @@ public interface DonationService extends CrudService<Donation>, ValidationServic
 
     List<Donation> getDonationsByDonor(String donorId);
 
-    boolean makeDonation(Event event, Member member);
+    boolean makeDonation(Event event, Member member, Double amount);
 }

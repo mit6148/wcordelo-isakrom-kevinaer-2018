@@ -74,8 +74,9 @@ public class DonationServiceImpl implements DonationService {
     }
 
     @Override
-    public boolean makeDonation(Event event, Member member) {
-        Donation donation = new Donation(member, event, 0);
+    public boolean makeDonation(Event event, Member member, Double amount) {
+        Donation donation = new Donation(member, event, amount);
         return create(donation);
     }
+
 }

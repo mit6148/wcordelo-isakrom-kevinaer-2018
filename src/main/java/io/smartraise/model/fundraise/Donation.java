@@ -47,7 +47,7 @@ public class Donation {
         this.date = Calendar.getInstance().getTime();
     }
 
-    public Donation(Member donor, Event event, float amount) {
+    public Donation(Member donor, Event event, double amount) {
         this.donationId = UUID.randomUUID().toString();
         this.donor = donor;
         this.charity = event.getCharity();

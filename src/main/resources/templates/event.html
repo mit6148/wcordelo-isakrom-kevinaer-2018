@@ -215,7 +215,6 @@ a.iprodev:hover {
           background-color: #000;
           text-align: center;
           cursor: pointer;
-          width: 100%;
           font-size: 18px;
       }
 
@@ -274,19 +273,27 @@ a.iprodev:hover {
      </nav>
       <div class="modal fade" id="donate">
         <div class="container modal-dialog">
-            <div class="modal-content" style="width: 300pt">
+            <div class="modal-content container" style="width: 200pt; height: 150pt; margin: auto">
                 <div id="info" style="align-items: center">
-                    <input type="number">
-                    <br>
-                    <select>
+                    <h2 style="margin-left: auto;
+    padding-left: 47pt;">Donate!</h2>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                      <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                      </div>
+                    </div>
+                    <select style="margin-left: 12pt;">
                       <option value="volvo">VISA | Ending in XX24</option>
                       <option value="saab">Penfed Accout</option>
                       <option value="opel">Paypal</option>
                     </select>
                 </div>
-                <div id="buttons">
+                <div id="buttons" class="row" style="display: inline; margin: 10pt; align-self: center; width: auto">
                     <button onclick="closeMode()" class="btn">Cancel</button>
-                    <br>
                     <button onclick="confection()" class="btn">Confirm</button>
                 </div>
             </div>
