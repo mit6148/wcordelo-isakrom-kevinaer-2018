@@ -178,19 +178,19 @@
             <div id="loginform"class="col-sm-4">
                 <div class="form" style="margin-top: auto"><!-- ng-controller="putserviceCtrl"> -->
                     <form th:action="@{/login}" method="post"> <!--ng-submit="submit()" -->
-                        <div th:if="${param.logout}" class="alert alert-warning">
-                            You have been logged out.
-                </div>
-                        <div th:if="${param.error}" class="alert alert-danger">
-                            Invalid username and password.
-                        </div>
-                        <h1>Login</h1>
+                        <h1 style="margin-top: 60pt;">Login</h1>
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username"/>
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password"/>
                         <div class="form-actions">
                             <button type="submit" class="btn submit btn-default" style="margin: 10pt; font-size: 15pt; margin-left: auto">Login</button>
+                        </div>
+                         <div th:if="${param.logout}" class="alert alert-warning">
+                            You have been logged out.
+                </div>
+                        <div th:if="${param.error}" class="alert alert-danger">
+                            Invalid username and password.
                         </div>
                     </form>
                 </div>
@@ -201,7 +201,7 @@
                     <p style="text-align: center">Please make an account using the buttons below in order to make full of the SmartRaise website!</p>
                 <div class="container" style="width: inherit">
                     <div class="row">
-                        <div class="col-sm-5" style="margin: auto; padding: 5pt;">
+                        <div class="col-sm-8" style="margin: auto; padding: 5pt;">
                             <h2 style="text-align: center">Member</h2>
                             <p style="text-align: center">
                             - Create your own customizable profile page to display organizations that you endorse.
@@ -213,19 +213,6 @@
                                 <input type="submit" class="btn submit btn-default" value="Register Member" style="margin: auto;  font-size: 15pt; padding: 10px 20px;"/>
                             </form>
                         </div>
-                        <div class="col-sm-1">
-                            <hr width="1" size="500">
-                        </div>
-                        <div class="col-sm-5" style="margin: auto; padding: 5pt;">
-                            <h2 style="text-align: center">Organization</h2>
-                            <p style="text-align: center">
-                            - Create a page for your organization in order to help legitimize fundraising events.
-                                <br>
-                            - Facilitate event creation, group all members under one name and promote your events!
-                            </p>
-                            <form th:action="@{/organization}">
-                                <input type="submit" class="btn submit btn-default" value="Register Organization" style="margin: auto;  font-size: 15pt; padding: 10px 20px;"/>
-                            </form>
                         </div>
                     </div>
                 </div>
