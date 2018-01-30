@@ -1,26 +1,52 @@
 .navbar-default {
-    background-color: #ef6c00;
-    width: 100%;
-}
+            background-color: #ff8829;
+            width:100%;
+        }
+        .navbar {
+            white-space: nowrap;
+            width:100%;
+        }
+        .navbar-brand{
+            -webkit-text-fill-color: white;
+        }
+        .body {
+            background-color: #ffe0b2;
+            -webkit-text-fill-color: white;
+        }
+        a.navbar-brand {
+            z-index: 100;
+            left: 0px;
+            top: 0px;
+            display: block;
+            width: 173px;
+            background-size: 100% 100%; }
+        .al-right{
+            float: right;
+            -webkit-text-fill-color: white;
+        }
+        .navbar{
+            z-index: 100;
+            position: fixed;
+        }
 
-.navbar {
-    white-space: nowrap;
-    width: 100%;
-    margin: auto;
-    z-index: 100;
-    position: fixed;
-}
+        .navbar.navbar-inverse {
+            border: none;
+        }
+        .navbar .navbar-brand {
+            padding-top: 0px;
+            margin-top: 7px;
+        }
+        .navbar .navbar-brand img {
+            height: 50px;
+        }
+        .navbar .btn-primary,
+        .navbar .btn-primary:active:focus,
+        .navbar .btn-primary:hover {
+            background: #ff8829;
+            border-color: #ff8829;
+            box-shadow: none;
+        }
 
-.navbar-brand {
-    -webkit-text-fill-color: white;
-}
-
-
-a.navbar-brand {
-    z-index: 100;
-    left: 0px;
-    top: 0px;
-    display: block;
-    width: 173px;
-    background-size: 100% 100%;
-}
+        .logo {
+            padding-left: 10px ;
+        }
