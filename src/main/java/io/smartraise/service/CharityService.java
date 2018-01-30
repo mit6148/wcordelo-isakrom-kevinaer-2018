@@ -12,4 +12,6 @@ public interface CharityService extends CrudService<Charity>, ValidationService<
     Set<Charity> getCharities(List<String> terms);
 
     Set<Charity> getAll();
+
+    List<Charity> getAllSorted();
 }

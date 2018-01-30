@@ -21,10 +21,10 @@ public class Event {
     private double goal;
     @DBRef
     @CascadeSave
-    private final Organization organization;
+    private Organization organization;
     @DBRef
     @CascadeSave
-    private final Charity charity;
+    private Charity charity;
 
     public Event() {
         this.eventId = UUID.randomUUID().toString();
@@ -96,5 +96,13 @@ public class Event {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
+    public void setCharity(Charity charity) {
+        this.charity = charity;
     }
 }
