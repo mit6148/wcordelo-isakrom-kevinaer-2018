@@ -66,28 +66,34 @@ public class OrganizationViewController {
     public String getOrganization(@PathVariable("id") String id,
                                       Model model, Principal principal, HttpServletResponse response){
 //        if (principal != null && !principal.getName().isEmpty()) {
-            Organization organization = organizationService.get(id);
-            Map<String, String> member_images = new HashMap<>();
-            List<List<Member>> lists = new ArrayList<>();
-            List<Member> listOfThree = new ArrayList<>();
-            for (Member member: memberService.getMembersFromOrganization(organization)) {
-                listOfThree.add(member);
-                if (listOfThree.size() == 3) {
-                    lists.add(listOfThree);
-                    listOfThree = new ArrayList<>();
-                }
-                try {
-                    member_images.put(member.getUsername(), imageService.get(member.getUsername(), Image.ImageType.PROFILE));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        Organization organization = organizationService.get(id);
+        Map<String, String> member_images = new HashMap<>();
+        List<List<Member>> lists = new ArrayList<>();
+        List<Member> listOfThree = new ArrayList<>();
+        for (Member member: memberService.getMembersFromOrganization(organization)) {
+            listOfThree.add(member);
+            if (listOfThree.size() == 3) {
+                lists.add(listOfThree);
+                listOfThree = new ArrayList<>();
             }
-            model.addAttribute("organization",organization);
-            model.addAttribute("members",lists);
-            model.addAttribute("member_images",member_images);
-            model.addAttribute("events",
-                    eventService.getCurrentEventsFromOrganization(organization.getOrganizationId()));
-            return "organization";
+            try {
+                member_images.put(member.getUsername(), imageService.get(member.getUsername(), Image.ImageType.PROFILE));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        List<Event> past = eventService.getExpiredEventsFromOrganization(id);
+        List<Event> current = eventService.getCurrentEventsFromOrganization(organization.getOrganizationId());
+        List<Event> future = eventService.getCurrentEventsFromOrganization(id);
+
+        model.addAttribute("organization",organization);
+        model.addAttribute("members",lists);
+        model.addAttribute("member_images",member_images);
+        model.addAttribute("past", past);
+        model.addAttribute("current", current);
+        model.addAttribute("future", future);
+        return "organization";
 //        } else {
 //            return "login";
 //        }

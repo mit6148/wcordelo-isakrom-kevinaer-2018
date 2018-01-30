@@ -7,6 +7,7 @@ import io.smartraise.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class EventServiceImpl implements EventService {
 
@@ -58,8 +59,23 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getCurrentEventsFromOrganization(String organizationId) {
-        return eventDAO.findAllByOrganizationAndEndDateAfter(
-                organizationId, Calendar.getInstance().getTime());
+        List<Event> events = this.getCurrentEvents();
+        return events.stream().filter(
+                event -> event.getOrganization().getOrganizationId().equals(organizationId)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Event> getExpiredEventsFromOrganization(String organizationId) {
+        List<Event> events = this.getExpiredEvents();
+        return events.stream().filter(
+                event -> event.getOrganization().getOrganizationId().equals(organizationId)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Event> getFutureEventsFromOrganization(String organizationId) {
+        List<Event> events = this.getFutureEvents();
+        return events.stream().filter(
+                event -> event.getOrganization().getOrganizationId().equals(organizationId)).collect(Collectors.toList());
     }
 
     @Override
@@ -91,7 +107,7 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> getExpiredEvents() {
         Date date = Calendar.getInstance().getTime();
-        return eventDAO.findAllByEndDateAfterOrderByEndDate(date);
+        return eventDAO.findAllByEndDateBeforeOrderByEndDate(date);
     }
 
     @Override

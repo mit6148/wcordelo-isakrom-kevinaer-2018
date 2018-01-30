@@ -8,8 +8,203 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+      <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 75%;
+        }
+
+        .body {
+            background: #ffe0b2;
+            -webkit-text-fill-color: black;
+        }
+
+        .al-right {
+            float: right;
+            -webkit-text-fill-color: white;
+        }
+
+        .jumbotron {
+            width: 90%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width: 700pt;
+            margin: auto;
+            border-top: 1000pt;
+        }
+
+        #itcard {
+            background: #fff;
+            display: inline-block;
+            border: 1px solid #ddd;
+            width: 751px;
+            height: 220px;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        tablinks {
+            color: grey;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        input[type=text] {
+            width: 130px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+        /* NavBar CSS Code */
+
+        .navbar.navbar-inverse {
+            border: none;
+        }
+        .navbar .navbar-brand {
+            padding-top: 0px;
+            margin-top: 7px;
+        }
+        .navbar .navbar-brand img {
+            height: 50px;
+        }
+
+        .logo {
+            padding-left: 10px ;
+        }
+
+        /* Profile Image*/
+        .img-fluid {
+            height: 275pt;
+            width:inherit;
+            z-index: -1
+        }
+
+        .person {
+            border: 10px solid white;
+            margin-bottom: 25px;
+            width: 150pt;
+            height: 150pt;
+            opacity: 1;
+
+        }
+
+        .view.overlay {
+            width: inherit;
+            margin: -1px;
+        }
+
+        .profile-img {
+            position: absolute;
+            top: 175pt;
+            right: 525pt;
+            float: inherit;
+
+        }
+
+        .profile-name {
+            position: absolute;
+            top: 175pt;
+            left: 186pt;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            color: white;
+
+        }
+
+        .member {
+            margin-left: 20px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .donation {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .donation-box {
+            position: absolute;
+            border-radius: 5px;
+            background: #64dd17;
+            border: #64dd17;
+            width: 200px;
+            height: 50px;
+            right: 18pt;
+            top: 198pt;
+        }
+
+        .row-content {
+            background: #64dd17;
+            float: right;
+            margin: 0px;
+        }
+
+        /*Tab Content*/
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: #64dd17;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #b2ff59;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #88ff00;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            /*border: 1px solid #ccc;*/
+            border-top: none;
+        }
+
+        .w3-animate-opacity {
+            margin-left: 10px;
+        }
+
+
         /* Card information for Events*/
         .event-card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
@@ -440,32 +635,6 @@
               <div id="Donations" class="tabcontent w3-animate-opacity">
                 <h3>Donations</h3>
                 <p>Paris is the capital of France.</p>
-                <div th:each="event: ${events}">
-                    <div class="event-card" th:object="${event}">
-                        <div class="card-block">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the Century</h3></div>
-                                    <div class="row card-organization"><p th:text="*{organization.name}">Hosted by: Theta Delta Chi</p></div>
-                                </div>
-                                <div class="col card-date">
-                                    <div class="row card-start-date"><span type="datetime-local" th:text="'Start Date: ' +*{startDate}">Start Date: Jan. 1, 2018 1:00pm</span></div>
-                                    <div class="row card-end-date"><span type="datetime-local" th:text="'End Date: '+*{endDate}">End Date: Jan. 30, 2018 1:00pm</span></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">All donations go to: GoFund Me, Inc.</p>
-                                </div>
-                                <div class="col event-history">
-                                    <div class="event-donated">
-                                        <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">Amount Donated: $1000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
               </div>
 
               <div id="Future Events" class="tabcontent w3-animate-opacity">
@@ -487,117 +656,90 @@
                         </div>
                     </div>
                 <div id="Past Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll;background-color: white">
-                <div id="EventList" class="ng-cloak">
-                      <div ng-repeat="ovent in myWelcome">
-                        <div class="container">
-                                <script>
-                                    var time = ovent.startDate;
-                                    var date = new Date(time);
-                                    truTime = date.toString()
-                                </script>
-                              <div class="cardy">
-                                        <div class="image pull-left">
-                                            <img src="" style="z-index: 10">
-                                            <p id="eventId" class="invis">{{ovent.eventId}}</p>
+                    <div id="EventList" class="ng-cloak">
+                        <div th:each="event: ${past}">
+                            <div class="event-card" th:object="${event}">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the Century</h3></div>
+                                            <div class="row card-organization"><p th:text="*{organization.name}">Hosted by: Theta Delta Chi</p></div>
                                         </div>
-                                <div class="content pull-left" style="padding-left:20pt">
-                                  <div style="display:flex;flex-direction:row;">
-                                      <a href="" id="eventTitle"><h5 >{{ovent.name}}</h5></a>
-                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{truTime}} </h6>
-                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>
-                                  </div>
-                                  <p style="padding-top:2%">
-                                 {{ovent.description}}
-                                  </p>
-                                  <hr>
-                                  <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                                        <div class="col card-date">
+                                            <div class="row card-start-date"><span type="datetime-local" th:text="'Start Date: ' +${#dates.format(event.startDate, 'MM-dd-yyyy')}">Start Date: Jan. 1, 2018 1:00pm</span></div>
+                                            <div class="row card-end-date"><span type="datetime-local" th:text="'End Date: '+${#dates.format(event.endDate, 'MM-dd-yyyy')}">End Date: Jan. 30, 2018 1:00pm</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">All donations go to: GoFund Me, Inc.</p>
+                                        </div>
+                                        <div class="col event-history">
+                                            <div class="event-donated">
+                                                <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">Amount Donated: $1000</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                  <script>
-                                      var queryString = "/" + document.getElementById("eventId").innerText;
-                                      var link = "event" + queryString;
-                                      console.log(queryString);
-                                      var yourElement = document.getElementById('eventTitle');
-                                      yourElement.setAttribute('href', link);
-                                  </script>
-                              </div>
                             </div>
-                        </div>
-                </div>
+                    </div>
                 </div>
 
                 <div id="Current Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll; background-color: white">
-                <div id="EventList" class="ng-cloak">
-                      <div ng-repeat="ovent in myWelcome">
-                        <div class="container">
-                                <script>
-                                    var time = ovent.startDate;
-                                    var date = new Date(time);
-                                    truTime = date.toString()
-                                </script>
-                              <div class="cardy">
-                                        <div class="image pull-left">
-                                            <img src="" style="z-index: 10">
-                                            <p id="eventId" class="invis">{{ovent.eventId}}</p>
-                                        </div>
-                                <div class="content pull-left" style="padding-left:20pt">
-                                  <div style="display:flex;flex-direction:row;">
-                                      <a href="" id="eventTitle"><h5 >{{ovent.name}}</h5></a>
-                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{truTime}} </h6>
-                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>
-                                  </div>
-                                  <p style="padding-top:2%">
-                                 {{ovent.description}}
-                                  </p>
-                                  <hr>
-                                  <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                <div id="EventList1" class="ng-cloak">
+                    <div th:each="event: ${current}">
+                        <div class="event-card" th:object="${event}">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the Century</h3></div>
+                                        <div class="row card-organization"><p th:text="*{organization.name}">Hosted by: Theta Delta Chi</p></div>
+                                    </div>
+                                    <div class="col card-date">
+                                        <div class="row card-start-date"><span type="datetime-local" th:text="'Start Date: ' +${#dates.format(event.startDate, 'MM-dd-yyyy')}">Start Date: Jan. 1, 2018 1:00pm</span></div>
+                                        <div class="row card-end-date"><span type="datetime-local" th:text="'End Date: '+${#dates.format(event.endDate, 'MM-dd-yyyy')}">End Date: Jan. 30, 2018 1:00pm</span></div>
+                                    </div>
                                 </div>
-                                  <script>
-                                      var queryString = "/" + document.getElementById("eventId").innerText;
-                                      var link = "event" + queryString;
-                                      console.log(queryString);
-                                      var yourElement = document.getElementById('eventTitle');
-                                      yourElement.setAttribute('href', link);
-                                  </script>
-                              </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">All donations go to: GoFund Me, Inc.</p>
+                                    </div>
+                                    <div class="col event-history">
+                                        <div class="event-donated">
+                                            <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">Amount Donated: $1000</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                 </div>
                 </div>
 
                 <div id="Futuree Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll;background-color: white">
-                <div id="EventList" class="ng-cloak">
-                      <div ng-repeat="ovent in myWelcome">
-                        <div class="container">
-                                <script>
-                                    var time = ovent.startDate;
-                                    var date = new Date(time);
-                                    truTime = date.toString()
-                                </script>
-                              <div class="cardy">
-                                        <div class="image pull-left">
-                                            <img src="" style="z-index: 10">
-                                            <p id="eventId" class="invis">{{ovent.eventId}}</p>
-                                        </div>
-                                <div class="content pull-left" style="padding-left:20pt">
-                                  <div style="display:flex;flex-direction:row;">
-                                      <a href="" id="eventTitle"><h5 >{{ovent.name}}</h5></a>
-                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{truTime}} </h6>
-                                      <h6 style="padding-left:20%;-webkit-text-fill-color: grey;">{{ovent.endDate}}</h6>
-                                  </div>
-                                  <p style="padding-top:2%">
-                                 {{ovent.description}}
-                                  </p>
-                                  <hr>
-                                  <small item-width="max-content">#SaveHaiti #ForThePeople #TDCharity</small>
+                <div id="EventList2" class="ng-cloak">
+                    <div th:each="event: ${future}">
+                        <div class="event-card" th:object="${event}">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the Century</h3></div>
+                                        <div class="row card-organization"><p th:text="*{organization.name}">Hosted by: Theta Delta Chi</p></div>
+                                    </div>
+                                    <div class="col card-date">
+                                        <div class="row card-start-date"><span type="datetime-local" th:text="'Start Date: ' +${#dates.format(event.startDate, 'MM-dd-yyyy')}">Start Date: Jan. 1, 2018 1:00pm</span></div>
+                                        <div class="row card-end-date"><span type="datetime-local" th:text="'End Date: '+${#dates.format(event.endDate, 'MM-dd-yyyy')}">End Date: Jan. 30, 2018 1:00pm</span></div>
+                                    </div>
                                 </div>
-                                  <script>
-                                      var queryString = "/" + document.getElementById("eventId").innerText;
-                                      var link = "event" + queryString;
-                                      console.log(queryString);
-                                      var yourElement = document.getElementById('eventTitle');
-                                      yourElement.setAttribute('href', link);
-                                  </script>
-                              </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">All donations go to: GoFund Me, Inc.</p>
+                                    </div>
+                                    <div class="col event-history">
+                                        <div class="event-donated">
+                                            <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">Amount Donated: $1000</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                 </div>
