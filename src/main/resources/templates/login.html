@@ -176,7 +176,7 @@
     <div class="container jumbotron">
         <div class="row">
             <div id="loginform"class="col-sm-4">
-                <div class="form"><!-- ng-controller="putserviceCtrl"> -->
+                <div class="form" style="margin-top: auto"><!-- ng-controller="putserviceCtrl"> -->
                     <form th:action="@{/login}" method="post"> <!--ng-submit="submit()" -->
                         <div th:if="${param.logout}" class="alert alert-warning">
                             You have been logged out.
@@ -190,7 +190,7 @@
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password"/>
                         <div class="form-actions">
-                            <button type="submit" class="btn submit btn-default" style="margin: 10pt; font-size: 15pt;">Login</button>
+                            <button type="submit" class="btn submit btn-default" style="margin: 10pt; font-size: 15pt; margin-left: auto">Login</button>
                         </div>
                     </form>
                 </div>
