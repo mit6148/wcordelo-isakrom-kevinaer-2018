@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
@@ -8,7 +8,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <style>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+      <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
 /* Style the tab */
 .tab {
@@ -106,7 +108,7 @@
   -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
-        
+
 .loginmodal {
   text-align: center;
   font-size: 14px;
@@ -123,7 +125,7 @@
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  text-shadow: 0 1px rgba(0,0,0,0.1);
   background-color: #4d90fe;
   padding: 17px 0px;
   font-family: roboto;
@@ -147,7 +149,7 @@
   display: inline-block;
   opacity: 0.6;
   transition: opacity ease 0.5s;
-} 
+}
 
 .login-help{
   font-size: 12px;
@@ -211,7 +213,7 @@
       tablinks{
         color: grey;
       }
-      
+
       button {
           border: none;
           outline: 0;
@@ -246,7 +248,7 @@ input[type=text]:focus {
                 float: left;
                 height: 140px;
                 width: 73%;
-                overflow:hidden
+                overflow:hidden;
                 padding: 5px;
                 }
 
@@ -286,7 +288,7 @@ input[type=text]:focus {
         <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="../templates/search.html" style="margin-left:10pt">Search Charities</a>
         <input type="text" name="search" placeholder="Search..">
     </form>
-     </nav>  
+     </nav>
      <div class="card">
 
         <!--Card image-->
@@ -296,10 +298,10 @@ input[type=text]:focus {
                 <div class="mask"></div>
             </a>
             <div class="bottom-right" style="-webkit-text-fill-color: red; z-index: 5">
-                <img src="https://shop.lego.com/static/images/svg/lego-logo.svg" class="person" style="width: 150pt; height: 150pt">
+                <img th:src="${profile_image}" class="person" style="width: 150pt; height: 150pt">
             </div>
         </div>
-    
+
         <!--Card content-->
         <div class="card-body container">
                <!-- Tab links -->
@@ -323,48 +325,102 @@ input[type=text]:focus {
                 <h3>Contact Information</h3>
             <div class="panel panel-default container">
             <form th:action="@{'/member/' + ${profile.username} + '/edit'}" th:object="${profile}" th:method="POST">
-            <input hidden th:field="*{username}"/>
-            <input hidden th:field="*{contactInformation.username}"/>
-            <input hidden th:field="*{organizations}">
+                <input hidden th:field="*{username}"/>
+                <input hidden th:field="*{contactInformation.username}"/>
+                <input hidden th:field="*{organizations}">
+                <input hidden th:field="*{donation}">
                 <div class="panel-body form-horizontal payment-form">
-                    <div class="row form-group">
-                        <label for="concept" class="col-sm-3 control-label">Name</label>
-                        <div class="col-sm-9">
-                            <input type="text" th:field="*{contactInformation.firstName}" placeholder="First Name"/>
-                            <input type="text" th:field="*{contactInformation.lastName}" placeholder="Last Name"/>
+                    <div class="row">
+
+                        <div class="col-sm-6 form-group">
+                            <label class="cols-sm-2 control-label">First Name</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input th:field="*{contactInformation.firstName}" type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter your First Name"/>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 form-group">
+                            <label class="cols-sm-2 control-label">Last Name</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input th:field="*{contactInformation.lastName}" type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your Last Name"/>
+                            </div>
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <label for="description" class="col-sm-3 control-label">E-mail</label>
-                        <div class="col-sm-9">
-                            <input type="text" th:field="*{contactInformation.email}" placeholder="E-mail"/>
-                        </div>
-                    </div> 
-                    <div class="row form-group">
-                        <label for="amount" class="col-sm-3 control-label">Address</label>
-                        <div class="col-sm-9">
-                    <input type="text" th:field="*{contactInformation.address}" placeholder="Address"/>
-                            <br>
-                    <input type="text" th:field="*{contactInformation.city}" placeholder="City"/>
-                            <br>
-                    <input type="text" th:field="*{contactInformation.state}" placeholder="State"/>
-                            <br>
-                    <input type="text" th:field="*{contactInformation.country}" placeholder="Country"/>
-                            <br>
-                    <input type="text" th:field="*{contactInformation.zipCode}" placeholder="Zip Code"/>
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label class="cols-sm-2 control-label">Email</label>
+                            <!--<div class="cols-sm-10">-->
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input th:field="*{contactInformation.email}" type="text" class="form-control" name="email" id="email" placeholder="Enter your Email"/>
+                            </div>
+                            <!--</div>-->
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <label for="number" class="col-sm-3 control-label">Phone Number</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="787-334-3422" th:field="*{contactInformation.phone}"/>
+
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            <label class="cols-sm-2 control-label">Address</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
+                                <input th:field="*{contactInformation.address}" type="text" class="form-control" name="address" id="address" placeholder="Address"/>
+                            </div>
                         </div>
-                    </div>   
-                    <div class="row form-group">
-                        <div class="col-sm-12 text-right">
-                            <button type="button" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-plus">Submit</span>
-                            </button>
+                        <div class="col-sm-4 form-group">
+                            <label class="cols-sm-2 control-label">City</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                <input th:field="*{contactInformation.city}" type="text" class="form-control" name="city" id="city" placeholder="City"/>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 form-group">
+                            <label class="cols-sm-2 control-label">State</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
+                                <input th:field="*{contactInformation.state}" type="text" class="form-control" name="state" id="state" placeholder="State"/>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class=" col-sm-6 form-group">
+                            <label class="cols-sm-2 control-label">Country</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                                <input th:field="*{contactInformation.country}" type="text" class="form-control" name="country" id="country" placeholder="Enter your Country"/>
+                            </div>
+                        </div>
+                        <div class=" col-sm-6 form-group">
+                            <label class="cols-sm-2 control-label">Zip Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                                <input th:field="*{contactInformation.zipCode}" type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Enter your Zip Code"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class=" col-sm-6 form-group">
+                            <label class="cols-sm-2 control-label">Phone Number</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                <input th:field="*{contactInformation.phone}" type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Enter your Phone Number"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-12 text-right">
+                        <div class="form-group ">
+                            <button th:formmethod="post" type="submit" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -372,59 +428,68 @@ input[type=text]:focus {
         </div>
         </div>
 
-              <div id="Donations" style="display: block; width: 680pt; margin-left: 10pt; border: 0pt solid black;" class="tabcontent w3-animate-opacity">
-                <h3>Profile Picture</h3>
-                <form name="upload" id="upload" method="POST" enctype="multipart/form-data" th:object="${profile}" th:action="@{'/member/' + ${profile.username} +'/profile'}">
+      <div id="Donations" style="display: block; width: 680pt; margin-left: 10pt; border: 0pt solid black;" class="tabcontent w3-animate-opacity">
+        <h3>Profile Picture</h3>
+        <form name="upload" id="upload" method="POST" enctype="multipart/form-data" th:object="${profile}" th:action="@{'/member/' + ${profile.username} +'/profile'}">
             <label >Select File</label>
             <input type="file" class="file" name="file" id="file"/>
-            <input type="submit" name="submit" value="Upload" />
+            <input type="submit" name="submit" value="Upload" class="btn btn-primary"/>
         </form>
-              </div>
+      </div>
 
-              <div id="Future Events" style="display: block; width: 680pt; margin-left: 10pt; border: 0pt solid black;" class="tabcontent w3-animate-opacity">
+    <div id="Future Events" style="display: block; width: 680pt; margin-left: 10pt; border: 0pt solid black;" class="tabcontent w3-animate-opacity">
          <div style="align-content: center">
-            <h4>Add payment:</h4>
-            <div class="panel panel-default container">
-                <div class="panel-body form-horizontal payment-form">
-                    <div class="row form-group">
-                        <label for="concept" class="col-sm-3 control-label">Concept</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="concept" name="concept">
+             <form th:action="@{'/member/' + ${profile.username} + '/payment'}" th:object="${payment}" th:method="POST">
+                 <input hidden th:field="*{username}"/>
+                <h4>Add payment:</h4>
+                <div class="panel panel-default container">
+                    <div class="panel-body form-horizontal payment-form">
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">Card number</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{number}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label for="description" class="col-sm-3 control-label">Description</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="description" name="description">
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">Name on Card</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{name}">
+                            </div>
                         </div>
-                    </div> 
-                    <div class="row form-group">
-                        <label for="amount" class="col-sm-3 control-label">Amount</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" id="amount" name="amount">
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">CVV</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" th:field="*{cvv}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label for="date" class="col-sm-3 control-label">Date</label>
-                        <div class="col-sm-9">
-                            <input type="date" class="form-control" id="date" name="date">
+                        <!--<div class="row form-group">-->
+                            <!--<label for="date" class="col-sm-3 control-label">Date</label>-->
+                            <!--<div class="col-sm-9">-->
+                                <!--<input type="date" class="form-control" th:text="${#dates.format(payment.expiration, 'MM-yyyy')}" id="date" name="date" th:field="*{expiration}">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="row form-group">
+                            <label class="col-sm-3 control-label">Zip</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{zipCode}">
+                            </div>
                         </div>
-                    </div>   
-                    <div class="row form-group">
-                        <div class="col-sm-12 text-right">
-                            <button type="button" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-plus"></span> Add
-                            </button>
+                        <div class="row form-group">
+                            <div class="col-sm-12 text-right">
+                                <div class="form-group ">
+                                    <button th:formmethod="post" type="submit" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>            
+             </form>
         </div>
-              </div>
+    </div>
         </div>
                 </div>
             </div>
-              
+
         <script>
           function openTab(evt, cityName) {
               var i, tabcontent, tablinks;
@@ -443,6 +508,6 @@ input[type=text]:focus {
           <script>
                 document.getElementById("defaultTab").click();
             </script>
-    </div>  
+    </div>
   </body>
 </html>

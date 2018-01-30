@@ -2,6 +2,7 @@ package io.smartraise.controller.view;
 
 import io.smartraise.model.Image;
 import io.smartraise.model.accounts.Member;
+import io.smartraise.model.accounts.Payment;
 import io.smartraise.model.fundraise.Organization;
 import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -42,7 +42,7 @@ public class MemberViewController {
             try {
                 model.addAttribute("profile_image", imageService.get(id, Image.ImageType.PROFILE));
             } catch (Exception e) {
-                return "home";
+
             }
 
             Map<String, String> orgImages = new HashMap<>();
@@ -68,12 +68,18 @@ public class MemberViewController {
     @GetMapping("/member/{id}/edit")
     public String getEditMember(@PathVariable("id") String id, Model model, Principal principal, HttpServletResponse response){
         if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+            try {
+                model.addAttribute("profile_image", imageService.get(id, Image.ImageType.PROFILE));
+            } catch (Exception e) {
+
+            }
+            Payment payment = paymentService.get(id);
             model.addAttribute("profile", memberService.get(id));
             model.addAttribute("payment", paymentService.get(id));
-            return "TESTedit";
+            return "memberEdit";
         } else {
 //                response.sendRedirect("/home");
-            return "login";
+            return "redirect:/login";
         }
     }
 
@@ -85,6 +91,23 @@ public class MemberViewController {
         try {
             if (principal != null && principal.getName().equalsIgnoreCase(id)) {
                 memberService.update(member);
+                response.sendRedirect("/member/" + id);
+            } else {
+                response.sendRedirect("/home");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @PostMapping("/member/{id}/payment")
+    public void postEditPayment(@PathVariable("id") String id,
+                                @ModelAttribute("payment") Payment payment,
+                                Principal principal,
+                                HttpServletResponse response){
+        try {
+            if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+                paymentService.update(payment);
                 response.sendRedirect("/member/" + id);
             } else {
                 response.sendRedirect("/home");

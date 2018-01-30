@@ -69,8 +69,11 @@ public class EventViewController {
     }
 
     @GetMapping("/event/{id}")
-    public String getEvent(@PathVariable("id") String id, Model model, Principal principal){
-        model.addAttribute("event", eventService.get(id));
+    public String getEvent(@PathVariable("id") String id, Model model, Principal principal) throws Exception {
+        Event event = eventService.get(id);
+        model.addAttribute("event", event);
+        model.addAttribute("charityImage", imageService.get(event.getCharity().getCharityId(), Image.ImageType.ORG));
+        model.addAttribute("orgImage", imageService.get(event.getOrganization().getOrganizationId(), Image.ImageType.ORG));
         model.addAttribute("donations", donationService.getDonationsByEvent(id));
         return "event";
     }

@@ -13,7 +13,11 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment get(String id) {
-        return paymentDAO.findOne(id);
+        if (paymentDAO.exists(id) ) {
+            return paymentDAO.findOne(id);
+        } else {
+            return new Payment();
+        }
     }
 
     @Override
