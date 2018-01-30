@@ -260,7 +260,7 @@ a.iprodev:hover {
                }
         </style>
   </head>
-  <body style="background:#ffe0b2">
+  <body style="background:#ffe0b2" ng-app="myApp" ng-controller="myCtrl">
     <canvas height='1' id='confetti' width='1' style="z-index: 88"></canvas>
     <nav class="navbar navbar-default" >
         <a th:href="@{'/'}" class="navbar-brand">SmartRaise</a>
@@ -336,19 +336,23 @@ a.iprodev:hover {
             <a href="#">
                 <div class="mask"></div>
             </a>
-            <div class="progress row container" style="position: absolute; top: 226pt; width: 590pt; margin-left: 20pt">
-                <div class="progress-bar column" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:50%; z-index: 5;">
-                    <span class="sr-only">70% Complete</span>
+            <div class="progress row container" style="position: absolute; top: 226pt; width: 590pt; margin-left: 14pt">
+                <div class="container">
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%; z-index: 5">
+                      100%
+                    </div>
+                  </div>
                 </div>
             </div>
                 <div class="column">
-                    <button class="btn-success" style="position: absolute; top: 215pt; z-index: 90" data-toggle="modal" data-target="#donate">Donate</button>
+                    <button class="btn-success" style="position: absolute; top: 215pt; z-index: 90;" data-toggle="modal" data-target="#donate">Donate</button>
                 </div>
             <div class="bottom-right" style="-webkit-text-fill-color: white; z-index: 0">Bottom Right</div>
         </div>
 
         <!--Card content-->
-        <div class="card-body container"  ng-app="myApp" ng-controller="myCtrl">
+        <div class="card-body container">
                 <div class="row">
                         <div class="col-sm-4" style="text-align:center">
                             <!--Title-->
