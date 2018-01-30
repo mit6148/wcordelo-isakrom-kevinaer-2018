@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>SmartRaise</title>
     <meta charset="utf-8" content="width=device-width, initial-scale=1">
@@ -10,6 +10,101 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         @import url(http://fonts.googleapis.com/css?family=Roboto);
+        /* Card information for Events*/
+        .event-card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+            width: 640pt;
+            /*margin: auto;*/
+            margin-top: 16px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 13px;
+            border: 10pt;
+            border-radius: 5px;
+            /*text-align: center;*/
+        }
+
+        .card-img-top {
+            height: 200px;
+        }
+
+        .card-block {
+            margin-left: 10px;
+        }
+
+        .card-title {
+            margin-left: 10px;
+            margin-bottom: 5px;
+        }
+
+        .card-date {
+            left: 165px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .card-organization {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .event-description {
+            color: black;
+            margin-top: 12px;
+            margin-left: 10px;
+        }
+
+        .card-charity {
+            margin-left: 10px;
+            margin-top: 20px;
+            padding-bottom: 15px;
+        }
+
+        /*Statistics*/
+        .event-history {
+            margin-right: 50px;
+        }
+
+        .event-donated {
+            /*position: absolute;*/
+            border-radius: 5px;
+            background: #64dd17;
+            border: #64dd17;
+            width: 200px;
+            height: 50px;
+            float: right;
+            /*right: 18pt;*/
+            /*top: 198pt;*/
+        }
+
+/* Card Information for Organization*/
+
+.row-card {
+    margin-left: 10px;
+}
+
+.testimonial-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    width: 200pt;
+    margin: auto;
+    margin-top: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 10pt;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.avatar {
+    height: 200px;
+    background: #ffb366;
+}
+
+.rounded-circle {
+    height: 150px;
+    width: 150px;
+    margin-top: 22px;
+}
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -125,7 +220,7 @@
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  text-shadow: 0 1px rgba(0,0,0,0.1);
   background-color: #4d90fe;
   padding: 17px 0px;
   font-family: roboto;
@@ -149,7 +244,7 @@
   display: inline-block;
   opacity: 0.6;
   transition: opacity ease 0.5s;
-} 
+}
 
 .login-help{
   font-size: 12px;
@@ -214,7 +309,7 @@
       tablinks{
         color: grey;
       }
-      
+
       button {
           border: none;
           outline: 0;
@@ -288,7 +383,7 @@
         </form>
         <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
         <a class="nav-link al-right" href="#">Sign up</a>
-     </nav>  
+     </nav>
      <div class="card">
 
         <!--Card image-->
@@ -301,7 +396,7 @@
                 <img src="https://shop.lego.com/static/images/svg/lego-logo.svg" class="person" style="width: 150pt; height: 150pt">
             </div>
         </div>
-    
+
         <!--Card content-->
         <div class="card-body container">
                <!-- Tab links -->
@@ -318,54 +413,59 @@
                     </div>
                 </div>
               </div>
+                  <!-- Tab content -->
+                  <div id="Information and Members" class="tabcontent w3-animate-opacity" style="display:none">
+                      <h3 th:text="${organization.name}"></h3>
+                      <p th:text="${organization.description}"></p>
+                      <div th:each="row:${members}">
+                          <div class="row row-card">
+                              <!--Card-->
+                              <div th:each="member:${row}">
+                                  <div class="testimonial-card">
+                                      <!--Avatar-->
+                                      <div class="avatar"><img th:src="${member_images['__${member.username}__']}" class="rounded-circle">
+                                      </div>
 
-              <!-- Tab content -->
-              <div id="Information and Members" class="tabcontent w3-animate-opacity" style="display:none">
-                <h3>Information and Members</h3>
-                <p>The LEGO Group is a privately held company based in Billund, Denmark. The company is still owned by the Kirk Kristiansen family who founded it in 1932.
-                    It is the LEGO® philosophy that ‘good quality play’ enriches
-                    a child’s life – and lays the foundation for later adult life. We
-                    believe that play is a key element in children’s growth and development
-                    and stimulates the imagination and the emergence of
-                    ideas and creative expression. All LEGO products are based
-                    on this underlying philosophy of learning and development
-                    through play.
-                  
-                    Only the best is good enough
-                    True to its motto ‘Only the best is good enough’, the LEGO
-                    Group has been emphasising the importance of high quality
-                    since 1932, where the founder Ole Kirk Kristiansen began
-                    making wooden toys. High quality and safe products have remained
-                    the focal point for the LEGO Group throughout the years -
-                    and it still is. LEGO products are tested rigorously to live up 
-                    to the strictest safety and quality standards
-                    as well as our own high expectations. This approach
-                    has made children and adults return to LEGO products time
-                    and again.
-                </p>
-                <p>
-                    Systematic creativity
-                    LEGO bricks are all part of the LEGO system, which essentially
-                    means that they can easily be combined in innumerable
-                    ways – and just as easily be dismantled. The more LEGO
-                    bricks you have, the more fertile your creativity can become.
-                    The combination of a structured system, logic and unlimited
-                    creativity encourages the child to learn through play in a
-                    wholly unique LEGO fashion. 
-                </p>
-                <p>
-                    A positive impact
-                    The LEGO Group wants to leave a positive impact – be it in
-                    respect to the Group’s stakeholders or the wider community.
-                    The LEGO Group is committed to caring for the environment
-                    and the society that children will inherit, and to inspiring and
-                    developing the builders of tomorrow.
-                </p>
-              </div>
+                                      <div class="card-body">
+                                          <!--Name-->
+                                          <h4 class="card-title" th:text="'Name: '+${member.contactInformation.firstName} + ' ' + ${member.contactInformation.lastName}"></h4>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
 
               <div id="Donations" class="tabcontent w3-animate-opacity">
                 <h3>Donations</h3>
-                <p>Paris is the capital of France.</p> 
+                <p>Paris is the capital of France.</p>
+                <div th:each="event: ${events}">
+                    <div class="event-card" th:object="${event}">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row card-title"><h3 th:text="*{name}">Fundraising Event of the Century</h3></div>
+                                    <div class="row card-organization"><p th:text="*{organization.name}">Hosted by: Theta Delta Chi</p></div>
+                                </div>
+                                <div class="col card-date">
+                                    <div class="row card-start-date"><span type="datetime-local" th:text="'Start Date: ' +*{startDate}">Start Date: Jan. 1, 2018 1:00pm</span></div>
+                                    <div class="row card-end-date"><span type="datetime-local" th:text="'End Date: '+*{endDate}">End Date: Jan. 30, 2018 1:00pm</span></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="card-charity" th:text="'All donations go to: '+*{charity.name}">All donations go to: GoFund Me, Inc.</p>
+                                </div>
+                                <div class="col event-history">
+                                    <div class="event-donated">
+                                        <div class="donation" th:text="'Amount Donated: $'+${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}">Amount Donated: $1000</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
               </div>
 
               <div id="Future Events" class="tabcontent w3-animate-opacity">
@@ -424,7 +524,7 @@
                         </div>
                 </div>
                 </div>
-                    
+
                 <div id="Current Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll; background-color: white">
                 <div id="EventList" class="ng-cloak">
                       <div ng-repeat="ovent in myWelcome">
@@ -463,7 +563,7 @@
                         </div>
                 </div>
                 </div>
-                    
+
                 <div id="Futuree Events" class="tabcontent tabicontent w3-animate-opacity" style="overflow: scroll;background-color: white">
                 <div id="EventList" class="ng-cloak">
                       <div ng-repeat="ovent in myWelcome">
@@ -502,7 +602,7 @@
                         </div>
                 </div>
                 </div>
-                    
+
                 </div>
               </div>
         </div>
@@ -565,6 +665,6 @@
               evt.currentTarget.className += " active";
           }
           </script>
-    </div>  
+    </div>
   </body>
 </html>
