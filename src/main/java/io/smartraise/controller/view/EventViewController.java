@@ -24,11 +24,20 @@ public class EventViewController {
     private DonationService donationService;
 
     @GetMapping("/event/{id}")
-    public String getMember(@PathVariable("id") String id, Model model, Principal principal){
+    public String getEvent(@PathVariable("id") String id, Model model, Principal principal){
         model.addAttribute("event", eventService.get(id));
         model.addAttribute("donations", donationService.getDonationsByEvent(id));
         return "event";
     }
+    
+    @GetMapping("/home")
+    public String getMember(@PathVariable("id") String id, Model model, Principal principal){
+        model.addAttribute("past", eventService.getExpiredEvents());
+        model.addAttribute("current", eventService.getCurrentEvents());
+        model.addAttribute("future", eventService.getExpiredEvents());
+        return "home";
+    }
+
 
 //    @PostMapping("/event/{id}/donations")
 //    public String getMember(@PathVariable("id") String id, @RequestBody DonationRequest donationRequest, Principal principal){
