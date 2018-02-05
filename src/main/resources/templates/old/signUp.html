@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" th:href="@{/templates/css/master.css}">
+<style>
+    .body {
+        background-color: #ffe0b2;
+        -webkit-text-fill-color: white;
+    }
+
+    .al-right {
+        float: right;
+        -webkit-text-fill-color: white;
+    }
+
+    .navbar {
+        z-index: 100;
+        position: absolute;
+        top: 0;
+    }
+
+    .body {
+        background-color: #ffe0b2;
+        -webkit-text-fill-color: black;
+    }
+
+    * {
+        box-sizing: border-box;
+        -webkit-text-fill-color: black;
+    }
+
+    body {
+        background-color: #ffe0b2;
+    }
+
+    #regForm {
+        background-color: #ffffff;
+        margin: 100px auto;
+        font-family: Raleway;
+        padding: 40px;
+        width: 70%;
+        min-width: 300px;
+        height: 180pt;
+    }
+
+    #nextBtn {
+        margin-top: 20pt;
+        -webkit-text-fill-color: white;
+        border-radius: 5%;
+        border-color: black;
+        border-width: medium;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        font-size: 17px;
+        font-family: Raleway;
+        border: 1px solid #aaaaaa;
+    }
+
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+        background-color: #ffdddd;
+    }
+
+    /* Hide all steps by default: */
+    .tab {
+        display: none;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer;
+        background-color: #bbbbbb;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
+
+    /* Make circles that indicate the steps of the form: */
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+    .step.active {
+        opacity: 1;
+    }
+
+    /* Mark the steps that are finished and valid: */
+    .step.finish {
+        background-color: #4CAF50;
+    }
+</style>
+<body>
+<nav class="navbar navbar-default" >
+    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <div th:if="${principal!=null}">
+        <a class="nav-link al-right" th:href="@{'/member'+${principal.username}}" >Profile</a>
+    </div>
+    <div th:if="${principal==null}">
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
+</nav>
+<div class="container">
+    <form id="regForm" action="/action_page.php">
+        <h1>Register:</h1>
+        <div>
+            <div class="row" style="margin: auto; margin-top: 30pt; padding: 5pt;">
+                <button type="button" id="nextBtn" onclick="loadMember()" style="margin: auto; font-size: 15pt;">
+                    Member
+                </button>
+                <button type="button" id="nextBtn" onclick="loadCharity()" style="margin: auto; font-size: 15pt;">
+                    Charity
+                </button>
+                <button type="button" id="nextBtn" onclick="loadOrganization()" style="margin: auto;  font-size: 15pt;">
+                    Organization
+                </button>
+            </div>
+        </div>
+        <!-- Circles which indicates the steps of the form: -->
+    </form>
+</div>
+</body>
+</html>

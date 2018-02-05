@@ -22,25 +22,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
+            .csrf().disable();
+//            .authorizeRequests()
+//                .antMatchers("/", "/home").permitAll()
+//                .antMatchers("/signup").permitAll()
+//                .antMatchers("/member/*").authenticated()
+//                .antMatchers("/member/*/edit").authenticated()
+//                .anyRequest().permitAll()
 //                .and()
-            .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .antMatchers("/signup").permitAll()
-                .antMatchers("/member/*").authenticated()
-                .antMatchers("/member/*/edit").authenticated()
-                .anyRequest().permitAll()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .successHandler(authenticationListener)
-                .failureHandler(authenticationListener)
-                .permitAll()
-                .and()
-            .logout()
-                .invalidateHttpSession(true)
-                .logoutUrl("/logout")
-                .permitAll();
+//            .formLogin()
+//                .loginPage("/login")
+//                .successHandler(authenticationListener)
+//                .failureHandler(authenticationListener)
+//                .permitAll()
+//                .and()
+//            .logout()
+//                .invalidateHttpSession(true)
+//                .logoutUrl("/logout")
+//                .permitAll();
     }
 
     @Autowired

@@ -1,0 +1,125 @@
+#signup {
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#login {
+    width: 40%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.inner {
+    width: 30%;
+    line-height: normal;
+}
+
+.submit {
+    text-align: center;
+}
+
+.panel-title {
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.subheading {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.vertical-align {
+    line-height: 25px;
+}
+
+.information {
+    margin-left: 5%
+}
+
+.user {
+    width: 40%;
+}
+
+.user-details {
+    /*margin-left: 2%;*/
+    margin-bottom: 11%;
+    margin-top: 7%;
+}
+
+.profile-img {
+    margin-left: 6%;
+}
+
+.name-details {
+    /*margin-left: 2%;*/
+    margin-right: 2%;
+    display: inline-block;
+    width: 42%;
+}
+
+.name-form {
+    display: inline-block;
+    width: 47%;
+}
+
+.phone-details {
+    width: 30%;
+    display: inline-block;
+}
+
+.address-street {
+    width: 25%;
+    display: inline-block;
+}
+
+.address-city {
+    width: 15%;
+    display: inline-block;
+}
+
+.address-state {
+    width: 15%;
+    display: inline-block;
+}
+
+.address-country {
+    width: 15%;
+    display: inline-block;
+}
+
+.address-zip {
+    width: 10%;
+    display: inline-block;
+}
+
+.address-container {
+    margin-bottom: 1%;
+}
+
+.card-name {
+    width: 40%;
+}
+
+.card-number {
+    width: 40%;
+}
+
+.card-zip {
+    width: 13%;
+    margin-right: 15%;
+}
+
+.card-expiration {
+    width: 30%;
+    margin-right: 5%;
+}
+
+.card-entry {
+    width: 35%;
+    margin-left: -5%;
+}
+
+.card-cvv {
+    width: 10%;
+}

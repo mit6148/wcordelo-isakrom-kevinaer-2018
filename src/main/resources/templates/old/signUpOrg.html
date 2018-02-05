@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Sign Up | Charity</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/templates/css/master.css}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+	<style>
+
+		.body {
+			background-color: #ffe0b2;
+			-webkit-text-fill-color: white;
+		}
+
+		.al-right {
+			float: right;
+			-webkit-text-fill-color: white;
+		}
+
+		body {
+			background-color: #ffe0b2;
+		}
+
+		#regForm {
+			background-color: #ffffff;
+			margin: 100px auto;
+			font-family: Raleway;
+			padding: 40px;
+			width: 70%;
+			min-width: 300px;
+		}
+
+		h1 {
+			text-align: center;
+		}
+
+		input {
+			padding: 10px;
+			width: 100%;
+			font-size: 17px;
+			border: 1px solid #aaaaaa;
+		}
+
+		/* Mark input boxes that gets an error on validation: */
+		input.invalid {
+			background-color: #ffdddd;
+		}
+
+		/* Hide all steps by default: */
+		.tab {
+			display: none;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: #ffffff;
+			border: none;
+			padding: 10px 20px;
+			font-size: 17px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			opacity: 0.8;
+		}
+
+		#prevBtn {
+			background-color: #bbbbbb;
+		}
+
+		/* Make circles that indicate the steps of the form: */
+		.step {
+			height: 15px;
+			width: 15px;
+			margin: 0 2px;
+			background-color: #bbbbbb;
+			border: none;
+			border-radius: 50%;
+			display: inline-block;
+			opacity: 0.5;
+		}
+
+		.step.active {
+			opacity: 1;
+		}
+
+		/* Mark the steps that are finished and valid: */
+		.step.finish {
+			background-color: #4CAF50;
+		}
+
+		.main {
+			padding-top: 70px;
+		}
+
+		h1.title {
+			font-size: 50px;
+			font-weight: 400;
+		}
+
+		h3.title {
+			text-align: center;
+		}
+
+		hr {
+			width: 10%;
+			color: #fff;
+			align-content: center;
+		}
+
+		.form-group {
+			margin-bottom: -20px;
+			padding: 20px;
+		}
+
+		label {
+			margin-bottom: 15px;
+		}
+
+		input,
+		input::-webkit-input-placeholder {
+			font-size: 11px;
+			padding-top: 3px;
+		}
+
+		.main-login {
+			background-color: #fff;
+			/* shadows and rounded borders */
+			-moz-border-radius: 2px;
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
+			-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+			-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+			box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+		}
+
+		.main-center {
+			margin-top: 30px;
+			margin: 0 auto;
+			max-width: 2000px;
+			padding: 40px 40px;
+
+		}
+
+		.login-button {
+			margin-top: 5px;
+		}
+
+		.login-register {
+			font-size: 11px;
+			text-align: center;
+			margin-top: 5px;
+		}
+	</style>
+<body ng-app="">
+<nav class="navbar navbar-default" >
+    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <div th:if="${principal!=null}">
+        <a class="nav-link al-right" th:href="@{'/member'+${principal.username}}" >Profile</a>
+    </div>
+    <div th:if="${principal==null}">
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
+</nav>
+
+<form>
+	<div class="container">
+
+		<div class="row main">
+			<div class="main-login main-center">
+				<form class="form-horizontal" th:method="POST" th:action="@{'/organization'}"
+					  th:object="${organization}">
+					<div class="form-group" style="align-self: center">
+						<h3 class="title">Organization Registration</h3>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label class="cols-sm-2 control-label">Name</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-sitemap"
+																	   aria-hidden="true"></i></span>
+									<input type="text" th:field="*{name}" class="form-control" name="name" id="name"
+										   placeholder="Enter the Organization Name"/>
+								</div>
+							</div>
+
+							<div class="col-sm-6 form-group">
+								<label class="cols-sm-2 control-label">Website</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-rss" aria-hidden="true"></i></span>
+									<input type="text" th:field="*{website}" class="form-control" name="website"
+										   id="website" placeholder="Enter the Organization Website"/>
+								</div>
+							</div>
+
+
+						</div>
+
+						<div class="row">
+							<div class="cols-sm-6 form-group">
+								<label class="cols-sm-2 control-label">Address</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-location-arrow"
+																	   aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.address}" class="form-control" name="address"
+										   id="address" placeholder="Enter the Organization Address"/>
+								</div>
+							</div>
+							<div class="col-sm-6 form-group">
+								<label class="cols-sm-2 control-label">City</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.city}" class="form-control" name="city"
+										   id="city" placeholder="Enter the Organization City"/>
+								</div>
+							</div>
+
+
+						</div>
+
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label class="cols-sm-2 control-label">State</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-globe"
+																	   aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.state}" class="form-control" name="state"
+										   id="state" placeholder="Enter the Organization State"/>
+								</div>
+							</div>
+							<div class=" col-sm-6 form-group">
+								<label class="cols-sm-2 control-label">Zip Code</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
+									<input type="text" th:field="*{address.zipCode}" class="form-control" name="zipcode"
+										   id="zipcode" placeholder="Enter the Organization Zip Code"/>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+
+					<div class="form-group ">
+						<button th:formmethod="post" type="submit"
+								class="btn btn-primary btn-lg btn-block login-button">Register
+						</button>
+					</div>
+					<!--<div class="login-register">-->
+					<!--<a href="index.php">Login</a>-->
+					<!--</div>-->
+				</form>
+			</div>
+		</div>
+	</div>
+</form>
+</body>
+</html>

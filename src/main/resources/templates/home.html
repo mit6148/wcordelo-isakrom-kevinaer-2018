@@ -1,353 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>SmartRaise</title>
-    <meta charset="utf-8" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>SmartRaise | Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
- 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
-
-    <style>
-        @import url(http://fonts.googleapis.com/css?family=Roboto);
-        .scrollToTop{
-	width:100px;
-	height:130px;
-	padding:10px;
-	text-align:center;
-	background: whiteSmoke;
-	font-weight: bold;
-	color: #444;
-	text-decoration: none;
-	position:fixed;
-	top:75px;
-	right:40px;
-	display:none;
-	background: url('arrow_up.png') no-repeat 0px 20px;
-}
-.scrollToTop:hover{
-	text-decoration:none;
-}
-
-        /****** LOGIN MODAL ******/
-        /***modified from https://bootsnipp.com/snippets/featured/clean-modal-login-form***/
-        .loginmodal-container {
-            padding: 30px;
-            max-width: 350px;
-            width: 100% !important;
-            background-color: #F7F7F7;
-            margin: 0 auto;
-            border-radius: 2px;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            font-family: roboto;
-        }
-
-        .loginmodal-container h1 {
-            text-align: center;
-            font-size: 1.8em;
-            font-family: roboto;
-        }
-
-        .loginmodal-container input[type=submit] {
-            width: 100%;
-            display: block;
-            margin-bottom: 10px;
-            position: relative;
-            background: #ff9800;
-        }
-
-        .loginmodal-container input[type=text], input[type=password] {
-            height: 44px;
-            font-size: 16px;
-            width: 100%;
-            margin-bottom: 10px;
-            -webkit-appearance: none;
-            background: #ffe0b2;
-            border: 1px solid #d9d9d9;
-            border-top: 1px solid #c0c0c0;
-            /* border-radius: 2px; */
-            padding: 0 8px;
-            box-sizing: border-box;
-            -moz-box-sizing: border-box;
-        }
-
-        .loginmodal-container input[type=text]:hover, input[type=password]:hover {
-            border: 1px solid #b9b9b9;
-            border-top: 1px solid #a0a0a0;
-            -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-            -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .loginmodal {
-            text-align: center;
-            font-size: 14px;
-            font-family: 'Arial', sans-serif;
-            font-weight: 700;
-            height: 36px;
-            padding: 0 8px;
-            /* border-radius: 3px; */
-            /* -webkit-user-select: none;
-              user-select: none; */
-        }
-
-        .loginmodal-submit {
-            /* border: 1px solid #3079ed; */
-            border: 0px;
-            color: #fff;
-            text-shadow: 0 1px rgba(0,0,0,0.1);
-            background-color: #4d90fe;
-            padding: 17px 0px;
-            font-family: roboto;
-            font-size: 14px;
-            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
-        }
-
-        .loginmodal-submit:hover {
-            /* border: 1px solid #2f5bb7; */
-            border: 0px;
-            text-shadow: 0 1px rgba(0,0,0,0.3);
-            background-color: #357ae8;
-            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
-        }
-
-        .loginmodal-container a {
-            text-decoration: none;
-            color: #666;
-            font-weight: 400;
-            text-align: center;
-            display: inline-block;
-            opacity: 0.6;
-            transition: opacity ease 0.5s;
-        }
-
-        .login-help{
-            font-size: 12px;
-        }
-        /* Make the image fully responsive */
-        .carousel-inner img {
-            width: 100%;
-            height: 75%;
-            border-bottom: 5px solid black;
-        }
-
-        .jumbotron{
-            width: 90%;
-            justify-content:center;
-            align-items:center;
-            background: white;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        icon-image {
-                height: 60pt;
-                width: 60pt;
-                background-color: black;
-                padding-left: 10pt;
-                padding-top: 10pt;
-            }
-            drop-card{
-                width: 300pt;
-                padding: 8pt;
-            }
-            #Time{
-                position: relative;
-                float: right;
-            }
-            #Money{
-                -webkit-text-fill-color: green;
-            }
-        [ng\:cloak], [ng-cloak], .ng-cloak {
-  display: none !important;
-}
-        .card{
-            border: 1px solid black;
-        }
-    </style>
-
-    <!--<link rel="import" href="navbar.html">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/basic.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/event.css}">
 </head>
-<body style="background:#ffe0b2">
-
-
-<nav class="navbar navbar-default" >
-    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
-    <a class="nav-link al-right" href="search" >Search Events</a>
-    <div th:style="${principal!=null} ? 'display:block' : 'display:none'">
-        <a class="nav-link al-right" th:href="@{'/member'+${user}}" >Profile</a>
-    </div>
-    <div th:style="${principal==null} ? 'display:block' : 'display:none'">
-        <a class="nav-link al-right" href="login" >Log In</a>
-        <a class="nav-link al-right" href="signup">Sign up</a>
-    </div>
-</nav>
-<!-- Tessttt -->
-<!--carousel based off of https://www.w3schools.com/bootstrap4/bootstrap_carousel.asp -->
-<div id="demo" class="carousel slide" data-ride="carousel" item-width="50%">
-    <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-    </ul>
-    <div class="carousel-inner" style="overflow: hidden">
-        <div class="carousel-item active">
-            <img  th:src="@{/img/olga-delawrence-money-floor.jpg}" class="img-fluid" alt="Donate" width="1100" height="300" style="overflow: hidden">
-            <div class="carousel-caption">
-                <h3>SmartRaise</h3>
-                <p>Fundraising just got smarter.</p>
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <img th:src="@{/img/larm-rmah-happy-children.jpg}" class="img-fluid" alt="Secure" width="1100" height="500" style="overflow: hidden">
-            <div class="carousel-caption">
-                <h3>Ensure Your Money Is Put To Good Use!</h3>
-                <p>The Safe Fund platform allows you to donate without having to worry about your money being stolen or used for illicit purposes.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img th:src="@{/img/evan-kirby-hand-flower.jpg}" class="img-fluid" alt="Secure" width="1100" height="500" style="overflow: hidden">
-            <div class="carousel-caption">
-                <h3>Join Now!</h3>
-                <p>Become part of a global community united to help change the world for the better.</p>
-            </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </a>
-</div>
-<!-- The Modal -->
-<div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="loginmodal-container">
-                    <h1>Login to Your Account</h1><br>
-                    <form>
-                        <input class="form-control mr-sm-2" type="text" placeholder="Username">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Password">
-                        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-                    </form>
-                    <div class="login-help">
-                        <a href="#">Register</a> - <a href="#">Forgot Password</a>
+<body>
+<div class="container">
+    <!--Past Events-->
+    <div class="row">
+        <div class="card col-md-4 event-list">
+            <div class="card-header h1">Past</div>
+            <div class="event-list-scroll">
+                <div th:each="event:${past}" class="list-group">
+                    <div class="card border border-dark">
+                        <img class="card-img-top" height="120" width="120" th:src="${images['__${event.eventId}__']}" alt="Card image cap">
+                        <h6 class="card-title" th:text="${event.name}"></h6>
+                        <p class="card-text font-weight-bold" th:text="'Fundraising for '+ ${event.charity.name}"></p>
+                        <p class="card-text font-weight-bold" th:text="'Hosted by ' + ${event.organization.name}"></p>
+                        <p class="card-text" th:text="${event.description}"></p>
                     </div>
                 </div>
             </div>
         </div>
-</div>
-<!-- The Modal -->
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; z-index: 10000">
-    <div class="modal-dialog">
-        <div class="loginmodal-container">
-            <h1>Login to Your Account</h1><br>
-            <form>
-                <input type="text" name="user" placeholder="Username">
-                <input type="password" name="pass" placeholder="Password">
-                <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-            </form>
-
-            <div class="login-help">
-                <a href="#">Register</a> - <a href="#">Forgot Password</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="card"  ng-app="myApp" ng-controller="myCtrl">
-    <div style="height:500pt; padding-top: 40pt; background-color: antiquewhite" class="row ng-cloak">
-        <!--PAST EVENTS-->
-        <div class="column" style="margin: auto;">
-            <h3 style="align-self: center; padding: 10pt">Past Events</h3>
-            <div class="card" style="overflow: scroll; height: 347pt; background-color: #fffaf7">
-                <div th:each="event: ${past}">
-                    <div id="card" class="card container drop-card" style="width: 275pt">
-                        <div class="row" style="margin: auto;">
-                            <div class="col-sm-4" style="padding-top: 5pt;padding-bottom: 5pt;padding-left: 0pt">
-                                <img height="120" width="120" th:src="${images['__${event.eventId}__']}"/>
-                            </div>
-                            <div id="text" class="col-sm-8" style="padding-left: 20pt">
-                                <div>
-                                    <a th:href="@{/event/{id}(id=${event.eventId})}" th:text="${event.name}" style="padding-top: 2pt"></a>
-                                </div>
-                                <div th:text="${event.charity.name}" style="padding-top: 2pt"></div>
-                                <div th:text="'Money raised: $' + ${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}" class="pull-right" style="padding-top: 2pt"></div>
-                            </div>
-                        </div>
+        <!--Current Events-->
+        <div class="card col-md-4 event-list">
+            <div class="card-header h1">Current</div>
+            <div class="event-list-scroll">
+                <div th:each="event:${current}" class="list-group">
+                    <div class="card border border-dark">
+                        <img class="card-img-top" height="120" width="120" th:src="${images['__${event.eventId}__']}" alt="Card image cap">
+                        <h6 class="card-title" th:text="${event.name}"></h6>
+                        <p class="card-text font-weight-bold" th:text="'Fundraising for '+ ${event.charity.name}"></p>
+                        <p class="card-text font-weight-bold" th:text="'Hosted by ' + ${event.organization.name}"></p>
+                        <p class="card-text" th:text="${event.description}"></p>
                     </div>
                 </div>
             </div>
         </div>
-        <!--Current EVENTS-->
-        <div class="column" style="margin: auto;">
-            <h3 style="align-self: center; padding: 10pt">Current Events</h3>
-            <div class="card" style="overflow: scroll; height: 347pt; background-color: #fffaf7">
-                <div th:each="event: ${current}">
-                    <div id="card" class="card container drop-card" style="width: 275pt">
-                        <div class="row" style="margin: auto;">
-                            <div class="col-sm-4" style="padding-top: 5pt;padding-bottom: 5pt;padding-left: 0pt">
-                                <img height="120" width="120" th:src="${images['__${event.eventId}__']}"/>
-                            </div>
-                            <div id="text" class="col-sm-8" style="padding-left: 20pt">
-                                <div>
-                                    <a th:href="@{/event/{id}(id=${event.eventId})}" th:text="${event.name}" style="padding-top: 2pt"></a>
-                                </div>
-                                <div th:text="${event.charity.name}" style="padding-top: 2pt"></div>
-                                <div th:text="'Money raised: $' + ${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}" class="pull-right" style="padding-top: 2pt"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Future EVENTS-->
-        <div class="column" style="margin: auto;">
-            <h3 style="align-self: center; padding: 10pt">Future Events</h3>
-            <div class="card" style="overflow: scroll; height: 347pt; background-color: #fffaf7">
-                <div th:each="event: ${future}">
-                    <div id="card" class="card container drop-card" style="width: 275pt">
-                        <div class="row" style="margin: auto;">
-                            <div class="col-sm-4" style="padding-top: 5pt;padding-bottom: 5pt;padding-left: 0pt">
-                                <img height="120" width="120" th:src="${images['__${event.eventId}__']}"/>
-                            </div>
-                            <div id="text" class="col-sm-8" style="padding-left: 20pt">
-                                <div>
-                                    <a th:href="@{/event/{id}(id=${event.eventId})}" th:text="${event.name}" style="padding-top: 2pt"></a>
-                                </div>
-                                <div th:text="${event.charity.name}" style="padding-top: 2pt"></div>
-                                <div th:text="'Money raised: $' + ${#numbers.formatDecimal(event.donation, 0, 'COMMA', 2, 'POINT')}" class="pull-right" style="padding-top: 2pt"></div>
-                            </div>
-                        </div>
+        <!--Future Events-->
+        <div class="card col-md-4 event-list">
+            <div class="card-header h1">Future</div>
+            <div class="event-list-scroll">
+                <div th:each="event:${future}" class="list-group">
+                    <div class="card border border-dark">
+                        <img class="card-img-top" height="120" width="120" th:src="${images['__${event.eventId}__']}" alt="Card image cap">
+                        <h6 class="card-title" th:text="${event.name}"></h6>
+                        <p class="card-text font-weight-bold" th:text="'Fundraising for '+ ${event.charity.name}"></p>
+                        <p class="card-text font-weight-bold" th:text="'Hosted by ' + ${event.organization.name}"></p>
+                        <p class="card-text" th:text="${event.description}"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
-<script>
-        var app = angular.module('myApp', []);
-        app.controller('myCtrl', function($scope, $http) {
-            $http.get("/api/events/current")
-            .then(function(response) {
-                console.log(response.data)
-                $scope.currentEvents = response.data;
-            });
-            $http.get("/api/events/past")
-            .then(function(response) {
-                console.log(response.data)
-                $scope.pastEvents = response.data;
-            });
-            $http.get("/api/events/future")
-            .then(function(response) {
-                console.log(response.data)
-                $scope.futureEvents = response.data;
-            });
-        });
-</script>
+
 </body>
 </html>

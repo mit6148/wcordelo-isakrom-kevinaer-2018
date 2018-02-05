@@ -3,6 +3,7 @@ package io.smartraise.controller.view;
 import io.smartraise.model.Image;
 import io.smartraise.model.accounts.Member;
 import io.smartraise.model.accounts.Payment;
+import io.smartraise.model.accounts.SignUpRequest;
 import io.smartraise.model.fundraise.Organization;
 import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,12 @@ public class MemberViewController {
     @Autowired
     private PaymentService paymentService;
 
+    @Autowired
+    private CredentialService credentialService;
+
     @GetMapping("/member/{id}")
     public String getMember(@PathVariable("id") String id, Model model, Principal principal){
-        if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+//        if (principal != null && principal.getName().equalsIgnoreCase(id)) {
             Member member = memberService.get(id);
             try {
                 model.addAttribute("profile_image", imageService.get(id, Image.ImageType.PROFILE));
@@ -60,13 +64,13 @@ public class MemberViewController {
             model.addAttribute("orgsImages", orgImages);
             model.addAttribute("donations", donationService.getDonationsByDonor(id));
             return "member";
-        } else {
-            return "redirect:/home";
-        }
+//        } else {
+//            return "redirect:/home";
+//        }
     }
 
     @GetMapping("/member/{id}/edit")
-    public String getEditMember(@PathVariable("id") String id, Model model, Principal principal, HttpServletResponse response){
+    public String getEditMember(@PathVariable("id") String id, Model model, Principal principal){
         if (principal != null && principal.getName().equalsIgnoreCase(id)) {
             try {
                 model.addAttribute("profile_image", imageService.get(id, Image.ImageType.PROFILE));

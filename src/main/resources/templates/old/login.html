@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SmartRaise</title>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/templates/css/master.css}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Roboto);
+
+        /****** LOGIN MODAL ******/
+        /***modified from https://bootsnipp.com/snippets/featured/clean-modal-login-form***/
+        hr {
+            display: block;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            margin-left: auto;
+            margin-right: auto;
+            border-style: inset;
+            border-width: 1px;
+        }
+
+        .container {
+            padding: 30px;
+            width: 90%;
+            background-color: #F7F7F7;
+            margin: 0 auto;
+            border-radius: 2px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            font-family: roboto;
+        }
+
+        .container h1 {
+            text-align: center;
+            font-size: 1.8em;
+            font-family: roboto;
+        }
+
+        .container input[type=submit] {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+            position: relative;
+            background: #ff9800;
+        }
+
+        .container input[type=text], input[type=password] {
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 10px;
+            -webkit-appearance: none;
+            background: #ffe0b2;
+            border: 1px solid #d9d9d9;
+            border-top: 1px solid #c0c0c0;
+            /* border-radius: 2px; */
+            padding: 0 8px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .container input[type=text]:hover, input[type=password]:hover {
+            border: 1px solid #b9b9b9;
+            border-top: 1px solid #a0a0a0;
+            -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .login {
+            text-align: center;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            padding: 0 8px;
+        }
+
+        .jumbotron {
+        	padding-top: 100px;
+        }
+
+        .submit {
+            /* border: 1px solid #3079ed; */
+            border: 0px;
+            color: #fff;
+            text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+            background-color: #4d90fe;
+            padding: 17px 0px;
+            font-family: roboto;
+            font-size: 14px;
+            width: 100%;
+            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+        }
+
+        .submit:hover {
+            /* border: 1px solid #2f5bb7; */
+            border: 0px;
+            text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+            background-color: #357ae8;
+            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+        }
+
+        .container a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            text-align: center;
+            display: inline-block;
+            opacity: 0.6;
+            transition: opacity ease 0.5s;
+        }
+
+        .help {
+            font-size: 12px;
+        }
+
+        .body {
+            background-color: #ffe0b2;
+            -webkit-text-fill-color: white;
+        }
+
+        .al-right {
+            float: right;
+            -webkit-text-fill-color: white;
+        }
+
+        input {
+            display: block;
+            font-size: 11px;
+            padding: 4px 2px;
+            border: solid 1px #aacfe4;
+            width: 70px;
+        }
+    </style>
+</head>
+<body style="background:#ffe0b2">
+<nav class="navbar navbar-default" >
+    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <div th:if="${principal!=null}">
+        <a class="nav-link al-right" th:href="@{'/member'+${principal.username}}" >Profile</a>
+    </div>
+    <div th:if="${principal==null}">
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
+</nav>
+<div class="container jumbotron">
+    <div class="row">
+        <div id="loginform" class="col-sm-4">
+            <div class="form" style="margin-top: auto"><!-- ng-controller="putserviceCtrl"> -->
+                <form th:action="@{/login}" method="post"> <!--ng-submit="submit()" -->
+                    <h1 style="margin-top: 60pt;">Login</h1>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username"/>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password"/>
+                    <div class="form-actions">
+                        <button type="submit" class="btn submit btn-default"
+                                style="margin: 10pt; font-size: 15pt; margin-left: auto">Login
+                        </button>
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-warning">
+                        You have been logged out.
+                    </div>
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        Invalid username and password.
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="blurb" class="col-sm-8">
+            <h2 style="text-align: center">Register</h1>
+                <div style="padding: 10pt">
+                    <p style="text-align: center">Please make an account using the buttons below in order to make full
+                        of the SmartRaise website!</p>
+                    <div class="container" style="width: inherit">
+                        <div class="row">
+                            <div class="col-sm-8" style="margin: auto; padding: 5pt;">
+                                <h2 style="text-align: center">Member</h2>
+                                <p style="text-align: center">
+                                    - Create your own customizable profile page to display organizations that you
+                                    endorse.
+                                    <br>
+                                    - Join organizations to promote positive change as a group.
+                                </p>
+                                <!--<button type="button" class="btn submit btn-default" id="nextBtn" onclick="loadMember()" style="margin: auto; font-size: 15pt; padding: 10px 20px;">Member</button>-->
+                                <form th:action="@{/signup}">
+                                    <input type="submit" class="btn submit btn-default" value="Register Member"
+                                           style="margin: auto;  font-size: 15pt; padding: 10px 20px;"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('putserviceApp', []);
+        console.log("iniiiit ");
+        app.controller('putserviceCtrl', function ($scope, $http) {
+            // Simple Post request example:
+            // var data = 'parameters';
+            // var config= {
+            //     'headers' : {
+            //         'Content-Type': 'application/json'
+            //     }
+            // }
+            // $scope.username = "";//document.getElementById("username").nodeValue;
+            // $scope.password = "";//document.getElementById("password").nodeValue;
+
+            $scope.login = {
+                'username': '',
+                'password': ''
+            }
+            $scope.submit = function () {
+                var data = {
+                    username: $scope.login.username,
+                    password: $scope.login.password
+                };
+                var config = {
+                    'headers': {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                console.log(data);
+                $http.post("login", data, config).then(function (response) {
+                    // $http.post(config).then(function (response) {
+                    //Go to user's profile
+
+                    var username = response.data.username;
+                    var newUrl = "/member?" + username;
+                    window.location = newUrl;
+                    // This function handles success
+                }, function (response) {
+                    console.log(response);
+                    //Go to error page
+                    //add error text and redirection
+                    // this function handles error
+                })
+            }
+        });
+    </script>
+</div>
+</div>
+</body>
+</html>

@@ -16,6 +16,8 @@ public interface CredentialService {
      */
     boolean exists(String username);
 
+    Credential get(String username);
+
     /**
      * Makes sure login attempt matches an actual user and contains
      * valid login information.

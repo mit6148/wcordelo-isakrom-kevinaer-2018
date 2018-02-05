@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SmartRaise</title>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script th:href="@{/templates/js/jquery.min.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Roboto);
+
+        /* Container holding the image and the text */
+.container {
+    position: fixed;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 100%;
+}
+
+/* Bottom left text */
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+/* Top left text */
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+/* Top right text */
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+     -webkit-text-fill-color: white;
+
+}
+        /****** LOGIN MODAL ******/
+        /***modified from https://bootsnipp.com/snippets/featured/clean-modal-login-form***/
+        .loginmodal-container {
+            padding: 30px;
+            max-width: 350px;
+            width: 100% !important;
+            background-color: #F7F7F7;
+            margin: 0 auto;
+            border-radius: 2px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            font-family: roboto;
+        }
+
+        .loginmodal-container h1 {
+            text-align: center;
+            font-size: 1.8em;
+            font-family: roboto;
+        }
+
+        .loginmodal-container input[type=submit] {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+            position: relative;
+            background: #ff9800;
+        }
+
+        .loginmodal-container input[type=text], input[type=password] {
+            height: 44px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 10px;
+            -webkit-appearance: none;
+            background: #ffe0b2;
+            border: 1px solid #d9d9d9;
+            border-top: 1px solid #c0c0c0;
+            /* border-radius: 2px; */
+            padding: 0 8px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .loginmodal-container input[type=text]:hover, input[type=password]:hover {
+            border: 1px solid #b9b9b9;
+            border-top: 1px solid #a0a0a0;
+            -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .loginmodal {
+            text-align: center;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            height: 36px;
+            padding: 0 8px;
+            /* border-radius: 3px; */
+            /* -webkit-user-select: none;
+              user-select: none; */
+        }
+
+        .loginmodal-submit {
+            /* border: 1px solid #3079ed; */
+            border: 0px;
+            color: #fff;
+            text-shadow: 0 1px rgba(0,0,0,0.1);
+            background-color: #4d90fe;
+            padding: 17px 0px;
+            font-family: roboto;
+            font-size: 14px;
+            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+        }
+
+        .loginmodal-submit:hover {
+            /* border: 1px solid #2f5bb7; */
+            border: 0px;
+            text-shadow: 0 1px rgba(0,0,0,0.3);
+            background-color: #357ae8;
+            /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+        }
+
+        .loginmodal-container a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            text-align: center;
+            display: inline-block;
+            opacity: 0.6;
+            transition: opacity ease 0.5s;
+        }
+
+        .login-help{
+            font-size: 12px;
+        }
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 75%;
+        }
+        .navbar-default {
+            background-color: 		#ef6c00;
+            width:100%;
+        }
+        .navbar {
+            white-space: nowrap;
+            width:100%;
+        }
+        .navbar-brand{
+            -webkit-text-fill-color: white;
+        }
+        .body {
+            background-color: #ffe0b2;
+            -webkit-text-fill-color: white;
+        }
+        a.navbar-brand {
+            z-index: 100;
+            left: 0px;
+            top: 0px;
+            display: block;
+            width: 173px;
+            background-size: 100% 100%; }
+        .al-right{
+            float: right;
+            -webkit-text-fill-color: white;
+        }
+        .navbar{
+            z-index: 100;
+            position: fixed;
+        }
+
+        .navbar.navbar-inverse {
+            border: none;
+        }
+        .navbar .navbar-brand {
+            padding-top: 0px;
+            margin-top: 7px;
+        }
+        .navbar .navbar-brand img {
+            height: 50px;
+        }
+
+        .logo {
+            padding-left: 10px ;
+        }
+
+        .
+        .jumbotron{
+            width: 90%;
+            justify-content:center;
+            align-items:center;
+            background: white;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        icon-image {
+                height: 60pt;
+                width: 60pt;
+                background-color: black;
+                padding-left: 10pt;
+                padding-top: 10pt;
+            }
+            drop-card{
+                width: 300pt;
+                padding: 8pt;
+            }
+            #Time{
+                position: relative;
+                float: right;
+            }
+            #Money{
+                -webkit-text-fill-color: green;
+            }
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+        .card{
+            border: 1px solid black;
+        }
+    </style>
+
+    <!--<link rel="import" href="navbar.html">-->
+</head>
+<body>
+<nav class="navbar navbar-default" >
+    <a href="home.html" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <form class="form-inline my-2 my-lg-0" >
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search">Search Events</a>
+        <a class="btn btn-outline-success my-2 my-sm-0 al-right" href="search.html" style="margin-left:10pt">Search Charities</a>
+    </form>
+    <a class="nav-link al-right" href="#" data-toggle="modal" data-target="#myModal">Log In</a>
+    <a class="nav-link al-right" href="/login" >Log In</a>
+    <a class="nav-link al-right" href="../templates/signUp">Sign up</a>
+</nav>
+<img src="../img/pexels-photo-754769.jpeg" alt="Happy Children" style="width:100%; position: fixed">
+  <div class="centered" style="position: fixed">
+      <h1 style="font-size: 30pt">404 Error</h1>
+        <h3>The page you're looking for wasn't found, sorry for the inconvenience</h3>
+  </div>
+<!-- Tessttt -->
+</body>
+</html>

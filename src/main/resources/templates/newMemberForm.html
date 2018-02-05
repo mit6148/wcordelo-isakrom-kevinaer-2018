@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartRaise | Create Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/upload.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/basic.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+</head>
+<body style="margin-top: 0%">
+    <div class="container">
+        <!--Member Panel-->
+        <div id="details" class="panel panel-default">
+            <div class="panel-heading" style="background-color: black">
+                <h4 class="panel-title">Member Information</h4>
+            </div>
+            <div class="panel-body">
+                <form class="container form-horizontal" th:object="${request}" th:action="@{'/signup/'+${request.member.username}}" method="post">
+                    <!--Contact Info Header-->
+                    <div>
+                        <p class="h2 subheading">Contact Information</p>
+                    </div>
+                    <div class="information">
+                        <!--User details-->
+                        <div class="row form-group">
+                            <div class="col-md-6 user">
+                                <!--Username-->
+                                <div class="user-details">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <label>Username</label>
+                                    <input class="form-control" th:field="*{member.username}" th:value="*{member.username}" readonly/>
+                                </div>
+                                <!--Email-->
+                                <div class="user-details">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    <label>Email Address</label>
+                                    <input class="form-control" th:field="*{member.contactInformation.email}" th:value="*{member.contactInformation.email}" readonly/>
+                                </div>
+                            </div>
+                            <!--Profile Image-->
+                            <div class="col-md-6 profile-img">
+                                <div class="row">
+                                    <span class="glyphicon glyphicon-picture"></span>
+                                    <label>Profile Picture</label>
+                                </div>
+                                <div class="row">
+                                    <img id="image" th:src="@{/img/empty-profile-grey.jpg}" height="200" width="200"/>
+                                </div>
+                                <div class="row">
+                                    <input type="file" onchange="imageUpload(this);"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <!--Name-->
+                            <div class="col-md-6 name-details">
+                                <label>Name</label>
+                                <div>
+                                    <input type="text" class="form-control name-form" th:field="*{member.contactInformation.firstName}" placeholder="First name" required>
+                                    <input type="text" class="form-control name-form" th:field="*{member.contactInformation.lastName}" placeholder="Last name" required>
+                                </div>
+                            </div>
+                            <!--Phone-->
+                            <div class="col-md-6 phone-details">
+                                <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" th:field="*{member.contactInformation.phone}" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        <!--Address-->
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                                <label>Address</label>
+                                <div>
+                                    <div class="address-container">
+                                        <input type="text" class="form-control address-street" th:field="*{member.contactInformation.address}" placeholder="Street Address" required>
+                                        <input type="text" class="form-control address-city" th:field="*{member.contactInformation.city}" placeholder="City" required>
+                                        <input type="text" class="form-control address-state" th:field="*{member.contactInformation.state}" placeholder="State" required>
+                                        <input type="text" class="form-control address-country" th:field="*{member.contactInformation.country}" placeholder="County" required>
+                                        <input type="text" class="form-control address-zip" th:field="*{member.contactInformation.zipCode}" placeholder="Zip" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="h4">Edit Card Information</p>
+                        <label class="radio-inline"><input type="radio" name="card" onclick="displayCard(this.value)" value="true">Yes</label>
+                        <label class="radio-inline"><input type="radio" name="card" onclick="displayCard(this.value)" value="false">No</label>
+                    </div>
+                    <div id="payment-form">
+                        <div>
+                            <p class="h2 subheading">Card Information</p>
+                        </div>
+                        <div class="information">
+                            <div class="row form-group">
+                                <div class="col-md-6 card-name">
+                                    <label>Name On Card</label>
+                                    <input class="form-control" th:field="*{payment.name}" placeholder="Name"/>
+                                </div>
+                                <div class="col-md-6 card-number">
+                                    <label>Card Number</label>
+                                    <input class="form-control" th:field="*{payment.number}" placeholder="Card Number"/>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-4 card-zip">
+                                    <label>Billing Zip Code</label>
+                                    <input class="form-control" th:field="*{payment.zipCode}" placeholder="Zip Code"/>
+                                </div>
+                                <div class="col-md-4 card-expiration">
+                                    <label>Expiration Date</label>
+                                    <div>
+                                        <div class="col-md-4 card-entry">
+                                            <input class="form-control" th:field="*{payment.expirationMonth}" placeholder="Month"/>
+                                        </div>
+                                        <p class="col-md-4 h4" style="width: 2%;">/</p>
+                                        <div class="col-md-4">
+                                            <input class="form-control" th:field="*{payment.expirationYear}" placeholder="Year"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 card-cvv">
+                                    <label>CVV</label>
+                                    <input class="form-control" th:field="*{payment.cvv}" placeholder="CVV"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <button type="submit" class="btn btn-primary" style="background-color: black">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

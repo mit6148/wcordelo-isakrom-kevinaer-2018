@@ -41,16 +41,9 @@ public class Member {
         this.username = "";
         this.privilege = new HashSet<>();
         this.organizations = new HashSet<>();
-//        this.payment = new Payment();
         this.donation = 0;
+        this.contactInformation = new ContactInformation();
     }
-
-//    public Member(String username, Set<String> organizations, ContactInformation contactInformation) {
-//        this.username = username;
-//        this.organizations = organizations;
-//        this.contactInformation = contactInformation;
-//        this.privilege = new HashSet<>();
-//    }
 
     public Set<Privilege> getPrivilege() {
         return privilege;

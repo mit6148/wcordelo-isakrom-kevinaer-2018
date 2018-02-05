@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign Up | Member</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/templates/css/master.css}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <style>
+
+        .body {
+            background-color: #ffe0b2;
+            -webkit-text-fill-color: white;
+        }
+
+        .al-right {
+            float: right;
+            -webkit-text-fill-color: white;
+        }
+
+        body {
+            background-color: #ffe0b2;
+        }
+
+        #regForm {
+            background-color: #ffffff;
+            margin: 100px auto;
+            font-family: Raleway;
+            padding: 40px;
+            width: 70%;
+            min-width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            font-size: 17px;
+            font-family: Raleway;
+            border: 1px solid #aaaaaa;
+        }
+
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+        /* Hide all steps by default: */
+        .tab {
+            display: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-family: Raleway;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #prevBtn {
+            background-color: #bbbbbb;
+        }
+
+        /* Make circles that indicate the steps of the form: */
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #4CAF50;
+        }
+
+        /**/
+        .body {
+            background-color: #ffe0b2;
+            -webkit-text-fill-color: white;
+        }
+
+        a.navbar-brand {
+            z-index: 100;
+            left: 0px;
+            top: 0px;
+            display: block;
+            width: 173px;
+            background-size: 100% 100%;
+        }
+
+        .al-right {
+            float: right;
+            -webkit-text-fill-color: white;
+        }
+
+        .navbar {
+            z-index: 100;
+            position: absolute;
+            top: 0;
+        }
+
+        .body {
+            background-color: #ffe0b2;
+            -webkit-text-fill-color: black;
+        }
+
+        /** {*/
+            /*box-sizing: border-box;*/
+            /*-webkit-text-fill-color: black;*/
+        /*}*/
+
+        body {
+            background-color: #ffe0b2;
+        }
+
+        #regForm {
+            background-color: #ffffff;
+            margin: 100px auto;
+            font-family: Raleway;
+            padding: 40px;
+            width: 70%;
+            min-width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            font-size: 17px;
+            border: 1px solid #aaaaaa;
+        }
+
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+        /* Hide all steps by default: */
+        .tab {
+            display: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #prevBtn {
+            background-color: #bbbbbb;
+        }
+
+        /* Make circles that indicate the steps of the form: */
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #4CAF50;
+        }
+
+        .main {
+            margin-top: 70px;
+        }
+
+        h1.title {
+            font-size: 50px;
+            font-weight: 400;
+        }
+
+        h3.title {
+            text-align: center;
+        }
+
+        hr {
+            width: 10%;
+            color: #fff;
+            align-content: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            margin-bottom: 15px;
+        }
+
+        input,
+        input::-webkit-input-placeholder {
+            font-size: 11px;
+            padding-top: 3px;
+        }
+
+        .main-login {
+            background-color: #fff;
+            /* shadows and rounded borders */
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+        }
+
+        .main-center {
+            margin-top: 30px;
+            margin: 0 auto;
+            max-width: 2000px;
+            padding: 40px 40px;
+
+        }
+
+        .login-button {
+            margin-top: 5px;
+        }
+
+        .login-register {
+            font-size: 11px;
+            text-align: center;
+        }
+    </style>
+<body>
+<nav class="navbar navbar-default" >
+    <a href="/" class="navbar-brand"><img src="../img/SR.png"><span class="logo">SmartRaise</span></a>
+    <a class="nav-link al-right" href="search" >Search Events</a>
+    <div th:if="${principal!=null}">
+        <a class="nav-link al-right" th:href="@{'/member'+${principal.username}}" >Profile</a>
+    </div>
+    <div th:if="${principal==null}">
+        <a class="nav-link al-right" href="login" >Log In</a>
+        <a class="nav-link al-right" href="signup">Sign up</a>
+    </div>
+</nav>
+
+<form name="sinup">
+    <div class="container">
+        <div class="row main">
+            <div class="main-login main-center">
+                <form name="signUpForm" class="form-horizontal" th:action="@{'/signup'}" th:object="${user}" th:method="POST">
+                    <div id="sinup" class="form-group" style="align-self: center">
+                        <h3 class="title">Member Registration</h3>
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col-sm-6 form-group">
+                                <label class="cols-sm-2 control-label">First Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input th:field="*{account.contactInformation.firstName}" type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter your First Name"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 form-group">
+                                <label class="cols-sm-2 control-label">Last Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input th:field="*{account.contactInformation.lastName}" type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your Last Name"/>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label class="cols-sm-2 control-label">Username</label>
+                                <!--<div class="cols-sm-10">-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                    <input th:field="*{username}" type="text" class="form-control" name="username" id="username" placeholder="Enter your Username"/>
+                                </div>
+                                <!--</div>-->
+                            </div>
+
+                            <div class="col-sm-6 form-group">
+                                <label class="cols-sm-2 control-label">Email</label>
+                                <!--<div class="cols-sm-10">-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input th:field="*{email}" type="text" class="form-control" name="email" id="email" placeholder="Enter your Email"/>
+                                </div>
+                                <!--</div>-->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label class="cols-sm-2 control-label">Password</label>
+                                    <div class="input-group">
+								        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                        <input th:field="*{password}" type="password" class="form-control" name="password" id="password" placeholder="Enter your Password"/>
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-6 form-group">
+                                <label class="cols-sm-2 control-label">Confirm Password</label>
+                                    <div class="input-group">
+								        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password"/>
+                                    </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-4 form-group">
+                                <label class="cols-sm-2 control-label">Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
+                                    <input th:field="*{account.contactInformation.address}" type="text" class="form-control" name="address" id="address" placeholder="Address"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <label class="cols-sm-2 control-label">City</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                    <input th:field="*{account.contactInformation.city}" type="text" class="form-control" name="city" id="city" placeholder="City"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 form-group">
+                                <label class="cols-sm-2 control-label">State</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
+                                    <input th:field="*{account.contactInformation.state}" type="text" class="form-control" name="state" id="state" placeholder="State"/>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class=" col-sm-6 form-group">
+                                <label class="cols-sm-2 control-label">Country</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                                    <input th:field="*{account.contactInformation.country}" type="text" class="form-control" name="country" id="country" placeholder="Enter your Country"/>
+                                </div>
+                            </div>
+                            <div class=" col-sm-6 form-group">
+                                <label class="cols-sm-2 control-label">Zip Code</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                                    <input th:field="*{account.contactInformation.zipCode}" type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Enter your Zip Code"/>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class=" col-sm-6 form-group">
+                                <label class="cols-sm-2 control-label">Phone Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                    <input th:field="*{account.contactInformation.phone}" type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Enter your Phone Number"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <a id="bsSolution" onclick="formSubmit()" class="btn btn-primary btn-lg btn-block login-button" style=" border-radius: 5%; background-color: dodgerblue; -webkit-text-fill-color: white; padding: 7pt">Verify Info</a>
+                                <div class="form-group ">
+                                    <button id="submitbtn" th:formmethod="post" type="submit" class="btn btn-primary btn-lg btn-block login-button" onclick="formSubmit()" style="display: none">Register</button>
+                                </div>
+                        <script>
+                            function formSubmit()
+                                {
+                                    var password= document.forms["sinup"]["password"].value;
+                                    var conf = document.forms["sinup"]["confirm"].value;
+                                    var tru = (password==conf).stringify
+                                    if (password == conf && validate())
+                                    {
+                                        document.getElementById("submitbtn").style.display = "inline"
+                                         return true;
+                                    }
+                                    if(confirm !=  password){
+                                        alert("Passwords must match")
+                                    }
+                                    if(validate !=  true){
+                                        alert("All sections must be filled")
+                                    }
+                                    return false;
+                                }
+
+                            function validate()
+                            {
+                                    var x, y, i, valid = true;
+                                    x = document.getElementById("sinup");
+                                    y = x.getElementsByTagName("input");
+                                    // A loop that checks every input field in the current tab:
+                                    for (i = 0; i < y.length; i++) {
+                                        // If a field is empty...
+                                        if (y[i].value == "") {
+                                            // add an "invalid" class to the field:
+                                            y[i].className += " invalid";
+                                            // and set the current valid status to false
+                                            valid = false;
+                                        }
+                                    }
+                                    // If the valid status is true, mark the step as finished and valid:
+                                    return valid; // return the valid status
+                                }
+                        </script>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the crurrent tab
+
+    function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
+        } else {
+            document.getElementById("nextBtn").innerHTML = "Next";
+        }
+        //... and run a function that will display the correct step indicator:
+        fixStepIndicator(n)
+    }
+
+    function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm()) return false;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        if (currentTab >= x.length) {
+            // ... the form gets submitted:
+            document.getElementById("regForm").submit();
+            return false;
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
+    }
+
+    function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                // and set the current valid status to false
+                valid = false;
+            }
+        }
+        if (document.getElementById("confirm").value != document.getElementById("password")){
+            return false;
+            }
+        // If the valid status is true, mark the step as finished and valid:
+        if (valid) {
+            document.getElementsByClassName("step")[currentTab].className += " finish";
+        }
+        return valid; // return the valid status
+    }
+
+    function fixStepIndicator(n) {
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class on the current step:
+        x[n].className += " active";
+    }
+</script>
+
+</body>
+</html>

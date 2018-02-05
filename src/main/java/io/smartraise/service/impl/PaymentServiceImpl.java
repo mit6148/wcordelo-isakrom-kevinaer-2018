@@ -52,14 +52,20 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public boolean isValid(Payment payment) {
-        return true;
-//        String[] dates = payment.getExpiration().split("/");
+        return !(payment.getName().isEmpty()
+                && payment.getZipCode().isEmpty()
+                && payment.getNumber().isEmpty()
+                && payment.getExpirationMonth().isEmpty()
+                && payment.getExpirationYear().isEmpty()
+                && payment.getCvv().isEmpty());
+//        return true;
+//        String[] dates = payment.getExpirationMonth().split("/");
 //        return payment.getCvv().length() == 3
 //                && Long.toString(payment.getNumber()).length() == 16
 //                && !payment.getName().isEmpty()
 //                && payment.getZipCode().length() == 5
-//                && payment.getExpiration().contains("/")
-//                && (validDate(payment.getExpiration()));
+//                && payment.getExpirationMonth().contains("/")
+//                && (validDate(payment.getExpirationMonth()));
     }
 
     private boolean validMonth(String month) {

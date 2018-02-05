@@ -1,0 +1,25 @@
+.event-list-scroll {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.card-header {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.list-group {
+    margin-bottom: 0px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.event-list {
+    margin-left: 0%;
+    margin-right: 0%;
+    padding: 0%;
+}

@@ -1,10 +1,11 @@
 package io.smartraise.controller.view;
 
+import io.smartraise.model.accounts.Member;
+import io.smartraise.model.accounts.SignUpRequest;
 import io.smartraise.model.login.SignUp;
 import io.smartraise.security.CustomAuthProvider;
 import io.smartraise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 
 @Controller
 public class SignupViewController {
@@ -22,47 +23,71 @@ public class SignupViewController {
     private MemberService memberService;
 
     @Autowired
-    private OrganizationService organizationService;
-
-    @Autowired
-    private DonationService donationService;
+    private PaymentService paymentService;
 
     @Autowired
     private CredentialService credentialService;
 
     @Autowired
-    private ImageService imageService;
-
-    @Autowired
-    private ApplicationContext context;
-
-    @Autowired
     private CustomAuthProvider authProvider;
 
-    @GetMapping(value = "/signup")
+    @GetMapping(value = "/login")
     public String getSignUp(Model model) {
         model.addAttribute("user",new SignUp());
-        return "signUpMember";
+        return "login";
     }
 
     @PostMapping("/signup")
-    public void getEditMember(@ModelAttribute("user") SignUp signUp, HttpServletResponse response, HttpServletRequest request) {
+    public String getEditMember(@ModelAttribute("user") SignUp signUp, HttpServletRequest request) {
         try {
             if (credentialService.create(signUp) != null) {
-//                Resource resource = context.getResource("//cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
-//                imageService.create(resource.getFile(), signUp.getUsername(), Image.ImageType.PROFILE);
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(signUp.getUsername(), signUp.getPassword());
                 request.getSession();
 
                 Authentication authentication = authProvider.authenticate(token);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
-                response.sendRedirect("/member/"+signUp.getUsername());
+                return "redirect:/signup/"+signUp.getUsername();
             } else {
-                response.sendRedirect("/home");
+                return "redirect:/signup";
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            return "redirect:/home";
+        }
+    }
+
+    @GetMapping("/signup/{id}")
+    public String getCreateMember(@PathVariable("id") String id,  Model model,  Principal principal) {
+        if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+            if (memberService.exists(id)) {
+                return "redirect:/home";
+            }
+            Member member = new Member();
+            member.setUsername(id);
+            String email = credentialService.get(id).getEmail();
+            member.getContactInformation().setEmail(email);
+            SignUpRequest request = new SignUpRequest();
+            request.setMember(member);
+            model.addAttribute("request", request);
+            return "newMemberForm";
+        } else {
+            return "redirect:/signup";
+        }
+    }
+
+    @RequestMapping(value = "/signup/{id}", method = RequestMethod.POST,
+            headers = "content-type=application/x-www-form-urlencoded")
+    public String postCreateMember(@PathVariable("id") String id, @ModelAttribute SignUpRequest request, Principal principal) {
+        if (principal != null && principal.getName().equalsIgnoreCase(id)) {
+            request.getMember().getContactInformation().setUsername(request.getMember().getUsername());
+            memberService.create(request.getMember());
+            if (request.getPayment() != null && request.getPayment().getNumber() != null) {
+                request.getPayment().setUsername(request.getMember().getUsername());
+            }
+            paymentService.create(request.getPayment());
+            return "redirect:/";
+        } else {
+            return "redirect:/signup";
         }
     }
 }

@@ -31,6 +31,11 @@ public class CredentialServiceImpl implements CredentialService{
     }
 
     @Override
+    public Credential get(String username) {
+        return credentialDAO.findOne(username);
+    }
+
+    @Override
     public Credential authenticate(SignUp signUp) throws Exception {
         Credential creds;
         if (signUp.getEmail().isEmpty()) {
@@ -69,10 +74,10 @@ public class CredentialServiceImpl implements CredentialService{
                             hash,
                             salt,
                             signUp.getUsername());
-            signUp.getAccount().setUsername(signUp.getUsername());
-            signUp.getAccount().getContactInformation().setUsername(signUp.getUsername());
-            signUp.getAccount().getContactInformation().setEmail(signUp.getEmail());
-            newForm(signUp);
+//            signUp.getAccount().setUsername(signUp.getUsername());
+//            signUp.getAccount().getContactInformation().setUsername(signUp.getUsername());
+//            signUp.getAccount().getContactInformation().setEmail(signUp.getEmail());
+//            newForm(signUp);
             credentialDAO.save(newCredential);
             return newCredential;
         }
